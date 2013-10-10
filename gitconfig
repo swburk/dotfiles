@@ -1,0 +1,26 @@
+[user]
+  name = Sam Burk
+  email = sam@samburk.com
+[core]
+  editor = vim
+  excludesfile = ~/.gitignore
+[color]
+  ui = auto
+[alias]
+  a = add
+  aa = add --all
+  c = commit
+  cm = commit -m
+  ca = commit --amend
+  co = checkout
+  s = status
+  pl = pull
+  ps = push
+[merge]
+  tool = vimdiff
+[url "git://github.com/"]
+  insteadOf = "github:"
+[url "git@github.com:"]
+  insteadOf = "gh:"
+[include]
+  path = "~/.gitconfig.local"
