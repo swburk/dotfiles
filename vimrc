@@ -146,8 +146,3 @@ augroup markdown " {
     autocmd BufRead,BufNewFile *.md set spell
     autocmd BufRead,BufNewFile *.md set wrap
 augroup END " }
-
-" Local config
-if filereadable($HOME . "/.vimrc.local")
-    source ~/.vimrc.local
-endif

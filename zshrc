@@ -87,6 +87,3 @@ alias tas='tmux attach -t'
 alias e='$EDITOR'
 alias lf='ls -t | head -1'
 alias ip='curl icanhazip.com'
-
-# Local config
-[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local

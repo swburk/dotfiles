@@ -11,4 +11,3 @@ Run the install script:
     cd ~/.dotfiles
     ./install.sh
 
-Put your customizations in dotfiles appended with `.local`.

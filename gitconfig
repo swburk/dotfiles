@@ -22,5 +22,3 @@
   insteadOf = "github:"
 [url "git@github.com:"]
   insteadOf = "gh:"
-[include]
-  path = "~/.gitconfig.local"
