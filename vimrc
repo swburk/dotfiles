@@ -114,15 +114,27 @@ nnoremap <silent> <leader>s :setlocal spell!<cr>
 nnoremap <silent> <leader>w :setlocal wrap!<cr>
 nnoremap <silent> <leader>c :setlocal list!<cr>
 
-" Frequently used commands
+" Clear trailing whitespace
 nnoremap <silent> <leader>t :%s/\s\+$//ge<cr>
+
+" Buffers
 nnoremap <silent> <leader>b :CtrlPBuffer<cr>
 nnoremap <silent> <leader>[ :bprev<cr>
 nnoremap <silent> <leader>] :bnext<cr>
+
+" Switch to alternate file
 nnoremap <leader>a <c-^>
+
+" New line above or below current line
 nnoremap <cr> o<esc>
 nnoremap <leader><cr> O<esc>
+
+" Save as root
 command! W :execute 'w !sudo tee % >/dev/null'
+
+" Folding
+nnoremap <space> za
+nnoremap <leader>z zi
 
 " These make more sense
 nnoremap Y y$
