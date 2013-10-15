@@ -19,7 +19,6 @@ Bundle 'SirVer/ultisnips'
 Bundle 'sjl/badwolf'
 Bundle 'altercation/vim-colors-solarized'
 
-
 " General settings
 filetype plugin indent on " Enable filetype detection and plugins
 set encoding=utf-8 " Set character encoding to Unicode
@@ -27,6 +26,7 @@ set history=1000 " Increase command line history
 set autoread " Reload file if changed outside Vim
 set title " Change the title of the terminal
 set ttyfast " I have a fast terminal
+set lazyredraw " Don't redraw screen when executing macros
 set hidden " Hide unsaved buffers
 set backspace=indent,eol,start " Backspace over everything in insert mode
 set nrformats-=octal " Increment numbers with leading zeros correctly
@@ -56,10 +56,8 @@ set wildignore+=*/.git/,*/.hg/ " Version control
 " Display
 set number " Show line numbers
 set cursorline " Highlight current line
-set nowrap " Don't wrap long lines
 set linebreak " Don't break words when wrapping
 set display+=lastline " last linea will be displayed if too long
-set colorcolumn=80 " Highlight the 80th column
 set visualbell t_vb= " Turn off error bells
 set shortmess=I " Don't display intro message
 set showcmd " Show unfinished commands
@@ -67,7 +65,7 @@ set showmode " Show the currently active mode
 set splitright " Opens vertical window to the right of current window
 set splitbelow " Opens horizontal window bellow current window
 set list " Show invisible characters
-set listchars=tab:>-,trail:. " Set invisible characters
+set listchars=tab:>\ ,trail:. " Set invisible characters
 set nojoinspaces " Don't add spaces when joining lines
 set guicursor=a:blinkon0 " Disable cursor blink
 
@@ -93,7 +91,7 @@ set statusline+=%= " Set right-side statusline
 set statusline+=L:%l/%L\ C:%02c\ " Line number and collumn
 
 " Scrolling
-set scrolloff=8 " Start scrolling when 8 lines from top or bottom
+set scrolloff=4 " Start scrolling when 4 lines from top or bottom
 set sidescroll=1 " Show more context when side scrolling
 
 " Folding
@@ -101,23 +99,38 @@ set foldmethod=indent " Set foldlevel based on indent level
 set foldnestmax=3 " Maximum foldlevel
 set foldlevel=3 " Unfold all folds by default
 
+" Wrapping
+set nowrap " Don't wrap long lines
+set textwidth=79 " Maximum line length
+set formatoptions=
+set formatoptions+=c " Format comments
+set formatoptions+=r " Continue comments by default
+set formatoptions+=o " Make comment when using o or O from comment line
+set formatoptions+=q " Format comments with gq
+set formatoptions+=n " Recognize numbered lists
+set formatoptions+=2 " Use indent from second line of a paragraph
+set formatoptions+=l " Don't break lines that are already long
+set formatoptions+=1 " Break before one-letter words
+set colorcolumn=80 " Highlight the 80th column
+
 " Mappings
 " Change <leader> to '-'
-let mapleader='-'
+let mapleader=','
 
 " Map paste toggle
 set pastetoggle=<leader>p
 
 " Toggles
-nnoremap <silent> <f2> :TagbarToggle<cr>
+nnoremap <silent> <leader>t :TagbarToggle<cr>
 nnoremap <silent> <leader>s :setlocal spell!<cr>
 nnoremap <silent> <leader>w :setlocal wrap!<cr>
 nnoremap <silent> <leader>c :setlocal list!<cr>
 
 " Clear trailing whitespace
-nnoremap <silent> <leader>t :%s/\s\+$//ge<cr>
+nnoremap <silent> <leader><space> :%s/\s\+$//ge<cr>
 
 " Buffers
+nnoremap <silent> <leader>f :CtrlP<cr>
 nnoremap <silent> <leader>b :CtrlPBuffer<cr>
 nnoremap <silent> <leader>[ :bprev<cr>
 nnoremap <silent> <leader>] :bnext<cr>
@@ -132,9 +145,8 @@ nnoremap <leader><cr> O<esc>
 " Save as root
 command! W :execute 'w !sudo tee % >/dev/null'
 
-" Folding
+" Space toggles fold
 nnoremap <space> za
-nnoremap <leader>z zi
 
 " These make more sense
 nnoremap Y y$
