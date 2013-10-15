@@ -13,7 +13,6 @@ Bundle 'Lokaltog/vim-easymotion'
 Bundle 'majutsushi/tagbar'
 Bundle 'kien/ctrlp.vim'
 Bundle 'SirVer/ultisnips'
-" Bundle 'scrooloose/syntastic'
 
 " Colorschemes
 Bundle 'sjl/badwolf'
@@ -30,6 +29,7 @@ set lazyredraw " Don't redraw screen when executing macros
 set hidden " Hide unsaved buffers
 set backspace=indent,eol,start " Backspace over everything in insert mode
 set nrformats-=octal " Increment numbers with leading zeros correctly
+runtime macros/matchit.vim " Match more than just (, { and [
 
 " Backup, swap, and undo
 set noswapfile " Don't create swapfiles
@@ -56,7 +56,6 @@ set wildignore+=*/.git/,*/.hg/ " Version control
 " Display
 set number " Show line numbers
 set cursorline " Highlight current line
-set linebreak " Don't break words when wrapping
 set display+=lastline " last linea will be displayed if too long
 set visualbell t_vb= " Turn off error bells
 set shortmess=I " Don't display intro message
@@ -101,6 +100,7 @@ set foldlevel=3 " Unfold all folds by default
 
 " Wrapping
 set nowrap " Don't wrap long lines
+set linebreak " Don't break words when wrapping
 set textwidth=79 " Maximum line length
 set formatoptions=
 set formatoptions+=c " Format comments
@@ -132,15 +132,20 @@ nnoremap <silent> <leader><space> :%s/\s\+$//ge<cr>
 " Buffers
 nnoremap <silent> <leader>f :CtrlP<cr>
 nnoremap <silent> <leader>b :CtrlPBuffer<cr>
+nnoremap <silent> <leader>m :CtrlPMRUFiles<cr>
 nnoremap <silent> <leader>[ :bprev<cr>
 nnoremap <silent> <leader>] :bnext<cr>
+nnoremap <silent> <leader>d :bdelete<cr>
+
+" Visual mode indenting
+vnoremap > >gv
+vnoremap < <gv
 
 " Switch to alternate file
 nnoremap <leader>a <c-^>
 
 " New line above or below current line
 nnoremap <cr> o<esc>
-nnoremap <leader><cr> O<esc>
 
 " Save as root
 command! W :execute 'w !sudo tee % >/dev/null'
@@ -170,3 +175,6 @@ augroup markdown " {
     autocmd BufRead,BufNewFile *.md set spell
     autocmd BufRead,BufNewFile *.md set wrap
 augroup END " }
+
+" Plugin settings
+let g:ctrlp_working_path_mode = 'c'
