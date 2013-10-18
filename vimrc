@@ -13,6 +13,7 @@ Bundle 'Lokaltog/vim-easymotion'
 Bundle 'majutsushi/tagbar'
 Bundle 'kien/ctrlp.vim'
 Bundle 'SirVer/ultisnips'
+Bundle 'scrooloose/syntastic'
 
 " Colorschemes
 Bundle 'sjl/badwolf'
@@ -183,7 +184,7 @@ vnoremap < <gv
 nnoremap ` <c-^>
 
 " New line above or below current line
-nnoremap <cr> o<esc>
+nnoremap <leader><cr> o<esc>
 
 " Save as root
 cnoremap w!! w !sudo tee % >/dev/null
@@ -248,3 +249,10 @@ let g:ctrlp_working_path_mode = 'rc'
 let g:ctrlp_switch_buffer = 0
 let g:ctrlp_extensions = ['tag']
 let g:ctrlp_match_window = 'max:20'
+
+" Syntastic
+let g:syntastic_mode_map = {
+    \ "mode": "active",
+    \ "active_filetypes": [],
+    \ "passive_filetypes": ['html'] }
+let g:syntastic_check_on_open = 1
