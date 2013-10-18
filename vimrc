@@ -93,9 +93,13 @@ set smartindent " Auto indentation
 " Statusline
 set laststatus=2 " Always show the statusline
 set statusline= " Clear default statusline
-set statusline+=\ %f\ %y%r%m " filename, filetype, readonly, and modified
+set statusline+=\ %f " Filename
+set statusline+=\ %r%m " Flags
 set statusline+=%= " Set right-side statusline
-set statusline+=L:%l/%L\ C:%02c\ " Line number and collumn
+set statusline+=%y " File type
+set statusline+=[%{&fileformat}] " File format
+set statusline+=[%{(&fenc==\"\"?&enc:&fenc)}] " Encoding
+set statusline+=\ %l/%L\  " Line number and collumn
 
 " Scrolling
 set scrolloff=4 " Start scrolling when 4 lines from top or bottom
@@ -111,7 +115,8 @@ set foldlevel=4 " Unfold all folds by default
 set nowrap " Don't wrap long lines
 set linebreak " Don't break words when wrapping
 set textwidth=79 " Maximum line length
-set formatoptions=c " Format comments
+set formatoptions= " Clear default setting
+set formatoptions+=c " Format comments
 set formatoptions+=r " Continue comments by default
 set formatoptions+=q " Format comments with gq
 set formatoptions+=n " Recognize numbered lists
@@ -124,7 +129,7 @@ set mouse=a " Enable mouse in all modes
 set ttymouse=xterm2 " XTerm mouse codes
 
 " Mappings
-" Change <leader> to '-'
+" Change <leader> to ','
 let mapleader=','
 
 " Toggles
@@ -165,10 +170,10 @@ nnoremap <silent> <leader>[ :bprev<cr>
 nnoremap <silent> <leader>] :bnext<cr>
 
 " Search tags in current buffer
-nnoremap <silent> <leader>pt :CtrlPTag<cr>
+nnoremap <silent> <leader>c :CtrlPTag<cr>
 
 " cd to the directory of the current buffer
-nnoremap <silent> <leader>cd :cd %:p:h<cr>
+nnoremap <silent> <leader>d :cd %:p:h<cr>
 
 " Visual mode indenting
 vnoremap > >gv
