@@ -78,9 +78,9 @@ set nojoinspaces " Don't add spaces when joining lines
 
 " Syntax
 syntax enable " Enable syntax highlighting
-set background=light " Make the background dark
+set background=dark " Make the background dark
 set t_Co=256 " I have a 256-color terminal
-colorscheme github " Set colorscheme
+colorscheme badwolf " Set colorscheme
 
 " Indentation
 set tabstop=4 " Width of literal tab characters

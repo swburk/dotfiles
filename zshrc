@@ -51,7 +51,7 @@ export PS1="%1(j.%{$fg[magenta]%}%jj %{$reset_color%}.)$PS1"
 
 # Functions
 function chpwd() {
-    ls -Ft --color=auto | head -7;
+    ls -Ft | head -7;
 }
 function mcd() {
     mkdir -pv "$1" && cd "$1";
@@ -74,7 +74,7 @@ alias -g ..='cd ..'
 alias -g ...='cd ../..'
 alias -g ....='cd ../../..'
 alias ungit="find . -name '.git' -exec rm -rf {} \;"
-alias ls='ls -F --color=auto'
+alias ls='ls -F'
 alias ll='ls -l'
 alias la='ls -lA'
 alias l1='ls -1'
