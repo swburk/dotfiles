@@ -75,18 +75,17 @@ set splitbelow " Opens horizontal window bellow current window
 set list " Show invisible characters
 set listchars=tab:>\ ,trail:. " Set invisible characters
 set nojoinspaces " Don't add spaces when joining lines
-set guicursor=a:blinkon0 " Disable cursor blink
 
 " Syntax
 syntax enable " Enable syntax highlighting
-set background=dark " Make the background dark
+set background=light " Make the background dark
 set t_Co=256 " I have a 256-color terminal
-colorscheme solarized " Set colorscheme
+colorscheme github " Set colorscheme
 
 " Indentation
-set tabstop=4 " Width of tab characters
-set softtabstop=4 " Amount of whitespace to use for insert mode commands
-set shiftwidth=4 " Amount of whitespace to use for normal mode commands
+set tabstop=4 " Width of literal tab characters
+set softtabstop=4 " Amount of whitespace to use in insert mode
+set shiftwidth=4 " Amount of whitespace to use in normal mode
 set expandtab " Use spaces in space of tabs of tabs
 set autoindent " Keep indentation level for new lines
 set smartindent " Auto indentation
@@ -98,9 +97,8 @@ set statusline+=\ %f " Filename
 set statusline+=\ %r%m " Flags
 set statusline+=%= " Set right-side statusline
 set statusline+=%y " File type
-set statusline+=[%{&fileformat}] " File format
-set statusline+=[%{(&fenc==\"\"?&enc:&fenc)}] " Encoding
-set statusline+=\ %l/%L\  " Line number and collumn
+set statusline+=\ %l/%L " Line number and collumn
+set statusline+=\ %P\  " Percentage through file
 
 " Scrolling
 set scrolloff=4 " Start scrolling when 4 lines from top or bottom

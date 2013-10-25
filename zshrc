@@ -38,7 +38,7 @@ autoload -U colors && colors
 setopt PROMPT_SUBST
 
 if [[ -n "$SSH_CONNECTION" ]]; then
-    SSH_PROMPT="%{$reset_color%}@%{$fg[yellow]%}%m%{$reset_color%}"
+    SSH_PROMPT="%{$reset_color%}@%{$fg[cyan]%}%m%{$reset_color%}"
 fi
 
 export PS1="%(?.%(!.#.$).%{$fg[red]%}%(!.#.$)%{$reset_color%}) "
