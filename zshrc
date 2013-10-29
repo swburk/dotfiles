@@ -17,7 +17,6 @@ setopt SHARE_HISTORY
 setopt EXTENDED_HISTORY
 
 # Navigation
-setopt AUTO_CD
 setopt AUTO_PUSHD
 setopt PUSHD_IGNORE_DUPS
 
@@ -73,6 +72,7 @@ alias src='. ~/.zshrc'
 alias -g ..='cd ..'
 alias -g ...='cd ../..'
 alias -g ....='cd ../../..'
+alias -g .....='cd ../../../..'
 alias ungit="find . -name '.git' -exec rm -rf {} \;"
 alias ls='ls -F'
 alias ll='ls -l'
@@ -82,8 +82,9 @@ alias lb='ranger'
 alias lr='tree -C'
 alias mkdir='mkdir -pv'
 alias cx='chmod a+x'
-alias tns='tmux new -s'
-alias tas='tmux attach -t'
+alias tmuxn='tmux new -s'
+alias tmuxa='tmux attach -t'
+alias tmuxl='tmux list-sessions'
 alias e='$EDITOR'
 alias lf='ls -t | head -1'
 alias ip='curl icanhazip.com'

@@ -14,6 +14,7 @@ Bundle 'majutsushi/tagbar'
 Bundle 'kien/ctrlp.vim'
 Bundle 'SirVer/ultisnips'
 Bundle 'scrooloose/syntastic'
+Bundle 'scrooloose/nerdtree'
 
 " Colorschemes
 Bundle 'sjl/badwolf'
@@ -47,7 +48,6 @@ set hlsearch " Don't highlight search results
 set ignorecase " Ignore case in search patterns
 set smartcase " Only ignore case when search pattern is all lowercase
 set wrapscan " Continue search after hitting the bottom of the file
-set gdefault " No need to put g at end of search & replace
 
 " Wildmenu completion
 set wildmenu " Command line completion
@@ -134,6 +134,7 @@ let mapleader=','
 " Toggles
 set pastetoggle=<f2>
 nnoremap <silent> <f8> :TagbarToggle<cr>
+nnoremap <silent> <f2> :NERDTreeToggle<cr>
 nnoremap <silent> <leader>o :setlocal spell!<cr>
 nnoremap <silent> <leader>w :setlocal wrap!<cr>
 nnoremap <silent> <leader>i :setlocal list!<cr>
@@ -241,7 +242,10 @@ augroup markdown
     autocmd BufRead,BufNewFile *.md set wrap
 augroup END
 
-" Plugin settings
+" Colorscheme & plugin settings
+" Badwolf
+let g:badwolf_html_link_underline = 0
+
 " Ctrl-P
 let g:ctrlp_working_path_mode = 'rc'
 let g:ctrlp_switch_buffer = 0
