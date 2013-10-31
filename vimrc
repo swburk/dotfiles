@@ -132,7 +132,7 @@ set ttymouse=xterm2 " XTerm mouse codes
 let mapleader=','
 
 " Toggles
-set pastetoggle=<f2>
+set pastetoggle=<leader>p
 nnoremap <silent> <f8> :TagbarToggle<cr>
 nnoremap <silent> <f2> :NERDTreeToggle<cr>
 nnoremap <silent> <leader>o :setlocal spell!<cr>
