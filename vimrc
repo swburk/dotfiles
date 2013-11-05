@@ -166,8 +166,8 @@ nnoremap <leader>s :%s/
 " Buffers
 nnoremap <silent> <leader>f :CtrlP<cr>
 nnoremap <silent> <leader>b :CtrlPBuffer<cr>
-nnoremap <silent> <leader>[ :bprev<cr>
-nnoremap <silent> <leader>] :bnext<cr>
+nnoremap <silent> [b :bprev<cr>
+nnoremap <silent> ]b :bnext<cr>
 
 " Search tags in current buffer
 nnoremap <silent> <leader>c :CtrlPTag<cr>
