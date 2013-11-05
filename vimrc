@@ -1,10 +1,16 @@
-set nocompatible " Disable Vi compatibility
-filetype off
+" Preface {{{
 
+set nocompatible
+filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
+filetype plugin indent on
 
-" Plugins
+" }}}
+" Vundle {{{
+
+" Plugins {{{
+"
 Bundle 'gmarik/vundle'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'tpope/vim-surround'
@@ -16,13 +22,20 @@ Bundle 'SirVer/ultisnips'
 Bundle 'scrooloose/syntastic'
 Bundle 'scrooloose/nerdtree'
 
-" Colorschemes
+" }}}
+" Colorschemes {{{
+"
 Bundle 'sjl/badwolf'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'croaky/vim-colors-github'
 
-" General settings
-filetype plugin indent on " Enable filetype detection and plugins
+" }}}
+
+" }}}
+" Settings {{{
+
+" General {{{
+
 set encoding=utf-8 " Set character encoding to Unicode
 set history=1000 " Increase command line history
 set autoread " Reload file if changed outside Vim
@@ -33,35 +46,11 @@ set hidden " Hide unsaved buffers
 set backspace=indent,eol,start " Backspace over everything in insert mode
 set nrformats-=octal " Increment numbers with leading zeros correctly
 runtime macros/matchit.vim " Match more than just (, { and [
-set virtualedit+=block " Put cursor where no character exists
-
-" Backup, swap, and undo
 set noswapfile " Don't create swapfiles
 set nobackup " Don't make backups
 set nowritebackup " Don't write backups
 set undofile " Persistent undo across sessions
 set undodir=~/tmp " Set undo directory
-
-" Search
-set incsearch " Show search results as you type
-set hlsearch " Don't highlight search results
-set ignorecase " Ignore case in search patterns
-set smartcase " Only ignore case when search pattern is all lowercase
-set wrapscan " Continue search after hitting the bottom of the file
-
-" Wildmenu completion
-set wildmenu " Command line completion
-set wildmode=longest,list,full " Make completion act like zsh
-set wildignore+=*.jpg,*.jpeg,*.png,*.gif,*.bmp " Images
-set wildignore+=*.o,*.exe " Compiled object files
-set wildignore+=*.pyc " Python byte code
-set wildignore+=*/.git/,*/.hg/ " Version control
-
-" Insert mode completion
-set complete=.,w,b,u,t
-" set completeopt=
-
-" Display
 set cmdheight=2 " Avoid "Press ENTER prompts
 set number " Show line numbers
 set cursorline " Highlight current line
@@ -69,20 +58,45 @@ set display+=lastline " last linea will be displayed if too long
 set visualbell t_vb= " Turn off error bells
 set shortmess=I " Don't display intro message
 set showcmd " Show unfinished commands
+set ruler " Show cursor position
 set showmode " Show the currently active mode
 set splitright " Opens vertical window to the right of current window
 set splitbelow " Opens horizontal window bellow current window
 set list " Show invisible characters
 set listchars=tab:>\ ,trail:. " Set invisible characters
 set nojoinspaces " Don't add spaces when joining lines
+set wildmenu " Command line completion
+set wildmode=longest,list,full " Make completion act like zsh
+set wildignore+=*.jpg,*.jpeg,*.png,*.gif,*.bmp " Images
+set wildignore+=*.o,*.exe " Compiled object files
+set wildignore+=*.pyc " Python byte code
+set wildignore+=*/.git/,*/.hg/ " Version control
+set scrolloff=4 " Start scrolling when 4 lines from top or bottom
+set sidescrolloff=4
+set sidescroll=1 " Show more context when side scrolling
+set mouse=a " Enable mouse in all modes
+set ttymouse=xterm2 " XTerm mouse codes
 
-" Syntax
+" }}}
+" Colors {{{
+
 syntax enable " Enable syntax highlighting
 set background=dark " Make the background dark
 set t_Co=256 " I have a 256-color terminal
 colorscheme badwolf " Set colorscheme
 
-" Indentation
+" }}}
+" Search {{{
+
+set incsearch " Show search results as you type
+set hlsearch " Don't highlight search results
+set ignorecase " Ignore case in search patterns
+set smartcase " Only ignore case when search pattern is all lowercase
+set wrapscan " Continue search after hitting the bottom of the file
+
+" }}}
+" Whitespace {{{
+
 set tabstop=4 " Width of literal tab characters
 set softtabstop=4 " Amount of whitespace to use in insert mode
 set shiftwidth=4 " Amount of whitespace to use in normal mode
@@ -90,9 +104,27 @@ set expandtab " Use spaces in space of tabs of tabs
 set autoindent " Keep indentation level for new lines
 set smartindent " Auto indentation
 
-" Statusline
+" }}}
+" Wrapping {{{
+
+set nowrap " Don't wrap long lines
+set linebreak " Don't break words when wrapping
+set textwidth=79 " Maximum line length
+set formatoptions=
+set formatoptions+=c " Format comments
+set formatoptions+=r " Continue comments by default
+set formatoptions+=o " Make comment when using o or O from commented line
+set formatoptions+=q " Format comments with gq
+set formatoptions+=n " Recognize numbered lists
+set formatoptions+=2 " Use indent from second line of a paragraph
+set formatoptions+=l " Don't break lines that are already long
+set colorcolumn=+1 " Highlight the 80th column
+
+" }}}
+" Statusline {{{
+
 set laststatus=2 " Always show the statusline
-set statusline= " Clear default statusline
+set statusline=
 set statusline+=\ %f " Filename
 set statusline+=\ %r%m " Flags
 set statusline+=%= " Set right-side statusline
@@ -100,34 +132,11 @@ set statusline+=%y " File type
 set statusline+=\ %l/%L " Line number and collumn
 set statusline+=\ %P\  " Percentage through file
 
-" Scrolling
-set scrolloff=4 " Start scrolling when 4 lines from top or bottom
-set sidescrolloff=4
-set sidescroll=1 " Show more context when side scrolling
+" }}}
 
-" Folding
-set foldmethod=indent " Set foldlevel based on indent level
-set foldnestmax=4 " Maximum foldlevel
-set foldlevel=4 " Unfold all folds by default
+" }}}
+" Mappings {{{
 
-" Wrapping
-set nowrap " Don't wrap long lines
-set linebreak " Don't break words when wrapping
-set textwidth=79 " Maximum line length
-set formatoptions= " Clear default setting
-set formatoptions+=c " Format comments
-set formatoptions+=r " Continue comments by default
-set formatoptions+=q " Format comments with gq
-set formatoptions+=n " Recognize numbered lists
-set formatoptions+=2 " Use indent from second line of a paragraph
-set formatoptions+=l " Don't break lines that are already long
-set colorcolumn=+1 " Highlight the 80th column
-
-" Mouse
-set mouse=a " Enable mouse in all modes
-set ttymouse=xterm2 " XTerm mouse codes
-
-" Mappings
 " Change <leader> to ','
 let mapleader=','
 
@@ -135,30 +144,37 @@ let mapleader=','
 set pastetoggle=<leader>p
 nnoremap <silent> <f8> :TagbarToggle<cr>
 nnoremap <silent> <f2> :NERDTreeToggle<cr>
-nnoremap <silent> <leader>o :setlocal spell!<cr>
+nnoremap <silent> <leader>S :setlocal spell!<cr>
 nnoremap <silent> <leader>w :setlocal wrap!<cr>
 nnoremap <silent> <leader>i :setlocal list!<cr>
-nnoremap <silent> <leader><space> :nohlsearch<cr>
+nnoremap <silent> <leader>/ :nohlsearch<cr>
 
 " Unmap help key
 noremap <f1> <nop>
+vnoremap <f1> <nop>
 inoremap <f1> <nop>
 
 " Clear trailing whitespace
-nnoremap <silent> <leader>t :%s/\s\+$//ge<cr>
-
-" Format text
-nnoremap Q gqip
-vnoremap Q gq
+nnoremap <silent> <leader><space> :%s/\s\+$//ge<cr>
 
 " Return cursor position when joining lines
 nnoremap J mzJ`z
 
+" Increment/decrement
+nnoremap + <c-a>
+nnoremap - <c-x>
+
 " Split lines
 nnoremap S i<cr><esc>
 
-" Stay put on *
+" Select all
+map <leader>a ggVG
+
+" Stay put on * and #
 nnoremap * *<c-o>
+nnoremap g* g*<c-o>
+nnoremap # #<c-o>
+nnoremap g# g#<c-o>
 
 " Substitute
 nnoremap <leader>s :%s/
@@ -170,10 +186,7 @@ nnoremap <silent> [b :bprev<cr>
 nnoremap <silent> ]b :bnext<cr>
 
 " Search tags in current buffer
-nnoremap <silent> <leader>c :CtrlPTag<cr>
-
-" cd to the directory of the current buffer
-nnoremap <silent> <leader>d :cd %:p:h<cr>
+nnoremap <silent> <leader>t :CtrlPTag<cr>
 
 " Visual mode indenting
 vnoremap > >gv
@@ -182,7 +195,7 @@ vnoremap < <gv
 " Switch to alternate file
 nnoremap ` <c-^>
 
-" New line above or below current line
+" New line above current line
 nnoremap <leader><cr> o<esc>
 
 " Save as root
@@ -191,7 +204,7 @@ cnoremap w!! w !sudo tee % >/dev/null
 " Space toggles fold
 nnoremap <space> za
 
-" Complete filenames
+" Complete filenames in insert mode
 inoremap <c-f> <c-x><c-f>
 
 " These make more sense
@@ -224,25 +237,54 @@ nnoremap g, g,zz
 nnoremap <c-o> <c-o>zz
 nnoremap <c-i> <c-i>zz
 
-" Autocommands
+" }}}
+" Autocommands {{{
+
+" Resize splits when the window is resized
 augroup resize_splits
     autocmd!
     autocmd VimResized * :wincmd =
 augroup END
 
+" Source vimrc after it has been saved
 augroup reload_vimrc
     autocmd!
     autocmd BufWritePost $MYVIMRC source $MYVIMRC
 augroup END
 
-augroup markdown
+" Filetype-specific settings {{{
+augroup ft_markdown
     autocmd!
-    autocmd BufRead,BufNewFile *.md set filetype=markdown
-    autocmd BufRead,BufNewFile *.md set spell
-    autocmd BufRead,BufNewFile *.md set wrap
+    autocmd BufRead,BufNewFile *.md setlocal filetype=markdown
+    autocmd FileType markdown setlocal spell
+    autocmd FileType markdown setlocal wrap
 augroup END
 
-" Colorscheme & plugin settings
+augroup ft_c
+    autocmd!
+    autocmd FileType c setlocal foldmethod=marker foldmarker={,}
+augroup END
+
+augroup ft_javascript
+    autocmd!
+    autocmd FileType javascript setlocal foldmethod=marker foldmarker={,}
+augroup END
+
+augroup ft_css
+    autocmd!
+    autocmd FileType css setlocal foldmethod=marker foldmarker={,}
+augroup END
+
+augroup ft_vim
+    autocmd!
+    autocmd FileType vim setlocal foldmethod=marker
+augroup END
+
+" }}}
+
+" }}}
+" Plugin settings {{{
+
 " Badwolf
 let g:badwolf_html_link_underline = 0
 
@@ -258,3 +300,5 @@ let g:syntastic_mode_map = {
     \ "active_filetypes": [],
     \ "passive_filetypes": ['html'] }
 let g:syntastic_check_on_open = 1
+
+" }}}
