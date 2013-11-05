@@ -131,6 +131,23 @@ set statusline+=\ %l/%L " Line number and collumn
 set statusline+=\ %P\  " Percentage through file
 
 " }}}
+" Folding {{{
+
+set foldlevelstart=0
+
+set foldtext=MyFoldText()
+function! MyFoldText()
+    let line = getline(v:foldstart)
+
+    let numbercolumnwidth = &fdc + &number * &numberwidth
+    let windowwidth = winwidth(0) - numbercolumnwidth
+    let foldedlinecount = v:foldend - v:foldstart
+    let fillcharcount = windowwidth - len(line) - len(foldedlinecount) - 3
+
+    return line . '…' . repeat(" ", fillcharcount) . '…' . foldedlinecount . ' '
+endfunction
+
+" }}}
 
 " }}}
 " Mappings {{{
