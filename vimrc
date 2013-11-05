@@ -54,7 +54,7 @@ set undodir=~/tmp " Set undo directory
 set cmdheight=2 " Avoid "Press ENTER prompts
 set number " Show line numbers
 set cursorline " Highlight current line
-set display+=lastline " last linea will be displayed if too long
+set display+=lastline " last line will be displayed if too long
 set visualbell t_vb= " Turn off error bells
 set shortmess=I " Don't display intro message
 set showcmd " Show unfinished commands
@@ -71,9 +71,7 @@ set wildignore+=*.jpg,*.jpeg,*.png,*.gif,*.bmp " Images
 set wildignore+=*.o,*.exe " Compiled object files
 set wildignore+=*.pyc " Python byte code
 set wildignore+=*/.git/,*/.hg/ " Version control
-set scrolloff=4 " Start scrolling when 4 lines from top or bottom
-set sidescrolloff=4
-set sidescroll=1 " Show more context when side scrolling
+set sidescrolloff=4 " Start scrolling 4 columns from edge of window
 set mouse=a " Enable mouse in all modes
 set ttymouse=xterm2 " XTerm mouse codes
 
