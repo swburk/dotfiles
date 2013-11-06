@@ -142,9 +142,19 @@ function! MyFoldText()
     let numbercolumnwidth = &fdc + &number * &numberwidth
     let windowwidth = winwidth(0) - numbercolumnwidth
     let foldedlinecount = v:foldend - v:foldstart
-    let fillcharcount = windowwidth - len(line) - len(foldedlinecount) - 3
+    let fillcharcount = windowwidth - len(line) - len(foldedlinecount) - 9
+    if foldedlinecount == 1
+        let lines = '  line '
+    else
+        let lines = ' lines '
+    endif
 
-    return line . '…' . repeat(" ", fillcharcount) . '…' . foldedlinecount . ' '
+    if foldedlinecount <= fillcharcount
+        let fillcharcount = fillcharcount - foldedlinecount
+        return line . ' ' . repeat("-", foldedlinecount) . repeat(" ", fillcharcount) . ' ' . foldedlinecount . lines
+    else
+        return line . ' ' . repeat("-", fillcharcount) . ' ' . foldedlinecount . lines
+    endif
 endfunction
 
 " }}}
