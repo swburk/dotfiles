@@ -138,23 +138,32 @@ set foldlevelstart=0
 set foldtext=MyFoldText()
 function! MyFoldText()
     let line = getline(v:foldstart)
+    let line = substitute(line, '^\s\+', '', 'g')
 
     let numbercolumnwidth = &fdc + &number * &numberwidth
     let windowwidth = winwidth(0) - numbercolumnwidth
     let foldedlinecount = v:foldend - v:foldstart
-    let fillcharcount = windowwidth - len(line) - len(foldedlinecount) - 9
-    if foldedlinecount == 1
-        let lines = '  line '
-    else
-        let lines = ' lines '
+    let foldlevel = v:foldlevel - 1
+    let fillcharcount = windowwidth - foldlevel - len(line) - len(foldedlinecount) - 9
+
+    if foldlevel > 0
+        let line = repeat("-", foldlevel) . ' ' . line
     endif
 
     if foldedlinecount <= fillcharcount
         let fillcharcount = fillcharcount - foldedlinecount
-        return line . ' ' . repeat("-", foldedlinecount) . repeat(" ", fillcharcount) . ' ' . foldedlinecount . lines
+        let line = line . ' ' . repeat("-", foldedlinecount) . repeat(" ", fillcharcount) . ' ' . foldedlinecount
     else
-        return line . ' ' . repeat("-", fillcharcount) . ' ' . foldedlinecount . lines
+        let line = line . ' ' . repeat("-", fillcharcount) . ' ' . foldedlinecount
     endif
+
+    if foldedlinecount == 1
+        let line = line . '  line '
+    else
+        let line = line . ' lines '
+    endif
+
+    return line
 endfunction
 
 " }}}
