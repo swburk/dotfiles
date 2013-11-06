@@ -201,9 +201,6 @@ nnoremap - <c-x>
 " Split lines
 nnoremap S i<cr><esc>
 
-" Select all
-map <leader>a ggVG
-
 " Stay put on * and #
 nnoremap * *<c-o>
 nnoremap g* g*<c-o>
@@ -219,9 +216,6 @@ nnoremap <silent> <leader>b :CtrlPBuffer<cr>
 nnoremap <silent> [b :bprev<cr>
 nnoremap <silent> ]b :bnext<cr>
 
-" Search tags in current buffer
-nnoremap <silent> <leader>t :CtrlPTag<cr>
-
 " Visual mode indenting
 vnoremap > >gv
 vnoremap < <gv
@@ -229,7 +223,7 @@ vnoremap < <gv
 " Switch to alternate file
 nnoremap ` <c-^>
 
-" New line above current line
+" New line below current line
 nnoremap <leader><cr> o<esc>
 
 " Save as root
@@ -325,7 +319,6 @@ let g:badwolf_html_link_underline = 0
 " Ctrl-P
 let g:ctrlp_working_path_mode = 'rc'
 let g:ctrlp_switch_buffer = 0
-let g:ctrlp_extensions = ['tag']
 let g:ctrlp_match_window = 'max:20'
 
 " Syntastic
