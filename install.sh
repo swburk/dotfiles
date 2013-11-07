@@ -1,18 +1,75 @@
-#!/bin/sh
+#!/bin/bash
 
-for name in *; do
-    target="$HOME/.$name"
-    if [ -e "$target" ]; then
-        if [ ! -L "$target" ]; then
-            echo "WARNING: $target exists but is not a symlink."
+backup() {
+    files=( $(ls) )
+    for file in "${files[@]}"; do
+        cp -Rf "$file" "$BACKUP_DIR/$file"
+    done
+}
+
+install() {
+    files=( $(ls) )
+    for file in "${files[@]}"; do
+        if [ "$file" != 'install.sh' ] && [ "$file" != 'README.md' ]; then
+            ln -fs $file $HOME/.$file
         fi
-    else
-        if [ "$name" != 'install.sh' ] && [ "$name" != 'README.md' ]; then
-            echo "Creating $target"
-            ln -s "$PWD/$name" "$target"
-        fi
+    done
+}
+
+if [[ -z "$1" ]]; then
+    if [[ ! -d $HOME/.dotfiles ]]; then
+        mkdir "$HOME/.dotfiles"
     fi
-done
+    INSTALL_DIR="$HOME/.dotfiles"
+else
+    if [[ ${1:(-1)} == "/" ]]; then
+        INSTALL_DIR=${1:0:${#1} - 1}
+    else
+        INSTALL_DIR="$1"
+    fi
+fi
 
-git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-vim +BundleInstall +qa
+if [[ -z "$2" ]]; then
+    if [[ ! -d $HOME/.dotfiles_backup ]]; then
+        mkdir "$HOME/.dotfiles_backup"
+    fi
+    mkdir "$HOME/.dotfiles_backup/$(date "+%Y%m%d%I%M%S")"
+    BACKUP_DIR="$HOME/.dotfiles_backup"
+else
+    if [[ -d "$2" ]]; then
+        BACKUP_DIR="$2"
+    else
+        mkdir "$2"
+        BACKUP_DIR="$2"
+    fi
+fi
+
+if [ -d "$DOTFILES_DIR" ]; then
+    pushd "$DOTFILES_DIR"
+
+    echo "Updating"
+    git pull origin master
+    git submodule init
+    git submodule update
+
+    echo "Backing up"
+    backup
+
+    echo "Installing"
+    install
+else
+    echo "Downloading"
+    git clone --recursive git://github.com/samuelburk/dotfiles.git "$DOTFILES_DIR"
+
+    pushd "$DOTFILES_DIR"
+
+    echo "Backing up"
+    backup
+
+    echo "Installing"
+    install
+fi
+
+echo "Finished"
+popd
+

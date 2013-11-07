@@ -2,31 +2,30 @@
 
 set nocompatible
 filetype off
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+execute pathogen#infect()
 filetype plugin indent on
 
 " }}}
 " Vundle {{{
 
 " Plugins {{{
-"
-Bundle 'gmarik/vundle'
-Bundle 'tomtom/tcomment_vim'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-repeat'
-Bundle 'majutsushi/tagbar'
-Bundle 'kien/ctrlp.vim'
-Bundle 'SirVer/ultisnips'
-Bundle 'scrooloose/syntastic'
-Bundle 'sjl/gundo.vim'
+
+" Bundle 'gmarik/vundle'
+" Bundle 'tomtom/tcomment_vim'
+" Bundle 'tpope/vim-surround'
+" Bundle 'tpope/vim-repeat'
+" Bundle 'majutsushi/tagbar'
+" Bundle 'kien/ctrlp.vim'
+" Bundle 'SirVer/ultisnips'
+" Bundle 'scrooloose/syntastic'
+" Bundle 'sjl/gundo.vim'
 
 " }}}
 " Colorschemes {{{
-"
-Bundle 'sjl/badwolf'
-Bundle 'croaky/vim-colors-github'
-Bundle 'Pychimp/vim-luna'
+
+" Bundle 'sjl/badwolf'
+" Bundle 'croaky/vim-colors-github'
+" Bundle 'Pychimp/vim-luna'
 
 " }}}
 
@@ -225,7 +224,7 @@ nnoremap g# g#<c-o>
 
 " Substitute
 nnoremap <leader>s :%s/
-vnoremap <leader>s :%s/
+vnoremap <leader>s :s/
 
 " Visual mode indenting
 vnoremap > >gv
