@@ -11,7 +11,7 @@ install() {
     files=( $(ls) )
     for file in "${files[@]}"; do
         if [ "$file" != 'install.sh' ] && [ "$file" != 'README.md' ]; then
-            ln -fs $file $HOME/.$file
+            ln -fs $INSTALL_DIR/$file $HOME/.$file
         fi
     done
 }
@@ -44,8 +44,8 @@ else
     fi
 fi
 
-if [ -d "$DOTFILES_DIR" ]; then
-    pushd "$DOTFILES_DIR"
+if [ -d "$INSTALL_DIR" ]; then
+    pushd "$INSTALL_DIR"
 
     echo "Updating"
     git pull origin master
@@ -59,9 +59,9 @@ if [ -d "$DOTFILES_DIR" ]; then
     install
 else
     echo "Downloading"
-    git clone --recursive git://github.com/samuelburk/dotfiles.git "$DOTFILES_DIR"
+    git clone --recursive git://github.com/samuelburk/dotfiles.git "$INSTALL_DIR"
 
-    pushd "$DOTFILES_DIR"
+    pushd "$INSTALL_DIR"
 
     echo "Backing up"
     backup
