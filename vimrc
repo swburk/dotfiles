@@ -19,12 +19,14 @@ Bundle 'majutsushi/tagbar'
 Bundle 'kien/ctrlp.vim'
 Bundle 'SirVer/ultisnips'
 Bundle 'scrooloose/syntastic'
+Bundle 'sjl/gundo.vim'
 
 " }}}
 " Colorschemes {{{
 "
 Bundle 'sjl/badwolf'
 Bundle 'croaky/vim-colors-github'
+Bundle 'Pychimp/vim-luna'
 
 " }}}
 
@@ -374,5 +376,9 @@ let g:syntastic_mode_map = {
     \ "active_filetypes": [],
     \ "passive_filetypes": ['html'] }
 let g:syntastic_check_on_open = 1
+
+" Tagbar
+let g:tagbar_sort = 1
+let g:tagbar_compact = 1
 
 " }}}
