@@ -11,8 +11,11 @@ install() {
     files=( $(ls) )
     for file in "${files[@]}"; do
         if [ "$file" != 'install.sh' ] && [ "$file" != 'README.md' ]; then
+            if [ -e "$HOME/.$file" ]; then
+                rm -rf $HOME/.$file
+            fi
             echo "Linking $file to $HOME/.$file"
-            ln -fs $DOTFILE_DIR/$file $HOME/.$file
+            ln -s $DOTFILE_DIR/$file $HOME/.$file
         fi
     done
 }
