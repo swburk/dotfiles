@@ -15,18 +15,15 @@ Bundle 'gmarik/vundle'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-repeat'
-Bundle 'Lokaltog/vim-easymotion'
 Bundle 'majutsushi/tagbar'
 Bundle 'kien/ctrlp.vim'
 Bundle 'SirVer/ultisnips'
 Bundle 'scrooloose/syntastic'
-Bundle 'scrooloose/nerdtree'
 
 " }}}
 " Colorschemes {{{
 "
 Bundle 'sjl/badwolf'
-Bundle 'altercation/vim-colors-solarized'
 Bundle 'croaky/vim-colors-github'
 
 " }}}
@@ -37,6 +34,7 @@ Bundle 'croaky/vim-colors-github'
 " General {{{
 
 set encoding=utf-8 " Set character encoding to Unicode
+set modelines=0 " Don't read modelines
 set history=1000 " Increase command line history
 set autoread " Reload file if changed outside Vim
 set title " Change the title of the terminal
@@ -63,7 +61,7 @@ set showmode " Show the currently active mode
 set splitright " Opens vertical window to the right of current window
 set splitbelow " Opens horizontal window bellow current window
 set list " Show invisible characters
-set listchars=tab:>\ ,trail:. " Set invisible characters
+set listchars=tab:>\ ,trail:· " Set invisible characters
 set nojoinspaces " Don't add spaces when joining lines
 set wildmenu " Command line completion
 set wildmode=longest,list,full " Make completion act like zsh
@@ -71,9 +69,9 @@ set wildignore+=*.jpg,*.jpeg,*.png,*.gif,*.bmp " Images
 set wildignore+=*.o,*.exe " Compiled object files
 set wildignore+=*.pyc " Python byte code
 set wildignore+=*/.git/,*/.hg/ " Version control
-set sidescrolloff=4 " Start scrolling 4 columns from edge of window
 set mouse=a " Enable mouse in all modes
-set ttymouse=xterm2 " XTerm mouse codes
+set sidescroll=1 " Show some context
+set sidescrolloff=12 " Start scrolling 12 columns from right edge of window
 
 " }}}
 " Colors {{{
@@ -91,6 +89,7 @@ set hlsearch " Don't highlight search results
 set ignorecase " Ignore case in search patterns
 set smartcase " Only ignore case when search pattern is all lowercase
 set wrapscan " Continue search after hitting the bottom of the file
+set gdefault " All substitutions
 
 " }}}
 " Whitespace {{{
@@ -100,7 +99,7 @@ set softtabstop=4 " Amount of whitespace to use in insert mode
 set shiftwidth=4 " Amount of whitespace to use in normal mode
 set expandtab " Use spaces in space of tabs of tabs
 set autoindent " Keep indentation level for new lines
-set smartindent " Auto indentation
+set shiftround " Round indent to multiple of shiftwidth
 
 " }}}
 " Wrapping {{{
@@ -135,7 +134,6 @@ set statusline+=\ %P\  " Percentage through file
 
 set foldlevelstart=0
 
-set foldtext=MyFoldText()
 function! MyFoldText()
     let line = getline(v:foldstart)
     let line = substitute(line, '^\s\+', '', 'g')
@@ -166,6 +164,7 @@ function! MyFoldText()
 
     return line
 endfunction
+set foldtext=MyFoldText()
 
 " }}}
 
@@ -177,9 +176,9 @@ endfunction
 set pastetoggle=<leader>p
 nnoremap <silent> <f8> :TagbarToggle<cr>
 nnoremap <silent> <f2> :NERDTreeToggle<cr>
-nnoremap <silent> <leader>S :setlocal spell!<cr>
-nnoremap <silent> <leader>w :setlocal wrap!<cr>
-nnoremap <silent> <leader>i :setlocal list!<cr>
+nnoremap <silent> <leader>S :set spell!<cr>
+nnoremap <silent> <leader>w :set wrap!<cr>
+nnoremap <silent> <leader>i :set list!<cr>
 nnoremap <silent> <leader>/ :nohlsearch<cr>
 
 " }}}
@@ -187,6 +186,10 @@ nnoremap <silent> <leader>/ :nohlsearch<cr>
 
 " Remap leader
 let mapleader=','
+
+" Remap leader's original functionality
+nnoremap <leader><leader> ,
+vnoremap <leader><leader> ,
 
 " Unmap help key
 noremap <f1> <nop>
@@ -220,6 +223,7 @@ nnoremap g# g#<c-o>
 
 " Substitute
 nnoremap <leader>s :%s/
+vnoremap <leader>s :%s/
 
 " Visual mode indenting
 vnoremap > >gv
@@ -233,6 +237,7 @@ cnoremap w!! w !sudo tee % >/dev/null
 
 " Space toggles fold
 nnoremap <space> za
+vnoremap <space> za
 
 " Complete filenames in insert mode
 inoremap <c-f> <c-x><c-f>
@@ -240,6 +245,12 @@ inoremap <c-f> <c-x><c-f>
 " These make more sense
 nnoremap Y y$
 nnoremap ' `
+
+" Move to beginning and end of line
+nnoremap H ^
+nnoremap L $
+vnoremap H ^
+vnoremap L $
 
 " }}}
 " Navigation {{{
@@ -297,6 +308,20 @@ augroup reload_vimrc
     autocmd BufWritePost $MYVIMRC source $MYVIMRC
 augroup END
 
+" Only show cursorline in current window
+augroup move_cursorline
+    autocmd!
+    autocmd WinLeave * set nocursorline
+    autocmd WinEnter * set cursorline
+augroup END
+
+" Don't show trailing whitespace when in insert mode
+augroup show_traling_whitespace
+    autocmd!
+    autocmd InsertEnter * set listchars-=trail:·
+    autocmd InsertLeave * set listchars+=trail:·
+augroup END
+
 " Filetypes {{{
 augroup ft_markdown
     autocmd!
@@ -306,6 +331,11 @@ augroup ft_markdown
 augroup END
 
 augroup ft_c
+    autocmd!
+    autocmd FileType c setlocal foldmethod=marker foldmarker={,}
+augroup END
+
+augroup ft_cpp
     autocmd!
     autocmd FileType c setlocal foldmethod=marker foldmarker={,}
 augroup END
