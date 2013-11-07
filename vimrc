@@ -147,6 +147,7 @@ function! MyFoldText()
     let fillcharcount = windowwidth - foldlevel - len(line) - len(foldedlinecount) - 9
 
     if foldlevel > 0
+        let fillcharcount = fillcharcount - 1
         let line = repeat("-", foldlevel) . ' ' . line
     endif
 
@@ -171,10 +172,8 @@ endfunction
 " }}}
 " Mappings {{{
 
-" Change <leader> to ','
-let mapleader=','
+" Toggles {{{
 
-" Toggles
 set pastetoggle=<leader>p
 nnoremap <silent> <f8> :TagbarToggle<cr>
 nnoremap <silent> <f2> :NERDTreeToggle<cr>
@@ -182,6 +181,12 @@ nnoremap <silent> <leader>S :setlocal spell!<cr>
 nnoremap <silent> <leader>w :setlocal wrap!<cr>
 nnoremap <silent> <leader>i :setlocal list!<cr>
 nnoremap <silent> <leader>/ :nohlsearch<cr>
+
+" }}}
+" Convenience {{{
+
+" Remap leader
+let mapleader=','
 
 " Unmap help key
 noremap <f1> <nop>
@@ -194,12 +199,18 @@ nnoremap <silent> <leader><space> :%s/\s\+$//ge<cr>
 " Return cursor position when joining lines
 nnoremap J mzJ`z
 
+" Split lines
+nnoremap S i<cr><esc>
+
 " Increment/decrement
 nnoremap + <c-a>
 nnoremap - <c-x>
 
-" Split lines
-nnoremap S i<cr><esc>
+" Quicker command line commands
+nnoremap : ;
+nnoremap ; :
+vnoremap : ;
+vnoremap ; :
 
 " Stay put on * and #
 nnoremap * *<c-o>
@@ -210,18 +221,9 @@ nnoremap g# g#<c-o>
 " Substitute
 nnoremap <leader>s :%s/
 
-" Buffers
-nnoremap <silent> <leader>f :CtrlP<cr>
-nnoremap <silent> <leader>b :CtrlPBuffer<cr>
-nnoremap <silent> [b :bprev<cr>
-nnoremap <silent> ]b :bnext<cr>
-
 " Visual mode indenting
 vnoremap > >gv
 vnoremap < <gv
-
-" Switch to alternate file
-nnoremap ` <c-^>
 
 " New line below current line
 nnoremap <leader><cr> o<esc>
@@ -238,6 +240,18 @@ inoremap <c-f> <c-x><c-f>
 " These make more sense
 nnoremap Y y$
 nnoremap ' `
+
+" }}}
+" Navigation {{{
+
+" Buffers
+nnoremap <silent> <leader>f :CtrlP<cr>
+nnoremap <silent> <leader>b :CtrlPBuffer<cr>
+nnoremap <silent> [b :bprev<cr>
+nnoremap <silent> ]b :bnext<cr>
+
+" Switch to alternate file
+nnoremap ` <c-^>
 
 " Quicker window switching
 nnoremap <c-h> <c-w>h
@@ -265,6 +279,9 @@ nnoremap g, g,zz
 nnoremap <c-o> <c-o>zz
 nnoremap <c-i> <c-i>zz
 
+
+" }}}
+
 " }}}
 " Autocommands {{{
 
@@ -280,7 +297,7 @@ augroup reload_vimrc
     autocmd BufWritePost $MYVIMRC source $MYVIMRC
 augroup END
 
-" Filetype-specific settings {{{
+" Filetypes {{{
 augroup ft_markdown
     autocmd!
     autocmd BufRead,BufNewFile *.md setlocal filetype=markdown
