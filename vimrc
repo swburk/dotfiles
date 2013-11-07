@@ -50,7 +50,7 @@ set noswapfile " Don't create swapfiles
 set nobackup " Don't make backups
 set nowritebackup " Don't write backups
 set undofile " Persistent undo across sessions
-set undodir=~/tmp " Set undo directory
+set undodir=~/.vim/undo " Set undo directory
 set cmdheight=2 " Avoid "Press ENTER prompts
 set number " Show line numbers
 set cursorline " Highlight current line
