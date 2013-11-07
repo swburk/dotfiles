@@ -11,30 +11,18 @@ install() {
     files=( $(ls) )
     for file in "${files[@]}"; do
         if [ "$file" != 'install.sh' ] && [ "$file" != 'README.md' ]; then
-            ln -fs $INSTALL_DIR/$file $HOME/.$file
+            echo "Linking $file to $HOME/.$file"
+            ln -fs $DOTFILE_DIR/$file $HOME/.$file
         fi
     done
 }
-
-if [[ -z "$1" ]]; then
-    if [[ ! -d $HOME/.dotfiles ]]; then
-        mkdir "$HOME/.dotfiles"
-    fi
-    INSTALL_DIR="$HOME/.dotfiles"
-else
-    if [[ ${1:(-1)} == "/" ]]; then
-        INSTALL_DIR=${1:0:${#1} - 1}
-    else
-        INSTALL_DIR="$1"
-    fi
-fi
 
 if [[ -z "$2" ]]; then
     if [[ ! -d $HOME/.dotfiles_backup ]]; then
         mkdir "$HOME/.dotfiles_backup"
     fi
     mkdir "$HOME/.dotfiles_backup/$(date "+%Y%m%d%I%M%S")"
-    BACKUP_DIR="$HOME/.dotfiles_backup$(date "+%Y%m%d%I%M%S")"
+    BACKUP_DIR="$HOME/.dotfiles_backup/$(date "+%Y%m%d%I%M%S")"
 else
     if [[ -d "$2" ]]; then
         BACKUP_DIR="$2"
@@ -44,8 +32,21 @@ else
     fi
 fi
 
-if [ -d "$INSTALL_DIR" ]; then
-    pushd "$INSTALL_DIR"
+if [[ -z "$1" ]]; then
+    if [[ ! -d $HOME/.dotfiles ]]; then
+        mkdir "$HOME/.dotfiles"
+    fi
+    DOTFILE_DIR="$HOME/.dotfiles"
+else
+    if [[ ${1:(-1)} == "/" ]]; then
+        DOTFILE_DIR=${1:0:${#1} - 1}
+    else
+        DOTFILE_DIR="$1"
+    fi
+fi
+
+if [ -d "$DOTFILE_DIR" ]; then
+    pushd "$DOTFILE_DIR"
 
     echo "Updating"
     git pull origin master
@@ -59,14 +60,14 @@ if [ -d "$INSTALL_DIR" ]; then
     install
 else
     echo "Downloading"
-    git clone --recursive git://github.com/samuelburk/dotfiles.git "$INSTALL_DIR"
+    git clone --recursive git://github.com/samuelburk/dotfiles.git "$DOTFILE_DIR"
 
-    pushd "$INSTALL_DIR"
+    pushd "$DOTFILE_DIR"
 
     echo "Backing up"
     backup
 
-    echo "Installing"
+    echo "Linking"
     install
 fi
 
