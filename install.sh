@@ -34,7 +34,7 @@ if [[ -z "$2" ]]; then
         mkdir "$HOME/.dotfiles_backup"
     fi
     mkdir "$HOME/.dotfiles_backup/$(date "+%Y%m%d%I%M%S")"
-    BACKUP_DIR="$HOME/.dotfiles_backup"
+    BACKUP_DIR="$HOME/.dotfiles_backup$(date "+%Y%m%d%I%M%S")"
 else
     if [[ -d "$2" ]]; then
         BACKUP_DIR="$2"
