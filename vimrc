@@ -38,7 +38,7 @@ set showmode " Show the currently active mode
 set splitright " Opens vertical window to the right of current window
 set splitbelow " Opens horizontal window bellow current window
 set list " Show invisible characters
-set listchars=tab:▸\ ,trail:· " Set invisible characters
+set listchars=tab:▶\ ,trail:· " Set invisible characters
 set nojoinspaces " Don't add spaces when joining lines
 set wildmenu " Command line completion
 set wildmode=longest,list,full " Make completion act like zsh
