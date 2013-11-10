@@ -148,17 +148,6 @@ set foldtext=MyFoldText()
 " }}}
 " Mappings {{{
 
-" Toggles {{{
-
-set pastetoggle=<leader>p
-nnoremap <silent> <f8> :TagbarToggle<cr>
-nnoremap <silent> <f2> :NERDTreeToggle<cr>
-nnoremap <silent> <leader>S :set spell!<cr>
-nnoremap <silent> <leader>w :set wrap!<cr>
-nnoremap <silent> <leader>i :set list!<cr>
-nnoremap <silent> <leader>/ :nohlsearch<cr>
-
-" }}}
 " Convenience {{{
 
 " Remap leader
@@ -228,6 +217,17 @@ nnoremap H ^
 nnoremap L $
 vnoremap H ^
 vnoremap L $
+
+" }}}
+" Toggles {{{
+
+set pastetoggle=<leader>p
+nnoremap <silent> <f8> :TagbarToggle<cr>
+nnoremap <silent> <f2> :NERDTreeToggle<cr>
+nnoremap <silent> <leader>S :set spell!<cr>
+nnoremap <silent> <leader>w :set wrap!<cr>
+nnoremap <silent> <leader>i :set list!<cr>
+nnoremap <silent> <leader>/ :nohlsearch<cr>
 
 " }}}
 " Navigation {{{
@@ -322,11 +322,6 @@ augroup ft_javascript
     autocmd FileType javascript setlocal foldmethod=marker foldmarker={,}
 augroup END
 
-augroup ft_css
-    autocmd!
-    autocmd FileType css setlocal foldmethod=marker foldmarker={,}
-augroup END
-
 augroup ft_vim
     autocmd!
     autocmd FileType vim setlocal foldmethod=marker
@@ -345,15 +340,8 @@ let g:ctrlp_working_path_mode = 'rc'
 let g:ctrlp_switch_buffer = 0
 let g:ctrlp_match_window = 'max:20'
 
-" Syntastic
-let g:syntastic_mode_map = {
-    \ "mode": "active",
-    \ "active_filetypes": [],
-    \ "passive_filetypes": ['html'] }
-let g:syntastic_check_on_open = 1
-
 " Tagbar
-let g:tagbar_sort = 1
+let g:tagbar_sort = 0
 let g:tagbar_compact = 1
 
 " }}}
