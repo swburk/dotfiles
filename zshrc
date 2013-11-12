@@ -1,5 +1,5 @@
 # PATH
-export PATH="$PATH:/usr/local/bin:/usr/local/sbin:$HOME/bin:/sbin:/usr/sbin"
+export PATH="/usr/local/bin:$PATH:$HOME/bin"
 
 # Vim
 export VISUAL="vim"
