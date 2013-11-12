@@ -103,8 +103,6 @@ set statusline+=\ %f " Filename
 set statusline+=\ %M " Modified flags
 set statusline+=%= " Set right-side statusline
 set statusline+=%{&filetype}\ \| " File type
-set statusline+=\ %{&fileformat}\ \| " File type
-set statusline+=\ %{&fileencoding}\ \| " File type
 set statusline+=\ %l,%c/%L " Line number and column
 set statusline+=\ \|\ %P\  " Percentage through file
 
@@ -117,7 +115,7 @@ function! FoldText()
     let line = getline(v:foldstart)
     let line = substitute(line, '^\s\+', '', 'g')
 
-    let numbercolumnwidth = &fdc + &number * &numberwidth
+    let numbercolumnwidth = &fdc + (&relativenumber + &number) * &numberwidth
     let windowwidth = winwidth(0) - numbercolumnwidth
     let foldedlinecount = v:foldend - v:foldstart
     let foldlevel = v:foldlevel - 1
@@ -210,7 +208,8 @@ vnoremap > >gv
 vnoremap < <gv
 
 " New line below current line
-nnoremap <leader><cr> o<esc>
+nnoremap ]<space> o<esc>
+nnoremap [<space> O<esc>
 
 " Save as root
 cnoremap w!! w !sudo tee % >/dev/null
@@ -247,7 +246,6 @@ nnoremap <silent> <leader>/ :nohlsearch<cr>
 " Navigation {{{
 
 " Buffers
-nnoremap <silent> <leader>f :CtrlP<cr>
 nnoremap <silent> <leader>b :CtrlPBuffer<cr>
 nnoremap <silent> [b :bprev<cr>
 nnoremap <silent> ]b :bnext<cr>
