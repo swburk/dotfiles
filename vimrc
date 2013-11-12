@@ -27,7 +27,7 @@ set nowritebackup " Don't write backups
 set undofile " Persistent undo across sessions
 set undodir=~/.vim/undo " Set undo directory
 set cmdheight=2 " Avoid "Press ENTER prompts
-set number " Show line numbers
+set relativenumber " Show relative line numbers
 set cursorline " Highlight current line
 set display+=lastline " last line will be displayed if too long
 set visualbell t_vb= " Turn off error bells
@@ -100,18 +100,20 @@ set colorcolumn=+1 " Highlight the 80th column
 set laststatus=2 " Always show the statusline
 set statusline=
 set statusline+=\ %f " Filename
-set statusline+=\ %r%m " Flags
+set statusline+=\ %M " Modified flags
 set statusline+=%= " Set right-side statusline
-set statusline+=%y " File type
-set statusline+=\ %l/%L " Line number and collumn
-set statusline+=\ %P\  " Percentage through file
+set statusline+=%{&filetype}\ \| " File type
+set statusline+=\ %{&fileformat}\ \| " File type
+set statusline+=\ %{&fileencoding}\ \| " File type
+set statusline+=\ %l,%c/%L " Line number and column
+set statusline+=\ \|\ %P\  " Percentage through file
 
 " }}}
 " Folding {{{
 
 set foldlevelstart=0
 
-function! MyFoldText()
+function! FoldText()
     let line = getline(v:foldstart)
     let line = substitute(line, '^\s\+', '', 'g')
 
@@ -141,7 +143,7 @@ function! MyFoldText()
 
     return line
 endfunction
-set foldtext=MyFoldText()
+set foldtext=FoldText()
 
 " }}}
 
@@ -161,6 +163,18 @@ vnoremap <leader><leader> ,
 noremap <f1> <nop>
 vnoremap <f1> <nop>
 inoremap <f1> <nop>
+
+" Toggle relative line numbers
+function! ToggleRelativeNumber()
+    if(&relativenumber)
+        set norelativenumber
+        set number
+    else
+        set nonumber
+        set relativenumber
+    endif
+endfunc
+nnoremap <leader>n :call ToggleRelativeNumber()<cr>
 
 " Clear trailing whitespace
 nnoremap <silent> <leader><space> :%s/\s\+$//ge<cr>
