@@ -52,6 +52,11 @@ export PS1="%1(j.%{$fg_bold[magenta]%}%jj %{$reset_color%}.)$PS1"
 function chpwd() {
     ls -Ft | head -8;
 }
+
+function tag() {
+    alias $1="cd $PWD"
+}
+
 function mcd() {
     mkdir -pv "$1" && cd "$1";
 }
@@ -76,9 +81,11 @@ alias -g .....='cd ../../../..'
 alias l='ls -F'
 alias ll='ls -Fl'
 alias la='ls -FlA'
-alias l1='ls -F1'
+alias ld='ls -d */'
+alias l.='ls -d .*'
 alias lb='ranger'
-alias lr='tree -C'
+alias lt='tree -C'
+alias ff='find . -name'
 alias md='mkdir -pv'
 alias cx='chmod a+x'
 alias tn='tmux new -s'
