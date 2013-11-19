@@ -199,17 +199,16 @@ nnoremap g* g*<c-o>
 nnoremap # #<c-o>
 nnoremap g# g#<c-o>
 
+" Select last changed text
+nnoremap <leader>v `[v`]
+
 " Substitute
 nnoremap <leader>s :%s/
 vnoremap <leader>s :s/
 
-" Visual mode indenting
-vnoremap > >gv
-vnoremap < <gv
-
 " New line below current line
-nnoremap ]<space> o<esc>
-nnoremap [<space> O<esc>
+nnoremap ]<cr> o<esc>
+nnoremap [<cr> O<esc>
 
 " Save as root
 cnoremap w!! w !sudo tee % >/dev/null
@@ -224,12 +223,6 @@ inoremap <c-f> <c-x><c-f>
 " These make more sense
 nnoremap Y y$
 nnoremap ' `
-
-" Move to beginning and end of line
-nnoremap H ^
-nnoremap L $
-vnoremap H ^
-vnoremap L $
 
 " }}}
 " Toggles {{{
