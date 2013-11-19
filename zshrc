@@ -37,20 +37,20 @@ autoload -U colors && colors
 setopt PROMPT_SUBST
 
 if [[ -n "$SSH_CONNECTION" ]]; then
-    SSH_PROMPT="%{$reset_color%}@%{$fg[cyan]%}%m%{$reset_color%}"
+    SSH_PROMPT="@%{$fg_bold[cyan]%}%m%{$reset_color%}"
 fi
 
-export PS1="%(?.%(!.#.$).%{$fg[red]%}%(!.#.$)%{$reset_color%}) "
-export PS1="%{$fg[blue]%}%~%{$reset_color%}] $PS1"
-export PS1="[%{$fg[green]%}%n%{$reset_color%}$SSH_PROMPT:$PS1"
-export PS1="%1(j.%{$fg[magenta]%}%jj %{$reset_color%}.)$PS1"
+export PS1="%(?.%(!.#.$).%{$fg_bold[red]%}%(!.#.$)%{$reset_color%}) "
+export PS1="%{$fg_bold[blue]%}%~%{$reset_color%}] $PS1"
+export PS1="[%{$fg_bold[green]%}%n%{$reset_color%}$SSH_PROMPT:$PS1"
+export PS1="%1(j.%{$fg_bold[magenta]%}%jj %{$reset_color%}.)$PS1"
 
 # Scripts
 . ~/bin/z.sh
 
 # Functions
 function chpwd() {
-    ls -Ft | head -7;
+    ls -Ft | head -8;
 }
 function mcd() {
     mkdir -pv "$1" && cd "$1";
@@ -73,18 +73,16 @@ alias -g ..='cd ..'
 alias -g ...='cd ../..'
 alias -g ....='cd ../../..'
 alias -g .....='cd ../../../..'
-alias ungit="find . -name '.git' -exec rm -rf {} \;"
-alias ls='ls -F'
-alias ll='ls -l'
-alias la='ls -lA'
-alias l1='ls -1'
+alias l='ls -F'
+alias ll='ls -Fl'
+alias la='ls -FlA'
+alias l1='ls -F1'
 alias lb='ranger'
 alias lr='tree -C'
-alias mkdir='mkdir -pv'
+alias md='mkdir -pv'
 alias cx='chmod a+x'
-alias tmuxn='tmux new -s'
-alias tmuxa='tmux attach -t'
-alias tmuxl='tmux list-sessions'
+alias tn='tmux new -s'
+alias ta='tmux attach -t'
+alias tl='tmux list-sessions'
 alias e='$EDITOR'
-alias lf='ls -t | head -1'
 alias ip='curl icanhazip.com'
