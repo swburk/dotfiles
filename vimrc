@@ -203,8 +203,7 @@ nnoremap <leader>s :%s/
 vnoremap <leader>s :s/
 
 " New line below current line
-nnoremap ]<cr> o<esc>
-nnoremap [<cr> O<esc>
+nnoremap <cr> o<esc>
 
 " Save as root
 cnoremap w!! w !sudo tee % >/dev/null
@@ -301,6 +300,7 @@ augroup show_traling_whitespace
 augroup END
 
 " Filetypes {{{
+
 augroup ft_markdown
     autocmd!
     autocmd BufRead,BufNewFile *.md setlocal filetype=markdown
