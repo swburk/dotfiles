@@ -27,11 +27,6 @@ setopt CORRECT
 # Bindings
 bindkey -e
 
-# Title
-function precmd() {
-    print -Pn "\e];%~\a"
-}
-
 # Prompt
 autoload -U colors && colors
 setopt PROMPT_SUBST
@@ -49,6 +44,10 @@ export PS1="%1(j.%{$fg_bold[magenta]%}%jj %{$reset_color%}.)$PS1"
 . ~/bin/z.sh
 
 # Functions
+function precmd() {
+    print -Pn "\e];%~\a"
+}
+
 function chpwd() {
     ls -Ft | head -8;
 }

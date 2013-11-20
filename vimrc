@@ -76,6 +76,7 @@ set softtabstop=4 " Amount of whitespace to use in insert mode
 set shiftwidth=4 " Amount of whitespace to use in normal mode
 set expandtab " Use spaces in space of tabs of tabs
 set autoindent " Keep indentation level for new lines
+set smartindent " Smarter auto-indenting when creating a new line
 set shiftround " Round indent to multiple of shiftwidth
 
 " }}}
@@ -88,7 +89,7 @@ set formatoptions=
 set formatoptions+=c " Format comments
 set formatoptions+=r " Continue comments by default
 set formatoptions+=o " Make comment when using o or O from commented line
-set formatoptions+=q " Format comments with gq
+set formatoptions+=q " Format lines with gq
 set formatoptions+=n " Recognize numbered lists
 set formatoptions+=2 " Use indent from second line of a paragraph
 set formatoptions+=l " Don't break lines that are already long
@@ -110,7 +111,6 @@ set statusline+=\ \|\ %P\  " Percentage through file
 " Folding {{{
 
 set foldlevelstart=0
-
 function! FoldText()
     let line = getline(v:foldstart)
     let line = substitute(line, '^\s\+', '', 'g')
@@ -182,10 +182,6 @@ nnoremap J mzJ`z
 
 " Split lines
 nnoremap S i<cr><esc>
-
-" Increment/decrement
-nnoremap + <c-a>
-nnoremap - <c-x>
 
 " Quicker command line commands
 nnoremap : ;
@@ -310,21 +306,6 @@ augroup ft_markdown
     autocmd BufRead,BufNewFile *.md setlocal filetype=markdown
     autocmd FileType markdown setlocal spell
     autocmd FileType markdown setlocal wrap
-augroup END
-
-augroup ft_c
-    autocmd!
-    autocmd FileType c setlocal foldmethod=marker foldmarker={,}
-augroup END
-
-augroup ft_cpp
-    autocmd!
-    autocmd FileType c setlocal foldmethod=marker foldmarker={,}
-augroup END
-
-augroup ft_javascript
-    autocmd!
-    autocmd FileType javascript setlocal foldmethod=marker foldmarker={,}
 augroup END
 
 augroup ft_vim
