@@ -1,15 +1,9 @@
-" Preface {{{
+" General {{{
 
 set nocompatible
 filetype off
 execute pathogen#infect()
 filetype plugin indent on
-
-" }}}
-" Settings {{{
-
-" General {{{
-
 set encoding=utf-8 " Set character encoding to Unicode
 set modelines=0 " Don't read modelines
 set history=1000 " Increase command line history
@@ -20,7 +14,6 @@ set lazyredraw " Don't redraw screen when executing macros
 set hidden " Hide unsaved buffers
 set backspace=indent,eol,start " Backspace over everything in insert mode
 set nrformats-=octal " Increment numbers with leading zeros correctly
-runtime macros/matchit.vim " Match more than just (, { and [
 set noswapfile " Don't create swapfiles
 set nobackup " Don't make backups
 set nowritebackup " Don't write backups
@@ -129,8 +122,6 @@ function! FoldText()
     return foldlevel . line . fillchars . foldedlines
 endfunction
 set foldtext=FoldText()
-
-" }}}
 
 " }}}
 " Mappings {{{
@@ -320,7 +311,10 @@ augroup END
 " }}}
 
 " }}}
-" Plugin settings {{{
+" Plugin {{{
+
+" % matches HTML tags, if, else, etc.
+runtime macros/matchit.vim
 
 " Badwolf
 let g:badwolf_html_link_underline = 0
