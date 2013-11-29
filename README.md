@@ -6,8 +6,7 @@ Clone the repository:
 
     git clone git://github.com/samuelburk/dotfiles.git ~/.dotfiles
 
-Run the install script:
+Run or update the install script:
 
-    cd ~/.dotfiles
-    ./install.sh
+    ~/.dotfiles/install.sh
 
