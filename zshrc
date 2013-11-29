@@ -14,7 +14,6 @@ export SAVEHIST=1000
 setopt HIST_IGNORE_SPACE
 export HISTFILE=$HOME/.history
 setopt SHARE_HISTORY
-setopt EXTENDED_HISTORY
 
 # Navigation
 setopt AUTO_PUSHD
@@ -72,11 +71,11 @@ function g() {
 compdef g=git
 
 # Aliases
-alias src='. ~/.zshrc'
 alias -g ..='cd ..'
 alias -g ...='cd ../..'
 alias -g ....='cd ../../..'
 alias -g .....='cd ../../../..'
+alias c='cd'
 alias l='ls -F'
 alias ll='ls -Fl'
 alias la='ls -FlA'
@@ -87,6 +86,7 @@ alias lt='tree -C'
 alias ff='find . -name'
 alias md='mkdir -pv'
 alias cx='chmod a+x'
+alias t='tmux'
 alias tn='tmux new -s'
 alias ta='tmux attach -t'
 alias tl='tmux list-sessions'
