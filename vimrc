@@ -110,10 +110,10 @@ set statusline+=\ \|\ %P\  " Percentage through file
 " }}}
 " Folding {{{
 
+set nofoldenable
 set foldlevelstart=0
 function! FoldText()
     let line = getline(v:foldstart)
-    let line = substitute(line, '^\s\+', '', 'g')
 
     let numbercolumnwidth = &fdc + (&relativenumber + &number) * &numberwidth
     let windowwidth = winwidth(0) - numbercolumnwidth
@@ -203,7 +203,7 @@ nnoremap <leader>s :%s/
 vnoremap <leader>s :s/
 
 " New line below current line
-nnoremap <cr> o<esc>
+nnoremap <leader><cr> o<esc>
 
 " Save as root
 cnoremap w!! w !sudo tee % >/dev/null
@@ -310,6 +310,7 @@ augroup END
 
 augroup ft_vim
     autocmd!
+    autocmd FileType vim setlocal foldenable
     autocmd FileType vim setlocal foldmethod=marker
 augroup END
 
