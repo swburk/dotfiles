@@ -113,33 +113,20 @@ set statusline+=\ \|\ %P\  " Percentage through file
 set nofoldenable
 set foldlevelstart=0
 function! FoldText()
-    let line = getline(v:foldstart)
-
-    let numbercolumnwidth = &fdc + (&relativenumber + &number) * &numberwidth
-    let windowwidth = winwidth(0) - numbercolumnwidth
-    let foldedlinecount = v:foldend - v:foldstart
-    let foldlevel = v:foldlevel - 1
-    let fillcharcount = windowwidth - foldlevel - len(line) - len(foldedlinecount) - 9
-
-    if foldlevel > 0
-        let fillcharcount = fillcharcount - 1
-        let line = repeat("-", foldlevel) . ' ' . line
-    endif
-
-    if foldedlinecount <= fillcharcount
-        let fillcharcount = fillcharcount - foldedlinecount
-        let line = line . ' ' . repeat("-", foldedlinecount) . repeat(" ", fillcharcount) . ' ' . foldedlinecount
+    let foldlevel = '+' . repeat('-', v:foldlevel - 1) . ' '
+    let line = substitute(getline(v:foldstart), '^\s\+', '', 'g') . ' '
+    let foldedlines = v:foldend - v:foldstart . ' lines '
+    let gutterwidth = &fdc + (&relativenumber + &number) * &numberwidth
+    let windowwidth = winwidth(0) - gutterwidth
+    let fillcharcount = windowwidth - len(foldlevel) - len(line) - len(foldedlines) - 1
+    if foldedlines <= fillcharcount
+        let fillcharcount = fillcharcount - foldedlines
+        let fillchars = repeat("-", foldedlines) . repeat(" ", fillcharcount) . ' '
     else
-        let line = line . ' ' . repeat("-", fillcharcount) . ' ' . foldedlinecount
+        let fillchars = repeat("-", fillcharcount) . ' '
     endif
 
-    if foldedlinecount == 1
-        let line = line . '  line '
-    else
-        let line = line . ' lines '
-    endif
-
-    return line
+    return foldlevel . line . fillchars . foldedlines
 endfunction
 set foldtext=FoldText()
 
@@ -172,7 +159,17 @@ function! ToggleRelativeNumber()
         set relativenumber
     endif
 endfunc
-nnoremap <leader>n :call ToggleRelativeNumber()<cr>
+nnoremap <silent> <leader>n :call ToggleRelativeNumber()<cr>
+
+" Toggle fold column
+function! ToggleFoldColumn()
+    if(&foldcolumn)
+        set foldcolumn=0
+    else
+        set foldcolumn=4
+    endif
+endfunc
+nnoremap <silent> <leader>f :call ToggleFoldColumn()<cr>
 
 " Clear trailing whitespace
 nnoremap <silent> <leader><space> :%s/\s\+$//ge<cr>
@@ -206,11 +203,17 @@ vnoremap <leader>s :s/
 nnoremap <leader><cr> o<esc>
 
 " Save as root
-cnoremap w!! w !sudo tee % >/dev/null
+cmap w!! w !sudo tee % >/dev/null
 
 " Space toggles fold
 nnoremap <space> za
 vnoremap <space> za
+
+" Select all the text in the buffer
+nnoremap <leader>a ggVG
+
+" Reindent the entire document
+nnoremap <leader>= gg=G
 
 " Complete filenames in insert mode
 inoremap <c-f> <c-x><c-f>
