@@ -79,13 +79,13 @@ set nowrap " Don't wrap long lines
 set linebreak " Don't break words when wrapping
 set textwidth=79 " Maximum line length
 set formatoptions=
-set formatoptions+=c " Format comments
+set formatoptions+=q " Format lines with gq
 set formatoptions+=r " Continue comments by default
 set formatoptions+=o " Make comment when using o or O from commented line
-set formatoptions+=q " Format lines with gq
 set formatoptions+=n " Recognize numbered lists
-set formatoptions+=2 " Use indent from second line of a paragraph
 set formatoptions+=l " Don't break lines that are already long
+set formatoptions+=1 " Break lines before a one-letter word
+set formatoptions+=j " Remove comment leader when joining lines
 set colorcolumn=+1 " Highlight the 80th column
 
 " }}}
