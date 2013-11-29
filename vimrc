@@ -103,7 +103,7 @@ set statusline+=\ \|\ %P\  " Percentage through file
 " }}}
 " Folding {{{
 
-set foldenable
+set nofoldenable
 set foldlevelstart=0
 function! FoldText()
     let foldlevel = '+' . repeat('-', v:foldlevel - 1) . ' '
@@ -311,7 +311,7 @@ augroup END
 " }}}
 
 " }}}
-" Plugin {{{
+" Plugins {{{
 
 " % matches HTML tags, if, else, etc.
 runtime macros/matchit.vim
