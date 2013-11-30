@@ -263,48 +263,46 @@ nnoremap <c-i> <c-i>zz
 " }}}
 " Autocommands {{{
 
-" Resize splits when the window is resized
-augroup resize_splits
-    autocmd!
-    autocmd VimResized * :wincmd =
-augroup END
+if has("autocmd")
+    " Resize splits when the window is resized
+    augroup resize_splits
+        autocmd!
+        autocmd VimResized * :wincmd =
+    augroup END
 
-" Source vimrc after it has been saved
-augroup reload_vimrc
-    autocmd!
-    autocmd BufWritePost $MYVIMRC source $MYVIMRC
-augroup END
+    " Source vimrc after it has been saved
+    augroup reload_vimrc
+        autocmd!
+        autocmd BufWritePost $MYVIMRC source $MYVIMRC
+    augroup END
 
-" Only show cursorline in current window
-augroup move_cursorline
-    autocmd!
-    autocmd WinLeave * set nocursorline
-    autocmd WinEnter * set cursorline
-augroup END
+    " Only show cursorline in current window
+    augroup move_cursorline
+        autocmd!
+        autocmd WinLeave * set nocursorline
+        autocmd WinEnter * set cursorline
+    augroup END
 
-" Don't show trailing whitespace when in insert mode
-augroup show_traling_whitespace
-    autocmd!
-    autocmd InsertEnter * set listchars-=trail:·
-    autocmd InsertLeave * set listchars+=trail:·
-augroup END
+    " Don't show trailing whitespace when in insert mode
+    augroup show_traling_whitespace
+        autocmd!
+        autocmd InsertEnter * set listchars-=trail:·
+        autocmd InsertLeave * set listchars+=trail:·
+    augroup END
 
-" Filetypes {{{
+    augroup ft_markdown
+        autocmd!
+        autocmd BufRead,BufNewFile *.md setlocal filetype=markdown
+        autocmd FileType markdown setlocal spell
+        autocmd FileType markdown setlocal wrap
+    augroup END
 
-augroup ft_markdown
-    autocmd!
-    autocmd BufRead,BufNewFile *.md setlocal filetype=markdown
-    autocmd FileType markdown setlocal spell
-    autocmd FileType markdown setlocal wrap
-augroup END
-
-augroup ft_vim
-    autocmd!
-    autocmd FileType vim setlocal foldenable
-    autocmd FileType vim setlocal foldmethod=marker
-augroup END
-
-" }}}
+    augroup ft_vim
+        autocmd!
+        autocmd FileType vim setlocal foldenable
+        autocmd FileType vim setlocal foldmethod=marker
+    augroup END
+endif
 
 " }}}
 " Plugins {{{
@@ -316,12 +314,9 @@ runtime macros/matchit.vim
 let g:badwolf_html_link_underline = 0
 
 " Ctrl-P
-let g:ctrlp_working_path_mode = 'rc'
-let g:ctrlp_switch_buffer = 0
-let g:ctrlp_match_window = 'max:20'
-
-" Tagbar
-let g:tagbar_sort = 0
-let g:tagbar_compact = 1
+if executable('ag')
+    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+    let g:ctrlp_use_caching = 0
+endif
 
 " }}}
