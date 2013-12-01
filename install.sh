@@ -14,7 +14,6 @@ install() {
             if [ -e "$HOME/.$file" ]; then
                 rm -rf $HOME/.$file
             fi
-            echo "Linking $file to $HOME/.$file"
             ln -s $DOTFILE_DIR/$file $HOME/.$file
         fi
     done
@@ -59,7 +58,7 @@ if [ -d "$DOTFILE_DIR" ]; then
     echo "Backing up"
     backup
 
-    echo "Installing"
+    echo "Linking"
     install
 else
     echo "Downloading"
