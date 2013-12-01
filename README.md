@@ -1,12 +1,23 @@
 # Dotfiles
 
-## Installation
+## Requirements
 
-Clone the repository:
+- Ag (The Silver Searcher)
+- Git
+- Ranger
+- Tmux
+- Vim
+- Zsh
 
-    git clone git://github.com/samuelburk/dotfiles.git ~/.dotfiles
+## Install
 
-Run or update the install script:
+Download and run the install script:
+
+    bash -c "`curl -fsSL https://raw.github.com/samuelburk/dotfiles/master/bootstrap.sh`"
+
+## Update
+
+Run the install script again to update:
 
     ~/.dotfiles/install.sh
 

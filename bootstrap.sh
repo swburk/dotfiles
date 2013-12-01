@@ -1,6 +1,7 @@
 #!/bin/bash
 
 backup() {
+    mkdir -p $BACKUP_DIR
     files=( $(ls) )
     for file in "${files[@]}"; do
         cp -Rf "$file" "$BACKUP_DIR/$file"
@@ -19,33 +20,8 @@ install() {
     done
 }
 
-if [[ -z "$2" ]]; then
-    if [[ ! -d $HOME/.dotfiles_backup ]]; then
-        mkdir "$HOME/.dotfiles_backup"
-    fi
-    mkdir "$HOME/.dotfiles_backup/$(date "+%Y%m%d%I%M%S")"
-    BACKUP_DIR="$HOME/.dotfiles_backup/$(date "+%Y%m%d%I%M%S")"
-else
-    if [[ -d "$2" ]]; then
-        BACKUP_DIR="$2"
-    else
-        mkdir "$2"
-        BACKUP_DIR="$2"
-    fi
-fi
-
-if [[ -z "$1" ]]; then
-    if [[ ! -d $HOME/.dotfiles ]]; then
-        mkdir "$HOME/.dotfiles"
-    fi
-    DOTFILE_DIR="$HOME/.dotfiles"
-else
-    if [[ ${1:(-1)} == "/" ]]; then
-        DOTFILE_DIR=${1:0:${#1} - 1}
-    else
-        DOTFILE_DIR="$1"
-    fi
-fi
+BACKUP_DIR="$HOME/.dotfiles_backup/$(date "+%Y%m%d%I%M%S")"
+DOTFILE_DIR="$HOME/.dotfiles"
 
 if [ -d "$DOTFILE_DIR" ]; then
     pushd "$DOTFILE_DIR"
