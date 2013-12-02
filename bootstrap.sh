@@ -2,20 +2,17 @@
 
 backup() {
     mkdir -p $BACKUP_DIR
-    files=( $(ls) )
+    files=($(ls))
     for file in "${files[@]}"; do
         cp -Rf "$file" "$BACKUP_DIR/$file"
     done
 }
 
 install() {
-    files=( $(ls) )
+    files=($(ls))
     for file in "${files[@]}"; do
-        if [ "$file" != 'install.sh' ] && [ "$file" != 'README.md' ]; then
-            if [ -e "$HOME/.$file" ]; then
-                rm -rf $HOME/.$file
-            fi
-            ln -s $DOTFILE_DIR/$file $HOME/.$file
+        if [ "$file" != 'bootstrap.sh' ] && [ "$file" != 'README.md' ]; then
+            test -L "$HOME/.$file" || ln -s "$DOTFILE_DIR/$file" "$HOME/.$file"
         fi
     done
 }
@@ -28,10 +25,9 @@ if [ -d "$DOTFILE_DIR" ]; then
 
     echo "Updating"
     git pull origin master
-    git submodule init
-    git submodule update
+    git submodule update --init
 
-    echo "Backing up"
+    echo "Backing up to $BACKUP_DIR"
     backup
 
     echo "Linking"
@@ -42,7 +38,7 @@ else
 
     pushd "$DOTFILE_DIR"
 
-    echo "Backing up"
+    echo "Backing up to $BACKUP_DIR"
     backup
 
     echo "Linking"
