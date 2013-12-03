@@ -126,7 +126,7 @@ set foldtext=FoldText()
 let mapleader=','
 
 " Undo all unsaved changes
-nnoremap <leader>e :e!<cr>
+nnoremap <leader>u :e!<cr>
 
 " Remap leader's original functionality
 nnoremap <leader><leader> ,
