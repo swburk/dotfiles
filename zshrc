@@ -51,18 +51,30 @@ function chpwd() {
     ls -Ft | head -8;
 }
 
-function tag() {
+# Temporary bookmarks
+function bm() {
     alias $1="cd $PWD"
 }
 
-function mcd() {
+function mkd() {
     mkdir -pv "$1" && cd "$1";
 }
+
+# Look up an http status code
 function http() {
     curl http://httpcode.info/$1;
 }
+
+function e() {
+    if [ $# -eq 0 ]; then
+        $EDITOR .
+    else
+        $EDITOR "$@"
+    fi
+}
+
 function g() {
-    if [[ $# > 0 ]]; then
+    if [ $# -ne 0 ]; then
         git $@
     else
         git status
@@ -71,11 +83,12 @@ function g() {
 compdef g=git
 
 # Aliases
-alias -g ..='cd ..'
-alias -g ...='cd ../..'
-alias -g ....='cd ../../..'
-alias -g .....='cd ../../../..'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
 alias c='clear'
+alias b='cd -'
 alias l='ls -F'
 alias ll='ls -Fl'
 alias la='ls -FlA'
@@ -89,5 +102,5 @@ alias t='tmux'
 alias tn='tmux new -s'
 alias ta='tmux attach -t'
 alias tl='tmux list-sessions'
-alias e='$EDITOR'
-alias ip='curl icanhazip.com'
+alias h='history'
+alias j='jobs'
