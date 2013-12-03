@@ -4,8 +4,6 @@
 [core]
   editor = vim
   excludesfile = ~/.gitignore
-[color]
-  ui = auto
 [alias]
   a = add
   aa = add --all
@@ -16,7 +14,12 @@
   s = status
   pl = pull
   ps = push
+  us = reset HEAD
+[color]
+  ui = auto
 [merge]
+  tool = vimdiff
+[diff]
   tool = vimdiff
 [url "git://github.com/"]
   insteadOf = "github:"
