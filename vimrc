@@ -60,7 +60,6 @@ set hlsearch " Don't highlight search results
 set ignorecase " Ignore case in search patterns
 set smartcase " Only ignore case when search pattern is all lowercase
 set wrapscan " Continue search after hitting the bottom of the file
-set gdefault " All substitutions
 
 " }}}
 " Whitespace {{{

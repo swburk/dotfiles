@@ -65,6 +65,10 @@ function http() {
     curl http://httpcode.info/$1;
 }
 
+function ff() {
+    ls **/*$1*
+}
+
 function e() {
     if [ $# -eq 0 ]; then
         $EDITOR .
@@ -83,24 +87,23 @@ function g() {
 compdef g=git
 
 # Aliases
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
-alias .....='cd ../../../..'
-alias c='clear'
-alias b='cd -'
-alias l='ls -F'
-alias ll='ls -Fl'
-alias la='ls -FlA'
-alias ld='ls -d */'
-alias l.='ls -d .*'
-alias lb='ranger'
-alias ff='find . -name'
-alias md='mkdir -p'
-alias cx='chmod a+x'
-alias t='tmux'
-alias tn='tmux new -s'
-alias ta='tmux attach -t'
-alias tl='tmux list-sessions'
-alias h='history'
-alias j='jobs'
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias c="clear"
+alias b="cd -"
+alias l="ls -F"
+alias ll="ls -Fl"
+alias la="ls -FlA"
+alias ld="ls -d */"
+alias l.="ls -d .*"
+alias lb="ranger"
+alias md="mkdir -p"
+alias cx="chmod a+x"
+alias t="tmux"
+alias tn="tmux new -s"
+alias ta="tmux attach -t"
+alias tl="tmux list-sessions"
+alias h="history"
+alias j="jobs"
