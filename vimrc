@@ -125,8 +125,8 @@ set foldtext=FoldText()
 " Remap leader
 let mapleader=','
 
-" Edit vimrc quickly
-nnoremap <leader>e :vsplit $MYVIMRC<cr>
+" Undo all unsaved changes
+nnoremap <leader>e :e!<cr>
 
 " Remap leader's original functionality
 nnoremap <leader><leader> ,
