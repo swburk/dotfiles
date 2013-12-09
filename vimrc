@@ -1,6 +1,6 @@
 " General {{{
 
-set nocompatible
+set nocompatible " Disable Vi compatibility
 filetype off
 execute pathogen#infect()
 filetype plugin indent on
@@ -196,6 +196,9 @@ cmap w!! w !sudo tee % >/dev/null
 nnoremap <space> za
 vnoremap <space> za
 
+" Close buffers
+nnoremap <silent> <leader>x :bdelete<cr>
+
 " Select all the text in the buffer
 nnoremap <leader>a ggVG
 
@@ -215,8 +218,6 @@ inoremap <Nul> <C-x><C-o>
 " Toggles {{{
 
 set pastetoggle=<leader>p
-nnoremap <silent> <f8> :TagbarToggle<cr>
-nnoremap <silent> <f2> :NERDTreeToggle<cr>
 nnoremap <silent> <leader>S :set spell!<cr>
 nnoremap <silent> <leader>w :set wrap!<cr>
 nnoremap <silent> <leader>i :set list!<cr>
