@@ -19,7 +19,7 @@ set nobackup " Don't make backups
 set nowritebackup " Don't write backups
 set undofile " Persistent undo across sessions
 set undodir=~/.vim/undo " Set undo directory
-set cmdheight=2 " Avoid "Press ENTER prompts
+set cmdheight=2 " Avoid Press ENTER prompts
 set relativenumber " Show relative line numbers
 set cursorline " Highlight current line
 set display+=lastline " last line will be displayed if too long
@@ -40,9 +40,9 @@ set complete+=] " Complete tags
 set wildmenu " Command line completion
 set wildmode=longest,list,full " Make completion act like zsh
 set wildignore+=*.jpg,*.jpeg,*.png,*.gif,*.bmp " Images
-set wildignore+=*.o,*.exe " Compiled object files
+set wildignore+=*.o,*.obj,*.exe,*.dll " Compiled object files
 set wildignore+=*.pyc " Python byte code
-set wildignore+=*/.git/,*/.hg/ " Version control
+set wildignore+=.git,.hg " Version control
 set mouse=a " Enable mouse in all modes
 set sidescroll=1 " Show some context when side scrolling
 set sidescrolloff=12 " Start scrolling 12 columns from right edge of window
@@ -127,6 +127,11 @@ set foldtext=FoldText()
 " }}}
 " Mappings {{{
 
+" Time out on key codes but not mappings
+set notimeout
+set ttimeout
+set ttimeoutlen=10
+
 " Convenience {{{
 
 " Remap leader
@@ -155,7 +160,7 @@ function! ToggleNumbers()
         set relativenumber
     endif
 endfunc
-nnoremap <silent> <leader>n :call ToggleRelativeNumber()<cr>
+nnoremap <silent> <leader>n :call ToggleNumbers()<cr>
 
 " Toggle fold column
 function! ToggleFoldColumn()
@@ -168,13 +173,13 @@ endfunc
 nnoremap <silent> <leader>f :call ToggleFoldColumn()<cr>
 
 " Strip trailing whitespace
-nnoremap <silent> <leader><space> :%s/\s\+$//ge<cr>:let @/=''<cr>
+nnoremap <silent> <leader><space> mz:%s/\s\+$//ge<cr>:let @/=''<cr>`z
 
 " Return cursor position when joining lines
 nnoremap J mzJ`z
 
 " Split lines
-nnoremap S i<cr><esc>
+nnoremap S i<cr><esc>^mzk:silent! s/ \+$/<cr>:nohlsearch<cr>`z
 
 " Quicker command line commands
 nnoremap : ;
@@ -202,7 +207,7 @@ nnoremap <leader>* :%s/\<<c-r><c-w>\>//g<left><left>
 nnoremap <leader><cr> o<esc>
 
 " Save as root
-cmap w!! w !sudo tee % >/dev/null
+cnoremap w!! w !sudo tee % >/dev/null
 
 " Space toggles fold
 nnoremap <space> za
