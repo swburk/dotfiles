@@ -274,7 +274,6 @@ nnoremap g, g,zz
 nnoremap <c-o> <c-o>zz
 nnoremap <c-i> <c-i>zz
 
-
 " }}}
 
 " }}}
