@@ -33,7 +33,10 @@ set splitbelow " Opens horizontal window bellow current window
 set list " Show invisible characters
 set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮ " Set invisible characters
 set nojoinspaces " Don't add spaces when joining lines
-set complete=.,b,u,]
+set complete=. " Complete words from current buffer
+set complete+=b " Complete from loaded buffers in the buffer list
+set complete+=u " Complete from unloaded buffers in the buffer list
+set complete+=] " Complete tags
 set wildmenu " Command line completion
 set wildmode=longest,list,full " Make completion act like zsh
 set wildignore+=*.jpg,*.jpeg,*.png,*.gif,*.bmp " Images
@@ -41,7 +44,7 @@ set wildignore+=*.o,*.exe " Compiled object files
 set wildignore+=*.pyc " Python byte code
 set wildignore+=*/.git/,*/.hg/ " Version control
 set mouse=a " Enable mouse in all modes
-set sidescroll=1 " Show some context
+set sidescroll=1 " Show some context when side scrolling
 set sidescrolloff=12 " Start scrolling 12 columns from right edge of window
 
 " }}}
@@ -78,7 +81,12 @@ set shiftround " Round indent to multiple of shiftwidth
 set nowrap " Don't wrap long lines
 set linebreak " Don't break words when wrapping
 set textwidth=79 " Maximum line length
-set formatoptions=qronl1j
+set formatoptions=q " Format text with gq
+set formatoptions+=n " Recognize numbered lists when formatting
+set formatoptions+=l " Don't reformat lines that are already long
+set formatoptions+=1 " Don't break a line before a one-letter word
+set formatoptions+=j " Remove comment leader when joining lines
+set formatoptions-=ro " Don't continue comments when making new lines
 set colorcolumn=+1 " Highlight the 80th column
 
 " }}}
@@ -127,20 +135,21 @@ let mapleader=','
 " Undo all unsaved changes
 nnoremap <leader>u :e!<cr>
 
-" Remap leader's original functionality
-nnoremap <leader><leader> ,
-vnoremap <leader><leader> ,
+nnoremap <tab> %
+vnoremap <tab> %
 
 " Unmap help key
 noremap <f1> <nop>
 vnoremap <f1> <nop>
 inoremap <f1> <nop>
 
-" Toggle relative line numbers
-function! ToggleRelativeNumber()
+" Toggle between relative, exact, and no line numbers
+function! ToggleNumbers()
     if(&relativenumber)
         set norelativenumber
         set number
+    elseif(&number)
+        set nonumber
     else
         set nonumber
         set relativenumber
@@ -158,8 +167,8 @@ function! ToggleFoldColumn()
 endfunc
 nnoremap <silent> <leader>f :call ToggleFoldColumn()<cr>
 
-" Clear trailing whitespace
-nnoremap <silent> <leader><space> :%s/\s\+$//ge<cr>
+" Strip trailing whitespace
+nnoremap <silent> <leader><space> :%s/\s\+$//ge<cr>:let @/=''<cr>
 
 " Return cursor position when joining lines
 nnoremap J mzJ`z
@@ -183,8 +192,11 @@ nnoremap g# g#<c-o>
 nnoremap <leader>v `[v`]
 
 " Substitute
-nnoremap <leader>s :%s/
-vnoremap <leader>s :s/
+nnoremap <leader>s :%s//g<left><left>
+vnoremap <leader>s :s//g<left><left>
+
+" Substitute word under cursor
+nnoremap <leader>* :%s/\<<c-r><c-w>\>//g<left><left>
 
 " New line below current line
 nnoremap <leader><cr> o<esc>
@@ -211,16 +223,13 @@ inoremap <c-f> <c-x><c-f>
 " Complete whole lines in insert mode
 inoremap <c-l> <c-x><c-l>
 
-" Remap Omnicomplete to c-space
-inoremap <Nul> <C-x><C-o>
-
 " }}}
 " Toggles {{{
 
 set pastetoggle=<leader>p
 nnoremap <silent> <leader>S :set spell!<cr>
 nnoremap <silent> <leader>w :set wrap!<cr>
-nnoremap <silent> <leader>i :set list!<cr>
+nnoremap <silent> <leader>c :set list!<cr>
 nnoremap <silent> <leader>/ :nohlsearch<cr>
 
 " }}}
