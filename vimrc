@@ -107,6 +107,7 @@ set statusline+=\ \|\ %P\  " Percentage through file
 
 set nofoldenable
 set foldlevelstart=0
+
 " Set custom fold text {{{
 
 function! FoldText()
@@ -222,7 +223,7 @@ nnoremap <silent> <leader>w :set wrap!<cr>
 nnoremap <silent> <leader>c :set list!<cr>
 nnoremap <silent> <leader>/ :nohlsearch<cr>
 
-" Toggle between relative, exact, and no line numbers {{{
+" Toggle line numbers {{{
 
 function! ToggleNumbers()
     if(&relativenumber)
