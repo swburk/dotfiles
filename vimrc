@@ -111,11 +111,11 @@ set foldlevelstart=0
 " Set custom fold text {{{
 
 function! FoldText()
+    let gutterwidth = &fdc + (&relativenumber + &number) * &numberwidth
+    let windowwidth = winwidth(0) - gutterwidth
     let foldlevel = '+' . repeat('-', v:foldlevel - 1) . ' '
     let line = substitute(getline(v:foldstart), '^\s\+', '', 'g') . ' '
     let foldedlines = v:foldend - v:foldstart . ' lines '
-    let gutterwidth = &fdc + (&relativenumber + &number) * &numberwidth
-    let windowwidth = winwidth(0) - gutterwidth
     let fillcharcount = windowwidth - len(foldlevel) - len(line) - len(foldedlines) - 1
     if foldedlines <= fillcharcount
         let fillcharcount = fillcharcount - foldedlines
