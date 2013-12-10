@@ -20,7 +20,6 @@ set nowritebackup " Don't write backups
 set undofile " Persistent undo across sessions
 set undodir=~/.vim/undo " Set undo directory
 set cmdheight=2 " Avoid Press ENTER prompts
-set relativenumber " Show relative line numbers
 set cursorline " Highlight current line
 set display+=lastline " last line will be displayed if too long
 set visualbell t_vb= " Turn off error bells
@@ -31,9 +30,10 @@ set showmode " Show the currently active mode
 set splitright " Opens vertical window to the right of current window
 set splitbelow " Opens horizontal window bellow current window
 set list " Show invisible characters
-set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮ " Set invisible characters
+set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮,trail:· " Set invisible characters
 set nojoinspaces " Don't add spaces when joining lines
-set complete=. " Complete words from current buffer
+set complete=
+set complete+=. " Complete words from current buffer
 set complete+=b " Complete from loaded buffers in the buffer list
 set complete+=u " Complete from unloaded buffers in the buffer list
 set complete+=] " Complete tags
@@ -81,7 +81,8 @@ set shiftround " Round indent to multiple of shiftwidth
 set nowrap " Don't wrap long lines
 set linebreak " Don't break words when wrapping
 set textwidth=79 " Maximum line length
-set formatoptions=q " Format text with gq
+set formatoptions=
+set formatoptions+=q " Format text with gq
 set formatoptions+=n " Recognize numbered lists when formatting
 set formatoptions+=l " Don't reformat lines that are already long
 set formatoptions+=1 " Don't break a line before a one-letter word
@@ -106,6 +107,8 @@ set statusline+=\ \|\ %P\  " Percentage through file
 
 set nofoldenable
 set foldlevelstart=0
+" Set custom fold text {{{
+
 function! FoldText()
     let foldlevel = '+' . repeat('-', v:foldlevel - 1) . ' '
     let line = substitute(getline(v:foldstart), '^\s\+', '', 'g') . ' '
@@ -125,6 +128,8 @@ endfunction
 set foldtext=FoldText()
 
 " }}}
+
+" }}}
 " Mappings {{{
 
 " Time out on key codes but not mappings
@@ -137,6 +142,9 @@ set ttimeoutlen=10
 " Remap leader
 let mapleader=','
 
+" Y yanks to end of line
+nnoremap Y y$
+
 " Undo all unsaved changes
 nnoremap <leader>u :e!<cr>
 
@@ -144,29 +152,6 @@ nnoremap <leader>u :e!<cr>
 noremap <f1> <nop>
 vnoremap <f1> <nop>
 inoremap <f1> <nop>
-
-" Toggle between relative, exact, and no line numbers
-function! ToggleNumbers()
-    if(&relativenumber)
-        set norelativenumber
-        set number
-    elseif(&number)
-        set nonumber
-    else
-        set relativenumber
-    endif
-endfunc
-nnoremap <silent> <leader>n :call ToggleNumbers()<cr>
-
-" Toggle fold column
-function! ToggleFoldColumn()
-    if(&foldcolumn)
-        set foldcolumn=0
-    else
-        set foldcolumn=4
-    endif
-endfunc
-nnoremap <silent> <leader>f :call ToggleFoldColumn()<cr>
 
 " Strip trailing whitespace
 nnoremap <silent> <leader><space> mz:%s/\s\+$//ge<cr>:let @/=''<cr>`z
@@ -210,6 +195,9 @@ cnoremap w!! w !sudo tee % >/dev/null
 nnoremap <space> za
 vnoremap <space> za
 
+" Focus current fold
+nnoremap <leader>z zMzvzz
+
 " Close buffers
 nnoremap <silent> <leader>x :bdelete<cr>
 
@@ -233,6 +221,34 @@ nnoremap <silent> <leader>S :set spell!<cr>
 nnoremap <silent> <leader>w :set wrap!<cr>
 nnoremap <silent> <leader>c :set list!<cr>
 nnoremap <silent> <leader>/ :nohlsearch<cr>
+
+" Toggle between relative, exact, and no line numbers {{{
+
+function! ToggleNumbers()
+    if(&relativenumber)
+        set norelativenumber
+        set number
+    elseif(&number)
+        set nonumber
+    else
+        set relativenumber
+    endif
+endfunc
+nnoremap <silent> <leader>n :call ToggleNumbers()<cr>
+
+" }}}
+" Toggle fold column {{{
+
+function! ToggleFoldColumn()
+    if(&foldcolumn)
+        set foldcolumn=0
+    else
+        set foldcolumn=4
+    endif
+endfunc
+nnoremap <silent> <leader>f :call ToggleFoldColumn()<cr>
+
+" }}}
 
 " }}}
 " Navigation {{{
@@ -264,12 +280,12 @@ vnoremap 0 g0
 vnoremap ^ g^
 
 " Align things in the middle when jumping around
-nnoremap n nzz
-nnoremap N Nzz
-nnoremap g; g;zz
-nnoremap g, g,zz
-nnoremap <c-o> <c-o>zz
-nnoremap <c-i> <c-i>zz
+nnoremap n nzvzz
+nnoremap N Nzvzz
+nnoremap g; g;zvzz
+nnoremap g, g,zvzz
+nnoremap <c-o> <c-o>zvzz
+nnoremap <c-i> <c-i>zvzz
 
 " }}}
 
