@@ -140,9 +140,6 @@ let mapleader=','
 " Undo all unsaved changes
 nnoremap <leader>u :e!<cr>
 
-nnoremap <tab> %
-vnoremap <tab> %
-
 " Unmap help key
 noremap <f1> <nop>
 vnoremap <f1> <nop>
@@ -156,7 +153,6 @@ function! ToggleNumbers()
     elseif(&number)
         set nonumber
     else
-        set nonumber
         set relativenumber
     endif
 endfunc
@@ -195,6 +191,7 @@ nnoremap g# g#<c-o>
 
 " Select last changed text
 nnoremap <leader>v `[v`]
+nnoremap <leader>V `[V`]
 
 " Substitute
 nnoremap <leader>s :%s//g<left><left>
