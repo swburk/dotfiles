@@ -96,7 +96,7 @@ set colorcolumn=+1 " Highlight the 80th column
 set laststatus=2 " Always show the statusline
 set statusline=
 set statusline+=\ %f " Filename
-set statusline+=\ %M " Modified flags
+set statusline+=\ %M\  " Modified flags
 set statusline+=%= " Set right-side statusline
 set statusline+=%{&filetype}\ \| " File type
 set statusline+=\ %l,%c/%L " Line number and column
@@ -113,10 +113,9 @@ set foldlevelstart=0
 function! FoldText()
     let gutterwidth = &fdc + (&relativenumber + &number) * &numberwidth
     let windowwidth = winwidth(0) - gutterwidth
-    let foldlevel = '+' . repeat('-', v:foldlevel - 1) . ' '
-    let line = substitute(getline(v:foldstart), '^\s\+', '', 'g') . ' '
+    let line = getline(v:foldstart) . ' '
     let foldedlines = v:foldend - v:foldstart . ' lines '
-    let fillcharcount = windowwidth - len(foldlevel) - len(line) - len(foldedlines) - 1
+    let fillcharcount = windowwidth - len(line) - len(foldedlines) - 1
     if foldedlines <= fillcharcount
         let fillcharcount = fillcharcount - foldedlines
         let fillchars = repeat("-", foldedlines) . repeat(" ", fillcharcount) . ' '
@@ -124,7 +123,7 @@ function! FoldText()
         let fillchars = repeat("-", fillcharcount) . ' '
     endif
 
-    return foldlevel . line . fillchars . foldedlines
+    return line . fillchars . foldedlines
 endfunction
 set foldtext=FoldText()
 
