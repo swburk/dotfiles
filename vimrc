@@ -23,7 +23,6 @@ set cmdheight=2 " Avoid Press ENTER prompts
 set cursorline " Highlight current line
 set display+=lastline " last line will be displayed if too long
 set visualbell t_vb= " Turn off error bells
-set shortmess=I " Don't display intro message
 set showcmd " Show unfinished commands
 set ruler " Show cursor position
 set showmode " Show the currently active mode
@@ -105,7 +104,7 @@ set statusline+=\ \|\ %P\  " Percentage through file
 " }}}
 " Folding {{{
 
-set nofoldenable
+set foldenable
 set foldlevelstart=0
 
 " Set custom fold text {{{
@@ -213,6 +212,12 @@ inoremap <c-f> <c-x><c-f>
 " Complete whole lines in insert mode
 inoremap <c-l> <c-x><c-l>
 
+" Output syntax highlighting groups for the word under cursor
+function! SynStack()
+  echo join(map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")'), ", ")
+endfunc
+nnoremap <leader>g :call SynStack()<CR>
+
 " }}}
 " Toggles {{{
 
@@ -258,6 +263,9 @@ nnoremap <silent> <leader>b :CtrlPBuffer<cr>
 nnoremap <silent> [b :bprev<cr>
 nnoremap <silent> ]b :bnext<cr>
 
+" Always jump to exact position of mark
+nnoremap ' `
+
 " Switch to alternate file
 nnoremap ` <c-^>
 
@@ -266,18 +274,6 @@ nnoremap <c-h> <c-w>h
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-l> <c-w>l
-
-" Sane wrapped line navigation
-nnoremap j gj
-nnoremap k gk
-nnoremap $ g$
-nnoremap 0 g0
-nnoremap ^ g^
-vnoremap j gj
-vnoremap k gk
-vnoremap $ g$
-vnoremap 0 g0
-vnoremap ^ g^
 
 " Align things in the middle when jumping around
 nnoremap n nzvzz
