@@ -112,14 +112,20 @@ set foldlevelstart=0
 function! FoldText()
     let gutterwidth = &fdc + (&relativenumber + &number) * &numberwidth
     let windowwidth = winwidth(0) - gutterwidth
+
     let line = getline(v:foldstart) . ' '
-    let foldedlines = v:foldend - v:foldstart . ' lines '
+    let softtab = strpart('        ', 0, &tabstop)
+    let line = substitute(line, '\t', softtab, 'g')
+
+    let foldedlinecount = v:foldend - v:foldstart
+    let foldedlines = foldedlinecount . ' lines '
+
     let fillcharcount = windowwidth - len(line) - len(foldedlines) - 1
-    if foldedlines <= fillcharcount
-        let fillcharcount = fillcharcount - foldedlines
-        let fillchars = repeat("-", foldedlines) . repeat(" ", fillcharcount) . ' '
+    if foldedlinecount <= fillcharcount
+        let fillcharcount = fillcharcount - foldedlinecount
+        let fillchars = repeat('-', foldedlines) . repeat(' ', fillcharcount) . ' '
     else
-        let fillchars = repeat("-", fillcharcount) . ' '
+        let fillchars = repeat('-', fillcharcount) . ' '
     endif
 
     return line . fillchars . foldedlines
@@ -140,6 +146,18 @@ set ttimeoutlen=10
 
 " Remap leader
 let mapleader=','
+
+" Add separator lines
+function! InsertSeparator()
+    let line = line('.')
+    let linelength = matchend(line, '$')
+    let linetext = getline(line)
+    let commentlength = 78 - linelength
+    let commenttext = repeat('-', commentlength)
+
+    setline(line, linetext . commenttext)
+endfunction
+nnoremap <leader>t :call InsertSeparator()<cr>
 
 " Y yanks to end of line
 nnoremap Y y$
@@ -288,7 +306,7 @@ nnoremap <c-i> <c-i>zvzz
 " }}}
 " Autocommands {{{
 
-if has("autocmd")
+if has('autocmd')
     " Resize splits when the window is resized
     augroup resize_splits
         autocmd!
