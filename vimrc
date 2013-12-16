@@ -147,18 +147,6 @@ set ttimeoutlen=10
 " Remap leader
 let mapleader=','
 
-" Add separator lines
-function! InsertSeparator()
-    let line = line('.')
-    let linelength = matchend(line, '$')
-    let linetext = getline(line)
-    let commentlength = 78 - linelength
-    let commenttext = repeat('-', commentlength)
-
-    setline(line, linetext . commenttext)
-endfunction
-nnoremap <leader>t :call InsertSeparator()<cr>
-
 " Y yanks to end of line
 nnoremap Y y$
 
