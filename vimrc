@@ -112,23 +112,19 @@ set foldlevelstart=0
 function! FoldText()
     let gutterwidth = &fdc + (&relativenumber + &number) * &numberwidth
     let windowwidth = winwidth(0) - gutterwidth
-
-    let line = getline(v:foldstart) . ' '
+    let line = getline(v:foldstart)
     let softtab = strpart('        ', 0, &tabstop)
     let line = substitute(line, '\t', softtab, 'g')
-
     let foldedlinecount = v:foldend - v:foldstart
-    let foldedlines = foldedlinecount . ' lines '
-
-    let fillcharcount = windowwidth - len(line) - len(foldedlines) - 1
+    let fillcharcount = windowwidth - len(line) - len(foldedlinecount) - 9
     if foldedlinecount <= fillcharcount
         let fillcharcount = fillcharcount - foldedlinecount
-        let fillchars = repeat('-', foldedlines) . repeat(' ', fillcharcount) . ' '
+        let fillchars = repeat('-', foldedlinecount) . repeat(' ', fillcharcount)
     else
-        let fillchars = repeat('-', fillcharcount) . ' '
+        let fillchars = repeat('-', fillcharcount)
     endif
 
-    return line . fillchars . foldedlines
+    return line . ' ' . fillchars . ' ' . foldedlinecount . ' lines '
 endfunction
 set foldtext=FoldText()
 
@@ -219,10 +215,10 @@ inoremap <c-f> <c-x><c-f>
 inoremap <c-l> <c-x><c-l>
 
 " Output syntax highlighting groups for the word under cursor
-function! SynStack()
+function! HighlightGroups()
   echo join(map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")'), ", ")
 endfunc
-nnoremap <leader>g :call SynStack()<CR>
+nnoremap <leader>g :call HighlightGroups()<CR>
 
 " }}}
 " Toggles {{{
