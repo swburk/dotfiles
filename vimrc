@@ -99,10 +99,10 @@ set colorcolumn=+1 " Highlight the 80th column
 set laststatus=2 " Always show the statusline
 set statusline=
 set statusline+=\ %f " Filename
-set statusline+=\ %M\  " Modified flags
-set statusline+=%= " Set right-side statusline
+set statusline+=\ %M\  " Modified flag
+set statusline+=%= " Align right
 set statusline+=%{&filetype}\ \| " File type
-set statusline+=\ %l,%c/%L " Line number and column
+set statusline+=\ %l/%L " Line number and column
 set statusline+=\ \|\ %P\  " Percentage through file
 
 " }}}
@@ -159,7 +159,7 @@ nnoremap <silent> <leader><space> mz:%s/\s\+$//ge<cr>:let @/=''<cr>`z
 " Return cursor position when joining lines
 nnoremap J mzJ`z
 
-" Split lines
+" Split line
 nnoremap S i<cr><esc>^mzk:silent! s/ \+$/<cr>:nohlsearch<cr>`z
 
 " Quicker command line commands
@@ -167,12 +167,6 @@ nnoremap : ;
 nnoremap ; :
 vnoremap : ;
 vnoremap ; :
-
-" Stay put on * and #
-nnoremap * *<c-o>
-nnoremap g* g*<c-o>
-nnoremap # #<c-o>
-nnoremap g# g#<c-o>
 
 " Select last changed text
 nnoremap <leader>v `[v`]
@@ -195,16 +189,16 @@ cnoremap w!! w !sudo tee % >/dev/null
 nnoremap <space> za
 vnoremap <space> za
 
-" Focus current fold
+" Close all other folds
 nnoremap <leader>z zMzvzz
 
-" Close buffers
+" Close buffer
 nnoremap <silent> <leader>x :bdelete<cr>
 
 " Select all the text in the buffer
 nnoremap <leader>a ggVG
 
-" Reindent the entire document
+" Reindent the entire buffer
 nnoremap <leader>= gg=G
 
 " Complete filenames in insert mode
@@ -267,7 +261,7 @@ nnoremap <silent> ]b :bnext<cr>
 " Always jump to exact position of mark
 nnoremap ' `
 
-" Switch to alternate file
+" Switch to alternate buffer
 nnoremap ` <c-^>
 
 " Quicker window switching
@@ -275,6 +269,12 @@ nnoremap <c-h> <c-w>h
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-l> <c-w>l
+
+" Stay put on * and #
+nnoremap * *<c-o>
+nnoremap g* g*<c-o>
+nnoremap # #<c-o>
+nnoremap g# g#<c-o>
 
 " Align things in the middle when jumping around
 nnoremap n nzvzz
