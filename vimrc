@@ -1,16 +1,14 @@
 " General {{{
 
-set nocompatible " Disable Vi compatibility
 filetype off
 execute pathogen#infect()
 filetype plugin indent on
+set nocompatible " Disable Vi compatibility
 set encoding=utf-8 " Set character encoding to Unicode
 set modelines=0 " Don't read modelines
 set history=1000 " Increase command line history
 set autoread " Reload file if changed outside Vim
-set title " Change the title of the terminal
 set ttyfast " I have a fast terminal
-set lazyredraw " Don't redraw screen when executing macros
 set hidden " Hide unsaved buffers
 set backspace=indent,eol,start " Backspace over everything in insert mode
 set nrformats-=octal " Increment numbers with leading zeros correctly
@@ -19,17 +17,6 @@ set nobackup " Don't make backups
 set nowritebackup " Don't write backups
 set undofile " Persistent undo across sessions
 set undodir=~/.vim/undo " Set undo directory
-set cmdheight=2 " Avoid Press ENTER prompts
-set cursorline " Highlight current line
-set display+=lastline " last line will be displayed if too long
-set visualbell t_vb= " Turn off error bells
-set showcmd " Show unfinished commands
-set ruler " Show cursor position
-set showmode " Show the currently active mode
-set splitright " Opens vertical window to the right of current window
-set splitbelow " Opens horizontal window bellow current window
-set list " Show invisible characters
-set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮,trail:· " Set invisible characters
 set nojoinspaces " Don't add spaces when joining lines
 set complete=
 set complete+=. " Complete words from current buffer
@@ -38,17 +25,34 @@ set complete+=u " Complete from unloaded buffers in the buffer list
 set complete+=] " Complete tags
 set wildmenu " Command line completion
 set wildmode=longest,list,full " Make completion act like zsh
-set wildignore+=*.jpg,*.jpeg,*.png,*.gif,*.bmp " Images
+set wildignore+=.git,.hg " Version control
+set wildignore+=*.jpg,*.jpeg,*.png,*.gif,*.bmp " Binary images
 set wildignore+=*.o,*.obj,*.exe,*.dll " Compiled object files
 set wildignore+=*.pyc " Python byte code
-set wildignore+=.git,.hg " Version control
 set mouse=a " Enable mouse in all modes
 set sidescroll=1 " Show some context when side scrolling
 set sidescrolloff=12 " Start scrolling 12 columns from right edge of window
+set notimeout ttimeout " Time out on key codes but not mappings
+set ttimeoutlen=10 " Time out after 10 miliseconds
 
 " }}}
-" Colors {{{
+" Display {{{
 
+set lazyredraw " Don't redraw screen when executing macros
+set cmdheight=2 " Avoid Press ENTER prompts
+set cursorline " Highlight current line
+set display+=lastline " display the last line even if its too long
+set visualbell t_vb= " Turn off error bells
+set showcmd " Show unfinished commands
+set ruler " Show cursor position
+set showmode " Show the currently active mode
+set nonumber " Don't show line numbers by default
+set norelativenumber " Sam for relative line numbers
+set splitright " Opens vertical window to the right of current window
+set splitbelow " Opens horizontal window bellow current window
+set list " Show invisible characters
+set listchars=tab:>\ ,eol:¬,extends:>,precedes:< " Set invisible characters
+set title " Change the title of the terminal
 syntax enable " Enable syntax highlighting
 set background=dark " Make the background dark
 set t_Co=256 " I have a 256-color terminal
@@ -132,11 +136,6 @@ set foldtext=FoldText()
 
 " }}}
 " Mappings {{{
-
-" Time out on key codes but not mappings
-set notimeout
-set ttimeout
-set ttimeoutlen=10
 
 " Convenience {{{
 
@@ -231,7 +230,7 @@ nnoremap <silent> <leader>/ :nohlsearch<cr>
 
 " Toggle line numbers {{{
 
-function! ToggleNumbers()
+function! ToggleLineNumbers()
     if(&relativenumber)
         set norelativenumber
         set number
@@ -241,7 +240,7 @@ function! ToggleNumbers()
         set relativenumber
     endif
 endfunc
-nnoremap <silent> <leader>n :call ToggleNumbers()<cr>
+nnoremap <silent> <leader>n :call ToggleLineNumbers()<cr>
 
 " }}}
 " Toggle fold column {{{
@@ -290,46 +289,45 @@ nnoremap <c-i> <c-i>zvzz
 " }}}
 " Autocommands {{{
 
-if has('autocmd')
-    " Resize splits when the window is resized
-    augroup resize_splits
-        autocmd!
-        autocmd VimResized * :wincmd =
-    augroup END
+" Resize splits when the window is resized
+autocmd VimResized * :wincmd =
 
-    " Source vimrc after it has been saved
-    augroup reload_vimrc
-        autocmd!
-        autocmd BufWritePost $MYVIMRC source $MYVIMRC
-    augroup END
+" Only show cursorline in current window
+autocmd WinLeave * set nocursorline
+autocmd WinEnter * set cursorline
 
-    " Only show cursorline in current window
-    augroup move_cursorline
-        autocmd!
-        autocmd WinLeave * set nocursorline
-        autocmd WinEnter * set cursorline
-    augroup END
+" }}}
+" Filetypes {{{
 
-    " Don't show trailing whitespace when in insert mode
-    augroup show_traling_whitespace
-        autocmd!
-        autocmd InsertEnter * set listchars-=trail:·
-        autocmd InsertLeave * set listchars+=trail:·
-    augroup END
+" C {{{
 
-    augroup ft_markdown
-        autocmd!
-        autocmd BufRead,BufNewFile *.md setlocal filetype=markdown
-        autocmd FileType markdown setlocal spell
-        autocmd FileType markdown setlocal wrap
-    augroup END
+autocmd FileType c setlocal foldmethod=syntax
 
-    augroup ft_vim
-        autocmd!
-        autocmd FileType vim setlocal foldenable
-        autocmd FileType vim setlocal foldmethod=marker
-    augroup END
-endif
+" }}}
+" Markdown {{{
+
+autocmd BufRead,BufNewFile *.md setlocal filetype=markdown
+autocmd FileType markdown setlocal spell
+autocmd FileType markdown setlocal wrap
+
+" }}}
+" CSS {{{
+
+autocmd Filetype css setlocal foldmethod=marker
+autocmd Filetype css setlocal foldmarker={,}
+
+" }}}
+" Javascript {{{
+
+autocmd FileType javascript setlocal foldmethod=marker
+autocmd FileType javascript setlocal foldmarker={,}
+
+" }}}
+" Vim {{{
+
+autocmd FileType vim setlocal foldmethod=marker
+
+" }}}
 
 " }}}
 " Plugins {{{
