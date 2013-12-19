@@ -276,6 +276,17 @@ nnoremap g* g*<c-o>
 nnoremap # #<c-o>
 nnoremap g# g#<c-o>
 
+" Use * and # in visual mode
+function! s:VSetSearch()
+  let temp = @@
+  norm! gvy
+  let @/ = '\V' . substitute(escape(@@, '\'), '\n', '\\n', 'g')
+  let @@ = temp
+endfunction
+
+vnoremap * :<C-u>call <SID>VSetSearch()<CR>//<CR><c-o>
+vnoremap # :<C-u>call <SID>VSetSearch()<CR>??<CR><c-o>
+
 " Align things in the middle when jumping around
 nnoremap n nzvzz
 nnoremap N Nzvzz
@@ -313,8 +324,8 @@ autocmd FileType markdown setlocal wrap
 " }}}
 " CSS {{{
 
-autocmd Filetype css setlocal foldmethod=marker
-autocmd Filetype css setlocal foldmarker={,}
+autocmd FileType css setlocal foldmethod=marker
+autocmd FileType css setlocal foldmarker={,}
 
 " }}}
 " Javascript {{{
