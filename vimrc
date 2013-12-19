@@ -145,6 +145,9 @@ let mapleader=','
 " Y yanks to end of line
 nnoremap Y y$
 
+" View documentation for word under cursor
+nnoremap K :call investigate#Investigate()<cr>
+
 " Undo all unsaved changes
 nnoremap <leader>u :e!<cr>
 
@@ -345,6 +348,9 @@ autocmd FileType vim setlocal foldmethod=marker
 
 " % matches HTML tags, if, else, etc.
 runtime macros/matchit.vim
+
+" Investigate
+let g:investigate_use_dash = 1
 
 " Badwolf
 let g:badwolf_html_link_underline = 0
