@@ -57,7 +57,7 @@ set title " Change the title of the terminal
 syntax enable " Enable syntax highlighting
 set background=dark " Make the background dark
 set t_Co=256 " I have a 256-color terminal
-colorscheme badwolf " Set color scheme
+colorscheme dalek " Set color scheme
 
 " }}}
 " Search {{{
