@@ -7,9 +7,6 @@
 [submodule "vim/bundle/ctrlp.vim"]
 	path = vim/bundle/ctrlp.vim
 	url = https://github.com/kien/ctrlp.vim.git
-[submodule "vim/bundle/badwolf"]
-	path = vim/bundle/badwolf
-	url = https://github.com/sjl/badwolf.git
 [submodule "vim/bundle/vim-colors-github"]
 	path = vim/bundle/vim-colors-github
 	url = https://github.com/croaky/vim-colors-github.git
@@ -19,3 +16,6 @@
 [submodule "vim/bundle/investigate.vim"]
 	path = vim/bundle/investigate.vim
 	url = https://github.com/Keithbsmiley/investigate.vim.git
+[submodule "vim/bundle/dalek.vim"]
+	path = vim/bundle/dalek.vim
+	url = https://github.com/samuelburk/dalek.vim.git
