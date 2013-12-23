@@ -179,9 +179,6 @@ nnoremap <leader>V `[V`]
 nnoremap <leader>s :%s//g<left><left>
 vnoremap <leader>s :s//g<left><left>
 
-" Substitute word under cursor
-nnoremap <leader>* :%s/\<<c-r><c-w>\>//g<left><left>
-
 " New line below current line
 nnoremap <leader><cr> o<esc>
 
@@ -281,10 +278,10 @@ nnoremap g# g#<c-o>
 
 " Use * and # in visual mode
 function! s:VSetSearch()
-  let temp = @@
-  norm! gvy
-  let @/ = '\V' . substitute(escape(@@, '\'), '\n', '\\n', 'g')
-  let @@ = temp
+    let temp = @@
+    norm! gvy
+    let @/ = '\V' . substitute(escape(@@, '\'), '\n', '\\n', 'g')
+    let @@ = temp
 endfunction
 
 vnoremap * :<C-u>call <SID>VSetSearch()<CR>//<CR><c-o>
