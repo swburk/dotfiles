@@ -33,7 +33,8 @@ set mouse=a " Enable mouse in all modes
 set sidescroll=1 " Show some context when side scrolling
 set sidescrolloff=12 " Start scrolling 12 columns from right edge of window
 set notimeout ttimeout " Time out on key codes but not mappings
-set ttimeoutlen=10 " Time out after 10 miliseconds
+set ttimeoutlen=10 " Time out after 10 milliseconds
+set spelllang=en_us
 
 " }}}
 " Display {{{
@@ -56,7 +57,7 @@ set title " Change the title of the terminal
 syntax enable " Enable syntax highlighting
 set background=dark " Make the background dark
 set t_Co=256 " I have a 256-color terminal
-colorscheme badwolf " Set colorscheme
+colorscheme badwolf " Set color scheme
 
 " }}}
 " Search {{{
@@ -94,9 +95,9 @@ set formatoptions-=ro " Don't continue comments when making new lines
 set colorcolumn=+1 " Highlight the 80th column
 
 " }}}
-" Statusline {{{
+" Status line {{{
 
-set laststatus=2 " Always show the statusline
+set laststatus=2 " Always show the status line
 set statusline=
 set statusline+=\ %f " Filename
 set statusline+=\ %M\  " Modified flag
@@ -198,7 +199,7 @@ nnoremap <silent> <leader>x :bdelete<cr>
 " Select all the text in the buffer
 nnoremap <leader>a ggVG
 
-" Reindent the entire buffer
+" Re-indent the entire buffer
 nnoremap <leader>= gg=G
 
 " Complete filenames in insert mode
@@ -217,9 +218,9 @@ nnoremap <leader>g :call HighlightGroups()<CR>
 " Toggles {{{
 
 set pastetoggle=<leader>p
-nnoremap <silent> <leader>S :set spell!<cr>
+nnoremap <silent> <leader>c :set spell!<cr>
 nnoremap <silent> <leader>w :set wrap!<cr>
-nnoremap <silent> <leader>c :set list!<cr>
+nnoremap <silent> <leader>i :set list!<cr>
 nnoremap <silent> <leader>/ :nohlsearch<cr>
 
 " Toggle line numbers {{{
@@ -303,12 +304,12 @@ nnoremap <c-i> <c-i>zvzz
 " Resize splits when the window is resized
 autocmd VimResized * :wincmd =
 
-" Only show cursorline in current window
+" Only show cursor line in current window
 autocmd WinLeave * set nocursorline
 autocmd WinEnter * set cursorline
 
 " }}}
-" Filetypes {{{
+" File types {{{
 
 " C {{{
 
@@ -352,7 +353,7 @@ let g:investigate_use_dash = 1
 " Badwolf
 let g:badwolf_html_link_underline = 0
 
-" Ctrl-P
+" CtrlP
 if executable('ag')
     let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
     let g:ctrlp_use_caching = 0
