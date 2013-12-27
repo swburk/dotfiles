@@ -149,9 +149,6 @@ nnoremap Y y$
 " View documentation for word under cursor
 nnoremap K :call investigate#Investigate()<cr>
 
-" Undo all unsaved changes
-nnoremap <leader>u :e!<cr>
-
 " Unmap help key
 noremap <f1> <nop>
 vnoremap <f1> <nop>
@@ -173,8 +170,7 @@ vnoremap : ;
 vnoremap ; :
 
 " Select last changed text
-nnoremap <leader>v `[v`]
-nnoremap <leader>V `[V`]
+nnoremap <leader>v `[V`]
 
 " Substitute
 nnoremap <leader>s :%s//g<left><left>
@@ -196,9 +192,6 @@ nnoremap <leader>z zMzvzz
 " Close buffer
 nnoremap <silent> <leader>x :bdelete<cr>
 
-" Select all the text in the buffer
-nnoremap <leader>a ggVG
-
 " Re-indent the entire buffer
 nnoremap <leader>= gg=G
 
@@ -208,16 +201,10 @@ inoremap <c-f> <c-x><c-f>
 " Complete whole lines in insert mode
 inoremap <c-l> <c-x><c-l>
 
-" Output syntax highlighting groups for the word under cursor
-function! HighlightGroups()
-  echo join(map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")'), ", ")
-endfunc
-nnoremap <leader>g :call HighlightGroups()<CR>
-
 " }}}
 " Toggles {{{
 
-set pastetoggle=<leader>p
+set pastetoggle=<f2>
 nnoremap <silent> <leader>c :set spell!<cr>
 nnoremap <silent> <leader>w :set wrap!<cr>
 nnoremap <silent> <leader>i :set list!<cr>
@@ -255,7 +242,7 @@ nnoremap <silent> <leader>f :call ToggleFoldColumn()<cr>
 " Navigation {{{
 
 " Buffers
-nnoremap <silent> <leader>b :CtrlPBuffer<cr>
+nnoremap <silent> <c-n> :CtrlPBuffer<cr>
 nnoremap <silent> [b :bprev<cr>
 nnoremap <silent> ]b :bnext<cr>
 

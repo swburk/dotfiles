@@ -30,23 +30,30 @@ bindkey -e
 autoload -U colors && colors
 setopt PROMPT_SUBST
 
-if [[ -n "$SSH_CONNECTION" ]]; then
-    SSH_PROMPT="@%{$fg_bold[cyan]%}%m%{$reset_color%}"
-fi
+function precmd() {
+    print -Pn "\e];%~\a"
+}
 
-export PS1="%(?.%(!.#.$).%{$fg_bold[red]%}%(!.#.$)%{$reset_color%}) "
-export PS1="%{$fg_bold[blue]%}%~%{$reset_color%}] $PS1"
-export PS1="[%{$fg_bold[green]%}%n%{$reset_color%}$SSH_PROMPT:$PS1"
-export PS1="%1(j.%{$fg_bold[magenta]%}%jj %{$reset_color%}.)$PS1"
+# if [[ -n "$SSH_CONNECTION" ]]; then
+#     SSH_PROMPT="%{$fg_bold[green]%}%n%{$reset_color%}@%{$fg_bold[cyan]%}%m%{$reset_color%}: "
+# fi
+
+# Jobs
+export PS1="%1(j.%{$fg[magenta]%}%jj %{$reset_color%}.)"
+
+# Username and hostname displayed in an SSH session
+# export PS1="$PS1$SSH_PROMPT"
+
+# Current directory
+export PS1="$PS1%{$fg_bold[blue]%}%~%{$reset_color%} "
+
+# Prompt is red when previous command didn't exit with 0
+export PS1="$PS1%(?.%(!.#.$).%{$fg[red]%}%(!.#.$)%{$reset_color%}) "
 
 # Scripts
 . ~/bin/z.sh
 
 # Functions
-function precmd() {
-    print -Pn "\e];%~\a"
-}
-
 function chpwd() {
     ls -Ft | head -8;
 }
