@@ -1,6 +1,8 @@
-function! MarkdownFoldExpression()
-    let l1 = getline(v:lnum)
-    let l2 = getline(v:lnum + 1)
+" Modified from Steve Losh's Gist: https://gist.github.com/sjl/1038710
+
+function! MarkdownFoldExpression(lnum)
+    let l1 = getline(a:lnum)
+    let l2 = getline(a:lnum + 1)
 
     if l2 =~ '^==\+'
         return '>1'
@@ -14,4 +16,4 @@ function! MarkdownFoldExpression()
 endfunction
 
 setlocal foldmethod=expr
-setlocal foldexpr=MarkdownFoldExpression()
+setlocal foldexpr=MarkdownFoldExpression(v:lnum)

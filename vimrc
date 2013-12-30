@@ -29,6 +29,8 @@ set wildignore+=.git,.hg " Version control
 set wildignore+=*.jpg,*.jpeg,*.png,*.gif,*.bmp " Binary images
 set wildignore+=*.o,*.obj,*.exe,*.dll " Compiled object files
 set wildignore+=*.pyc " Python byte code
+set wildignore+=*.bak,*.swp " Backups and swap files
+set wildignore+=*.DS_Store " OSX
 set mouse=a " Enable mouse in all modes
 set sidescroll=1 " Show some context when side scrolling
 set sidescrolloff=12 " Start scrolling 12 columns from right edge of window
@@ -157,11 +159,11 @@ inoremap <f1> <nop>
 " Strip trailing whitespace
 nnoremap <silent> <leader><space> mz:%s/\s\+$//ge<cr>:let @/=''<cr>`z
 
-" Return cursor position when joining lines
+" Return to cursor position when joining lines
 nnoremap J mzJ`z
 
 " Split line
-nnoremap S i<cr><esc>^mzk:silent! s/ \+$/<cr>:nohlsearch<cr>`z
+nnoremap S i<cr><esc>^mzk:silent! s/ \+$/<cr>:let @/=''<cr>`z
 
 " Quicker command line commands
 nnoremap : ;
@@ -170,7 +172,8 @@ vnoremap : ;
 vnoremap ; :
 
 " Select last changed text
-nnoremap <leader>v `[V`]
+nnoremap <leader>v `[v`]
+nnoremap <leader>V `[V`]
 
 " Substitute
 nnoremap <leader>s :%s//g<left><left>
@@ -201,6 +204,10 @@ inoremap <c-f> <c-x><c-f>
 " Complete whole lines in insert mode
 inoremap <c-l> <c-x><c-l>
 
+" Opening files
+nnoremap <silent> <leader>e :e.<cr>
+nnoremap <silent> <leader>b :CtrlPBuffer<cr>
+
 " }}}
 " Toggles {{{
 
@@ -221,20 +228,24 @@ function! ToggleLineNumbers()
     else
         set relativenumber
     endif
-endfunc
+endfunction
 nnoremap <silent> <leader>n :call ToggleLineNumbers()<cr>
 
 " }}}
 " Toggle fold column {{{
 
-function! ToggleFoldColumn()
-    if(&foldcolumn)
-        set foldcolumn=0
+function! ToggleFoldColumn(count)
+    if a:count > 0
+        let &foldcolumn=a:count
     else
-        set foldcolumn=4
+        if(&foldcolumn)
+            let &foldcolumn=0
+        else
+            let &foldcolumn=4
+        endif
     endif
-endfunc
-nnoremap <silent> <leader>f :call ToggleFoldColumn()<cr>
+endfunction
+nnoremap <silent> <leader>f :<c-u>call ToggleFoldColumn(v:count)<cr>
 
 " }}}
 
@@ -242,9 +253,16 @@ nnoremap <silent> <leader>f :call ToggleFoldColumn()<cr>
 " Navigation {{{
 
 " Buffers
-nnoremap <silent> <c-n> :CtrlPBuffer<cr>
-nnoremap <silent> [b :bprev<cr>
-nnoremap <silent> ]b :bnext<cr>
+nnoremap <silent> [b :<c-u><c-r>=v:count<cr>bprev<cr>
+nnoremap <silent> ]b :<c-u><c-r>=v:count<cr>bnext<cr>
+
+" Quickfix list
+nnoremap <silent> ]q :<c-u><c-r>=v:count<cr>cnext<cr>
+nnoremap <silent> [q :<c-u><c-r>=v:count<cr>cprev<cr>
+
+" Tag list
+nnoremap <silent> ]t :<c-u><c-r>=v:count<cr>tnext<cr>
+nnoremap <silent> [t :<c-u><c-r>=v:count<cr>tprev<cr>
 
 " Always jump to exact position of mark
 nnoremap ' `
@@ -331,19 +349,36 @@ autocmd FileType vim setlocal foldmethod=marker
 " }}}
 " Plugins {{{
 
-" % matches HTML tags, if, else, etc.
+" Matchit {{{
+
 runtime macros/matchit.vim
 
-" Investigate
+" }}}
+" Netrw {{{
+
+" Don't show the help banner
+let g:netrw_banner = 0
+
+" Sort and ignore based on suffixes and wildignore, taken from vinegar.vim: https://github.com/tpope/vim-vinegar
+let g:netrw_sort_sequence = '[\/]$,*,' . join(map(split(&suffixes, ','), 'substitute(escape(v:val, ".*$~"), "*", ".*", "g")'), '$,') . '$'
+let g:netrw_list_hide = join(map(split(&wildignore, ','), '"^".' . 'substitute(escape(v:val, ".*$~"), "*", ".*", "g")' . '. "$"'), ',') . ',^\.\.\=/\=$'
+
+" }}}
+" Investigate {{{
+
 let g:investigate_use_dash = 1
 
-" Badwolf
-let g:badwolf_html_link_underline = 0
+" }}}
+" CtrlP {{{
 
-" CtrlP
 if executable('ag')
     let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
     let g:ctrlp_use_caching = 0
 endif
+
+" Max match window height
+let g:ctrlp_match_window = 'max:20'
+
+" }}}
 
 " }}}
