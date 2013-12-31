@@ -36,7 +36,8 @@ set sidescroll=1 " Show some context when side scrolling
 set sidescrolloff=12 " Start scrolling 12 columns from right edge of window
 set notimeout ttimeout " Time out on key codes but not mappings
 set ttimeoutlen=10 " Time out after 10 milliseconds
-set spelllang=en_us
+set spelllang=en_us " Set language for spell checking
+set virtualedit+=block " Allow virtual editing in visual block mode
 
 " }}}
 " Display {{{
@@ -84,7 +85,7 @@ set shiftround " Round indent to multiple of shiftwidth
 " }}}
 " Wrapping {{{
 
-set nowrap " Don't wrap long lines
+set nowrap " Don't wrap long lines by default
 set linebreak " Don't break words when wrapping
 set textwidth=79 " Maximum line length
 set formatoptions=
@@ -94,7 +95,7 @@ set formatoptions+=l " Don't reformat lines that are already long
 set formatoptions+=1 " Don't break a line before a one-letter word
 set formatoptions+=j " Remove comment leader when joining lines
 set formatoptions-=ro " Don't continue comments when making new lines
-set colorcolumn=+1 " Highlight the 80th column
+set colorcolumn=+1 " Highlight the column after textwidth
 
 " }}}
 " Status line {{{
@@ -103,9 +104,9 @@ set laststatus=2 " Always show the status line
 set statusline=
 set statusline+=\ %f " Filename
 set statusline+=\ %M\  " Modified flag
-set statusline+=%= " Align right
+set statusline+=%= " Right side
 set statusline+=%{&filetype}\ \| " File type
-set statusline+=\ %l/%L " Line number and column
+set statusline+=\ %l/%L " Line number
 set statusline+=\ \|\ %P\  " Percentage through file
 
 " }}}
@@ -117,12 +118,24 @@ set foldlevelstart=0
 " Set custom fold text {{{
 
 function! FoldText()
+    " Width of window
     let gutterwidth = &fdc + (&relativenumber + &number) * &numberwidth
     let windowwidth = winwidth(0) - gutterwidth
+
+    " Number of lines inside the fold
+    let foldedlinecount = v:foldend - v:foldstart
+
+    " Trim the line text
     let line = getline(v:foldstart)
     let softtab = strpart('        ', 0, &tabstop)
     let line = substitute(line, '\t', softtab, 'g')
-    let foldedlinecount = v:foldend - v:foldstart
+    let line = substitute(line, '\s\=--\+', '', 'g')
+    let toolong = windowwidth - len(foldedlinecount) - 9
+    if len(line) >= toolong
+        let line = strpart(line, 0, toolong)
+    endif
+
+    " Put a dash for every folded line
     let fillcharcount = windowwidth - len(line) - len(foldedlinecount) - 9
     if foldedlinecount <= fillcharcount
         let fillcharcount = fillcharcount - foldedlinecount
@@ -150,6 +163,9 @@ nnoremap Y y$
 
 " View documentation for word under cursor
 nnoremap K :call investigate#Investigate()<cr>
+
+" ^ is too hard to type
+nnoremap - ^
 
 " Unmap help key
 noremap <f1> <nop>
@@ -190,7 +206,7 @@ nnoremap <space> za
 vnoremap <space> za
 
 " Close all other folds
-nnoremap <leader>z zMzvzz
+nnoremap <leader>z zMzvzz8<c-e>
 
 " Close buffer
 nnoremap <silent> <leader>x :bdelete<cr>
@@ -205,8 +221,14 @@ inoremap <c-f> <c-x><c-f>
 inoremap <c-l> <c-x><c-l>
 
 " Opening files
-nnoremap <silent> <leader>e :e.<cr>
+nnoremap <silent> <leader>ed :e.<cr>
+nnoremap <silent> <leader>ef :e %:p:h<cr>
+nnoremap <silent> <leader>ev :tabe $MYVIMRC<cr>
 nnoremap <silent> <leader>b :CtrlPBuffer<cr>
+
+" Reformat paragraph or visual selection
+nnoremap Q gqip
+vnoremap Q gq
 
 " }}}
 " Toggles {{{
@@ -276,23 +298,6 @@ nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-l> <c-w>l
 
-" Stay put on * and #
-nnoremap * *<c-o>
-nnoremap g* g*<c-o>
-nnoremap # #<c-o>
-nnoremap g# g#<c-o>
-
-" Use * and # in visual mode
-function! s:VSetSearch()
-    let temp = @@
-    norm! gvy
-    let @/ = '\V' . substitute(escape(@@, '\'), '\n', '\\n', 'g')
-    let @@ = temp
-endfunction
-
-vnoremap * :<C-u>call <SID>VSetSearch()<CR>//<CR><c-o>
-vnoremap # :<C-u>call <SID>VSetSearch()<CR>??<CR><c-o>
-
 " Align things in the middle when jumping around
 nnoremap n nzvzz
 nnoremap N Nzvzz
@@ -301,48 +306,97 @@ nnoremap g, g,zvzz
 nnoremap <c-o> <c-o>zvzz
 nnoremap <c-i> <c-i>zvzz
 
+" Stay put on * and #
+nnoremap * *<c-o>
+nnoremap g* g*<c-o>
+nnoremap # #<c-o>
+nnoremap g# g#<c-o>
+
+" Search for visual selection thanks to Scrooloose {{{
+
+function! s:VSetSearch()
+    let temp = @@
+    norm! gvy
+    let @/ = '\V' . substitute(escape(@@, '\'), '\n', '\\n', 'g')
+    let @@ = temp
+endfunction
+vnoremap * :<C-u>call <SID>VSetSearch()<CR>//<CR><c-o>
+vnoremap # :<C-u>call <SID>VSetSearch()<CR>??<CR><c-o>
+
+" }}}
+
 " }}}
 
 " }}}
 " Autocommands {{{
 
 " Resize splits when the window is resized
-autocmd VimResized * :wincmd =
+augroup ResizeWindows
+    au!
+    autocmd VimResized * :wincmd =
+augroup END
 
 " Only show cursor line in current window
-autocmd WinLeave * set nocursorline
-autocmd WinEnter * set cursorline
+augroup ShowCursorLine
+    au!
+    autocmd WinLeave * set nocursorline
+    autocmd WinEnter * set cursorline
+augroup END
 
 " }}}
 " File types {{{
 
 " C {{{
 
-autocmd FileType c setlocal foldmethod=syntax
+augroup ft_c
+    au!
+    autocmd FileType c setlocal foldmethod=syntax
+augroup END
 
 " }}}
 " Markdown {{{
 
-autocmd BufRead,BufNewFile *.md setlocal filetype=markdown
-autocmd FileType markdown setlocal spell
-autocmd FileType markdown setlocal wrap
+augroup ft_markdown
+    au!
+    autocmd BufRead,BufNewFile *.md setlocal filetype=markdown
+    autocmd FileType markdown setlocal spell
+    autocmd FileType markdown setlocal wrap
+augroup END
 
 " }}}
 " CSS {{{
 
-autocmd FileType css setlocal foldmethod=marker
-autocmd FileType css setlocal foldmarker={,}
+augroup ft_css
+    au!
+    autocmd FileType css setlocal foldmethod=marker
+    autocmd FileType css setlocal foldmarker={,}
+    autocmd Filetype css setlocal iskeyword+=-
+augroup END
 
 " }}}
 " Javascript {{{
 
-autocmd FileType javascript setlocal foldmethod=marker
-autocmd FileType javascript setlocal foldmarker={,}
+augroup ft_javascript
+    au!
+    autocmd FileType javascript setlocal foldmethod=marker
+    autocmd FileType javascript setlocal foldmarker={,}
+augroup END
+
+" }}}
+" QuickFix {{{
+
+augroup ft_quickfix
+    au!
+    autocmd Filetype qf setlocal colorcolumn=0 nolist
+augroup END
 
 " }}}
 " Vim {{{
 
-autocmd FileType vim setlocal foldmethod=marker
+augroup ft_vim
+    au!
+    autocmd FileType vim setlocal foldmethod=marker
+augroup END
 
 " }}}
 
@@ -362,6 +416,8 @@ let g:netrw_banner = 0
 " Sort and ignore based on suffixes and wildignore, taken from vinegar.vim: https://github.com/tpope/vim-vinegar
 let g:netrw_sort_sequence = '[\/]$,*,' . join(map(split(&suffixes, ','), 'substitute(escape(v:val, ".*$~"), "*", ".*", "g")'), '$,') . '$'
 let g:netrw_list_hide = join(map(split(&wildignore, ','), '"^".' . 'substitute(escape(v:val, ".*$~"), "*", ".*", "g")' . '. "$"'), ',') . ',^\.\.\=/\=$'
+
+autocmd FileType netrw nnoremap <buffer> ~ :e ~/<cr>
 
 " }}}
 " Investigate {{{
