@@ -1,64 +1,64 @@
-# PATH
+# Environment variables ------------------------------------------------------
 export PATH="/usr/local/bin:$PATH:$HOME/bin"
-
-# Vim
 export VISUAL="vim"
 export EDITOR=$VISUAL
-
-# Manpage viewer
 export MANPAGER="/bin/sh -c \"col -b | vim -c 'set filetype=man tabstop=8 nomodified nolist nonumber nomodifiable' -\""
-
-# History
 export HISTSIZE=1000
 export SAVEHIST=1000
 setopt HIST_IGNORE_SPACE
 export HISTFILE=$HOME/.history
 setopt SHARE_HISTORY
-
-# Navigation
-setopt AUTO_PUSHD
-setopt PUSHD_IGNORE_DUPS
-
-# Completion
-autoload -U compinit && compinit
 setopt CORRECT
 
-# Bindings
-bindkey -e
+# Completion -----------------------------------------------------------------
+autoload -U compinit && compinit
 
-# Prompt
-autoload -U colors && colors
-setopt PROMPT_SUBST
+# Prompt ---------------------------------------------------------------------
+setopt prompt_subst
+autoload -Uz vcs_info
+
+# colors:
+#  red:      1,  9
+#  green:    2,  10
+#  yellow:   3,  11
+#  blue:     4,  12
+#  magenta:  5,  13
+#  cyan:     6,  14
+#  white:    7,  15
+#  black:    8,  16
+
+# Format for VCS Info
+zstyle ':vcs_info:*' actionformats '(%b) '
+zstyle ':vcs_info:*' formats '(%b) '
+zstyle ':vcs_info:*' enable git
+
+# Jobs
+export PS1="%1(j.%F{13}%jj%f .)"
+
+# Username and hostname displayed in an SSH session
+export PS1="$PS1${SSH_CONNECTION+"%F{2}%n%f@%F{6}%m%f "}"
+
+# Current directory
+export PS1="$PS1%F{12}%~%f "
+
+# Current VCS branch
+export PS1="$PS1${vcs_info_msg_0_}"
+
+# Prompt is red when previous command didn't exit with 0
+export PS1="$PS1%(?.%(!.#.❯).%F{1}%(!.#.❯)%f) "
+
+# Scripts and functions ------------------------------------------------------
+. ~/bin/z.sh
 
 function precmd() {
+    vcs_info
     print -Pn "\e];%~\a"
 }
 
-# if [[ -n "$SSH_CONNECTION" ]]; then
-#     SSH_PROMPT="%{$fg_bold[green]%}%n%{$reset_color%}@%{$fg_bold[cyan]%}%m%{$reset_color%}: "
-# fi
-
-# Jobs
-export PS1="%1(j.%{$fg[magenta]%}%jj %{$reset_color%}.)"
-
-# Username and hostname displayed in an SSH session
-# export PS1="$PS1$SSH_PROMPT"
-
-# Current directory
-export PS1="$PS1%{$fg_bold[blue]%}%~%{$reset_color%} "
-
-# Prompt is red when previous command didn't exit with 0
-export PS1="$PS1%(?.%(!.#.$).%{$fg[red]%}%(!.#.$)%{$reset_color%}) "
-
-# Scripts
-. ~/bin/z.sh
-
-# Functions
 function chpwd() {
     ls -Ft | head -8;
 }
 
-# Temporary bookmarks
 function bm() {
     alias $1="cd $PWD"
 }
@@ -67,7 +67,6 @@ function mkd() {
     mkdir -pv "$1" && cd "$1";
 }
 
-# Look up an http status code
 function http() {
     curl http://httpcode.info/$1;
 }
@@ -93,7 +92,7 @@ function g() {
 }
 compdef g=git
 
-# Aliases
+# Aliases --------------------------------------------------------------------
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."

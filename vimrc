@@ -55,7 +55,7 @@ set norelativenumber " Sam for relative line numbers
 set splitright " Opens vertical window to the right of current window
 set splitbelow " Opens horizontal window bellow current window
 set list " Show invisible characters
-set listchars=tab:>\ ,eol:¬,extends:>,precedes:< " Set invisible characters
+set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮ " Set invisible characters
 set title " Change the title of the terminal
 syntax enable " Enable syntax highlighting
 set background=dark " Make the background dark
@@ -224,11 +224,16 @@ inoremap <c-l> <c-x><c-l>
 nnoremap <silent> <leader>ed :e.<cr>
 nnoremap <silent> <leader>ef :e %:p:h<cr>
 nnoremap <silent> <leader>ev :tabe $MYVIMRC<cr>
+nnoremap <silent> <leader>ez :tabe ~/.zshrc<cr>
+nnoremap <silent> <leader>et :tabe ~/.tmux.conf<cr>
 nnoremap <silent> <leader>b :CtrlPBuffer<cr>
 
 " Reformat paragraph or visual selection
 nnoremap Q gqip
 vnoremap Q gq
+
+" Save the buffer
+nnoremap <leader>d :w<cr>
 
 " }}}
 " Toggles {{{
@@ -371,6 +376,8 @@ augroup ft_css
     autocmd FileType css setlocal foldmethod=marker
     autocmd FileType css setlocal foldmarker={,}
     autocmd Filetype css setlocal iskeyword+=-
+    autocmd Filetype css inoremap <buffer> { {<cr>}<esc>O<esc>zMzvi<tab>
+    autocmd Filetype css inoremap <buffer> : : ;<left>
 augroup END
 
 " }}}
