@@ -38,6 +38,7 @@ set notimeout ttimeout " Time out on key codes but not mappings
 set ttimeoutlen=10 " Time out after 10 milliseconds
 set spelllang=en_us " Set language for spell checking
 set virtualedit+=block " Allow virtual editing in visual block mode
+set printoptions=header:0,collate:y,paper:letter " Options used by :hardcopy
 
 " }}}
 " Display {{{
@@ -88,6 +89,7 @@ set shiftround " Round indent to multiple of shiftwidth
 set nowrap " Don't wrap long lines by default
 set linebreak " Don't break words when wrapping
 set textwidth=79 " Maximum line length
+set colorcolumn=+1 " Highlight the column after textwidth
 set formatoptions=
 set formatoptions+=q " Format text with gq
 set formatoptions+=n " Recognize numbered lists when formatting
@@ -95,7 +97,9 @@ set formatoptions+=l " Don't reformat lines that are already long
 set formatoptions+=1 " Don't break a line before a one-letter word
 set formatoptions+=j " Remove comment leader when joining lines
 set formatoptions-=ro " Don't continue comments when making new lines
-set colorcolumn=+1 " Highlight the column after textwidth
+if executable('par')
+    set formatprg=par\ -w79
+endif
 
 " }}}
 " Status line {{{
@@ -112,8 +116,10 @@ set statusline+=\ \|\ %P\  " Percentage through file
 " }}}
 " Folding {{{
 
-set foldenable
-set foldlevelstart=0
+set foldenable " Enable folding
+set foldlevelstart=0 " All folds are closed by default
+set foldminlines=2 " Don't fold single lines
+set foldopen=block,hor,insert,mark,percent,quickfix,search,tag,undo
 
 " Set custom fold text {{{
 
@@ -206,7 +212,7 @@ nnoremap <space> za
 vnoremap <space> za
 
 " Close all other folds
-nnoremap <leader>z zMzvzz8<c-e>
+nnoremap <leader>z zMzvzz
 
 " Close buffer
 nnoremap <silent> <leader>x :bdelete<cr>
@@ -224,6 +230,7 @@ inoremap <c-l> <c-x><c-l>
 nnoremap <silent> <leader>ed :e.<cr>
 nnoremap <silent> <leader>ef :e %:p:h<cr>
 nnoremap <silent> <leader>ev :tabe $MYVIMRC<cr>
+nnoremap <silent> <leader>ew :tabe ~/.vim/spell/en.utf-8.add<cr>
 nnoremap <silent> <leader>ez :tabe ~/.zshrc<cr>
 nnoremap <silent> <leader>et :tabe ~/.tmux.conf<cr>
 nnoremap <silent> <leader>b :CtrlPBuffer<cr>
@@ -234,6 +241,12 @@ vnoremap Q gq
 
 " Save the buffer
 nnoremap <leader>d :w<cr>
+
+" Command line navigation
+cnoremap <C-A> <Home>
+cnoremap <C-E> <End>
+cnoremap <C-F> <Right>
+cnoremap <C-B> <Left>
 
 " }}}
 " Toggles {{{
@@ -294,6 +307,10 @@ nnoremap <silent> [t :<c-u><c-r>=v:count<cr>tprev<cr>
 " Always jump to exact position of mark
 nnoremap ' `
 
+" Repeat last f, t, F, or T in reveres
+nnoremap <leader>; ,
+vnoremap <leader>; ,
+
 " Switch to alternate buffer
 nnoremap ` <c-^>
 
@@ -310,6 +327,10 @@ nnoremap g; g;zvzz
 nnoremap g, g,zvzz
 nnoremap <c-o> <c-o>zvzz
 nnoremap <c-i> <c-i>zvzz
+
+" Make horizontal scrolling faster
+nnoremap zl 4zl
+nnoremap zh 4zh
 
 " Stay put on * and #
 nnoremap * *<c-o>
