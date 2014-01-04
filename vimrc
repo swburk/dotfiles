@@ -164,22 +164,22 @@ set foldtext=FoldText()
 " Remap leader
 let mapleader=','
 
+" Unmap help key
+noremap <f1> <nop>
+vnoremap <f1> <nop>
+inoremap <f1> <nop>
+
 " Y yanks to end of line
 nnoremap Y y$
 
 " View documentation for word under cursor
 nnoremap K :call investigate#Investigate()<cr>
 
-" ^ is too hard to type
-nnoremap - ^
-
-" Unmap help key
-noremap <f1> <nop>
-vnoremap <f1> <nop>
-inoremap <f1> <nop>
-
-" Strip trailing whitespace
-nnoremap <silent> <leader><space> mz:%s/\s\+$//ge<cr>:let @/=''<cr>`z
+" Quicker command line commands
+nnoremap : ;
+nnoremap ; :
+vnoremap : ;
+vnoremap ; :
 
 " Return to cursor position when joining lines
 nnoremap J mzJ`z
@@ -187,11 +187,23 @@ nnoremap J mzJ`z
 " Split line
 nnoremap S i<cr><esc>^mzk:silent! s/ \+$/<cr>:let @/=''<cr>`z
 
-" Quicker command line commands
-nnoremap : ;
-nnoremap ; :
-vnoremap : ;
-vnoremap ; :
+" Reformat paragraph or visual selection
+nnoremap Q gqip
+vnoremap Q gq
+
+" New line above or below current line
+nnoremap [<space> O<esc>
+nnoremap ]<space> o<esc>
+
+" Space toggles fold
+nnoremap <space> za
+vnoremap <space> za
+
+" Save as root
+cnoremap w!! w !sudo tee % >/dev/null
+
+" Strip trailing whitespace
+nnoremap <silent> <leader><space> mz:%s/\s\+$//ge<cr>:let @/=''<cr>`z
 
 " Select last changed text
 nnoremap <leader>v `[v`]
@@ -200,16 +212,6 @@ nnoremap <leader>V `[V`]
 " Substitute
 nnoremap <leader>s :%s//g<left><left>
 vnoremap <leader>s :s//g<left><left>
-
-" New line below current line
-nnoremap <leader><cr> o<esc>
-
-" Save as root
-cnoremap w!! w !sudo tee % >/dev/null
-
-" Space toggles fold
-nnoremap <space> za
-vnoremap <space> za
 
 " Close all other folds
 nnoremap <leader>z zMzvzz
@@ -226,6 +228,9 @@ inoremap <c-f> <c-x><c-f>
 " Complete whole lines in insert mode
 inoremap <c-l> <c-x><c-l>
 
+" Save the current buffer
+nnoremap <leader>d :w<cr>
+
 " Opening files
 nnoremap <silent> <leader>ed :e.<cr>
 nnoremap <silent> <leader>ef :e %:p:h<cr>
@@ -234,19 +239,6 @@ nnoremap <silent> <leader>ew :tabe ~/.vim/spell/en.utf-8.add<cr>
 nnoremap <silent> <leader>ez :tabe ~/.zshrc<cr>
 nnoremap <silent> <leader>et :tabe ~/.tmux.conf<cr>
 nnoremap <silent> <leader>b :CtrlPBuffer<cr>
-
-" Reformat paragraph or visual selection
-nnoremap Q gqip
-vnoremap Q gq
-
-" Save the buffer
-nnoremap <leader>d :w<cr>
-
-" Command line navigation
-cnoremap <C-A> <Home>
-cnoremap <C-E> <End>
-cnoremap <C-F> <Right>
-cnoremap <C-B> <Left>
 
 " }}}
 " Toggles {{{
@@ -260,13 +252,13 @@ nnoremap <silent> <leader>/ :nohlsearch<cr>
 " Toggle line numbers {{{
 
 function! ToggleLineNumbers()
-    if(&relativenumber)
-        set norelativenumber
-        set number
-    elseif(&number)
+    if(&number)
         set nonumber
-    else
         set relativenumber
+    elseif(&relativenumber)
+        set norelativenumber
+    else
+        set number
     endif
 endfunction
 nnoremap <silent> <leader>n :call ToggleLineNumbers()<cr>
@@ -299,10 +291,16 @@ nnoremap <silent> ]b :<c-u><c-r>=v:count<cr>bnext<cr>
 " Quickfix list
 nnoremap <silent> ]q :<c-u><c-r>=v:count<cr>cnext<cr>
 nnoremap <silent> [q :<c-u><c-r>=v:count<cr>cprev<cr>
-
+ 
 " Tag list
 nnoremap <silent> ]t :<c-u><c-r>=v:count<cr>tnext<cr>
 nnoremap <silent> [t :<c-u><c-r>=v:count<cr>tprev<cr>
+
+" Command line navigation
+cnoremap <C-A> <Home>
+cnoremap <C-E> <End>
+cnoremap <C-F> <Right>
+cnoremap <C-B> <Left>
 
 " Always jump to exact position of mark
 nnoremap ' `
@@ -313,6 +311,9 @@ vnoremap <leader>; ,
 
 " Switch to alternate buffer
 nnoremap ` <c-^>
+
+" - jumps to the first non-whitespace character in the line
+nnoremap - ^
 
 " Quicker window switching
 nnoremap <c-h> <c-w>h

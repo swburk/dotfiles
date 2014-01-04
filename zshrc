@@ -72,7 +72,7 @@ function http() {
 }
 
 function ff() {
-    ls **/*$1*
+    ls "**/*$1*"
 }
 
 function e() {
