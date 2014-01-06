@@ -25,7 +25,7 @@ set complete+=u " Complete from unloaded buffers in the buffer list
 set complete+=] " Complete tags
 set wildmenu " Command line completion
 set wildmode=longest,list,full " Make completion act like zsh
-set wildignore+=.git,.hg " Version control
+set wildignore+=*.git/,*.hg/ " Version control
 set wildignore+=*.jpg,*.jpeg,*.png,*.gif,*.bmp " Binary images
 set wildignore+=*.o,*.obj,*.exe,*.dll " Compiled object files
 set wildignore+=*.pyc " Python byte code
@@ -33,7 +33,6 @@ set wildignore+=*.bak,*.swp " Backups and swap files
 set wildignore+=*.DS_Store " OSX
 set mouse=a " Enable mouse in all modes
 set sidescroll=1 " Show some context when side scrolling
-set sidescrolloff=12 " Start scrolling 12 columns from right edge of window
 set notimeout ttimeout " Time out on key codes but not mappings
 set ttimeoutlen=10 " Time out after 10 milliseconds
 set spelllang=en_us " Set language for spell checking
@@ -443,9 +442,11 @@ runtime macros/matchit.vim
 " Don't show the help banner
 let g:netrw_banner = 0
 
-" Sort and ignore based on suffixes and wildignore, taken from vinegar.vim: https://github.com/tpope/vim-vinegar
-let g:netrw_sort_sequence = '[\/]$,*,' . join(map(split(&suffixes, ','), 'substitute(escape(v:val, ".*$~"), "*", ".*", "g")'), '$,') . '$'
-let g:netrw_list_hide = join(map(split(&wildignore, ','), '"^".' . 'substitute(escape(v:val, ".*$~"), "*", ".*", "g")' . '. "$"'), ',') . ',^\.\.\=/\=$'
+" Sort directories first
+let g:netrw_sort_sequence = '[\/]$,*'
+
+" Modified from vim-vinegar
+let g:netrw_list_hide = join(map(split(&wildignore, ',\*'), '".*" . escape(v:val, ".*$~") . "$"'), ',') . ',^\.\.\=/\=$'
 
 autocmd FileType netrw nnoremap <buffer> ~ :e ~/<cr>
 
@@ -465,8 +466,8 @@ endif
 " Max match window height
 let g:ctrlp_match_window = 'max:20'
 
-" Enable fuzzy tag matching
-let g:ctrlp_extensions = ['tag']
+" Don't switch to already open files
+let g:ctrlp_switch_buffer = 0
 
 " Change CtrlP prompt mappings
 let g:ctrlp_prompt_mappings = {
@@ -474,6 +475,35 @@ let g:ctrlp_prompt_mappings = {
     \ 'PrtSelectMove("k")': ['<c-k>', '<up>', '<tab>'],
     \ 'ToggleFocus()': ['<c-tab>'],
     \ }
+
+" Custom CtrlP status line
+let g:ctrlp_status_func = {
+    \ 'main': 'CtrlPStatusMain',
+    \ 'prog': 'CtrlPStatusProg',
+    \ }
+
+" Main CtrlP status line {{{
+
+function! CtrlPStatusMain(...)
+    let focus = ' ' . a:1 . ' '
+    let item = '{' . a:5 . '}'
+    let marked = a:7
+    let dir = ' %=%<' . getcwd() . ' '
+
+    return focus . item . marked . dir
+endfunction
+
+" }}}
+" Progress CtrlP status line {{{
+
+function! CtrlPStatusProg(...)
+    let len = ' ' . a:1
+    let dir = ' %=%<' . getcwd() . ' '
+
+    return len . dir
+endfunction
+
+" }}}
 
 " }}}
 " Ag.vim {{{
@@ -493,6 +523,7 @@ if has('gui_running')
     set guioptions+=c " Use console dialogs
 
     if has('gui_macvim')
+        " Toggle Full screen mode
         nnoremap <leader>F :set fullscreen!<cr>
     endif
 endif
