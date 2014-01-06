@@ -1,17 +1,21 @@
-# Environment variables ------------------------------------------------------
+# Environment variables and options ------------------------------------------
 export PATH="/usr/local/bin:$PATH:$HOME/bin"
 export VISUAL="vim"
-export EDITOR=$VISUAL
+export EDITOR="$VISUAL"
 export MANPAGER="/bin/sh -c \"col -b | vim -c 'set filetype=man tabstop=8 nomodified nolist nonumber nomodifiable' -\""
 export HISTSIZE=1000
 export SAVEHIST=1000
-setopt HIST_IGNORE_SPACE
-export HISTFILE=$HOME/.history
-setopt SHARE_HISTORY
-setopt CORRECT
+export HISTFILE="$HOME/.history"
+setopt hist_ignore_space
+setopt share_history
+setopt correct
+export VIRTUALENV_BASE="$HOME/.virtualenvs"
 
 # Completion -----------------------------------------------------------------
 autoload -U compinit && compinit
+
+# Bindings -------------------------------------------------------------------
+bindkey -e
 
 # Prompt ---------------------------------------------------------------------
 setopt prompt_subst
@@ -59,6 +63,14 @@ function chpwd() {
     ls -Ft | head -8;
 }
 
+function va() {
+    . "$VIRTUALENV_BASE/$1/bin/activate"
+}
+
+function vn() {
+    virtualenv "$VIRTUALENV_BASE/$1"
+}
+
 function bm() {
     alias $1="cd $PWD"
 }
@@ -93,23 +105,23 @@ function g() {
 compdef g=git
 
 # Aliases --------------------------------------------------------------------
+alias c="cd"
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
-alias c="clear"
-alias b="cd -"
 alias l="ls -F"
 alias ll="ls -Fl"
 alias la="ls -FlA"
 alias ld="ls -d */"
 alias l.="ls -d .*"
 alias lb="ranger"
-alias md="mkdir -p"
-alias cx="chmod a+x"
+alias m="mkdir -p"
+alias x="chmod a+x"
 alias t="tmux"
 alias tn="tmux new -s"
 alias ta="tmux attach -t"
 alias tl="tmux list-sessions"
 alias h="history"
 alias j="jobs"
+alias v="virtualenv"

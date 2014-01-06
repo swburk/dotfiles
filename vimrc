@@ -188,8 +188,8 @@ nnoremap J mzJ`z
 nnoremap S i<cr><esc>^mzk:silent! s/ \+$/<cr>:let @/=''<cr>`z
 
 " Reformat paragraph or visual selection
-nnoremap Q gqip
-vnoremap Q gq
+nnoremap Q mzgqip`z
+vnoremap Q mzgq`z
 
 " New line above or below current line
 nnoremap [<space> O<esc>
@@ -200,7 +200,7 @@ nnoremap <space> za
 vnoremap <space> za
 
 " Save as root
-cnoremap w!! w !sudo tee % >/dev/null
+cnoremap W w !sudo tee % >/dev/null
 
 " Strip trailing whitespace
 nnoremap <silent> <leader><space> mz:%s/\s\+$//ge<cr>:let @/=''<cr>`z
@@ -208,6 +208,9 @@ nnoremap <silent> <leader><space> mz:%s/\s\+$//ge<cr>:let @/=''<cr>`z
 " Select last changed text
 nnoremap <leader>v `[v`]
 nnoremap <leader>V `[V`]
+
+" Search with Ag
+nnoremap <leader>a :Ag<space>
 
 " Substitute
 nnoremap <leader>s :%s//g<left><left>
@@ -312,9 +315,6 @@ vnoremap <leader>; ,
 " Switch to alternate buffer
 nnoremap ` <c-^>
 
-" - jumps to the first non-whitespace character in the line
-nnoremap - ^
-
 " Quicker window switching
 nnoremap <c-h> <c-w>h
 nnoremap <c-j> <c-w>j
@@ -395,6 +395,7 @@ augroup END
 
 augroup ft_css
     au!
+    " autocmd FileType css setlocal foldmethod=syntax
     autocmd FileType css setlocal foldmethod=marker
     autocmd FileType css setlocal foldmarker={,}
     autocmd Filetype css setlocal iskeyword+=-
@@ -464,6 +465,36 @@ endif
 " Max match window height
 let g:ctrlp_match_window = 'max:20'
 
+" Enable fuzzy tag matching
+let g:ctrlp_extensions = ['tag']
+
+" Change CtrlP prompt mappings
+let g:ctrlp_prompt_mappings = {
+    \ 'PrtSelectMove("j")': ['<c-j>', '<down>', '<s-tab>'],
+    \ 'PrtSelectMove("k")': ['<c-k>', '<up>', '<tab>'],
+    \ 'ToggleFocus()': ['<c-tab>'],
+    \ }
+
 " }}}
+" Ag.vim {{{
+
+let g:aghighlight=1
+let g:agprg = "ag --smart-case --column"
+
+" }}}
+
+" }}}
+" GUI {{{
+
+if has('gui_running')
+    set guioptions-=T " Don't show the toolbar
+    set guioptions-=rL " Don't show scroll bars
+    set guioptions-=e " Don't show GUI tab line
+    set guioptions+=c " Use console dialogs
+
+    if has('gui_macvim')
+        nnoremap <leader>F :set fullscreen!<cr>
+    endif
+endif
 
 " }}}

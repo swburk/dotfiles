@@ -19,3 +19,6 @@
 [submodule "vim/bundle/dalek.vim"]
 	path = vim/bundle/dalek.vim
 	url = https://github.com/samuelburk/dalek.vim.git
+[submodule "vim/bundle/ag.vim"]
+	path = vim/bundle/ag.vim
+	url = https://github.com/rking/ag.vim.git
