@@ -486,8 +486,8 @@ let g:ctrlp_status_func = {
 
 function! CtrlPStatusMain(...)
     let focus = ' ' . a:1 . ' '
-    let item = '{' . a:5 . '}'
-    let marked = a:7
+    let item = '(' . a:5 . ')'
+    let marked = ' marked:' . substitute(a:7, '\s\|<\|>', '', 'g')
     let dir = ' %=%<' . getcwd() . ' '
 
     return focus . item . marked . dir
