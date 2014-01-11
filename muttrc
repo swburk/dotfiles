@@ -1,0 +1,156 @@
+# Mutt -----------------------------------------------------------------------
+
+set header_cache = ~/.mutt/cache/headers
+set message_cachedir = ~/.mutt/cache/bodies
+set certificate_file = ~/.mutt/certificates
+set mailcap_path = ~/.mutt/mailcap
+set tmpdir = ~/.mutt/tmp
+
+# Folders --------------------------------------------------------------------
+
+# Root mail folder
+set folder = ~/.mail/samburk
+
+# Default inbox
+set spoolfile = "=INBOX"
+
+# Archive
+set mbox = "=archive"
+
+# Postponed messages
+set postponed = "=drafts"
+
+# Define mailboxes
+mailboxes =INBOX \
+          =archive \
+          =drafts \
+          =sent \
+          =junk \
+          =trash \
+          =deferred \
+          =reference \
+
+# set folder_format = ""
+
+# General --------------------------------------------------------------------
+
+set mbox_type = Maildir # Default mailbox type when creating new folders
+set wait_key = no # Don't prompt after running external programs
+set timeout = 4 # Maximum time to wait for input
+set mail_check = 0 # How often to check for new mail
+set delete = yes # Don't ask for confirmation when deleting messages
+unset confirmappend # Don't ask for confirmation when moving messages
+unset mark_old # Don't mark any messages as old
+set pipe_decode # Strip headers when piping
+set thorough_search # Strip headers when searching
+unset help # Don't show help line at top of window
+set menu_scroll # Scroll menus one line at a time
+set sleep_time = 0 # Don't display informational messages
+set copy = no # Don't save copies of sent mail. Fastmail does that
+set sendmail_wait = 0 # Don't return to mutt until mail has been sent
+unset resolve # Don't move to the next message after an action
+# set attach_format = ""
+
+# Index ----------------------------------------------------------------------
+
+# set date_format = "%m/%d"
+# set index_format = "[%Z]  %D  %-20.20F  %s"
+set sort = threads
+set sort_aux = reverse-last-date-received
+# set strict_threads # Determine threads by In-Reply-To and References:
+# set sort_re
+# set reply_regexp = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
+
+# Pager ----------------------------------------------------------------------
+
+set pager_stop # Don't move to next message at end of current message
+unset markers # Don't display "+" on wrapped lines in pager
+set tilde # Display "~" on blank lines in pager
+set pager_index_lines = 8 # Number of lines of index to show above pager
+set pager_context = 4 # Number of context lines to show on next/prev page
+auto_view text/html # Automatically display html emails
+alternative_order text/plain text/enriched text/html
+
+# Composing ------------------------------------------------------------------
+
+set realname = "Sam Burk"
+set from = "sam@samburk.com"
+alternates swburk@wichita.edu
+set sendmail = "msmtp -a samburk"
+set editor = "vim" # Use vim to compose emails
+set text_flowed # Use format=flowed
+set edit_headers # Include headers when composing
+set fast_reply # Skip prompts when replying
+set reply_to = yes # Reply to address in Reply-to: header
+set reverse_name # Reply with the address the email was sent to
+set include = yes # Quote when replying
+set forward_decode # Decode attachments when forwarding
+set forward_quote # Quote when forwarding
+set forward_format = "Fwd: %s" # Format of subject when forwarding
+# set compose_format = "-- Mutt: Compose  [Approx. msg size: %l  Atts: %a]%>-"
+
+# Contacts -------------------------------------------------------------------
+
+set query_command = "abook --mutt-query '%s'"
+# set query_format = ""
+
+# Headers --------------------------------------------------------------------
+
+# What headers to display
+ignore *
+unignore from: to: cc: subject: date:
+
+# What order to display the headers in
+unhdr_order *
+hdr_order from: to: cc: subject: date:
+
+# Status line ----------------------------------------------------------------
+
+# set status_chars  = " *%A"
+# set status_format = "───[ Folder: %f ]───[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?───"
+set status_on_top # Show status line on top of winodw
+
+# Key bindings ---------------------------------------------------------------
+
+# Search in reverse
+bind index,pager N search-opposite
+
+# Toggle a message's "new" flag
+bind index _ toggle-new
+bind pager _ mark-as-new
+
+# Collapse/uncollapse current thread
+bind index <space> collapse-thread
+
+# Clear limit search
+macro index A "<limit>all<enter>" "show all messages (undo limit)"
+
+# Run offlineimap to sync with server
+macro index , "<shell-escape>offlineimap<enter>" "run offlineimap"
+
+# Contacts completion
+bind editor <Tab> complete-query
+bind editor ^T complete
+
+# Shortcuts for moving messages to certain folders quickly
+macro index,pager .. "<save-message>=INBOX<enter>" "save message to INBOX folder"
+macro index,pager .a "<save-message>=archive<enter>" "save message to archive folder"
+macro index,pager .d "<save-message>=deferred<enter>" "save message to deferred folder"
+macro index,pager .r "<save-message>=reference<enter>" "save message to reference folder"
+macro index,pager .t "<save-message>=trash<enter>" "save message to trash folder"
+
+# Shortcuts for changing folders quickly
+macro index,pager \'\' "<change-folder>=INBOX<enter>" "open INBOX folder"
+macro index,pager \'a "<change-folder>=archive<enter>" "open archive folder"
+macro index,pager \'d "<change-folder>=deferred<enter>" "open deferred folder"
+macro index,pager \'p "<change-folder>=drafts<enter>" "open drafts folder"
+macro index,pager \'j "<change-folder>=junk<enter>" "open junk folder"
+macro index,pager \'r "<change-folder>=reference<enter>" "open reference folder"
+macro index,pager \'s "<change-folder>=sent<enter>" "open sent folder"
+macro index,pager \'t "<change-folder>=trash<enter>" "open trash folder"
+
+# Add some of the index bindings to the pager
+bind pager < previous-line
+bind pager > next-line
+bind pager = top
+bind pager * bottom

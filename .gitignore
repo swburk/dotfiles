@@ -1,2 +1,4 @@
 .netrwhist
-vim/undo/*
+mutt/cache
+mutt/tmp
+vim/undo

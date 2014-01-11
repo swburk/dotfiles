@@ -1,7 +1,7 @@
 #!/bin/bash
 
 backup() {
-    mkdir -p $BACKUP_DIR
+    mkdir -p "$BACKUP_DIR"
     files=($(ls))
     for file in "${files[@]}"; do
         cp -Rf "$file" "$BACKUP_DIR/$file"
@@ -47,4 +47,3 @@ fi
 
 echo "Finished"
 popd
-

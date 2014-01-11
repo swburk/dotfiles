@@ -95,10 +95,6 @@ set formatoptions+=n " Recognize numbered lists when formatting
 set formatoptions+=l " Don't reformat lines that are already long
 set formatoptions+=1 " Don't break a line before a one-letter word
 set formatoptions+=j " Remove comment leader when joining lines
-set formatoptions-=ro " Don't continue comments when making new lines
-if executable('par')
-    set formatprg=par\ -w79
-endif
 
 " }}}
 " Status line {{{
@@ -240,6 +236,7 @@ nnoremap <silent> <leader>ev :tabe $MYVIMRC<cr>
 nnoremap <silent> <leader>ew :tabe ~/.vim/spell/en.utf-8.add<cr>
 nnoremap <silent> <leader>ez :tabe ~/.zshrc<cr>
 nnoremap <silent> <leader>et :tabe ~/.tmux.conf<cr>
+nnoremap <silent> <leader>em :tabe ~/.muttrc<cr>
 nnoremap <silent> <leader>b :CtrlPBuffer<cr>
 
 " }}}
@@ -369,6 +366,12 @@ augroup ShowCursorLine
     autocmd WinEnter * set cursorline
 augroup END
 
+" Source vimrc after saving
+augroup SourceVimrc
+    au!
+    autocmd BufWritePost $MYVIMRC source $MYVIMRC
+augroup END
+
 " }}}
 " File types {{{
 
@@ -380,16 +383,6 @@ augroup ft_c
 augroup END
 
 " }}}
-" Markdown {{{
-
-augroup ft_markdown
-    au!
-    autocmd BufRead,BufNewFile *.md setlocal filetype=markdown
-    autocmd FileType markdown setlocal spell
-    autocmd FileType markdown setlocal wrap
-augroup END
-
-" }}}
 " CSS {{{
 
 augroup ft_css
@@ -397,8 +390,8 @@ augroup ft_css
     " autocmd FileType css setlocal foldmethod=syntax
     autocmd FileType css setlocal foldmethod=marker
     autocmd FileType css setlocal foldmarker={,}
-    autocmd Filetype css setlocal iskeyword+=-
-    autocmd Filetype css inoremap <buffer> { {<cr>}<esc>O<esc>zMzvi<tab>
+    autocmd FileType css setlocal iskeyword+=-
+    autocmd FileType css inoremap <buffer> { {<cr>}<esc>O<esc>zMzvi<tab>
     autocmd Filetype css inoremap <buffer> : : ;<left>
 augroup END
 
@@ -412,11 +405,51 @@ augroup ft_javascript
 augroup END
 
 " }}}
+" Mail {{{
+
+augroup ft_mail
+    au!
+    autocmd FileType mail setlocal spell
+    autocmd FileType mail setlocal textwidth=78
+    autocmd FileType mail setlocal formatoptions+=aw
+augroup END
+
+" }}}
+" Markdown {{{
+
+augroup ft_markdown
+    au!
+    autocmd BufRead,BufNewFile *.md setlocal filetype=markdown
+    autocmd FileType markdown setlocal spell
+    autocmd FileType markdown setlocal wrap
+augroup END
+
+" }}}
+" Man {{{
+
+augroup ft_man
+    au!
+    autocmd FileType man set tabstop=8
+    autocmd FileType man set nolist
+    autocmd FileType man set nomodified
+    autocmd FileType man set nomodifiable
+augroup END
+
+" }}}
+" Mutt {{{
+
+augroup ft_mutt
+    au!
+    autocmd BufRead,BufNewFile *.muttrc set ft=muttrc
+augroup END
+
+" }}}
 " QuickFix {{{
 
 augroup ft_quickfix
     au!
-    autocmd Filetype qf setlocal colorcolumn=0 nolist
+    autocmd FileType qf setlocal colorcolumn=0
+    autocmd FileType qf setlocal nolist
 augroup END
 
 " }}}

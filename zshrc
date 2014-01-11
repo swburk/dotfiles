@@ -2,11 +2,12 @@
 export PATH="/usr/local/bin:$PATH:$HOME/bin"
 export VISUAL="vim"
 export EDITOR="$VISUAL"
-export MANPAGER="/bin/sh -c \"col -b | vim -c 'set filetype=man tabstop=8 nomodified nolist nonumber nomodifiable' -\""
-export HISTSIZE=1000
-export SAVEHIST=1000
-export HISTFILE="$HOME/.history"
+export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man' -\""
+export HISTSIZE=100000
+export SAVEHIST=100000
+export HISTFILE="$HOME/.zsh_history"
 setopt hist_ignore_space
+setopt inc_append_history
 setopt share_history
 setopt correct
 export VIRTUALENV_BASE="$HOME/.virtualenvs"
@@ -52,7 +53,7 @@ export PS1="$PS1${vcs_info_msg_0_}"
 export PS1="$PS1%(?.%(!.#.❯).%F{1}%(!.#.❯)%f) "
 
 # Scripts and functions ------------------------------------------------------
-. ~/bin/z.sh
+. $HOME/bin/z.sh
 
 function precmd() {
     vcs_info
@@ -75,7 +76,11 @@ function bm() {
     alias $1="cd $PWD"
 }
 
-function mkd() {
+function voc() {
+    echo "$1" >> $HOME/notes/vocabulary.txt
+}
+
+function mkcd() {
     mkdir -pv "$1" && cd "$1";
 }
 
@@ -116,7 +121,7 @@ alias la="ls -FlA"
 alias ld="ls -d */"
 alias l.="ls -d .*"
 alias lb="ranger"
-alias m="mkdir -p"
+alias mk="mkdir -p"
 alias x="chmod a+x"
 alias t="tmux"
 alias tn="tmux new -s"
@@ -125,3 +130,4 @@ alias tl="tmux list-sessions"
 alias h="history"
 alias j="jobs"
 alias v="virtualenv"
+alias m="mutt"
