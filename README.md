@@ -1,14 +1,5 @@
 # Dotfiles
 
-## Requirements
-
-- Ag (The Silver Searcher)
-- Git
-- Ranger
-- Tmux
-- Vim
-- Zsh
-
 ## Install
 
 Download and run the bootstrapper to install:
