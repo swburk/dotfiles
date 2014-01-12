@@ -1,1 +1,0 @@
-curl http://httpcode.info/$1;
