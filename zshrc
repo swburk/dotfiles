@@ -1,5 +1,5 @@
 # Environment variables and options ------------------------------------------
-export PATH="/usr/local/bin:$PATH:$HOME/bin"
+export PATH="/usr/local/bin:$PATH:$HOME/.bin"
 export VISUAL="vim"
 export EDITOR="$VISUAL"
 export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man' -\""
@@ -61,7 +61,7 @@ function set_prompt() {
 }
 
 # Scripts --------------------------------------------------------------------
-. $HOME/bin/z.sh
+. $HOME/.bin/z.sh
 
 # Aliases --------------------------------------------------------------------
 alias v="virtualenv"
