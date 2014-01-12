@@ -1,0 +1,3 @@
+vcs_info
+set_prompt
+print -Pn "\e];%~\a"

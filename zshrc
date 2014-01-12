@@ -12,8 +12,15 @@ setopt share_history
 setopt correct
 export VIRTUALENV_BASE="$HOME/.virtualenvs"
 
+# Functions ------------------------------------------------------------------
+fpath=(~/.zsh/functions $fpath)
+for function in $(ls ~/.zsh/functions); do
+    autoload "$function"
+done
+
 # Completion -----------------------------------------------------------------
 autoload -U compinit && compinit
+compdef g=git
 
 # Bindings -------------------------------------------------------------------
 bindkey -e
@@ -22,7 +29,6 @@ bindkey -e
 setopt prompt_subst
 autoload -Uz vcs_info
 
-# colors:
 #  red:      1,  9
 #  green:    2,  10
 #  yellow:   3,  11
@@ -37,79 +43,33 @@ zstyle ':vcs_info:*' actionformats '(%b) '
 zstyle ':vcs_info:*' formats '(%b) '
 zstyle ':vcs_info:*' enable git
 
-# Jobs
-export PS1="%1(j.%F{13}%jj%f .)"
+function set_prompt() {
+    # Jobs
+    export PS1="%1(j.%F{13}%jj%f .)"
 
-# Username and hostname displayed in an SSH session
-export PS1="$PS1${SSH_CONNECTION+"%F{2}%n%f@%F{6}%m%f "}"
+    # Username and hostname displayed in an SSH session
+    export PS1="$PS1${SSH_CONNECTION+"%F{2}%n%f@%F{6}%m%f "}"
 
-# Current directory
-export PS1="$PS1%F{12}%~%f "
+    # Current directory
+    export PS1="$PS1%F{12}%~%f "
 
-# Current VCS branch
-export PS1="$PS1${vcs_info_msg_0_}"
+    # Current VCS branch
+    export PS1="$PS1${vcs_info_msg_0_}"
 
-# Prompt is red when previous command didn't exit with 0
-export PS1="$PS1%(?.%(!.#.❯).%F{1}%(!.#.❯)%f) "
+    # Prompt is red when previous command didn't exit with 0
+    export PS1="$PS1%(?.%(!.#.❯).%F{1}%(!.#.❯)%f) "
+}
 
-# Scripts and functions ------------------------------------------------------
+# Scripts --------------------------------------------------------------------
 . $HOME/bin/z.sh
 
-function precmd() {
-    vcs_info
-    print -Pn "\e];%~\a"
-}
-
-function chpwd() {
-    ls -Ft | head -8;
-}
-
-function va() {
-    . "$VIRTUALENV_BASE/$1/bin/activate"
-}
-
-function vn() {
-    virtualenv "$VIRTUALENV_BASE/$1"
-}
-
-function bm() {
-    alias $1="cd $PWD"
-}
-
-function voc() {
-    echo "$1" >> $HOME/notes/vocabulary.txt
-}
-
-function mkcd() {
-    mkdir -pv "$1" && cd "$1";
-}
-
-function http() {
-    curl http://httpcode.info/$1;
-}
-
-function ff() {
-    ls "**/*$1*"
-}
-
-function e() {
-    if [ $# -eq 0 ]; then
-        $EDITOR .
-    else
-        $EDITOR "$@"
-    fi
-}
-
-function g() {
-    if [ $# -ne 0 ]; then
-        git $@
-    else
-        git status
-    fi
-}
-compdef g=git
-
 # Aliases --------------------------------------------------------------------
+alias v="virtualenv"
+alias m="mutt"
+alias o="offlineimap"
+alias h="history"
+alias x="chmod u+x"
+alias j="z"
 alias c="cd"
 alias ..="cd .."
 alias ...="cd ../.."
@@ -118,16 +78,11 @@ alias .....="cd ../../../.."
 alias l="ls -F"
 alias ll="ls -Fl"
 alias la="ls -FlA"
-alias ld="ls -d */"
-alias l.="ls -d .*"
+alias ld="ls -ld */"
+alias l.="ls -ld .*"
 alias lb="ranger"
-alias mk="mkdir -p"
-alias x="chmod a+x"
 alias t="tmux"
 alias tn="tmux new -s"
 alias ta="tmux attach -t"
 alias tl="tmux list-sessions"
-alias h="history"
-alias j="jobs"
-alias v="virtualenv"
-alias m="mutt"
+alias mk="mkdir -p"
