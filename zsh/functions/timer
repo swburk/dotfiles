@@ -1,0 +1,1 @@
+sleep $1 && say "Beep! Beep! Beep! Beep! Beep! Beep!"

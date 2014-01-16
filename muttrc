@@ -26,11 +26,10 @@ mailboxes =INBOX \
           =drafts \
           =sent \
           =junk \
-          =trash \
           =deferred \
           =reference \
 
-# set folder_format = ""
+set folder_format = "%2C  %f"
 
 # General --------------------------------------------------------------------
 
@@ -49,16 +48,17 @@ set sleep_time = 0 # Don't display informational messages
 set copy = no # Don't save copies of sent mail. Fastmail does that
 set sendmail_wait = 0 # Don't return to mutt until mail has been sent
 unset resolve # Don't move to the next message after an action
+source ~/.mutt/colors # Color scheme
 # set attach_format = ""
 
 # Index ----------------------------------------------------------------------
 
-# set date_format = "%m/%d"
-# set index_format = "[%Z]  %D  %-20.20F  %s"
+set date_format = "%m-%d"
+set index_format = "%?M?+& ? [%Z]  %D  %-20.20F  %s"
 set sort = threads
 set sort_aux = reverse-last-date-received
-# set strict_threads # Determine threads by In-Reply-To and References:
-# set sort_re
+set strict_threads
+# folder-hook . "exec collapse-all"
 # set reply_regexp = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
 
 # Pager ----------------------------------------------------------------------
@@ -70,6 +70,7 @@ set pager_index_lines = 8 # Number of lines of index to show above pager
 set pager_context = 4 # Number of context lines to show on next/prev page
 auto_view text/html # Automatically display html emails
 alternative_order text/plain text/enriched text/html
+# set pager_format = ""
 
 # Composing ------------------------------------------------------------------
 
@@ -83,16 +84,16 @@ set edit_headers # Include headers when composing
 set fast_reply # Skip prompts when replying
 set reply_to = yes # Reply to address in Reply-to: header
 set reverse_name # Reply with the address the email was sent to
-set include = yes # Quote when replying
+set include = yes # Include message when replying
+set forward_quote # Include message when forwarding
 set forward_decode # Decode attachments when forwarding
-set forward_quote # Quote when forwarding
 set forward_format = "Fwd: %s" # Format of subject when forwarding
-# set compose_format = "-- Mutt: Compose  [Approx. msg size: %l  Atts: %a]%>-"
+# set compose_format = ""
 
 # Contacts -------------------------------------------------------------------
 
 set query_command = "abook --mutt-query '%s'"
-# set query_format = ""
+set query_format = "%t %-20.20n  %a"
 
 # Headers --------------------------------------------------------------------
 
@@ -107,7 +108,7 @@ hdr_order from: to: cc: subject: date:
 # Status line ----------------------------------------------------------------
 
 # set status_chars  = " *%A"
-# set status_format = "───[ Folder: %f ]───[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?───"
+# set status_format = ""
 set status_on_top # Show status line on top of winodw
 
 # Key bindings ---------------------------------------------------------------
@@ -116,41 +117,50 @@ set status_on_top # Show status line on top of winodw
 bind index,pager N search-opposite
 
 # Toggle a message's "new" flag
-bind index _ toggle-new
-bind pager _ mark-as-new
+bind index \" toggle-new
+bind pager \" mark-as-new
 
-# Collapse/uncollapse current thread
+# Collapse/uncollapse threads
 bind index <space> collapse-thread
+bind index _ collapse-all
 
 # Clear limit search
 macro index A "<limit>all<enter>" "show all messages (undo limit)"
 
-# Run offlineimap to sync with server
-macro index , "<shell-escape>offlineimap<enter>" "run offlineimap"
+# Mark all messages as read
+macro index \ca "<tag-pattern>~N<enter><tag-prefix-cond><clear-flag>N<untag-pattern>~T<enter>" "mark all messages as read"
+
+# Run offlineimap
+macro index o "<shell-escape>offlineimap<enter>" "run offlineimap"
+macro index O "<shell-escape>offlineimap -qf INBOX<enter>" "run offlineimap on inbox"
 
 # Contacts completion
 bind editor <Tab> complete-query
 bind editor ^T complete
 
 # Shortcuts for moving messages to certain folders quickly
-macro index,pager .. "<save-message>=INBOX<enter>" "save message to INBOX folder"
-macro index,pager .a "<save-message>=archive<enter>" "save message to archive folder"
-macro index,pager .d "<save-message>=deferred<enter>" "save message to deferred folder"
-macro index,pager .r "<save-message>=reference<enter>" "save message to reference folder"
-macro index,pager .t "<save-message>=trash<enter>" "save message to trash folder"
+macro index,pager ai "<save-message>=INBOX<enter>" "save message to INBOX folder"
+macro index,pager aa "<save-message>=archive<enter>" "save message to archive folder"
+macro index,pager ad "<save-message>=deferred<enter>" "save message to deferred folder"
+macro index,pager ar "<save-message>=reference<enter>" "save message to reference folder"
 
 # Shortcuts for changing folders quickly
-macro index,pager \'\' "<change-folder>=INBOX<enter>" "open INBOX folder"
+macro index,pager \'i "<change-folder>=INBOX<enter>" "open INBOX folder"
 macro index,pager \'a "<change-folder>=archive<enter>" "open archive folder"
 macro index,pager \'d "<change-folder>=deferred<enter>" "open deferred folder"
 macro index,pager \'p "<change-folder>=drafts<enter>" "open drafts folder"
 macro index,pager \'j "<change-folder>=junk<enter>" "open junk folder"
 macro index,pager \'r "<change-folder>=reference<enter>" "open reference folder"
 macro index,pager \'s "<change-folder>=sent<enter>" "open sent folder"
-macro index,pager \'t "<change-folder>=trash<enter>" "open trash folder"
 
 # Add some of the index bindings to the pager
 bind pager < previous-line
 bind pager > next-line
 bind pager = top
 bind pager * bottom
+
+# Open links with urlview
+macro pager V "<pipe-message>urlview<enter>" "open links with urlview"
+
+# Always save attachments to downloads folder, and don't prompt me
+macro attach s "<save-entry>~/Downloads/<enter>y"

@@ -1,5 +1,5 @@
 # Environment variables and options ------------------------------------------
-export PATH="/usr/local/bin:$PATH:$HOME/.bin"
+export PATH="$HOME/.bin:/usr/local/bin:$PATH"
 export VISUAL="vim"
 export EDITOR="$VISUAL"
 export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man' -\""
@@ -24,6 +24,12 @@ compdef g=git
 
 # Bindings -------------------------------------------------------------------
 bindkey -e
+
+# Edit current command line in $EDITOR
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey '^xe' edit-command-line
+bindkey '^x^e' edit-command-line
 
 # Prompt ---------------------------------------------------------------------
 setopt prompt_subst

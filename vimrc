@@ -60,7 +60,7 @@ set title " Change the title of the terminal
 syntax enable " Enable syntax highlighting
 set background=dark " Make the background dark
 set t_Co=256 " I have a 256-color terminal
-colorscheme dalek " Set color scheme
+colorscheme badwolf " Set color scheme
 
 " }}}
 " Search {{{
@@ -391,8 +391,7 @@ augroup ft_css
     autocmd FileType css setlocal foldmethod=marker
     autocmd FileType css setlocal foldmarker={,}
     autocmd FileType css setlocal iskeyword+=-
-    autocmd FileType css inoremap <buffer> { {<cr>}<esc>O<esc>zMzvi<tab>
-    autocmd Filetype css inoremap <buffer> : : ;<left>
+    autocmd FileType css inoremap <buffer> {<cr> {<cr>}<esc>O<esc>zMzvi<tab>
 augroup END
 
 " }}}

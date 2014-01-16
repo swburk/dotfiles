@@ -1,0 +1,27 @@
+color normal color15 color233 # Normal text
+color error brightcolor15 color196 # Error messages
+color indicator color15 color235 # Currently selected item in a menu
+color status color233 brightcolor39 # Status lines
+color markers color142 color233 # Wrapped line markers
+color hdrdefault color245 color233 # Message headers
+color header brightcolor214 color233 "^Subject" # Subject header
+color body color137 color233 [-.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+ # Email addresses
+color body color137 color233 "(https?://|www)[^ ]*" # URLs
+color search brightcolor16 color221 # Search terms in the pager
+color tilde color240 color233 # Tildes indicating end of message
+color tree color240 color233 # Arrows in message threads
+color attachment brightcolor211 color233 # Attachments in message body
+color index color221 color233 ~N # Unread messages
+color index brightcolor211 color233 ~F # Flagged messages
+color index brightcolor39 color233 ~T # Tagged messages
+color index color196 color233 ~D # Deleted messages
+color quoted color243 color233
+color quoted1 color211 color233
+color quoted2 color222 color233
+color quoted3 color214 color233
+color quoted4 color154 color233
+color quoted5 color243 color233
+color quoted6 color211 color233
+color quoted7 color222 color233
+color quoted8 color214 color233
+color quoted9 color154 color233

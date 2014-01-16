@@ -7,18 +7,12 @@
 [submodule "vim/bundle/ctrlp.vim"]
 	path = vim/bundle/ctrlp.vim
 	url = https://github.com/kien/ctrlp.vim.git
-[submodule "vim/bundle/vim-colors-github"]
-	path = vim/bundle/vim-colors-github
-	url = https://github.com/croaky/vim-colors-github.git
 [submodule "vim/bundle/vim-commentary"]
 	path = vim/bundle/vim-commentary
 	url = https://github.com/tpope/vim-commentary.git
 [submodule "vim/bundle/investigate.vim"]
 	path = vim/bundle/investigate.vim
 	url = https://github.com/Keithbsmiley/investigate.vim.git
-[submodule "vim/bundle/dalek.vim"]
-	path = vim/bundle/dalek.vim
-	url = https://github.com/samuelburk/dalek.vim.git
 [submodule "vim/bundle/ag.vim"]
 	path = vim/bundle/ag.vim
 	url = https://github.com/rking/ag.vim.git
