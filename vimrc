@@ -52,6 +52,8 @@ set ruler " Show cursor position
 set showmode " Show the currently active mode
 set nonumber " Don't show line numbers by default
 set norelativenumber " Sam for relative line numbers
+set winwidth=86 " Minimum window width
+set winheight=36 " Minimum window height
 set splitright " Opens vertical window to the right of current window
 set splitbelow " Opens horizontal window bellow current window
 set list " Show invisible characters
@@ -220,6 +222,9 @@ nnoremap <silent> <leader>x :bdelete<cr>
 " Re-indent the entire buffer
 nnoremap <leader>= gg=G
 
+" Create new scrollbound window one page ahead of current window
+noremap <silent> <leader>l :<c-u>set noscb<cr><c-w>vLjzt:setl scb<cr><c-w>p:setl scb<cr>
+
 " Complete filenames in insert mode
 inoremap <c-f> <c-x><c-f>
 
@@ -353,10 +358,10 @@ vnoremap # :<C-u>call <SID>VSetSearch()<CR>??<CR><c-o>
 " }}}
 " Autocommands {{{
 
-" Resize splits when the window is resized
+" Resize splits when entering windows and resizing Vim
 augroup ResizeWindows
     au!
-    autocmd VimResized * :wincmd =
+    autocmd WinEnter,VimResized * :wincmd =
 augroup END
 
 " Only show cursor line in current window
