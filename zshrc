@@ -10,7 +10,6 @@ setopt hist_ignore_space
 setopt inc_append_history
 setopt share_history
 setopt correct
-export VIRTUALENV_BASE="$HOME/.virtualenvs"
 
 # Functions ------------------------------------------------------------------
 fpath=(~/.zsh/functions $fpath)
@@ -70,7 +69,6 @@ function set_prompt() {
 . $HOME/.bin/z.sh
 
 # Aliases --------------------------------------------------------------------
-alias v="virtualenv"
 alias m="mutt"
 alias o="offlineimap"
 alias h="history"

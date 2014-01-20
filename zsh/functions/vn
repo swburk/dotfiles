@@ -1,1 +1,1 @@
-virtualenv "$VIRTUALENV_BASE/$1"
+virtualenv "$HOME/.virtualenvs/$1"
