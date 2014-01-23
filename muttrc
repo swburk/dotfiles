@@ -74,7 +74,7 @@ auto_view text/html # Automatically display html emails
 alternative_order text/plain text/enriched text/html
 # set pager_format = ""
 
-# Composing ------------------------------------------------------------------
+# Composing and sending ------------------------------------------------------
 
 set realname = "Sam Burk"
 set from = "sam@samburk.com"
@@ -90,6 +90,7 @@ set include = yes # Include message when replying
 set forward_quote # Include message when forwarding
 set forward_decode # Decode attachments when forwarding
 set forward_format = "Fwd: %s" # Format of subject when forwarding
+send-hook '~t ^.+@wichita\.edu$' 'my_hdr From: swburk@wichita.edu'
 # set compose_format = ""
 
 # Contacts -------------------------------------------------------------------
@@ -133,8 +134,8 @@ macro index A "<limit>all<enter>" "show all messages (undo limit)"
 macro index \ca "<tag-pattern>~N<enter><tag-prefix-cond><clear-flag>N<untag-pattern>~T<enter>" "mark all messages as read"
 
 # Run offlineimap
-macro index o "<shell-escape>offlineimap<enter>" "run offlineimap"
-macro index O "<shell-escape>offlineimap -qf INBOX<enter>" "run offlineimap on inbox"
+macro index o "<shell-escape>offlineimap -o<enter>" "run offlineimap"
+macro index O "<shell-escape>offlineimap -oqf INBOX<enter>" "run offlineimap on inbox"
 
 # Contacts completion
 bind editor <Tab> complete-query

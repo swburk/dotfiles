@@ -203,8 +203,7 @@ cnoremap W w !sudo tee % >/dev/null
 nnoremap <silent> <leader><space> mz:%s/\s\+$//ge<cr>:let @/=''<cr>`z
 
 " Select last changed text
-nnoremap <leader>v `[v`]
-nnoremap <leader>V `[V`]
+nnoremap gV `[v`]
 
 " Search with Ag
 nnoremap <leader>a :Ag<space>
@@ -288,9 +287,13 @@ nnoremap <silent> <leader>f :<c-u>call ToggleFoldColumn(v:count)<cr>
 " }}}
 " Navigation {{{
 
-" Buffers
+" Buffer list
 nnoremap <silent> [b :<c-u><c-r>=v:count<cr>bprev<cr>
 nnoremap <silent> ]b :<c-u><c-r>=v:count<cr>bnext<cr>
+
+" Argument list
+nnoremap <silent> [a :<c-u><c-r>=v:count<cr>prev<cr>
+nnoremap <silent> ]a :<c-u><c-r>=v:count<cr>next<cr>
 
 " Quickfix list
 nnoremap <silent> ]q :<c-u><c-r>=v:count<cr>cnext<cr>
