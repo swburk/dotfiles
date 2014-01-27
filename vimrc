@@ -36,7 +36,7 @@ set sidescroll=1 " Show some context when side scrolling
 set notimeout ttimeout " Time out on key codes but not mappings
 set ttimeoutlen=10 " Time out after 10 milliseconds
 set spelllang=en_us " Set language for spell checking
-set virtualedit+=block " Allow virtual editing in visual block mode
+set virtualedit=block " Allow virtual editing in visual block mode
 set printoptions=header:0,collate:y,paper:letter " Options used by :hardcopy
 
 " }}}
@@ -45,21 +45,21 @@ set printoptions=header:0,collate:y,paper:letter " Options used by :hardcopy
 set lazyredraw " Don't redraw screen when executing macros
 set cmdheight=2 " Avoid Press ENTER prompts
 set cursorline " Highlight current line
-set display+=lastline " display the last line even if its too long
+set display=lastline " display the last line even if its too long
 set visualbell t_vb= " Turn off error bells
 set showcmd " Show unfinished commands
 set ruler " Show cursor position
 set showmode " Show the currently active mode
 set nonumber " Don't show line numbers by default
-set norelativenumber " Sam for relative line numbers
+set norelativenumber " Don't show relative line numbers by default
 set winwidth=86 " Minimum window width
-set winheight=36 " Minimum window height
 set splitright " Opens vertical window to the right of current window
 set splitbelow " Opens horizontal window bellow current window
 set list " Show invisible characters
 set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮ " Set invisible characters
 set title " Change the title of the terminal
-syntax enable " Enable syntax highlighting
+set shortmess=I " Don't show startup message
+syntax on " Enable syntax highlighting
 set background=dark " Make the background dark
 set t_Co=256 " I have a 256-color terminal
 colorscheme badwolf " Set color scheme
@@ -116,7 +116,6 @@ set statusline+=\ \|\ %P\  " Percentage through file
 set foldenable " Enable folding
 set foldlevelstart=0 " All folds are closed by default
 set foldminlines=2 " Don't fold single lines
-set foldopen=block,hor,insert,mark,percent,quickfix,search,tag,undo
 
 " Set custom fold text {{{
 
@@ -172,10 +171,8 @@ nnoremap Y y$
 " View documentation for word under cursor
 nnoremap K :call investigate#Investigate()<cr>
 
-" Quicker command line commands
-nnoremap : ;
+" Execute ex commands faster
 nnoremap ; :
-vnoremap : ;
 vnoremap ; :
 
 " Return to cursor position when joining lines
@@ -184,11 +181,7 @@ nnoremap J mzJ`z
 " Split line
 nnoremap S i<cr><esc>^mzk:silent! s/ \+$/<cr>:let @/=''<cr>`z
 
-" Reformat paragraph or visual selection
-nnoremap Q mzgqip`z
-vnoremap Q mzgq`z
-
-" New line above or below current line
+" New line above or below current line, stolen from unimpared
 nnoremap [<space> O<esc>
 nnoremap ]<space> o<esc>
 
@@ -196,33 +189,9 @@ nnoremap ]<space> o<esc>
 nnoremap <space> za
 vnoremap <space> za
 
-" Save as root
-cnoremap W w !sudo tee % >/dev/null
-
-" Strip trailing whitespace
-nnoremap <silent> <leader><space> mz:%s/\s\+$//ge<cr>:let @/=''<cr>`z
-
-" Select last changed text
-nnoremap gV `[v`]
-
-" Search with Ag
-nnoremap <leader>a :Ag<space>
-
-" Substitute
-nnoremap <leader>s :%s//g<left><left>
-vnoremap <leader>s :s//g<left><left>
-
-" Close all other folds
-nnoremap <leader>z zMzvzz
-
-" Close buffer
-nnoremap <silent> <leader>x :bdelete<cr>
-
-" Re-indent the entire buffer
-nnoremap <leader>= gg=G
-
 " Create new scrollbound window one page ahead of current window
-noremap <silent> <leader>l :<c-u>set noscb<cr><c-w>vLjzt:setl scb<cr><c-w>p:setl scb<cr>
+noremap <silent> <c-w>\ :<c-u>set noscb<cr><c-w>vLjzt:setl scb<cr><c-w>p:setl scb<cr>
+noremap <silent> <c-w><c-\> :<c-u>set noscb<cr><c-w>vLjzt:setl scb<cr><c-w>p:setl scb<cr>
 
 " Complete filenames in insert mode
 inoremap <c-f> <c-x><c-f>
@@ -230,10 +199,41 @@ inoremap <c-f> <c-x><c-f>
 " Complete whole lines in insert mode
 inoremap <c-l> <c-x><c-l>
 
-" Save the current buffer
-nnoremap <leader>d :w<cr>
+" Uppercase current word
+nnoremap U mzgUiw`z
 
-" Opening files
+" Quit vim
+nnoremap Q :q<cr>
+vnoremap Q :q<cr>
+
+" Write the current buffer
+nnoremap <silent> : :w<cr>
+
+" Select last changed text
+nnoremap gV `[v`]
+
+" Increment/decrement numbers
+nnoremap + <c-a>
+nnoremap - <c-x>
+
+" Search with Ag
+nnoremap \ :Ag<space>
+
+" Substitute
+nnoremap <leader>s :%s//g<left><left>
+vnoremap <leader>s :s//g<left><left>
+
+" Save as root
+cnoremap W w !sudo tee % >/dev/null
+
+" Strip trailing whitespace
+nnoremap <silent> <leader><space> mz:%s/\s\+$//ge<cr>:let @/=''<cr>`z
+
+" Close all other folds
+nnoremap <leader>z zMzvzz
+
+" Opening files and directories
+nnoremap <silent> <c-n> :CtrlPBuffer<cr>
 nnoremap <silent> <leader>ed :e.<cr>
 nnoremap <silent> <leader>ef :e %:p:h<cr>
 nnoremap <silent> <leader>ev :tabe $MYVIMRC<cr>
@@ -241,15 +241,14 @@ nnoremap <silent> <leader>ew :tabe ~/.vim/spell/en.utf-8.add<cr>
 nnoremap <silent> <leader>ez :tabe ~/.zshrc<cr>
 nnoremap <silent> <leader>et :tabe ~/.tmux.conf<cr>
 nnoremap <silent> <leader>em :tabe ~/.muttrc<cr>
-nnoremap <silent> <leader>b :CtrlPBuffer<cr>
 
 " }}}
 " Toggles {{{
 
 set pastetoggle=<f2>
-nnoremap <silent> <leader>c :set spell!<cr>
+nnoremap <silent> <leader>s :set spell!<cr>
 nnoremap <silent> <leader>w :set wrap!<cr>
-nnoremap <silent> <leader>i :set list!<cr>
+nnoremap <silent> <leader>c :set list!<cr>
 nnoremap <silent> <leader>/ :nohlsearch<cr>
 
 " Toggle line numbers {{{
@@ -287,34 +286,34 @@ nnoremap <silent> <leader>f :<c-u>call ToggleFoldColumn(v:count)<cr>
 " }}}
 " Navigation {{{
 
-" Buffer list
+" Cycle through buffer list, stolen from unimpared
 nnoremap <silent> [b :<c-u><c-r>=v:count<cr>bprev<cr>
 nnoremap <silent> ]b :<c-u><c-r>=v:count<cr>bnext<cr>
 
-" Argument list
+" Cycle through argument list, stolen from unimpared
 nnoremap <silent> [a :<c-u><c-r>=v:count<cr>prev<cr>
 nnoremap <silent> ]a :<c-u><c-r>=v:count<cr>next<cr>
 
-" Quickfix list
+" Cycle through quickfix list, stolen from unimpared
 nnoremap <silent> ]q :<c-u><c-r>=v:count<cr>cnext<cr>
 nnoremap <silent> [q :<c-u><c-r>=v:count<cr>cprev<cr>
  
-" Tag list
-nnoremap <silent> ]t :<c-u><c-r>=v:count<cr>tnext<cr>
-nnoremap <silent> [t :<c-u><c-r>=v:count<cr>tprev<cr>
-
 " Command line navigation
-cnoremap <C-A> <Home>
-cnoremap <C-E> <End>
-cnoremap <C-F> <Right>
-cnoremap <C-B> <Left>
+cnoremap <c-a> <home>
+cnoremap <c-e> <end>
+cnoremap <c-f> <right>
+cnoremap <c-b> <left>
+cnoremap <esc>f <s-right>
+cnoremap <esc>b <s-left>
 
 " Always jump to exact position of mark
 nnoremap ' `
 
-" Repeat last f, t, F, or T in reveres
-nnoremap <leader>; ,
-vnoremap <leader>; ,
+" Repeat last f, t, F, or T
+nnoremap <leader>. ;
+vnoremap <leader>. ;
+nnoremap <leader><leader> ,
+vnoremap <leader><leader> ,
 
 " Switch to alternate buffer
 nnoremap ` <c-^>
@@ -332,10 +331,6 @@ nnoremap g; g;zvzz
 nnoremap g, g,zvzz
 nnoremap <c-o> <c-o>zvzz
 nnoremap <c-i> <c-i>zvzz
-
-" Make horizontal scrolling faster
-nnoremap zl 4zl
-nnoremap zh 4zh
 
 " Stay put on * and #
 nnoremap * *<c-o>
@@ -381,95 +376,6 @@ augroup SourceVimrc
 augroup END
 
 " }}}
-" File types {{{
-
-" C {{{
-
-augroup ft_c
-    au!
-    autocmd FileType c setlocal foldmethod=syntax
-augroup END
-
-" }}}
-" CSS {{{
-
-augroup ft_css
-    au!
-    " autocmd FileType css setlocal foldmethod=syntax
-    autocmd FileType css setlocal foldmethod=marker
-    autocmd FileType css setlocal foldmarker={,}
-    autocmd FileType css setlocal iskeyword+=-
-    autocmd FileType css inoremap <buffer> {<cr> {<cr>}<esc>O<esc>zMzvi<tab>
-augroup END
-
-" }}}
-" Javascript {{{
-
-augroup ft_javascript
-    au!
-    autocmd FileType javascript setlocal foldmethod=marker
-    autocmd FileType javascript setlocal foldmarker={,}
-augroup END
-
-" }}}
-" Mail {{{
-
-augroup ft_mail
-    au!
-    autocmd FileType mail setlocal spell
-    autocmd FileType mail setlocal textwidth=78
-    autocmd FileType mail setlocal formatoptions+=aw
-augroup END
-
-" }}}
-" Markdown {{{
-
-augroup ft_markdown
-    au!
-    autocmd BufRead,BufNewFile *.md setlocal filetype=markdown
-    autocmd FileType markdown setlocal spell
-    autocmd FileType markdown setlocal wrap
-augroup END
-
-" }}}
-" Man {{{
-
-augroup ft_man
-    au!
-    autocmd FileType man set tabstop=8
-    autocmd FileType man set nolist
-    autocmd FileType man set nomodified
-    autocmd FileType man set nomodifiable
-augroup END
-
-" }}}
-" Mutt {{{
-
-augroup ft_mutt
-    au!
-    autocmd BufRead,BufNewFile *.muttrc set ft=muttrc
-augroup END
-
-" }}}
-" QuickFix {{{
-
-augroup ft_quickfix
-    au!
-    autocmd FileType qf setlocal colorcolumn=0
-    autocmd FileType qf setlocal nolist
-augroup END
-
-" }}}
-" Vim {{{
-
-augroup ft_vim
-    au!
-    autocmd FileType vim setlocal foldmethod=marker
-augroup END
-
-" }}}
-
-" }}}
 " Plugins {{{
 
 " Matchit {{{
@@ -488,12 +394,8 @@ let g:netrw_sort_sequence = '[\/]$,*'
 " Modified from vim-vinegar
 let g:netrw_list_hide = join(map(split(&wildignore, ',\*'), '".*" . escape(v:val, ".*$~") . "$"'), ',') . ',^\.\.\=/\=$'
 
+" Navigate to home directory
 autocmd FileType netrw nnoremap <buffer> ~ :e ~/<cr>
-
-" }}}
-" Investigate {{{
-
-let g:investigate_use_dash = 1
 
 " }}}
 " CtrlP {{{
@@ -548,24 +450,11 @@ endfunction
 " }}}
 " Ag.vim {{{
 
-let g:aghighlight=1
+let g:aghighlight = 1
 let g:agprg = "ag --smart-case --column"
+let g:ag_apply_lmappings = 0
+let g:ag_apply_qmappings = 0
 
 " }}}
-
-" }}}
-" GUI {{{
-
-if has('gui_running')
-    set guioptions-=T " Don't show the toolbar
-    set guioptions-=rL " Don't show scroll bars
-    set guioptions-=e " Don't show GUI tab line
-    set guioptions+=c " Use console dialogs
-
-    if has('gui_macvim')
-        " Toggle Full screen mode
-        nnoremap <leader>F :set fullscreen!<cr>
-    endif
-endif
 
 " }}}

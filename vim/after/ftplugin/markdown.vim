@@ -16,3 +16,5 @@ endfunction
 
 setlocal foldmethod=expr
 setlocal foldexpr=MarkdownFoldExpression(v:lnum)
+setlocal spell
+setlocal wrap
