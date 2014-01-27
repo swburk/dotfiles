@@ -160,14 +160,14 @@ noremap <f1> <nop>
 vnoremap <f1> <nop>
 inoremap <f1> <nop>
 
+" Reload changed file
+nnoremap <silent> <f4> :checktime<cr>
+
 " Y yanks to end of line
 nnoremap Y y$
 
 " View documentation for word under cursor
 nnoremap K :call investigate#Investigate()<cr>
-
-" Return to cursor position when joining lines
-nnoremap J mzJ`z
 
 " Split line
 nnoremap S i<cr><esc>^mzk:silent! s/ \+$/<cr>:let @/=''<cr>`z
@@ -178,7 +178,6 @@ nnoremap ]<space> o<esc>
 
 " Space toggles fold
 nnoremap <space> za
-vnoremap <space> za
 
 " Create new scroll-bound window one page ahead of current window
 noremap <silent> <c-w>\ :<c-u>set noscb<cr><c-w>vLjzt:setl scb<cr><c-w>p:setl scb<cr>
@@ -198,7 +197,7 @@ nnoremap Q :q<cr>
 vnoremap Q :q<cr>
 
 " Write the current buffer
-nnoremap <bar> :w<cr>
+nnoremap _ :w<cr>
 
 " Save as root
 cnoremap w!! w !sudo tee % >/dev/null
@@ -217,24 +216,20 @@ nnoremap \ :Ag<space>
 nnoremap <leader>s :%s//g<left><left>
 vnoremap <leader>s :s//g<left><left>
 
-" Reload changed file
-nnoremap <silent> <leader>r :checktime<cr>
-
 " Strip trailing whitespace
 nnoremap <silent> <leader><space> mz:%s/\s\+$//ge<cr>:let @/=''<cr>`z
 
 " Close all other folds
 nnoremap <leader>z zMzvzz
 
-" Opening files and directories
+" Open CtrlP in buffer mode
 nnoremap <silent> <c-n> :CtrlPBuffer<cr>
-nnoremap <silent> <leader>ed :e.<cr>
-nnoremap <silent> <leader>ef :e %:p:h<cr>
-nnoremap <silent> <leader>ev :tabe $MYVIMRC<cr>
-nnoremap <silent> <leader>ew :tabe ~/.vim/spell/en.utf-8.add<cr>
-nnoremap <silent> <leader>ez :tabe ~/.zshrc<cr>
-nnoremap <silent> <leader>et :tabe ~/.tmux.conf<cr>
-nnoremap <silent> <leader>em :tabe ~/.muttrc<cr>
+
+" Opening files and directories
+nnoremap <silent> <leader>ee :e %:p:h<cr>
+nnoremap <silent> <leader>es :sp %:p:h<cr>
+nnoremap <silent> <leader>ev :vsp %:p:h<cr>
+nnoremap <silent> <leader>et :tabe %:p:h<cr>
 
 " }}}
 " Toggles {{{
