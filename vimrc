@@ -3,7 +3,6 @@
 filetype off
 execute pathogen#infect()
 filetype plugin indent on
-set nocompatible " Disable Vi compatibility
 set encoding=utf-8 " Set character encoding to Unicode
 set modelines=0 " Don't read modelines
 set history=1000 " Increase command line history
@@ -12,9 +11,9 @@ set ttyfast " I have a fast terminal
 set hidden " Hide unsaved buffers
 set backspace=indent,eol,start " Backspace over everything in insert mode
 set nrformats-=octal " Increment numbers with leading zeros correctly
-set noswapfile " Don't create swapfiles
-set nobackup " Don't make backups
-set nowritebackup " Don't write backups
+set noswapfile " Don't create swap files
+set nobackup " Don't create backup files
+set nowritebackup " Don't write backup files
 set undofile " Persistent undo across sessions
 set undodir=~/.vim/undo " Set undo directory
 set nojoinspaces " Don't add spaces when joining lines
@@ -24,13 +23,13 @@ set complete+=b " Complete from loaded buffers in the buffer list
 set complete+=u " Complete from unloaded buffers in the buffer list
 set complete+=] " Complete tags
 set wildmenu " Command line completion
-set wildmode=longest,list,full " Make completion act like zsh
+set wildmode=longest,list,full " Make completion act like Zsh
 set wildignore+=*.git/,*.hg/ " Version control
 set wildignore+=*.jpg,*.jpeg,*.png,*.gif,*.bmp " Binary images
 set wildignore+=*.o,*.obj,*.exe,*.dll " Compiled object files
 set wildignore+=*.pyc " Python byte code
 set wildignore+=*.bak,*.swp " Backups and swap files
-set wildignore+=*.DS_Store " OSX
+set wildignore+=*.DS_Store " OS X
 set mouse=a " Enable mouse in all modes
 set sidescroll=1 " Show some context when side scrolling
 set notimeout ttimeout " Time out on key codes but not mappings
@@ -45,13 +44,10 @@ set printoptions=header:0,collate:y,paper:letter " Options used by :hardcopy
 set lazyredraw " Don't redraw screen when executing macros
 set cmdheight=2 " Avoid Press ENTER prompts
 set cursorline " Highlight current line
-set display=lastline " display the last line even if its too long
+set display=lastline " display the last line even if it's too long
 set visualbell t_vb= " Turn off error bells
 set showcmd " Show unfinished commands
-set ruler " Show cursor position
 set showmode " Show the currently active mode
-set nonumber " Don't show line numbers by default
-set norelativenumber " Don't show relative line numbers by default
 set winwidth=86 " Minimum window width
 set splitright " Opens vertical window to the right of current window
 set splitbelow " Opens horizontal window bellow current window
@@ -60,7 +56,6 @@ set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮ " Set invisible characte
 set title " Change the title of the terminal
 set shortmess=I " Don't show startup message
 syntax on " Enable syntax highlighting
-set background=dark " Make the background dark
 set t_Co=256 " I have a 256-color terminal
 colorscheme badwolf " Set color scheme
 
@@ -68,7 +63,7 @@ colorscheme badwolf " Set color scheme
 " Search {{{
 
 set incsearch " Show search results as you type
-set hlsearch " Don't highlight search results
+set hlsearch " Highlight search results
 set ignorecase " Ignore case in search patterns
 set smartcase " Only ignore case when search pattern is all lowercase
 set wrapscan " Continue search after hitting the bottom of the file
@@ -82,7 +77,7 @@ set shiftwidth=4 " Amount of whitespace to use in normal mode
 set expandtab " Use spaces in space of tabs of tabs
 set autoindent " Keep indentation level for new lines
 set smartindent " Smarter auto-indenting when creating a new line
-set shiftround " Round indent to multiple of shiftwidth
+set shiftround " Round indent to multiple of 'shiftwidth'
 
 " }}}
 " Wrapping {{{
@@ -90,7 +85,7 @@ set shiftround " Round indent to multiple of shiftwidth
 set nowrap " Don't wrap long lines by default
 set linebreak " Don't break words when wrapping
 set textwidth=79 " Maximum line length
-set colorcolumn=+1 " Highlight the column after textwidth
+set colorcolumn=+1 " Highlight the column after 'textwidth'
 set formatoptions=
 set formatoptions+=q " Format text with gq
 set formatoptions+=n " Recognize numbered lists when formatting
@@ -108,7 +103,7 @@ set statusline+=\ %M\  " Modified flag
 set statusline+=%= " Right side
 set statusline+=%{&filetype}\ \| " File type
 set statusline+=\ %l/%L " Line number
-set statusline+=\ \|\ %P\  " Percentage through file
+set statusline+=\ \|\ %P\  " Position in file
 
 " }}}
 " Folding {{{
@@ -137,7 +132,7 @@ function! FoldText()
         let line = strpart(line, 0, toolong)
     endif
 
-    " Put a dash for every folded line
+    " Display a dash for every folded line
     let fillcharcount = windowwidth - len(line) - len(foldedlinecount) - 9
     if foldedlinecount <= fillcharcount
         let fillcharcount = fillcharcount - foldedlinecount
@@ -160,7 +155,7 @@ set foldtext=FoldText()
 " Remap leader
 let mapleader=','
 
-" Unmap help key
+" Remove help key
 noremap <f1> <nop>
 vnoremap <f1> <nop>
 inoremap <f1> <nop>
@@ -170,10 +165,6 @@ nnoremap Y y$
 
 " View documentation for word under cursor
 nnoremap K :call investigate#Investigate()<cr>
-
-" Execute ex commands faster
-nnoremap ; :
-vnoremap ; :
 
 " Return to cursor position when joining lines
 nnoremap J mzJ`z
@@ -189,7 +180,7 @@ nnoremap ]<space> o<esc>
 nnoremap <space> za
 vnoremap <space> za
 
-" Create new scrollbound window one page ahead of current window
+" Create new scroll-bound window one page ahead of current window
 noremap <silent> <c-w>\ :<c-u>set noscb<cr><c-w>vLjzt:setl scb<cr><c-w>p:setl scb<cr>
 noremap <silent> <c-w><c-\> :<c-u>set noscb<cr><c-w>vLjzt:setl scb<cr><c-w>p:setl scb<cr>
 
@@ -202,12 +193,15 @@ inoremap <c-l> <c-x><c-l>
 " Uppercase current word
 nnoremap U mzgUiw`z
 
-" Quit vim
+" Quit Vim
 nnoremap Q :q<cr>
 vnoremap Q :q<cr>
 
 " Write the current buffer
-nnoremap <silent> : :w<cr>
+nnoremap <bar> :w<cr>
+
+" Save as root
+cnoremap w!! w !sudo tee % >/dev/null
 
 " Select last changed text
 nnoremap gV `[v`]
@@ -223,8 +217,8 @@ nnoremap \ :Ag<space>
 nnoremap <leader>s :%s//g<left><left>
 vnoremap <leader>s :s//g<left><left>
 
-" Save as root
-cnoremap W w !sudo tee % >/dev/null
+" Reload changed file
+nnoremap <silent> <leader>r :checktime<cr>
 
 " Strip trailing whitespace
 nnoremap <silent> <leader><space> mz:%s/\s\+$//ge<cr>:let @/=''<cr>`z
@@ -246,9 +240,9 @@ nnoremap <silent> <leader>em :tabe ~/.muttrc<cr>
 " Toggles {{{
 
 set pastetoggle=<f2>
-nnoremap <silent> <leader>s :set spell!<cr>
+nnoremap <silent> <leader>c :set spell!<cr>
 nnoremap <silent> <leader>w :set wrap!<cr>
-nnoremap <silent> <leader>c :set list!<cr>
+nnoremap <silent> <leader>i :set list!<cr>
 nnoremap <silent> <leader>/ :nohlsearch<cr>
 
 " Toggle line numbers {{{
@@ -309,14 +303,12 @@ cnoremap <esc>b <s-left>
 " Always jump to exact position of mark
 nnoremap ' `
 
-" Repeat last f, t, F, or T
-nnoremap <leader>. ;
-vnoremap <leader>. ;
-nnoremap <leader><leader> ,
-vnoremap <leader><leader> ,
-
 " Switch to alternate buffer
 nnoremap ` <c-^>
+
+" Repeat last f, t, F, or T in reverse
+nnoremap <leader><leader> ,
+vnoremap <leader><leader> ,
 
 " Quicker window switching
 nnoremap <c-h> <c-w>h
@@ -369,7 +361,7 @@ augroup ShowCursorLine
     autocmd WinEnter * set cursorline
 augroup END
 
-" Source vimrc after saving
+" Source $MYVIMRC after saving
 augroup SourceVimrc
     au!
     autocmd BufWritePost $MYVIMRC source $MYVIMRC
@@ -391,7 +383,7 @@ let g:netrw_banner = 0
 " Sort directories first
 let g:netrw_sort_sequence = '[\/]$,*'
 
-" Modified from vim-vinegar
+" Files to hid, modified from vim-vinegar
 let g:netrw_list_hide = join(map(split(&wildignore, ',\*'), '".*" . escape(v:val, ".*$~") . "$"'), ',') . ',^\.\.\=/\=$'
 
 " Navigate to home directory
@@ -400,6 +392,7 @@ autocmd FileType netrw nnoremap <buffer> ~ :e ~/<cr>
 " }}}
 " CtrlP {{{
 
+" Use Ag to list files
 if executable('ag')
     let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
     let g:ctrlp_use_caching = 0
@@ -411,7 +404,7 @@ let g:ctrlp_match_window = 'max:20'
 " Don't switch to already open files
 let g:ctrlp_switch_buffer = 0
 
-" Change CtrlP prompt mappings
+" Edit CtrlP prompt mappings
 let g:ctrlp_prompt_mappings = {
     \ 'PrtSelectMove("j")': ['<c-j>', '<down>', '<s-tab>'],
     \ 'PrtSelectMove("k")': ['<c-k>', '<up>', '<tab>'],
@@ -450,8 +443,13 @@ endfunction
 " }}}
 " Ag.vim {{{
 
+" Highlight search results
 let g:aghighlight = 1
+
+" Ignore case unless search term contains capitals
 let g:agprg = "ag --smart-case --column"
+
+" Don't use custom mappings in location or quickfix list
 let g:ag_apply_lmappings = 0
 let g:ag_apply_qmappings = 0
 
