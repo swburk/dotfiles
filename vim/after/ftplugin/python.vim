@@ -16,5 +16,5 @@ function! PythonFoldExpression(lnum)
     return "="
 endfunction
 
-setlocal foldmethod=expr
-setlocal foldexpr=PythonFoldExpression(v:lnum)
+setl foldmethod=expr
+setl foldexpr=PythonFoldExpression(v:lnum)

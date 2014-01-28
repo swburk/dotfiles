@@ -1,2 +1,2 @@
-setlocal colorcolumn=0
-setlocal nolist
+setl colorcolumn=0
+setl nolist
