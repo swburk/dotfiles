@@ -1,3 +1,3 @@
-setlocal spell
-setlocal textwidth=78
-setlocal formatoptions+=aw
+setl spell
+setl textwidth=78
+setl formatoptions+=aw

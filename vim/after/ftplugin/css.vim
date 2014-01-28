@@ -1,4 +1,4 @@
-setlocal foldmethod=marker
-setlocal foldmarker={,}
-setlocal iskeyword+=-
+setl foldmethod=marker
+setl foldmarker={,}
+setl iskeyword+=-
 inoremap <buffer> {<cr> {<cr>}<esc>O<esc>zMzvi<tab>
