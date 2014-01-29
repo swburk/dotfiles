@@ -14,7 +14,7 @@ function! MarkdownFoldExpression(lnum)
     endif
 endfunction
 
-setlocal foldmethod=expr
-setlocal foldexpr=MarkdownFoldExpression(v:lnum)
-setlocal spell
-setlocal wrap
+setl foldmethod=expr
+setl foldexpr=MarkdownFoldExpression(v:lnum)
+setl spell
+setl wrap

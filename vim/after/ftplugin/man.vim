@@ -1,4 +1,4 @@
-set tabstop=8
-set nolist
-set nomodified
-set nomodifiable
+setl tabstop=8
+setl nolist
+setl nomodified
+setl nomodifiable
