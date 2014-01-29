@@ -112,9 +112,7 @@ set foldenable " Enable folding
 set foldlevelstart=0 " All folds are closed by default
 set foldminlines=2 " Don't fold single lines
 
-" Set custom fold text {{{
-
-function! FoldText()
+function! FoldText() " {{{
     " Width of window
     let gutterwidth = &fdc + (&relativenumber + &number) * &numberwidth
     let windowwidth = winwidth(0) - gutterwidth
@@ -142,10 +140,8 @@ function! FoldText()
     endif
 
     return line . ' ' . fillchars . ' ' . foldedlinecount . ' lines '
-endfunction
+endfunction " }}}
 set foldtext=FoldText()
-
-" }}}
 
 " }}}
 " Mappings {{{
@@ -240,9 +236,7 @@ nnoremap <silent> <leader>w :set wrap!<cr>
 nnoremap <silent> <leader>i :set list!<cr>
 nnoremap <silent> <leader>/ :nohlsearch<cr>
 
-" Toggle line numbers {{{
-
-function! ToggleLineNumbers()
+function! ToggleLineNumbers() " {{{
     if(&number)
         set nonumber
         set relativenumber
@@ -251,13 +245,10 @@ function! ToggleLineNumbers()
     else
         set number
     endif
-endfunction
+endfunction " }}}
 nnoremap <silent> <leader>n :call ToggleLineNumbers()<cr>
 
-" }}}
-" Toggle fold column {{{
-
-function! ToggleFoldColumn(count)
+function! ToggleFoldColumn(count) " {{{
     if a:count > 0
         let &foldcolumn=a:count
     else
@@ -267,23 +258,21 @@ function! ToggleFoldColumn(count)
             let &foldcolumn=4
         endif
     endif
-endfunction
+endfunction " }}}
 nnoremap <silent> <leader>f :<c-u>call ToggleFoldColumn(v:count)<cr>
-
-" }}}
 
 " }}}
 " Navigation {{{
 
-" Cycle through buffer list, stolen from unimpared
+" Cycle through buffer list, idea stolen from unimpared
 nnoremap <silent> [b :<c-u><c-r>=v:count<cr>bprev<cr>
 nnoremap <silent> ]b :<c-u><c-r>=v:count<cr>bnext<cr>
 
-" Cycle through argument list, stolen from unimpared
+" Cycle through argument list, idea stolen from unimpared
 nnoremap <silent> [a :<c-u><c-r>=v:count<cr>prev<cr>
 nnoremap <silent> ]a :<c-u><c-r>=v:count<cr>next<cr>
 
-" Cycle through quickfix list, stolen from unimpared
+" Cycle through quickfix list, idea stolen from unimpared
 nnoremap <silent> ]q :<c-u><c-r>=v:count<cr>cnext<cr>
 nnoremap <silent> [q :<c-u><c-r>=v:count<cr>cprev<cr>
  
@@ -325,18 +314,14 @@ nnoremap g* g*<c-o>
 nnoremap # #<c-o>
 nnoremap g# g#<c-o>
 
-" Search for visual selection thanks to Scrooloose {{{
-
-function! s:VSetSearch()
+function! s:VSetSearch() " {{{
     let temp = @@
     norm! gvy
     let @/ = '\V' . substitute(escape(@@, '\'), '\n', '\\n', 'g')
     let @@ = temp
-endfunction
+endfunction " }}}
 vnoremap * :<C-u>call <SID>VSetSearch()<CR>//<CR><c-o>
 vnoremap # :<C-u>call <SID>VSetSearch()<CR>??<CR><c-o>
-
-" }}}
 
 " }}}
 
@@ -412,28 +397,21 @@ let g:ctrlp_status_func = {
     \ 'prog': 'CtrlPStatusProg',
     \ }
 
-" Main CtrlP status line {{{
-
-function! CtrlPStatusMain(...)
+function! CtrlPStatusMain(...) " {{{
     let focus = ' ' . a:1 . ' '
     let item = '(' . a:5 . ')'
     let marked = ' marked:' . substitute(a:7, '\s\|<\|>', '', 'g')
     let dir = ' %=%<' . getcwd() . ' '
 
     return focus . item . marked . dir
-endfunction
+endfunction " }}}
 
-" }}}
-" Progress CtrlP status line {{{
-
-function! CtrlPStatusProg(...)
+function! CtrlPStatusProg(...) " {{{
     let len = ' ' . a:1
     let dir = ' %=%<' . getcwd() . ' '
 
     return len . dir
-endfunction
-
-" }}}
+endfunction " }}}
 
 " }}}
 " Ag.vim {{{
