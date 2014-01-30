@@ -17,11 +17,7 @@ set nowritebackup " Don't write backup files
 set undofile " Persistent undo across sessions
 set undodir=~/.vim/undo " Set undo directory
 set nojoinspaces " Don't add spaces when joining lines
-set complete=
-set complete+=. " Complete words from current buffer
-set complete+=b " Complete from loaded buffers in the buffer list
-set complete+=u " Complete from unloaded buffers in the buffer list
-set complete+=] " Complete tags
+set complete=.,b,u,] " Sources for insert mode completion
 set wildmenu " Command line completion
 set wildmode=longest,list,full " Make completion act like Zsh
 set wildignore+=*.git/,*.hg/ " Version control
@@ -30,7 +26,6 @@ set wildignore+=*.o,*.obj,*.exe,*.dll " Compiled object files
 set wildignore+=*.pyc " Python byte code
 set wildignore+=*.bak,*.swp " Backups and swap files
 set wildignore+=*.DS_Store " OS X
-set mouse=a " Enable mouse in all modes
 set sidescroll=1 " Show some context when side scrolling
 set notimeout ttimeout " Time out on key codes but not mappings
 set ttimeoutlen=10 " Time out after 10 milliseconds
@@ -86,12 +81,7 @@ set nowrap " Don't wrap long lines by default
 set linebreak " Don't break words when wrapping
 set textwidth=79 " Maximum line length
 set colorcolumn=+1 " Highlight the column after 'textwidth'
-set formatoptions=
-set formatoptions+=q " Format text with gq
-set formatoptions+=n " Recognize numbered lists when formatting
-set formatoptions+=l " Don't reformat lines that are already long
-set formatoptions+=1 " Don't break a line before a one-letter word
-set formatoptions+=j " Remove comment leader when joining lines
+set formatoptions=qnl1j " How automatic formatting should be done
 
 " }}}
 " Status line {{{
@@ -151,26 +141,15 @@ set foldtext=FoldText()
 " Remap leader
 let mapleader=','
 
-" Remove help key
-noremap <f1> <nop>
-vnoremap <f1> <nop>
-inoremap <f1> <nop>
-
 " Reload changed file
-nnoremap <silent> <f4> :checktime<cr>
+nnoremap <silent> <f1> :<c-u>checktime<cr>
+vnoremap <silent> <f1> :<c-u>checktime<cr>
 
 " Y yanks to end of line
 nnoremap Y y$
 
-" View documentation for word under cursor
-nnoremap K :call investigate#Investigate()<cr>
-
 " Split line
 nnoremap S i<cr><esc>^mzk:silent! s/ \+$/<cr>:let @/=''<cr>`z
-
-" New line above or below current line, stolen from unimpared
-nnoremap [<space> O<esc>
-nnoremap ]<space> o<esc>
 
 " Space toggles fold
 nnoremap <space> za
@@ -179,21 +158,9 @@ nnoremap <space> za
 noremap <silent> <c-w>\ :<c-u>set noscb<cr><c-w>vLjzt:setl scb<cr><c-w>p:setl scb<cr>
 noremap <silent> <c-w><c-\> :<c-u>set noscb<cr><c-w>vLjzt:setl scb<cr><c-w>p:setl scb<cr>
 
-" Complete filenames in insert mode
+" Complete filenames and lines in insert mode
 inoremap <c-f> <c-x><c-f>
-
-" Complete whole lines in insert mode
 inoremap <c-l> <c-x><c-l>
-
-" Uppercase current word
-nnoremap U mzgUiw`z
-
-" Quit Vim
-nnoremap Q :q<cr>
-vnoremap Q :q<cr>
-
-" Write the current buffer
-nnoremap _ :w<cr>
 
 " Save as root
 cnoremap w!! w !sudo tee % >/dev/null
@@ -209,14 +176,16 @@ nnoremap - <c-x>
 nnoremap \ :Ag<space>
 
 " Substitute
-nnoremap <leader>s :%s//g<left><left>
-vnoremap <leader>s :s//g<left><left>
+nnoremap <bar> :%s//g<left><left>
+vnoremap <bar> :s//g<left><left>
 
 " Strip trailing whitespace
-nnoremap <silent> <leader><space> mz:%s/\s\+$//ge<cr>:let @/=''<cr>`z
+nnoremap <silent> d<space> mz:%s/\s\+$//ge<cr>:let @/=''<cr>`z
 
 " Close all other folds
-nnoremap <leader>z zMzvzz
+nnoremap z<cr> zMzvzt
+nnoremap z. zMzvzz
+nnoremap z- zMzvzb
 
 " Open CtrlP in buffer mode
 nnoremap <silent> <c-n> :CtrlPBuffer<cr>
@@ -230,7 +199,7 @@ nnoremap <silent> <leader>et :tabe %:p:h<cr>
 " }}}
 " Toggles {{{
 
-set pastetoggle=<f2>
+set pastetoggle=<leader>p
 nnoremap <silent> <leader>c :set spell!<cr>
 nnoremap <silent> <leader>w :set wrap!<cr>
 nnoremap <silent> <leader>i :set list!<cr>
@@ -281,8 +250,6 @@ cnoremap <c-a> <home>
 cnoremap <c-e> <end>
 cnoremap <c-f> <right>
 cnoremap <c-b> <left>
-cnoremap <esc>f <s-right>
-cnoremap <esc>b <s-left>
 
 " Always jump to exact position of mark
 nnoremap ' `
