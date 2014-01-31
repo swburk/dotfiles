@@ -5,7 +5,6 @@ export EDITOR="$VISUAL"
 export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man' -\""
 export CLICOLOR=1
 export LSCOLORS="ExGxcxdxFxegedabagExEx"
-export LS_COLORS="di=1;;40:ln=1;;40:so=32;40:pi=33;40:ex=1;;40:bd=34;46:cd=34;43:su=0;41:sg=0;46:tw=1;;40:ow=1;;40:"
 export HISTSIZE=100000
 export SAVEHIST=100000
 export HISTFILE="$HOME/.zsh_history"

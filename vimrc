@@ -143,7 +143,10 @@ let mapleader=','
 
 " Reload changed file
 nnoremap <silent> <f1> :<c-u>checktime<cr>
-vnoremap <silent> <f1> :<c-u>checktime<cr>
+
+" The help key isn't helpful
+vnoremap <f1> <nop>
+inoremap <f1> <nop>
 
 " Y yanks to end of line
 nnoremap Y y$
@@ -164,7 +167,7 @@ inoremap <c-l> <c-x><c-l>
 
 " Uppercase word
 inoremap <c-b> <esc>mzgUiw`za
-inoremap <c-b> <esc>mzguiw`za
+inoremap <c-l> <esc>mzguiw`za
 
 " Save as root
 cnoremap w!! w !sudo tee % >/dev/null
@@ -199,6 +202,9 @@ nnoremap <silent> <leader>ee :e %:p:h<cr>
 nnoremap <silent> <leader>es :sp %:p:h<cr>
 nnoremap <silent> <leader>ev :vsp %:p:h<cr>
 nnoremap <silent> <leader>et :tabe %:p:h<cr>
+
+" Delete buffer without messing up splits
+nnoremap <leader>d :b#<bar>bd#<cr>
 
 " }}}
 " Toggles {{{
