@@ -162,6 +162,10 @@ noremap <silent> <c-w><c-\> :<c-u>set noscb<cr><c-w>vLjzt:setl scb<cr><c-w>p:set
 inoremap <c-f> <c-x><c-f>
 inoremap <c-l> <c-x><c-l>
 
+" Uppercase word
+inoremap <c-b> <esc>mzgUiw`za
+inoremap <c-b> <esc>mzguiw`za
+
 " Save as root
 cnoremap w!! w !sudo tee % >/dev/null
 

@@ -1,0 +1,38 @@
+[general]
+accounts = samburk
+ui = ttyui
+fsync = false
+
+[Account samburk]
+localrepository = samburk_local
+remoterepository = samburk_remote
+status_backend = sqlite
+autorefresh = 10
+
+[Repository samburk_local]
+type = Maildir
+localfolders = ~/.mail/samburk
+nametrans = lambda folder: {'archive': 'INBOX.Archive',
+                            'deferred': 'INBOX.Deferred',
+                            'drafts': 'INBOX.Drafts',
+                            'junk': 'INBOX.Junk Mail',
+                            'reference': 'INBOX.Reference',
+                            'sent': 'INBOX.Sent Items',
+                            }.get(folder, folder)
+
+[Repository samburk_remote]
+type = IMAP
+remotehost = mail.messagingengine.com
+remoteport = 993
+remoteuser = smbk@fastmail.fm
+ssl = yes
+sslcacertfile = ~/.mutt/EntrustCA.crt
+maxconnections = 2
+nametrans = lambda folder: {'INBOX.Archive': 'archive',
+                            'INBOX.Deferred': 'deferred',
+                            'INBOX.Drafts': 'drafts',
+                            'INBOX.Junk Mail': 'junk',
+                            'INBOX.Reference': 'reference',
+                            'INBOX.Sent Items': 'sent',
+                            }.get(folder, folder)
+folderfilter = lambda folder: folder not in ['INBOX.Trash']

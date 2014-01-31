@@ -80,7 +80,7 @@ set realname = "Sam Burk"
 set from = "sam@samburk.com"
 alternates swburk@wichita.edu
 set sendmail = "msmtp -a samburk"
-set editor = "vim -c 'normal }'" # Use vim to compose emails
+set editor = "vim -c 'normal G'" # Use vim to compose emails
 set abort_unmodified = ask-yes
 set text_flowed # Use format=flowed
 set edit_headers # Include headers when composing
