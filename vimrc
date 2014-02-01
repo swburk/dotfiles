@@ -80,7 +80,7 @@ set shiftround " Round indent to multiple of 'shiftwidth'
 set nowrap " Don't wrap long lines by default
 set linebreak " Don't break words when wrapping
 set textwidth=79 " Maximum line length
-set colorcolumn=+1 " Highlight the column after 'textwidth'
+match LongLine '\%80v.' " Highlight the column after 'textwidth'
 set formatoptions=qnl1j " How automatic formatting should be done
 
 " }}}
@@ -253,7 +253,7 @@ nnoremap <silent> ]a :<c-u><c-r>=v:count<cr>next<cr>
 " Cycle through quickfix list, idea stolen from unimpared
 nnoremap <silent> ]q :<c-u><c-r>=v:count<cr>cnext<cr>
 nnoremap <silent> [q :<c-u><c-r>=v:count<cr>cprev<cr>
- 
+
 " Command line navigation
 cnoremap <c-a> <home>
 cnoremap <c-e> <end>

@@ -168,6 +168,8 @@ call s:HL('ModeMsg', 'dirtyblonde', '', 'bold')
 call s:HL('Question', 'dirtyblonde', '', 'bold')
 call s:HL('WarningMsg', 'dress', '', 'bold')
 
+call s:HL('LongLine', '', 'taffy', '')
+
 " This is a ctags tag, not an HTML one.  'Something you can use c-] on'.
 call s:HL('Tag', '', '', 'bold')
 
