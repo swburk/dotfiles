@@ -138,13 +138,12 @@ set foldtext=FoldText()
 
 " Convenience {{{
 
-" Remap leader
 let mapleader=','
 
 " Reload changed file
 nnoremap <silent> <f1> :<c-u>checktime<cr>
 
-" The help key isn't helpful
+" The help key is not helpful
 vnoremap <f1> <nop>
 inoremap <f1> <nop>
 
@@ -161,11 +160,11 @@ nnoremap <space> za
 noremap <silent> <c-w>\ :<c-u>set noscb<cr><c-w>vLjzt:setl scb<cr><c-w>p:setl scb<cr>
 noremap <silent> <c-w><c-\> :<c-u>set noscb<cr><c-w>vLjzt:setl scb<cr><c-w>p:setl scb<cr>
 
-" Complete filenames and lines in insert mode
+" Complete filenames/whole lines in insert mode
 inoremap <c-f> <c-x><c-f>
 inoremap <c-l> <c-x><c-l>
 
-" Uppercase word
+" Uppercase/lowercase word
 inoremap <c-b> <esc>mzgUiw`za
 inoremap <c-l> <esc>mzguiw`za
 
@@ -334,41 +333,26 @@ runtime macros/matchit.vim
 " }}}
 " Netrw {{{
 
-" Don't show the help banner
 let g:netrw_banner = 0
-
-" Sort directories first
 let g:netrw_sort_sequence = '[\/]$,*'
-
-" Files to hid, modified from vim-vinegar
 let g:netrw_list_hide = join(map(split(&wildignore, ',\*'), '".*" . escape(v:val, ".*$~") . "$"'), ',') . ',^\.\.\=/\=$'
-
-" Navigate to home directory
 autocmd FileType netrw nnoremap <buffer> ~ :e ~/<cr>
 
 " }}}
 " CtrlP {{{
 
-" Use Ag to list files
 if executable('ag')
     let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
     let g:ctrlp_use_caching = 0
 endif
 
-" Max match window height
 let g:ctrlp_match_window = 'max:20'
-
-" Don't switch to already open files
 let g:ctrlp_switch_buffer = 0
-
-" Edit CtrlP prompt mappings
 let g:ctrlp_prompt_mappings = {
     \ 'PrtSelectMove("j")': ['<c-j>', '<down>', '<s-tab>'],
     \ 'PrtSelectMove("k")': ['<c-k>', '<up>', '<tab>'],
     \ 'ToggleFocus()': ['<c-tab>'],
     \ }
-
-" Custom CtrlP status line
 let g:ctrlp_status_func = {
     \ 'main': 'CtrlPStatusMain',
     \ 'prog': 'CtrlPStatusProg',
@@ -393,13 +377,8 @@ endfunction " }}}
 " }}}
 " Ag.vim {{{
 
-" Highlight search results
 let g:aghighlight = 1
-
-" Ignore case unless search term contains capitals
 let g:agprg = "ag --smart-case --column"
-
-" Don't use custom mappings in location or quickfix list
 let g:ag_apply_lmappings = 0
 let g:ag_apply_qmappings = 0
 
