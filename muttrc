@@ -1,4 +1,4 @@
-# Mutt -----------------------------------------------------------------------
+# Mutt ------------------------------------------------------------------------
 
 set header_cache = ~/.mutt/cache/headers
 set message_cachedir = ~/.mutt/cache/bodies
@@ -6,7 +6,7 @@ set certificate_file = ~/.mutt/certificates
 set mailcap_path = ~/.mutt/mailcap
 set tmpdir = ~/.mutt/tmp
 
-# Folders --------------------------------------------------------------------
+# Folders ---------------------------------------------------------------------
 
 # Root mail folder
 set folder = ~/.mail/samburk
@@ -32,14 +32,14 @@ mailboxes =INBOX \
           =deferred \
           =reference \
 
-set folder_format = "%2C  %f"
+set folder_format = "  %2C  %f"
 
-# General --------------------------------------------------------------------
+# General ---------------------------------------------------------------------
 
 set mbox_type = Maildir # Default mailbox type when creating new folders
 set wait_key = no # Don't prompt after running external programs
-set timeout = 4 # Maximum time to wait for input
-set mail_check = 0 # How often to check for new mail
+set timeout = 4 # Look for new email after 4 seconds of inactivity
+set mail_check = 0 # Minimum time between checks for new mail
 set delete = yes # Don't ask for confirmation when deleting messages
 unset confirmappend # Don't ask for confirmation when moving messages
 unset mark_old # Don't mark any messages as old
@@ -53,28 +53,26 @@ unset resolve # Don't move to the next message after an action
 source ~/.mutt/colors # Color scheme
 # set attach_format = ""
 
-# Index ----------------------------------------------------------------------
+# Index -----------------------------------------------------------------------
 
 set date_format = "%m-%d"
-set index_format = "%?M?+& ? [%Z]  %D  %-20.20F  %s"
+set index_format = " %3C %?M?+& ? [%Z]  %D  %-20.20F  %s"
 set sort = threads
 set sort_aux = last-date-received
 set strict_threads
-# folder-hook . "exec collapse-all"
-# set reply_regexp = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
 
-# Pager ----------------------------------------------------------------------
+# Pager -----------------------------------------------------------------------
 
 set pager_stop # Don't move to next message at end of current message
 unset markers # Don't display "+" on wrapped lines in pager
 set tilde # Display "~" on blank lines in pager
-set pager_index_lines = 8 # Number of lines of index to show above pager
+set pager_index_lines = 12 # Number of lines of index to show above pager
 set pager_context = 4 # Number of context lines to show on next/prev page
 auto_view text/html # Automatically display html emails
 alternative_order text/plain text/enriched text/html
-# set pager_format = ""
+set pager_format = " %3C   [%Z]  %D  %-20.20F  %-40.40s%* %P "
 
-# Composing and sending ------------------------------------------------------
+# Composing and sending -------------------------------------------------------
 
 set realname = "Sam Burk"
 set from = "sam@samburk.com"
@@ -91,15 +89,14 @@ set include = yes # Include message when replying
 set forward_quote # Include message when forwarding
 set forward_decode # Decode attachments when forwarding
 set forward_format = "Fwd: %s" # Format of subject when forwarding
-send-hook '~t ^.+@wichita\.edu$' 'my_hdr From: swburk@wichita.edu'
-# set compose_format = ""
+set compose_format = "-- Mutt: Compose [%a Attachments]"
 
-# Contacts -------------------------------------------------------------------
+# Contacts --------------------------------------------------------------------
 
 set query_command = "abook --mutt-query '%s'"
-set query_format = "%t %-20.20n  %a"
+set query_format = "  %2c %t %-20.20n  %a"
 
-# Headers --------------------------------------------------------------------
+# Headers ---------------------------------------------------------------------
 
 # What headers to display
 ignore *
@@ -109,53 +106,58 @@ unignore from: to: cc: subject: date:
 unhdr_order *
 hdr_order from: to: cc: subject: date:
 
-# Status line ----------------------------------------------------------------
+# Status line -----------------------------------------------------------------
 
-# set status_chars  = " *%A"
-# set status_format = ""
+set status_format = "-%r Mutt: %f [%?V?%M/&?%m Messages%?u?, %u Unread&?%?d?, %d Deleted&?%?t?, %t Tagged&?%?p?, %p Drafts&?]%* %P "
 set status_on_top # Show status line on top of winodw
 
-# Key bindings ---------------------------------------------------------------
+# Key bindings ----------------------------------------------------------------
 
 # Search in reverse
 bind index,pager N search-opposite
 
+# Select message in the bottom of the screen
+bind index L bottom-page
+
 # Toggle a message's "new" flag
-bind index \" toggle-new
-bind pager \" mark-as-new
+bind index \\ toggle-new
+bind pager \\ mark-as-new
 
 # Collapse/uncollapse threads
 bind index <space> collapse-thread
 bind index _ collapse-all
 
 # Clear limit search
-macro index A "<limit>all<enter>" "show all messages (undo limit)"
+macro index A "<limit>all<return>" "show all messages (undo limit)"
 
 # Mark all messages as read
-macro index \ca "<tag-pattern>~N<enter><tag-prefix-cond><clear-flag>N<untag-pattern>~T<enter>" "mark all messages as read"
+macro index \ca "<tag-pattern>~N<return><tag-prefix-cond><clear-flag>N<untag-pattern>~T<return>" "mark all messages as read"
 
 # Run offlineimap
-macro index o "<shell-escape>offlineimap -o<enter>" "run offlineimap"
-macro index O "<shell-escape>offlineimap -oqf INBOX<enter>" "run offlineimap on inbox"
+macro index o "<shell-escape>offlineimap -o<return>" "run offlineimap"
+macro index O "<shell-escape>offlineimap -oqf INBOX<return>" "run offlineimap on inbox"
 
 # Contacts completion
 bind editor <Tab> complete-query
-bind editor ^T complete
+bind editor \ct complete
+
+# Add sender to Abook
+macro index,pager a "<pipe-message>abook --add-email-quiet<return>" "Add sender to Abook"
 
 # Shortcuts for moving messages to certain folders quickly
-macro index,pager ai "<save-message>=INBOX<enter>" "save message to INBOX folder"
-macro index,pager aa "<save-message>=archive<enter>" "save message to archive folder"
-macro index,pager ad "<save-message>=deferred<enter>" "save message to deferred folder"
-macro index,pager ar "<save-message>=reference<enter>" "save message to reference folder"
+macro index,pager .i "<save-message>=INBOX<return>" "save message to INBOX folder"
+macro index,pager .a "<save-message>=archive<return>" "save message to archive folder"
+macro index,pager .d "<save-message>=deferred<return>" "save message to deferred folder"
+macro index,pager .r "<save-message>=reference<return>" "save message to reference folder"
 
 # Shortcuts for changing folders quickly
-macro index,pager \'i "<change-folder>=INBOX<enter>" "open INBOX folder"
-macro index,pager \'a "<change-folder>=archive<enter>" "open archive folder"
-macro index,pager \'d "<change-folder>=deferred<enter>" "open deferred folder"
-macro index,pager \'p "<change-folder>=drafts<enter>" "open drafts folder"
-macro index,pager \'j "<change-folder>=junk<enter>" "open junk folder"
-macro index,pager \'r "<change-folder>=reference<enter>" "open reference folder"
-macro index,pager \'s "<change-folder>=sent<enter>" "open sent folder"
+macro index,pager \'i "<change-folder>=INBOX<return>" "open INBOX folder"
+macro index,pager \'a "<change-folder>=archive<return>" "open archive folder"
+macro index,pager \'d "<change-folder>=deferred<return>" "open deferred folder"
+macro index,pager \'p "<change-folder>=drafts<return>" "open drafts folder"
+macro index,pager \'j "<change-folder>=junk<return>" "open junk folder"
+macro index,pager \'r "<change-folder>=reference<return>" "open reference folder"
+macro index,pager \'s "<change-folder>=sent<return>" "open sent folder"
 
 # Add some of the index bindings to the pager
 bind pager < previous-line
@@ -163,8 +165,10 @@ bind pager > next-line
 bind pager = top
 bind pager * bottom
 
-# Open links with urlview
-macro pager V "<pipe-message>urlview<enter>" "open links with urlview"
-
 # Always save attachments to downloads folder, and don't prompt me
-macro attach s "<save-entry>~/Downloads/<enter>y"
+macro attach s "<save-entry>~/Downloads/<return>y"
+
+# Hooks -----------------------------------------------------------------------
+
+# folder-hook . "exec collapse-all"
+send-hook '~t ^.+@wichita\.edu$' 'my_hdr From: swburk@wichita.edu'

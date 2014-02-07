@@ -147,8 +147,15 @@ nnoremap <silent> <f1> :<c-u>checktime<cr>
 vnoremap <f1> <nop>
 inoremap <f1> <nop>
 
+" Reformat paragraph or selection
+nnoremap Q mzgqip`z
+vnoremap Q mzgq`z
+
 " Y yanks to end of line
 nnoremap Y y$
+
+" Join lines and return to original cursor position
+nnoremap J @='mzJ`z'<cr>
 
 " Split line
 nnoremap S i<cr><esc>^mzk:silent! s/ \+$/<cr>:let @/=''<cr>`z
@@ -164,7 +171,7 @@ noremap <silent> <c-w><c-\> :<c-u>set noscb<cr><c-w>vLjzt:setl scb<cr><c-w>p:set
 inoremap <c-f> <c-x><c-f>
 inoremap <c-l> <c-x><c-l>
 
-" Uppercase/lowercase word
+" Uppercase/lowercase word in insert mode
 inoremap <c-b> <esc>mzgUiw`za
 inoremap <c-l> <esc>mzguiw`za
 
@@ -182,11 +189,14 @@ nnoremap - <c-x>
 nnoremap \ :Ag<space>
 
 " Substitute
-nnoremap <bar> :%s//g<left><left>
-vnoremap <bar> :s//g<left><left>
+nnoremap gs :%s//g<left><left>
+vnoremap gs :s//g<left><left>
 
 " Strip trailing whitespace
 nnoremap <silent> d<space> mz:%s/\s\+$//ge<cr>:let @/=''<cr>`z
+
+" Align columns of text
+vnoremap <silent> c<space> :!column -t<cr>
 
 " Close all other folds
 nnoremap z<cr> zMzvzt
@@ -196,22 +206,34 @@ nnoremap z- zMzvzb
 " Open CtrlP in buffer mode
 nnoremap <silent> <c-n> :CtrlPBuffer<cr>
 
+" Navigate to directory of current file
+nnoremap <leader>cd :cd %:p:h<bar>pwd<cr>
+
 " Opening files and directories
-nnoremap <silent> <leader>ee :e %:p:h<cr>
+nnoremap <silent> <leader>ed :e %:p:h<cr>
 nnoremap <silent> <leader>es :sp %:p:h<cr>
 nnoremap <silent> <leader>ev :vsp %:p:h<cr>
 nnoremap <silent> <leader>et :tabe %:p:h<cr>
 
 " Delete buffer without messing up splits
-nnoremap <leader>d :b#<bar>bd#<cr>
+nnoremap <silent> <leader>d :b#<bar>bd#<cr>
+
+" Save
+nnoremap <silent> <leader>w :w<cr>
+
+" Quit
+nnoremap <silent> <leader>q :q<cr>
+
+" Save and quit
+nnoremap <silent> <leader>x :x<cr>
 
 " }}}
 " Toggles {{{
 
-set pastetoggle=<leader>p
-nnoremap <silent> <leader>c :set spell!<cr>
-nnoremap <silent> <leader>w :set wrap!<cr>
-nnoremap <silent> <leader>i :set list!<cr>
+set pastetoggle=<leader>tp
+nnoremap <silent> <leader>ts :set spell!<cr>
+nnoremap <silent> <leader>tw :set wrap!<cr>
+nnoremap <silent> <leader>tl :set list!<cr>
 nnoremap <silent> <leader>/ :nohlsearch<cr>
 
 function! ToggleLineNumbers() " {{{
@@ -224,7 +246,7 @@ function! ToggleLineNumbers() " {{{
         set number
     endif
 endfunction " }}}
-nnoremap <silent> <leader>n :call ToggleLineNumbers()<cr>
+nnoremap <silent> <leader>tn :call ToggleLineNumbers()<cr>
 
 function! ToggleFoldColumn(count) " {{{
     if a:count > 0
@@ -237,22 +259,22 @@ function! ToggleFoldColumn(count) " {{{
         endif
     endif
 endfunction " }}}
-nnoremap <silent> <leader>f :<c-u>call ToggleFoldColumn(v:count)<cr>
+nnoremap <silent> <leader>tf :<c-u>call ToggleFoldColumn(v:count)<cr>
 
 " }}}
 " Navigation {{{
 
 " Cycle through buffer list, idea stolen from unimpared
-nnoremap <silent> [b :<c-u><c-r>=v:count<cr>bprev<cr>
-nnoremap <silent> ]b :<c-u><c-r>=v:count<cr>bnext<cr>
+nnoremap <silent> [b :<c-u><c-r>=v:count1<cr>bprev<cr>
+nnoremap <silent> ]b :<c-u><c-r>=v:count1<cr>bnext<cr>
 
 " Cycle through argument list, idea stolen from unimpared
-nnoremap <silent> [a :<c-u><c-r>=v:count<cr>prev<cr>
-nnoremap <silent> ]a :<c-u><c-r>=v:count<cr>next<cr>
+nnoremap <silent> [a :<c-u><c-r>=v:count1<cr>prev<cr>
+nnoremap <silent> ]a :<c-u><c-r>=v:count1<cr>next<cr>
 
 " Cycle through quickfix list, idea stolen from unimpared
-nnoremap <silent> ]q :<c-u><c-r>=v:count<cr>cnext<cr>
-nnoremap <silent> [q :<c-u><c-r>=v:count<cr>cprev<cr>
+nnoremap <silent> ]q :<c-u><c-r>=v:count1<cr>cnext<cr>
+nnoremap <silent> [q :<c-u><c-r>=v:count1<cr>cprev<cr>
 
 " Command line navigation
 cnoremap <c-a> <home>
@@ -262,6 +284,7 @@ cnoremap <c-b> <left>
 
 " Always jump to exact position of mark
 nnoremap ' `
+vnoremap ' `
 
 " Switch to alternate buffer
 nnoremap ` <c-^>
@@ -296,8 +319,8 @@ function! s:VSetSearch() " {{{
     let @/ = '\V' . substitute(escape(@@, '\'), '\n', '\\n', 'g')
     let @@ = temp
 endfunction " }}}
-vnoremap * :<C-u>call <SID>VSetSearch()<CR>//<CR><c-o>
-vnoremap # :<C-u>call <SID>VSetSearch()<CR>??<CR><c-o>
+vnoremap * :<c-u>call <SID>VSetSearch()<CR>//<CR><c-o>
+vnoremap # :<c-u>call <SID>VSetSearch()<CR>??<CR><c-o>
 
 " }}}
 
