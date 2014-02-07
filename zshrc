@@ -58,7 +58,7 @@ function set_prompt() {
     export PS1="$PS1${SSH_CONNECTION+"%F{2}%n%f@%F{6}%m%f "}"
 
     # Current directory
-    export PS1="$PS1%F{12}%~%f "
+    export PS1="$PS1%F{6}%~%f "
 
     # Current VCS branch
     export PS1="$PS1${vcs_info_msg_0_}"

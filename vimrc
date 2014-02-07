@@ -218,22 +218,13 @@ nnoremap <silent> <leader>et :tabe %:p:h<cr>
 " Delete buffer without messing up splits
 nnoremap <silent> <leader>d :b#<bar>bd#<cr>
 
-" Save
-nnoremap <silent> <leader>w :w<cr>
-
-" Quit
-nnoremap <silent> <leader>q :q<cr>
-
-" Save and quit
-nnoremap <silent> <leader>x :x<cr>
-
 " }}}
 " Toggles {{{
 
-set pastetoggle=<leader>tp
-nnoremap <silent> <leader>ts :set spell!<cr>
-nnoremap <silent> <leader>tw :set wrap!<cr>
-nnoremap <silent> <leader>tl :set list!<cr>
+set pastetoggle=<leader>p
+nnoremap <silent> <leader>s :set spell!<cr>
+nnoremap <silent> <leader>w :set wrap!<cr>
+nnoremap <silent> <leader>l :set list!<cr>
 nnoremap <silent> <leader>/ :nohlsearch<cr>
 
 function! ToggleLineNumbers() " {{{
@@ -246,7 +237,7 @@ function! ToggleLineNumbers() " {{{
         set number
     endif
 endfunction " }}}
-nnoremap <silent> <leader>tn :call ToggleLineNumbers()<cr>
+nnoremap <silent> <leader>n :call ToggleLineNumbers()<cr>
 
 function! ToggleFoldColumn(count) " {{{
     if a:count > 0
@@ -259,7 +250,7 @@ function! ToggleFoldColumn(count) " {{{
         endif
     endif
 endfunction " }}}
-nnoremap <silent> <leader>tf :<c-u>call ToggleFoldColumn(v:count)<cr>
+nnoremap <silent> <leader>f :<c-u>call ToggleFoldColumn(v:count)<cr>
 
 " }}}
 " Navigation {{{
