@@ -1,0 +1,12 @@
+! Terminal settings
+URxvt*termName: rxvt-unicode-256color
+URxvt*geometry: 86x42
+/* URxvt*faceName: xft:Source\ Code\ Pro:size=9:antialias=true */
+URxvt*saveLines: 2000
+URxvt*scrollBar: false
+URxvt*perl-ext:
+URxvt*perl-ext-common:
+
+! Terminal colors
+URxvt*background: #141413
+URxvt*foreground: #f8f6f2
