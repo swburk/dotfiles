@@ -81,7 +81,7 @@ set nowrap " Don't wrap long lines by default
 set linebreak " Don't break words when wrapping
 set textwidth=79 " Maximum line length
 match LongLine '\%80v.' " Highlight the column after 'textwidth'
-set formatoptions=qnl1j " How automatic formatting should be done
+set formatoptions=qnl1jc " How automatic formatting should be done
 
 " }}}
 " Status line {{{
@@ -164,8 +164,8 @@ nnoremap S i<cr><esc>^mzk:silent! s/ \+$/<cr>:let @/=''<cr>`z
 nnoremap <space> za
 
 " Create new scroll-bound window one page ahead of current window
-noremap <silent> <c-w>\ :<c-u>set noscb<cr><c-w>vLjzt:setl scb<cr><c-w>p:setl scb<cr>
-noremap <silent> <c-w><c-\> :<c-u>set noscb<cr><c-w>vLjzt:setl scb<cr><c-w>p:setl scb<cr>
+nnoremap <silent> <c-w>\ :<c-u>set noscb<cr><c-w>vLjzt:setl scb<cr><c-w>p:setl scb<cr>
+nnoremap <silent> <c-w><c-\> :<c-u>set noscb<cr><c-w>vLjzt:setl scb<cr><c-w>p:setl scb<cr>
 
 " Complete filenames/whole lines in insert mode
 inoremap <c-f> <c-x><c-f>

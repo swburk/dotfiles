@@ -141,9 +141,6 @@ macro index O "<shell-escape>offlineimap -oqf INBOX<return>" "run offlineimap on
 bind editor <Tab> complete-query
 bind editor \ct complete
 
-# Add sender to Abook
-macro index,pager a "<pipe-message>abook --add-email-quiet<return>" "Add sender to Abook"
-
 # Shortcuts for moving messages to certain folders quickly
 macro index,pager .i "<save-message>=INBOX<return>" "save message to INBOX folder"
 macro index,pager .a "<save-message>=archive<return>" "save message to archive folder"

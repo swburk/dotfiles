@@ -3,7 +3,6 @@ export PATH="$HOME/.bin:/usr/local/bin:$PATH"
 export VISUAL="vim"
 export EDITOR="$VISUAL"
 export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man' -\""
-export CLICOLOR=1
 export LSCOLORS="ExGxcxdxFxegedabagExEx"
 export HISTSIZE=100000
 export SAVEHIST=100000
@@ -52,10 +51,10 @@ zstyle ':vcs_info:*' enable git
 
 function set_prompt() {
     # Jobs
-    export PS1="%1(j.%F{13}%jj%f .)"
+    export PS1="%1(j.%F{5}%jj%f .)"
 
     # Username and hostname displayed in an SSH session
-    export PS1="$PS1${SSH_CONNECTION+"%F{2}%n%f@%F{6}%m%f "}"
+    export PS1="$PS1${SSH_CONNECTION+"$PS1%F{2}%n%f@%F{6}%m%f "}"
 
     # Current directory
     export PS1="$PS1%F{6}%~%f "
@@ -63,7 +62,7 @@ function set_prompt() {
     # Current VCS branch
     export PS1="$PS1${vcs_info_msg_0_}"
 
-    # Prompt is red when previous command didn't exit with 0
+    # Prompt character is red when command exits with non-zero
     export PS1="$PS1%(?.%(!.#.❯).%F{1}%(!.#.❯)%f) "
 }
 
