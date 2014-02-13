@@ -67,7 +67,7 @@ let s:bwc.dirtyblonde = ['f4cf86', 222]
 let s:bwc.taffy = ['ff2c4b', 196]
 let s:bwc.saltwatertaffy = ['8cffba', 121]
 let s:bwc.tardis = ['0a9dff', 39]
-let s:bwc.orange = ['fd971f', 208]
+let s:bwc.orange = ['ffa724', 214]
 let s:bwc.lime = ['aeee00', 154]
 let s:bwc.purple = ['ae81ff', 135]
 let s:bwc.dress = ['ff9eb8', 211]
@@ -188,7 +188,7 @@ call s:HL('PreCondit', 'lime', '', 'bold')
 call s:HL('Constant', 'toffee', '', '')
 call s:HL('Character', 'toffee', '', '')
 call s:HL('Boolean', 'toffee', '', '')
-call s:HL('Number', 'purple', '', '')
+call s:HL('Number', 'toffee', '', '')
 call s:HL('Float', 'toffee', '', 'bold')
 call s:HL('SpecialChar', 'dress', '', 'bold')
 call s:HL('Type', 'dress', '', 'none')
@@ -281,25 +281,23 @@ call s:HL('clojureAnonArg', 'snow', '', 'bold')
 
 " }}}
 " CSS {{{
-
-call s:HL('cssColorProp', 'orange', '', 'none')
-call s:HL('cssBoxProp', 'orange', '', 'none')
-call s:HL('cssTextProp', 'orange', '', 'none')
-call s:HL('cssRenderProp', 'orange', '', 'none')
-call s:HL('cssBackgroundProp', 'orange', '', 'none')
-call s:HL('cssFontProp', 'orange', '', 'none')
-call s:HL('cssBorderProp', 'orange', '', 'none')
-call s:HL('cssDimensionProp', 'orange', '', 'none')
-call s:HL('cssGeneratedContentProp', 'orange', '', 'none')
-call s:HL('cssPositioningProp', 'orange', '', 'none')
-call s:HL('cssUIProp', 'orange', '', 'none')
-call s:HL('cssListProp', 'orange', '', 'none')
-call s:HL('cssMediaType', 'lime', '', '')
-call s:HL('cssValueLength', 'purple', '', '')
-call s:HL('cssColor', 'purple', '', '')
+call s:HL('cssColorProp', 'fg', '', 'none')
+call s:HL('cssBoxProp', 'fg', '', 'none')
+call s:HL('cssTextProp', 'fg', '', 'none')
+call s:HL('cssRenderProp', 'fg', '', 'none')
+call s:HL('cssGeneratedContentProp', 'fg', '', 'none')
+call s:HL('cssBackgroundProp', 'fg', '', 'none')
+call s:HL('cssFontProp', 'fg', '', 'none')
+call s:HL('cssBorderProp', 'fg', '', 'none')
+call s:HL('cssDimensionProp', 'fg', '', 'none')
+call s:HL('cssPositioningProp', 'fg', '', 'none')
+call s:HL('cssUIProp', 'fg', '', 'none')
+call s:HL('cssListProp', 'fg', '', 'none')
+call s:HL('cssValueLength', 'toffee', '', '')
+call s:HL('cssColor', 'toffee', '', '')
 call s:HL('cssBraces', 'lightgravel', '', 'none')
-call s:HL('cssIdentifier', 'tardis', '', 'none')
-call s:HL('cssClassName', 'tardis', '', 'none')
+call s:HL('cssIdentifier', 'orange', '', 'bold')
+call s:HL('cssClassName', 'orange', '', 'none')
 
 " }}}
 " Diff {{{

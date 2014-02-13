@@ -52,7 +52,7 @@ set title " Change the title of the terminal
 set shortmess=I " Don't show startup message
 syntax on " Enable syntax highlighting
 set t_Co=256 " I have a 256-color terminal
-colorscheme badwolf " Set color scheme
+colorscheme muon " Set color scheme
 
 " }}}
 " Search {{{
@@ -80,7 +80,7 @@ set shiftround " Round indent to multiple of 'shiftwidth'
 set nowrap " Don't wrap long lines by default
 set linebreak " Don't break words when wrapping
 set textwidth=79 " Maximum line length
-match LongLine '\%80v.' " Highlight the column after 'textwidth'
+match ErrorMsg '\%80v.' " Highlight the column after 'textwidth'
 set formatoptions=qnl1jc " How automatic formatting should be done
 
 " }}}
@@ -88,12 +88,13 @@ set formatoptions=qnl1jc " How automatic formatting should be done
 
 set laststatus=2 " Always show the status line
 set statusline=
-set statusline+=\ %f " Filename
-set statusline+=\ %M\  " Modified flag
+set statusline+=%f " Filename
+set statusline+=\ %m " Modified flag
+set statusline+=%r " Readonly flag
 set statusline+=%= " Right side
-set statusline+=%{&filetype}\ \| " File type
-set statusline+=\ %l/%L " Line number
-set statusline+=\ \|\ %P\  " Position in file
+set statusline+=%y " File type
+set statusline+=[%l/%L] " Line number
+set statusline+=[%P] " Position in file
 
 " }}}
 " Folding {{{
@@ -252,6 +253,31 @@ function! ToggleFoldColumn(count) " {{{
 endfunction " }}}
 nnoremap <silent> <leader>f :<c-u>call ToggleFoldColumn(v:count)<cr>
 
+function! CycleColorscheme(direction) " {{{
+    let s:colors = split(globpath('~/.vim/colors/', '*'), "\n")
+    for i in range(len(s:colors))
+        let s:colors[i] = fnamemodify(s:colors[i], ':t:r')
+        if s:colors[i] == g:colors_name
+            let s:colorscheme = i
+        endif
+    endfor
+    if a:direction == 'next'
+        if s:colorscheme == len(s:colors) - 1
+            execute 'colorscheme ' . s:colors[0]
+        else
+            execute 'colorscheme ' . s:colors[s:colorscheme + 1]
+        endif
+    elseif a:direction == 'prev'
+        if s:colorscheme == 0
+            execute 'colorscheme ' . s:colors[-1]
+        else
+            execute 'colorscheme ' . s:colors[s:colorscheme - 1]
+        endif
+    endif
+endfunction " }}}
+nnoremap <silent> ]c :call CycleColorscheme('next')<cr>
+nnoremap <silent> [c :call CycleColorscheme('prev')<cr>
+
 " }}}
 " Navigation {{{
 
@@ -362,11 +388,6 @@ endif
 
 let g:ctrlp_match_window = 'max:20'
 let g:ctrlp_switch_buffer = 0
-let g:ctrlp_prompt_mappings = {
-    \ 'PrtSelectMove("j")': ['<c-j>', '<down>', '<s-tab>'],
-    \ 'PrtSelectMove("k")': ['<c-k>', '<up>', '<tab>'],
-    \ 'ToggleFocus()': ['<c-tab>'],
-    \ }
 let g:ctrlp_status_func = {
     \ 'main': 'CtrlPStatusMain',
     \ 'prog': 'CtrlPStatusProg',
