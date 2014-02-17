@@ -1,1 +1,1 @@
-ls -Ft | head -8;
+ls -Ft | head -4;

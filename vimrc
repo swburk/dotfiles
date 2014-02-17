@@ -1,7 +1,7 @@
 " General {{{
 
 filetype off
-execute pathogen#infect()
+exe pathogen#infect()
 filetype plugin indent on
 set encoding=utf-8 " Set character encoding to Unicode
 set modelines=0 " Don't read modelines
@@ -38,7 +38,7 @@ set printoptions=header:0,collate:y,paper:letter " Options used by :hardcopy
 
 set lazyredraw " Don't redraw screen when executing macros
 set cmdheight=2 " Avoid Press ENTER prompts
-set cursorline " Highlight current line
+" set cursorline " Highlight current line
 set display=lastline " display the last line even if it's too long
 set visualbell t_vb= " Turn off error bells
 set showcmd " Show unfinished commands
@@ -141,10 +141,8 @@ set foldtext=FoldText()
 
 let mapleader=','
 
-" Reload changed file
-nnoremap <silent> <f1> :<c-u>checktime<cr>
-
 " The help key is not helpful
+nnoremap <f1> <nop>
 vnoremap <f1> <nop>
 inoremap <f1> <nop>
 
@@ -204,6 +202,9 @@ nnoremap z<cr> zMzvzt
 nnoremap z. zMzvzz
 nnoremap z- zMzvzb
 
+" List buffers
+nnoremap <silent> <leader>ls :ls<cr>
+
 " Open CtrlP in buffer mode
 nnoremap <silent> <c-n> :CtrlPBuffer<cr>
 
@@ -216,8 +217,21 @@ nnoremap <silent> <leader>es :sp %:p:h<cr>
 nnoremap <silent> <leader>ev :vsp %:p:h<cr>
 nnoremap <silent> <leader>et :tabe %:p:h<cr>
 
-" Delete buffer without messing up splits
-nnoremap <silent> <leader>d :b#<bar>bd#<cr>
+function! DeleteBuffer() " {{{
+    let s:bnum = bufnr('%')
+    let s:cwin = winnr()
+    let s:ctab = tabpagenr()
+    exe 'tabfirst'
+    for i in range(1,tabpagenr('$'))
+        exe 'tabn ' . i
+        while bufwinnr(s:bnum) != -1
+            exe bufwinnr(s:bnum) . 'wincmd w|bn'
+        endwhile
+    endfor
+    exe 'tabn ' . s:ctab . '|' . s:cwin . 'wincmd w'
+    exe 'bd' . s:bnum
+endfunction " }}}
+nnoremap <silent> <leader>x :call DeleteBuffer()<cr>
 
 " }}}
 " Toggles {{{
@@ -225,7 +239,7 @@ nnoremap <silent> <leader>d :b#<bar>bd#<cr>
 set pastetoggle=<leader>p
 nnoremap <silent> <leader>s :set spell!<cr>
 nnoremap <silent> <leader>w :set wrap!<cr>
-nnoremap <silent> <leader>l :set list!<cr>
+nnoremap <silent> <leader>i :set list!<cr>
 nnoremap <silent> <leader>/ :nohlsearch<cr>
 
 function! ToggleLineNumbers() " {{{
@@ -253,30 +267,33 @@ function! ToggleFoldColumn(count) " {{{
 endfunction " }}}
 nnoremap <silent> <leader>f :<c-u>call ToggleFoldColumn(v:count)<cr>
 
-function! CycleColorscheme(direction) " {{{
+function! CycleColorscheme(direction, count) " {{{
     let s:colors = split(globpath('~/.vim/colors/', '*'), "\n")
+
     for i in range(len(s:colors))
         let s:colors[i] = fnamemodify(s:colors[i], ':t:r')
         if s:colors[i] == g:colors_name
             let s:colorscheme = i
         endif
     endfor
+
     if a:direction == 'next'
         if s:colorscheme == len(s:colors) - 1
-            execute 'colorscheme ' . s:colors[0]
+            let s:next_colorscheme = 0 + a:count - 1
         else
-            execute 'colorscheme ' . s:colors[s:colorscheme + 1]
+            let s:next_colorscheme = s:colorscheme + a:count
         endif
     elseif a:direction == 'prev'
         if s:colorscheme == 0
-            execute 'colorscheme ' . s:colors[-1]
+            let s:next_colorscheme = -1 - a:count + 1
         else
-            execute 'colorscheme ' . s:colors[s:colorscheme - 1]
+            let s:next_colorscheme = s:colorscheme - a:count
         endif
     endif
+    exe 'colorscheme ' . s:colors[s:next_colorscheme]
 endfunction " }}}
-nnoremap <silent> ]c :call CycleColorscheme('next')<cr>
-nnoremap <silent> [c :call CycleColorscheme('prev')<cr>
+nnoremap <silent> ]c :<c-u>call CycleColorscheme('next', v:count1)<cr>
+nnoremap <silent> [c :<c-u>call CycleColorscheme('prev', v:count1)<cr>
 
 " }}}
 " Navigation {{{
@@ -317,6 +334,8 @@ nnoremap <c-k> <c-w>k
 nnoremap <c-l> <c-w>l
 
 " Align things in the middle when jumping around
+nnoremap } }zvzz
+nnoremap { {zvzz
 nnoremap n nzvzz
 nnoremap N Nzvzz
 nnoremap g; g;zvzz

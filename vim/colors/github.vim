@@ -25,7 +25,7 @@ hi DiffText     guifg=#000033 ctermfg=17   guibg=#DDDDFF ctermbg=189  gui=NONE c
 hi DiffDelete   guifg=#DDCCCC ctermfg=252  guibg=#FFDDDD ctermbg=224  gui=NONE cterm=NONE
 hi Folded       guifg=#808080 ctermfg=244  guibg=#ECECEC ctermbg=255  gui=NONE cterm=NONE
 hi LineNr       guifg=#BBBBBB ctermfg=250  guibg=#ECECEC ctermbg=255  gui=NONE cterm=NONE
-hi NonText      guifg=#808080 ctermfg=244  guibg=#ECECEC ctermbg=255  gui=NONE cterm=NONE
+hi NonText      guifg=#808080 ctermfg=244  guibg=#f8f8f8 ctermbg=231  gui=NONE cterm=NONE
 hi VertSplit    guifg=#BBBBBB ctermfg=250  guibg=#BBBBBB ctermbg=250  gui=NONE cterm=NONE
 hi StatusLine   guifg=#404040 ctermfg=238  guibg=#BBBBBB ctermbg=250  gui=BOLD cterm=BOLD
 hi StatusLineNC guifg=#BBBBBB ctermfg=250  guibg=#ECECEC ctermbg=255  gui=ITALIC cterm=NONE
@@ -33,7 +33,7 @@ hi ModeMsg      guifg=#990000 ctermfg=88   gui=NONE cterm=NONE
 hi MoreMsg      guifg=#990000 ctermfg=88   gui=NONE cterm=NONE
 hi Title        guifg=#EF5939 ctermfg=203  gui=NONE cterm=NONE
 hi WarningMsg   guifg=#EF5939 ctermfg=203  gui=NONE cterm=NONE
-hi SpecialKey   guifg=#FFFFFF ctermfg=231  guibg=#FF1100 ctermbg=196  gui=ITALIC cterm=NONE
+hi SpecialKey   guifg=#FF1100 ctermfg=196  guibg=#F8F8F8 ctermbg=231  gui=ITALIC cterm=NONE
 hi MatchParen   guifg=#000000 ctermfg=16   guibg=#CDCDFD ctermbg=189  gui=NONE cterm=NONE
 hi Underlined   guifg=#000000 ctermfg=16   gui=UNDERLINE cterm=UNDERLINE
 hi Directory    guifg=#990000 ctermfg=88   gui=NONE cterm=NONE

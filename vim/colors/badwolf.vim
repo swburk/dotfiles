@@ -1,11 +1,15 @@
-"  _               _                 _  __
-" | |__   __ _  __| | __      _____ | |/ _|
-" | '_ \ / _` |/ _` | \ \ /\ / / _ \| | |_
-" | |_) | (_| | (_| |  \ V  V / (_) | |  _|
-" |_.__/ \__,_|\__,_|   \_/\_/ \___/|_|_|
+"      _               _                 _  __
+"     | |__   __ _  __| | __      _____ | |/ _|
+"     | '_ \ / _` |/ _` | \ \ /\ / / _ \| | |_
+"     | |_) | (_| | (_| |  \ V  V / (_) | |  _|
+"     |_.__/ \__,_|\__,_|   \_/\_/ \___/|_|_|
 "
-" Author: Steve Losh <steve@stevelosh.com>
-" Modified By: Sam Burk <sam@samburk.com>
+"      I am the Bad Wolf. I create myself.
+"       I take the words. I scatter them in time and space.
+"        A message to lead myself here.
+"
+" A Vim colorscheme pieced together by Steve Losh.
+" Available at http://stevelosh.com/projects/badwolf/"
 "
 " Supporting code -------------------------------------------------------------
 " Preamble {{{
@@ -22,32 +26,6 @@ let colors_name = "badwolf"
 
 " }}}
 " Palette {{{
-
-" Colors:
-"  plain:           #f8f6f2,  15
-"  snow:            #ffffff,  15
-"  coal:            #000000,  16
-"  brightgravel:    #d9cec3,  252
-"  lightgravel:     #998f84,  245
-"  gravel:          #857f78,  243
-"  mediumgravel:    #666462,  241
-"  deepgravel:      #45413b,  238
-"  deepergravel:    #35322d,  236
-"  darkgravel:      #242321,  235
-"  blackgravel:     #1c1b1a,  233
-"  blackestgravel:  #141413,  232
-"  dalespale:       #fade3e,  221
-"  dirtyblonde:     #f4cf86,  222
-"  taffy:           #ff2c4b,  196
-"  saltwatertaffy:  #8cffba,  121
-"  tardis:          #0a9dff,  39
-"  orange:          #fd971f,  208
-"  lime:            #aeee00,  154
-"  purple:          #ae81ff,  135
-"  dress:           #ff9eb8,  211
-"  toffee:          #b88853,  137
-"  coffee:          #c7915b,  173
-"  darkroast:       #88633f,  95
 
 let s:bwc = {}
 let s:bwc.plain = ['f8f6f2', 15]
@@ -309,13 +287,6 @@ call s:HL('diffFile', 'coal', 'taffy', 'bold')
 call s:HL('diffNewFile', 'coal', 'taffy', 'bold')
 call s:HL('diffLine', 'coal', 'orange', 'bold')
 call s:HL('diffSubname', 'orange', '', 'none')
-
-" }}}
-" Django Templates {{{
-
-call s:HL('djangoArgument', 'dirtyblonde', '',)
-call s:HL('djangoTagBlock', 'orange', '')
-call s:HL('djangoVarBlock', 'orange', '')
 
 " }}}
 " HTML {{{
