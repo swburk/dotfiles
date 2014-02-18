@@ -167,5 +167,4 @@ macro attach s "<save-entry>~/Downloads/<return>y"
 
 # Hooks -----------------------------------------------------------------------
 
-# folder-hook . "exec collapse-all"
 send-hook '~t ^.+@wichita\.edu$' 'my_hdr From: swburk@wichita.edu'

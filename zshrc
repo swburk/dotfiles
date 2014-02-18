@@ -1,4 +1,5 @@
 # Environment variables and options ------------------------------------------
+
 export PATH="$HOME/.bin:/usr/local/bin:$PATH"
 export VISUAL="vim"
 export EDITOR="$VISUAL"
@@ -13,25 +14,30 @@ setopt share_history
 setopt correct
 
 # Functions ------------------------------------------------------------------
+
 fpath=(~/.zsh/functions $fpath)
 for function in $(ls ~/.zsh/functions); do
     autoload "$function"
 done
 
 # Completion -----------------------------------------------------------------
+
 autoload -U compinit && compinit
 compdef g=git
 
 # Bindings -------------------------------------------------------------------
+
 bindkey -e
 
 # Edit current command line in $EDITOR
+
 autoload -U edit-command-line
 zle -N edit-command-line
 bindkey '^xe' edit-command-line
 bindkey '^x^e' edit-command-line
 
 # Prompt ---------------------------------------------------------------------
+
 setopt prompt_subst
 autoload -Uz vcs_info
 
@@ -67,9 +73,11 @@ function set_prompt() {
 }
 
 # Scripts --------------------------------------------------------------------
+
 . $HOME/.bin/z.sh
 
 # Aliases --------------------------------------------------------------------
+
 alias m="mutt"
 alias o="offlineimap"
 alias h="history"

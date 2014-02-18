@@ -38,7 +38,6 @@ set printoptions=header:0,collate:y,paper:letter " Options used by :hardcopy
 
 set lazyredraw " Don't redraw screen when executing macros
 set cmdheight=2 " Avoid Press ENTER prompts
-" set cursorline " Highlight current line
 set display=lastline " display the last line even if it's too long
 set visualbell t_vb= " Turn off error bells
 set showcmd " Show unfinished commands
@@ -53,6 +52,9 @@ set shortmess=I " Don't show startup message
 syntax on " Enable syntax highlighting
 set t_Co=256 " I have a 256-color terminal
 colorscheme muon " Set color scheme
+if &diff
+    colorscheme github
+endif
 
 " }}}
 " Search {{{
@@ -267,7 +269,7 @@ function! ToggleFoldColumn(count) " {{{
 endfunction " }}}
 nnoremap <silent> <leader>f :<c-u>call ToggleFoldColumn(v:count)<cr>
 
-function! CycleColorscheme(direction, count) " {{{
+function! CycleColorscheme(direction) " {{{
     let s:colors = split(globpath('~/.vim/colors/', '*'), "\n")
 
     for i in range(len(s:colors))
@@ -278,22 +280,26 @@ function! CycleColorscheme(direction, count) " {{{
     endfor
 
     if a:direction == 'next'
-        if s:colorscheme == len(s:colors) - 1
-            let s:next_colorscheme = 0 + a:count - 1
-        else
-            let s:next_colorscheme = s:colorscheme + a:count
-        endif
+        for i in range(1, v:count1)
+            if s:colorscheme == len(s:colors) - 1
+                let s:colorscheme = 0
+            else
+                let s:colorscheme = s:colorscheme + 1
+            endif
+        endfor
     elseif a:direction == 'prev'
-        if s:colorscheme == 0
-            let s:next_colorscheme = -1 - a:count + 1
-        else
-            let s:next_colorscheme = s:colorscheme - a:count
-        endif
+        for i in range(1, v:count1)
+            if s:colorscheme == 0
+                let s:colorscheme = -1
+            else
+                let s:colorscheme = s:colorscheme - 1
+            endif
+        endfor
     endif
-    exe 'colorscheme ' . s:colors[s:next_colorscheme]
+    exe 'colorscheme ' . s:colors[s:colorscheme]
 endfunction " }}}
-nnoremap <silent> ]c :<c-u>call CycleColorscheme('next', v:count1)<cr>
-nnoremap <silent> [c :<c-u>call CycleColorscheme('prev', v:count1)<cr>
+nnoremap <silent> ]c :<c-u>call CycleColorscheme('next')<cr>
+nnoremap <silent> [c :<c-u>call CycleColorscheme('prev')<cr>
 
 " }}}
 " Navigation {{{
@@ -367,13 +373,6 @@ vnoremap # :<c-u>call <SID>VSetSearch()<CR>??<CR><c-o>
 augroup ResizeWindows
     au!
     autocmd WinEnter,VimResized * :wincmd =
-augroup END
-
-" Only show cursor line in current window
-augroup ShowCursorLine
-    au!
-    autocmd WinLeave * set nocursorline
-    autocmd WinEnter * set cursorline
 augroup END
 
 " Source $MYVIMRC after saving
