@@ -128,7 +128,16 @@ bind index <space> collapse-thread
 bind index _ collapse-all
 
 # Clear limit search
-macro index A "<limit>all<return>" "show all messages (undo limit)"
+macro index ,a "<limit>all<return>" "show all messages"
+
+# Only show unread messages
+macro index ,n "<limit>~N<return>" "show all unread messages"
+
+# Only show tagged messages
+macro index ,t "<limit>~T<return>" "show all tagged messages"
+
+# Only show tagged messages
+macro index ,f "<limit>~F<return>" "show all flagged messages"
 
 # Mark all messages as read
 macro index \ca "<tag-pattern>~N<return><tag-prefix-cond><clear-flag>N<untag-pattern>~T<return>" "mark all messages as read"

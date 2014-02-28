@@ -31,30 +31,26 @@ set notimeout ttimeout " Time out on key codes but not mappings
 set ttimeoutlen=10 " Time out after 10 milliseconds
 set spelllang=en_us " Set language for spell checking
 set virtualedit=block " Allow virtual editing in visual block mode
-set printoptions=header:0,collate:y,paper:letter " Options used by :hardcopy
 
 " }}}
 " Display {{{
 
-set lazyredraw " Don't redraw screen when executing macros
+set lazyredraw " Don't redraw screen until the macro has finished
 set cmdheight=2 " Avoid Press ENTER prompts
 set display=lastline " display the last line even if it's too long
 set visualbell t_vb= " Turn off error bells
 set showcmd " Show unfinished commands
 set showmode " Show the currently active mode
-set winwidth=86 " Minimum window width
 set splitright " Opens vertical window to the right of current window
 set splitbelow " Opens horizontal window bellow current window
-set list " Show invisible characters
+set nolist " Show invisible characters
 set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮ " Set invisible characters
 set title " Change the title of the terminal
-set shortmess=I " Don't show startup message
 syntax on " Enable syntax highlighting
 set t_Co=256 " I have a 256-color terminal
-colorscheme muon " Set color scheme
-if &diff
-    colorscheme github
-endif
+colorscheme badwolf " Set color scheme
+set laststatus=2 " Always show the status line
+set statusline=%f\ %m%r%=%y[%l/%L][%P] " Set statusline
 
 " }}}
 " Search {{{
@@ -86,24 +82,10 @@ match ErrorMsg '\%80v.' " Highlight the column after 'textwidth'
 set formatoptions=qnl1jc " How automatic formatting should be done
 
 " }}}
-" Status line {{{
-
-set laststatus=2 " Always show the status line
-set statusline=
-set statusline+=%f " Filename
-set statusline+=\ %m " Modified flag
-set statusline+=%r " Readonly flag
-set statusline+=%= " Right side
-set statusline+=%y " File type
-set statusline+=[%l/%L] " Line number
-set statusline+=[%P] " Position in file
-
-" }}}
 " Folding {{{
 
 set foldenable " Enable folding
 set foldlevelstart=0 " All folds are closed by default
-set foldminlines=2 " Don't fold single lines
 
 function! FoldText() " {{{
     " Width of window
@@ -143,12 +125,7 @@ set foldtext=FoldText()
 
 let mapleader=','
 
-" The help key is not helpful
-nnoremap <f1> <nop>
-vnoremap <f1> <nop>
-inoremap <f1> <nop>
-
-" Reformat paragraph or selection
+" Reformat paragraph or visual selection and return to cursor position
 nnoremap Q mzgqip`z
 vnoremap Q mzgq`z
 
@@ -164,27 +141,15 @@ nnoremap S i<cr><esc>^mzk:silent! s/ \+$/<cr>:let @/=''<cr>`z
 " Space toggles fold
 nnoremap <space> za
 
-" Create new scroll-bound window one page ahead of current window
-nnoremap <silent> <c-w>\ :<c-u>set noscb<cr><c-w>vLjzt:setl scb<cr><c-w>p:setl scb<cr>
-nnoremap <silent> <c-w><c-\> :<c-u>set noscb<cr><c-w>vLjzt:setl scb<cr><c-w>p:setl scb<cr>
-
 " Complete filenames/whole lines in insert mode
 inoremap <c-f> <c-x><c-f>
 inoremap <c-l> <c-x><c-l>
-
-" Uppercase/lowercase word in insert mode
-inoremap <c-b> <esc>mzgUiw`za
-inoremap <c-l> <esc>mzguiw`za
 
 " Save as root
 cnoremap w!! w !sudo tee % >/dev/null
 
 " Select last changed text
 nnoremap gV `[v`]
-
-" Increment/decrement numbers
-nnoremap + <c-a>
-nnoremap - <c-x>
 
 " Search with Ag
 nnoremap \ :Ag<space>
@@ -196,34 +161,29 @@ vnoremap gs :s//g<left><left>
 " Strip trailing whitespace
 nnoremap <silent> d<space> mz:%s/\s\+$//ge<cr>:let @/=''<cr>`z
 
-" Align columns of text
-vnoremap <silent> c<space> :!column -t<cr>
-
 " Close all other folds
-nnoremap z<cr> zMzvzt
 nnoremap z. zMzvzz
-nnoremap z- zMzvzb
-
-" List buffers
-nnoremap <silent> <leader>ls :ls<cr>
 
 " Open CtrlP in buffer mode
 nnoremap <silent> <c-n> :CtrlPBuffer<cr>
 
 " Navigate to directory of current file
-nnoremap <leader>cd :cd %:p:h<bar>pwd<cr>
+nnoremap <leader>c :cd %:p:h<bar>pwd<cr>
 
 " Opening files and directories
-nnoremap <silent> <leader>ed :e %:p:h<cr>
-nnoremap <silent> <leader>es :sp %:p:h<cr>
-nnoremap <silent> <leader>ev :vsp %:p:h<cr>
-nnoremap <silent> <leader>et :tabe %:p:h<cr>
+nnoremap <silent> <leader>e :e %:p:h<cr>
+nnoremap <silent> <leader>h :sp %:p:h<cr>
+nnoremap <silent> <leader>v :vsp %:p:h<cr>
+nnoremap <silent> <leader>t :tabe %:p:h<cr>
 
+" Delete buffer
+nnoremap <silent> <leader>d :bd<cr>
+
+" Delete buffer without changing window layout
 function! DeleteBuffer() " {{{
     let s:bnum = bufnr('%')
     let s:cwin = winnr()
     let s:ctab = tabpagenr()
-    exe 'tabfirst'
     for i in range(1,tabpagenr('$'))
         exe 'tabn ' . i
         while bufwinnr(s:bnum) != -1
@@ -269,50 +229,18 @@ function! ToggleFoldColumn(count) " {{{
 endfunction " }}}
 nnoremap <silent> <leader>f :<c-u>call ToggleFoldColumn(v:count)<cr>
 
-function! CycleColorscheme(direction) " {{{
-    let s:colors = split(globpath('~/.vim/colors/', '*'), "\n")
-
-    for i in range(len(s:colors))
-        let s:colors[i] = fnamemodify(s:colors[i], ':t:r')
-        if s:colors[i] == g:colors_name
-            let s:colorscheme = i
-        endif
-    endfor
-
-    if a:direction == 'next'
-        for i in range(1, v:count1)
-            if s:colorscheme == len(s:colors) - 1
-                let s:colorscheme = 0
-            else
-                let s:colorscheme = s:colorscheme + 1
-            endif
-        endfor
-    elseif a:direction == 'prev'
-        for i in range(1, v:count1)
-            if s:colorscheme == 0
-                let s:colorscheme = -1
-            else
-                let s:colorscheme = s:colorscheme - 1
-            endif
-        endfor
-    endif
-    exe 'colorscheme ' . s:colors[s:colorscheme]
-endfunction " }}}
-nnoremap <silent> ]c :<c-u>call CycleColorscheme('next')<cr>
-nnoremap <silent> [c :<c-u>call CycleColorscheme('prev')<cr>
-
 " }}}
 " Navigation {{{
 
-" Cycle through buffer list, idea stolen from unimpared
+" Navigate buffer list, idea stolen from unimpared
 nnoremap <silent> [b :<c-u><c-r>=v:count1<cr>bprev<cr>
 nnoremap <silent> ]b :<c-u><c-r>=v:count1<cr>bnext<cr>
 
-" Cycle through argument list, idea stolen from unimpared
+" Navigate argument list, idea stolen from unimpared
 nnoremap <silent> [a :<c-u><c-r>=v:count1<cr>prev<cr>
 nnoremap <silent> ]a :<c-u><c-r>=v:count1<cr>next<cr>
 
-" Cycle through quickfix list, idea stolen from unimpared
+" Navigate quickfix list, idea stolen from unimpared
 nnoremap <silent> ]q :<c-u><c-r>=v:count1<cr>cnext<cr>
 nnoremap <silent> [q :<c-u><c-r>=v:count1<cr>cprev<cr>
 
@@ -324,7 +252,6 @@ cnoremap <c-b> <left>
 
 " Always jump to exact position of mark
 nnoremap ' `
-vnoremap ' `
 
 " Switch to alternate buffer
 nnoremap ` <c-^>
@@ -340,14 +267,14 @@ nnoremap <c-k> <c-w>k
 nnoremap <c-l> <c-w>l
 
 " Align things in the middle when jumping around
-nnoremap } }zvzz
-nnoremap { {zvzz
-nnoremap n nzvzz
-nnoremap N Nzvzz
-nnoremap g; g;zvzz
-nnoremap g, g,zvzz
-nnoremap <c-o> <c-o>zvzz
-nnoremap <c-i> <c-i>zvzz
+" nnoremap } }zvzz
+" nnoremap { {zvzz
+" nnoremap n nzvzz
+" nnoremap N Nzvzz
+" nnoremap g; g;zvzz
+" nnoremap g, g,zvzz
+" nnoremap <c-o> <c-o>zvzz
+" nnoremap <c-i> <c-i>zvzz
 
 " Stay put on * and #
 nnoremap * *<c-o>
@@ -355,6 +282,7 @@ nnoremap g* g*<c-o>
 nnoremap # #<c-o>
 nnoremap g# g#<c-o>
 
+" Thanks to Scrooloose for visual */# mappings
 function! s:VSetSearch() " {{{
     let temp = @@
     norm! gvy
@@ -394,7 +322,6 @@ runtime macros/matchit.vim
 let g:netrw_banner = 0
 let g:netrw_sort_sequence = '[\/]$,*'
 let g:netrw_list_hide = join(map(split(&wildignore, ',\*'), '".*" . escape(v:val, ".*$~") . "$"'), ',') . ',^\.\.\=/\=$'
-autocmd FileType netrw nnoremap <buffer> ~ :e ~/<cr>
 
 " }}}
 " CtrlP {{{
@@ -404,28 +331,7 @@ if executable('ag')
     let g:ctrlp_use_caching = 0
 endif
 
-let g:ctrlp_match_window = 'max:20'
 let g:ctrlp_switch_buffer = 0
-let g:ctrlp_status_func = {
-    \ 'main': 'CtrlPStatusMain',
-    \ 'prog': 'CtrlPStatusProg',
-    \ }
-
-function! CtrlPStatusMain(...) " {{{
-    let focus = ' ' . a:1 . ' '
-    let item = '(' . a:5 . ')'
-    let marked = ' marked:' . substitute(a:7, '\s\|<\|>', '', 'g')
-    let dir = ' %=%<' . getcwd() . ' '
-
-    return focus . item . marked . dir
-endfunction " }}}
-
-function! CtrlPStatusProg(...) " {{{
-    let len = ' ' . a:1
-    let dir = ' %=%<' . getcwd() . ' '
-
-    return len . dir
-endfunction " }}}
 
 " }}}
 " Ag.vim {{{
