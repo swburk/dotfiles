@@ -11,11 +11,6 @@ set ttyfast " I have a fast terminal
 set hidden " Hide unsaved buffers
 set backspace=indent,eol,start " Backspace over everything in insert mode
 set nrformats-=octal " Increment numbers with leading zeros correctly
-set noswapfile " Don't create swap files
-set nobackup " Don't create backup files
-set nowritebackup " Don't write backup files
-set undofile " Persistent undo across sessions
-set undodir=~/.vim/undo " Set undo directory
 set nojoinspaces " Don't add spaces when joining lines
 set complete=.,b,u,] " Sources for insert mode completion
 set wildmenu " Command line completion
@@ -51,6 +46,15 @@ set t_Co=256 " I have a 256-color terminal
 colorscheme badwolf " Set color scheme
 set laststatus=2 " Always show the status line
 set statusline=%f\ %m%r%=%y[%l/%L][%P] " Set statusline
+
+" }}}
+" Backups, Swaps, and Undo {{{
+
+set noswapfile " Don't create swap files
+set nobackup " Don't create backup files
+set nowritebackup " Don't ever create backup files
+set undofile " Persistent undo across sessions
+set undodir=~/.vim/undo " Set undo directory
 
 " }}}
 " Search {{{
