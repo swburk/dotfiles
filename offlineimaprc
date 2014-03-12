@@ -15,7 +15,7 @@ localfolders = ~/.mail/samburk
 nametrans = lambda folder: {'archive': 'INBOX.Archive',
                             'deferred': 'INBOX.Deferred',
                             'drafts': 'INBOX.Drafts',
-                            'reference': 'INBOX.Reference',
+                            'INBOX.Junk Mail': 'junk',
                             'sent': 'INBOX.Sent Items',
                             }.get(folder, folder)
 
@@ -30,8 +30,7 @@ maxconnections = 2
 nametrans = lambda folder: {'INBOX.Archive': 'archive',
                             'INBOX.Deferred': 'deferred',
                             'INBOX.Drafts': 'drafts',
-                            'INBOX.Reference': 'reference',
+                            'INBOX.Junk Mail': 'junk',
                             'INBOX.Sent Items': 'sent',
                             }.get(folder, folder)
-folderfilter = lambda folder: folder not in ['INBOX.Trash',
-                                             'INBOX.Junk']
+folderfilter = lambda folder: folder not in ['INBOX.Trash']

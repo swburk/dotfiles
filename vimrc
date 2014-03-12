@@ -133,6 +133,9 @@ let mapleader=','
 nnoremap Q mzgqip`z
 vnoremap Q mzgq`z
 
+" Undo unsaved changes
+nnoremap U :e!<cr>
+
 " Y yanks to end of line
 nnoremap Y y$
 
@@ -170,6 +173,9 @@ nnoremap z. zMzvzz
 
 " Open CtrlP in buffer mode
 nnoremap <silent> <c-n> :CtrlPBuffer<cr>
+
+" List buffers
+nnoremap <leader>l :ls<cr>
 
 " Navigate to directory of current file
 nnoremap <leader>c :cd %:p:h<bar>pwd<cr>
@@ -270,16 +276,6 @@ nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-l> <c-w>l
 
-" Align things in the middle when jumping around
-" nnoremap } }zvzz
-" nnoremap { {zvzz
-" nnoremap n nzvzz
-" nnoremap N Nzvzz
-" nnoremap g; g;zvzz
-" nnoremap g, g,zvzz
-" nnoremap <c-o> <c-o>zvzz
-" nnoremap <c-i> <c-i>zvzz
-
 " Stay put on * and #
 nnoremap * *<c-o>
 nnoremap g* g*<c-o>
@@ -324,7 +320,7 @@ runtime macros/matchit.vim
 " Netrw {{{
 
 let g:netrw_banner = 0
-let g:netrw_sort_sequence = '[\/]$,*'
+let g:netrw_sort_sequence = '\/$,*'
 let g:netrw_list_hide = join(map(split(&wildignore, ',\*'), '".*" . escape(v:val, ".*$~") . "$"'), ',') . ',^\.\.\=/\=$'
 
 " }}}

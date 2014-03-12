@@ -30,7 +30,6 @@ mailboxes =INBOX \
           =sent \
           =junk \
           =deferred \
-          =reference \
 
 set folder_format = "  %2C  %f"
 
@@ -66,11 +65,10 @@ set strict_threads
 set pager_stop # Don't move to next message at end of current message
 unset markers # Don't display "+" on wrapped lines in pager
 set tilde # Display "~" on blank lines in pager
-set pager_index_lines = 12 # Number of lines of index to show above pager
-set pager_context = 4 # Number of context lines to show on next/prev page
+set pager_context = 2 # Number of context lines to show on next/prev page
 auto_view text/html # Automatically display html emails
 alternative_order text/plain text/enriched text/html
-set pager_format = " %3C   [%Z]  %D  %-20.20F  %-40.40s%* %P "
+set pager_format = "-- Mutt: %-0.20F [%-0.46s] %* -- %P "
 
 # Composing and sending -------------------------------------------------------
 
@@ -93,7 +91,7 @@ set compose_format = "-- Mutt: Compose [%a Attachments]"
 
 # Contacts --------------------------------------------------------------------
 
-set query_command = "abook --mutt-query '%s'"
+set query_command = "contacts -Sf '%eTOKEN%n' '%s' | sed -e 's/TOKEN/\t/g'"
 set query_format = "  %2c %t %-20.20n  %a"
 
 # Headers ---------------------------------------------------------------------
@@ -108,16 +106,13 @@ hdr_order from: to: cc: subject: date:
 
 # Status line -----------------------------------------------------------------
 
-set status_format = "-%r Mutt: %f [%?V?%M/&?%m Messages%?u?, %u Unread&?%?d?, %d Deleted&?%?t?, %t Tagged&?%?p?, %p Drafts&?]%* %P "
+set status_format = "-%r Mutt: %f [%?V?%M/&?%m Messages%?u?, %u Unread&?%?d?, %d Deleted&?%?F?, %F Flagged&?%?t?, %t Tagged&?%?p?, %p Drafts&?]%* %P "
 set status_on_top # Show status line on top of winodw
 
 # Key bindings ----------------------------------------------------------------
 
 # Search in reverse
 bind index,pager N search-opposite
-
-# Select message in the bottom of the screen
-bind index L bottom-page
 
 # Toggle a message's "new" flag
 bind index \\ toggle-new
@@ -136,7 +131,7 @@ macro index ,n "<limit>~N<return>" "show all unread messages"
 # Only show tagged messages
 macro index ,t "<limit>~T<return>" "show all tagged messages"
 
-# Only show tagged messages
+# Only show flagged messages
 macro index ,f "<limit>~F<return>" "show all flagged messages"
 
 # Mark all messages as read
@@ -146,15 +141,16 @@ macro index \ca "<tag-pattern>~N<return><tag-prefix-cond><clear-flag>N<untag-pat
 macro index o "<shell-escape>offlineimap -o<return>" "run offlineimap"
 macro index O "<shell-escape>offlineimap -oqf INBOX<return>" "run offlineimap on inbox"
 
+# Sync mailbox
+bind index,pager <tab> sync-mailbox
+
 # Contacts completion
 bind editor <Tab> complete-query
 bind editor \ct complete
 
-# Shortcuts for moving messages to certain folders quickly
-macro index,pager .i "<save-message>=INBOX<return>" "save message to INBOX folder"
-macro index,pager .a "<save-message>=archive<return>" "save message to archive folder"
-macro index,pager .d "<save-message>=deferred<return>" "save message to deferred folder"
-macro index,pager .r "<save-message>=reference<return>" "save message to reference folder"
+# Archive or defer a message
+macro index,pager a "<save-message>=archive<return>" "save message to archive folder"
+macro index,pager p "<save-message>=deferred<return>" "save message to deferred folder"
 
 # Shortcuts for changing folders quickly
 macro index,pager \'i "<change-folder>=INBOX<return>" "open INBOX folder"
@@ -162,7 +158,6 @@ macro index,pager \'a "<change-folder>=archive<return>" "open archive folder"
 macro index,pager \'d "<change-folder>=deferred<return>" "open deferred folder"
 macro index,pager \'p "<change-folder>=drafts<return>" "open drafts folder"
 macro index,pager \'j "<change-folder>=junk<return>" "open junk folder"
-macro index,pager \'r "<change-folder>=reference<return>" "open reference folder"
 macro index,pager \'s "<change-folder>=sent<return>" "open sent folder"
 
 # Add some of the index bindings to the pager
