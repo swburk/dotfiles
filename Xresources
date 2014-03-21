@@ -1,12 +1,18 @@
-! Terminal settings
-URxvt*termName: rxvt-unicode-256color
-URxvt*geometry: 86x42
-/* URxvt*faceName: xft:Source\ Code\ Pro:size=9:antialias=true */
-URxvt*saveLines: 2000
-URxvt*scrollBar: false
-URxvt*perl-ext:
-URxvt*perl-ext-common:
+XTerm*termName: xterm-256color
+XTerm*VT100.geometry: 86x42
+XTerm*faceName: Source\ Code\ Pro:size=10
+xterm*eightBitInput: true
+xterm*borderWidth: 0
+XTerm*locale: true
+Xterm*saveLines: 4000
+XTerm*background: #141413
+XTerm*foreground: #f8f6f2
 
-! Terminal colors
-URxvt*background: #141413
-URxvt*foreground: #f8f6f2
+/* URxvt*termName: rxvt-unicode-256color */
+/* URxvt*geometry: 86x42 */
+/* URxvt*saveLines: 2000 */
+/* URxvt*scrollBar: false */
+/* URxvt*perl-ext: */
+/* URxvt*perl-ext-common: */
+/* URxvt*background: #141413 */
+/* URxvt*foreground: #f8f6f2 */

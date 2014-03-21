@@ -151,6 +151,7 @@ bind editor \ct complete
 # Archive or defer a message
 macro index,pager a "<save-message>=archive<return>" "save message to archive folder"
 macro index,pager p "<save-message>=deferred<return>" "save message to deferred folder"
+bind index,pager .d noop
 
 # Shortcuts for changing folders quickly
 macro index,pager \'i "<change-folder>=INBOX<return>" "open INBOX folder"

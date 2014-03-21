@@ -48,7 +48,7 @@ set laststatus=2 " Always show the status line
 set statusline=%f\ %m%r%=%y[%l/%L][%P] " Set statusline
 
 " }}}
-" Backups, Swaps, and Undo {{{
+" Backups {{{
 
 set noswapfile " Don't create swap files
 set nobackup " Don't create backup files
