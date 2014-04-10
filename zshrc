@@ -30,7 +30,6 @@ compdef g=git
 bindkey -e
 
 # Edit current command line in $EDITOR
-
 autoload -U edit-command-line
 zle -N edit-command-line
 bindkey '^xe' edit-command-line

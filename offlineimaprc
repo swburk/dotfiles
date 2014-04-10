@@ -24,7 +24,8 @@ remotehost = mail.messagingengine.com
 remoteport = 993
 remoteuser = smbk@fastmail.fm
 ssl = yes
-sslcacertfile = ~/.mutt/EntrustCA.crt
+# sslcacertfile = ~/.mutt/DigiCertGlobalRootCA.crt
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 maxconnections = 2
 nametrans = lambda folder: {'INBOX.Archive': 'archive',
                             'INBOX.Deferred': 'deferred',
