@@ -123,6 +123,22 @@ endfunction " }}}
 set foldtext=FoldText()
 
 " }}}
+" Abbreviations {{{
+
+" Shortcuts
+iabbrev fm@ smbk@fastmail.fm
+iabbrev sb@ sam@samburk.com
+iabbrev sb/ http://samburk.com/
+
+" Typos
+iabbrev teh the
+
+" Information
+inoremap @date <c-r>=strftime('%Y-%m-%d')<cr>
+inoremap @time <c-r>=strftime('%T')<cr>
+inoremap @now <c-r>=strftime('%Y-%m-%d %T')<cr>
+
+" }}}
 " Mappings {{{
 
 " Convenience {{{
@@ -139,7 +155,7 @@ nnoremap U :e!<cr>
 " Y yanks to end of line
 nnoremap Y y$
 
-" Join lines and return to original cursor position
+" Return to original cursor position after joining lines
 nnoremap J @='mzJ`z'<cr>
 
 " Split line
@@ -187,7 +203,7 @@ nnoremap <silent> <leader>v :vsp %:p:h<cr>
 nnoremap <silent> <leader>t :tabe %:p:h<cr>
 
 " Delete buffer
-nnoremap <silent> <leader>d :bd<cr>
+nnoremap <silent> <leader>x :bd<cr>
 
 " Delete buffer without changing window layout
 function! DeleteBuffer() " {{{
@@ -203,7 +219,7 @@ function! DeleteBuffer() " {{{
     exe 'tabn ' . s:ctab . '|' . s:cwin . 'wincmd w'
     exe 'bd' . s:bnum
 endfunction " }}}
-nnoremap <silent> <leader>x :call DeleteBuffer()<cr>
+nnoremap <silent> <leader>d :call DeleteBuffer()<cr>
 
 " }}}
 " Toggles {{{
@@ -277,10 +293,10 @@ nnoremap <c-k> <c-w>k
 nnoremap <c-l> <c-w>l
 
 " Stay put on * and #
-nnoremap * *<c-o>
-nnoremap g* g*<c-o>
-nnoremap # #<c-o>
-nnoremap g# g#<c-o>
+" nnoremap * *<c-o>
+" nnoremap g* g*<c-o>
+" nnoremap # #<c-o>
+" nnoremap g# g#<c-o>
 
 " Thanks to Scrooloose for visual */# mappings
 function! s:VSetSearch() " {{{

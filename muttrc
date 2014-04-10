@@ -48,7 +48,6 @@ unset help # Don't show help line at top of window
 set menu_scroll # Scroll menus one line at a time
 set sleep_time = 0 # Don't display informational messages
 set sendmail_wait = 0 # Don't return to mutt until mail has been sent
-unset resolve # Don't move to the next message after an action
 source ~/.mutt/colors # Color scheme
 # set attach_format = ""
 
