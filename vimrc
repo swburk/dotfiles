@@ -292,12 +292,6 @@ nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-l> <c-w>l
 
-" Stay put on * and #
-" nnoremap * *<c-o>
-" nnoremap g* g*<c-o>
-" nnoremap # #<c-o>
-" nnoremap g# g#<c-o>
-
 " Thanks to Scrooloose for visual */# mappings
 function! s:VSetSearch() " {{{
     let temp = @@
