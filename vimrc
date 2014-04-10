@@ -123,22 +123,6 @@ endfunction " }}}
 set foldtext=FoldText()
 
 " }}}
-" Abbreviations {{{
-
-" Shortcuts
-iabbrev fm@ smbk@fastmail.fm
-iabbrev sb@ sam@samburk.com
-iabbrev sb/ http://samburk.com/
-
-" Typos
-iabbrev teh the
-
-" Information
-inoremap @date <c-r>=strftime('%Y-%m-%d')<cr>
-inoremap @time <c-r>=strftime('%T')<cr>
-inoremap @now <c-r>=strftime('%Y-%m-%d %T')<cr>
-
-" }}}
 " Mappings {{{
 
 " Convenience {{{
