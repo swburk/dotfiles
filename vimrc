@@ -40,6 +40,7 @@ set splitright " Opens vertical window to the right of current window
 set splitbelow " Opens horizontal window bellow current window
 set nolist " Show invisible characters
 set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮ " Set invisible characters
+set showbreak=… " Shown at the start of the line when wrap is on
 set title " Change the title of the terminal
 syntax on " Enable syntax highlighting
 set t_Co=256 " I have a 256-color terminal
@@ -164,6 +165,10 @@ nnoremap \ :Ag<space>
 " Substitute
 nnoremap gs :%s//g<left><left>
 vnoremap gs :s//g<left><left>
+
+" Move line up or down
+nnoremap - ddkP
+nnoremap + ddp
 
 " Strip trailing whitespace
 nnoremap <silent> d<space> mz:%s/\s\+$//ge<cr>:let @/=''<cr>`z
