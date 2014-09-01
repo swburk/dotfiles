@@ -68,7 +68,7 @@ function set_prompt() {
     export PS1="$PS1${vcs_info_msg_0_}"
 
     # Prompt character is red when command exits with non-zero
-    export PS1="$PS1%(?.%(!.#.❯).%F{1}%(!.#.❯)%f) "
+    export PS1="$PS1%(?.%(!.#.$).%F{1}%(!.#.$)%f) "
 }
 
 # Scripts --------------------------------------------------------------------
