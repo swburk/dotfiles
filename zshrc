@@ -59,7 +59,7 @@ function set_prompt() {
     export PS1="%1(j.%F{5}%jj%f .)"
 
     # Username and hostname displayed in an SSH session
-    export PS1="$PS1${SSH_CONNECTION+"$PS1%F{2}%n%f@%F{6}%m%f "}"
+    export PS1="$PS1${SSH_CONNECTION+"$PS1%F{2}%n%f@%F{4}%m%f "}"
 
     # Current directory
     export PS1="$PS1%F{6}%~%f "
