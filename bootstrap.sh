@@ -15,7 +15,7 @@ install() {
             test -L "$HOME/.$file" || ln -s "$DOTFILE_DIR/$file" "$HOME/.$file"
         fi
     done
-    chmod 600 "$DOTFILE_DIR/.msmtprc"
+    chmod 600 "$DOTFILE_DIR/msmtprc"
 }
 
 BACKUP_DIR="$HOME/.dotfiles_backup/$(date "+%Y%m%d%I%M%S")"
