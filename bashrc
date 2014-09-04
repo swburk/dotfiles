@@ -40,7 +40,7 @@ function set_prompt {
     PS1+="$Cyan\w $Reset"
 
     # Current git branch
-    PS1+="$(parse_git_branch) "
+    PS1+="$(parse_git_branch)"
 
     # Prompt character is red when command exits with non-zero
     if [ "$Last_Command" -eq 0 ]; then
