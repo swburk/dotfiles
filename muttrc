@@ -155,7 +155,6 @@ bind index,pager .d noop
 macro index,pager \'i "<change-folder>=INBOX<return>" "open INBOX folder"
 macro index,pager \'a "<change-folder>=archive<return>" "open archive folder"
 macro index,pager \'p "<change-folder>=drafts<return>" "open drafts folder"
-macro index,pager \'j "<change-folder>=junk<return>" "open junk folder"
 macro index,pager \'s "<change-folder>=sent<return>" "open sent folder"
 
 # Add some of the index bindings to the pager
