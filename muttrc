@@ -28,8 +28,6 @@ mailboxes =INBOX \
           =archive \
           =drafts \
           =sent \
-          =junk \
-          =deferred \
 
 set folder_format = "  %2C  %f"
 
@@ -48,15 +46,16 @@ unset help # Don't show help line at top of window
 set menu_scroll # Scroll menus one line at a time
 set sleep_time = 0 # Don't display informational messages
 set sendmail_wait = 0 # Don't return to mutt until mail has been sent
-source ~/.mutt/colors # Color scheme
+source ~/.mutt/colors.muttrc # Color scheme
 # set attach_format = ""
 
 # Index -----------------------------------------------------------------------
 
-set date_format = "%m-%d"
+# set date_format = "%m-%d"
+set date_format = "%b %d"
 set index_format = " %3C %?M?+& ? [%Z]  %D  %-20.20F  %s"
 set sort = threads
-set sort_aux = last-date-received
+set sort_aux = reverse-last-date-received
 set strict_threads
 
 # Pager -----------------------------------------------------------------------
@@ -64,6 +63,7 @@ set strict_threads
 set pager_stop # Don't move to next message at end of current message
 unset markers # Don't display "+" on wrapped lines in pager
 set tilde # Display "~" on blank lines in pager
+set pager_index_lines = 10 # Number of index lines to show
 set pager_context = 2 # Number of context lines to show on next/prev page
 auto_view text/html # Automatically display html emails
 alternative_order text/plain text/enriched text/html
@@ -149,13 +149,11 @@ bind editor \ct complete
 
 # Archive or defer a message
 macro index,pager a "<save-message>=archive<return>" "save message to archive folder"
-macro index,pager p "<save-message>=deferred<return>" "save message to deferred folder"
 bind index,pager .d noop
 
 # Shortcuts for changing folders quickly
 macro index,pager \'i "<change-folder>=INBOX<return>" "open INBOX folder"
 macro index,pager \'a "<change-folder>=archive<return>" "open archive folder"
-macro index,pager \'d "<change-folder>=deferred<return>" "open deferred folder"
 macro index,pager \'p "<change-folder>=drafts<return>" "open drafts folder"
 macro index,pager \'j "<change-folder>=junk<return>" "open junk folder"
 macro index,pager \'s "<change-folder>=sent<return>" "open sent folder"

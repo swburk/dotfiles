@@ -13,7 +13,6 @@ autorefresh = 10
 type = Maildir
 localfolders = ~/.mail/samburk
 nametrans = lambda folder: {'archive': 'INBOX.Archive',
-                            'deferred': 'INBOX.Deferred',
                             'drafts': 'INBOX.Drafts',
                             'sent': 'INBOX.Sent Items',
                             }.get(folder, folder)
@@ -27,7 +26,6 @@ ssl = yes
 sslcacertfile = ~/.mutt/EntrustCA.crt
 maxconnections = 2
 nametrans = lambda folder: {'INBOX.Archive': 'archive',
-                            'INBOX.Deferred': 'deferred',
                             'INBOX.Drafts': 'drafts',
                             'INBOX.Sent Items': 'sent',
                             }.get(folder, folder)
