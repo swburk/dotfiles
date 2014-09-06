@@ -137,8 +137,8 @@ macro index ,f "<limit>~F<return>" "show all flagged messages"
 macro index \ca "<tag-pattern>~N<return><tag-prefix-cond><clear-flag>N<untag-pattern>~T<return>" "mark all messages as read"
 
 # Run offlineimap
-macro index o "<shell-escape>offlineimap -o<return>" "run offlineimap"
-macro index O "<shell-escape>offlineimap -oqf INBOX<return>" "run offlineimap on inbox"
+macro index o "<shell-escape>offlineimap<return>" "run offlineimap"
+macro index O "<shell-escape>offlineimap -qf INBOX<return>" "run offlineimap on inbox"
 
 # Sync mailbox
 bind index,pager <tab> sync-mailbox
