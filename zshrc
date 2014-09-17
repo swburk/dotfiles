@@ -5,6 +5,7 @@ export VISUAL="vim"
 export EDITOR="$VISUAL"
 export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man' -\""
 export LSCOLORS="ExGxcxdxFxegedabagExEx"
+export CLICOLOR=1
 export HISTSIZE=100000
 export SAVEHIST=100000
 export HISTFILE="$HOME/.zsh_history"
@@ -34,6 +35,10 @@ autoload -U edit-command-line
 zle -N edit-command-line
 bindkey '^xe' edit-command-line
 bindkey '^x^e' edit-command-line
+
+# Better history search
+bindkey '^p' history-search-backward
+bindkey '^n' history-search-forward
 
 # Prompt ---------------------------------------------------------------------
 
@@ -84,12 +89,8 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
-alias l="ls -F"
-alias l1="ls -F1"
-alias ll="ls -Fl"
-alias la="ls -FlA"
-alias ld="ls -ld */"
-alias l.="ls -ld .*"
+alias ll="ls -lh"
+alias la="ls -lah"
 alias t="tmux"
 alias tn="tmux new -s"
 alias ta="tmux attach -t"
