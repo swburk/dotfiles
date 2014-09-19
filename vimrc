@@ -44,7 +44,7 @@ set showbreak=… " Shown at the start of the line when wrap is on
 set title " Change the title of the terminal
 syntax on " Enable syntax highlighting
 set t_Co=256 " I have a 256-color terminal
-colorscheme badwolf " Set color scheme
+colorscheme hybrid " Set color scheme
 set laststatus=2 " Always show the status line
 set statusline=%f\ %m%r%=%y[%l/%L][%P] " Set statusline
 

@@ -64,7 +64,7 @@ set pager_stop # Don't move to next message at end of current message
 unset markers # Don't display "+" on wrapped lines in pager
 set tilde # Display "~" on blank lines in pager
 set pager_index_lines = 10 # Number of index lines to show
-set pager_context = 2 # Number of context lines to show on next/prev page
+set pager_context = 4 # Number of context lines to show on next/prev page
 auto_view text/html # Automatically display html emails
 alternative_order text/plain text/enriched text/html
 set pager_format = "-- Mutt: %-0.20F [%-0.46s] %* -- %P "
