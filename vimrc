@@ -159,9 +159,6 @@ cnoremap w!! w !sudo tee % >/dev/null
 " Select last changed text
 nnoremap gV `[v`]
 
-" Search with Ag
-nnoremap \ :Ag<space>
-
 " Substitute
 nnoremap gs :%s//g<left><left>
 vnoremap gs :s//g<left><left>
@@ -179,9 +176,6 @@ nnoremap z. zMzvzz
 " Open CtrlP in buffer mode
 nnoremap <silent> <c-n> :CtrlPBuffer<cr>
 
-" List buffers
-nnoremap <leader>l :ls<cr>
-
 " Navigate to directory of current file
 nnoremap <leader>c :cd %:p:h<bar>pwd<cr>
 
@@ -190,6 +184,9 @@ nnoremap <silent> <leader>e :e %:p:h<cr>
 nnoremap <silent> <leader>h :sp %:p:h<cr>
 nnoremap <silent> <leader>v :vsp %:p:h<cr>
 nnoremap <silent> <leader>t :tabe %:p:h<cr>
+
+" Edit vimrc
+nnoremap <silent> <leader>V :e $MYVIMRC<cr>
 
 " Delete buffer
 nnoremap <silent> <leader>x :bd<cr>
@@ -210,13 +207,16 @@ function! DeleteBuffer() " {{{
 endfunction " }}}
 nnoremap <silent> <leader>d :call DeleteBuffer()<cr>
 
+" Write current buffer
+nnoremap <silent> ZS :w<cr>
+
 " }}}
 " Toggles {{{
 
 set pastetoggle=<leader>p
 nnoremap <silent> <leader>s :set spell!<cr>
 nnoremap <silent> <leader>w :set wrap!<cr>
-nnoremap <silent> <leader>i :set list!<cr>
+nnoremap <silent> <leader>l :set list!<cr>
 nnoremap <silent> <leader>/ :nohlsearch<cr>
 
 function! ToggleLineNumbers() " {{{

@@ -8,7 +8,7 @@ color error brightcolor15 color196
 color indicator color15 color235
 
 # Status lines
-color status color233 brightcolor39
+color status brightcolor233 color39
 
 # Message headers
 color hdrdefault color245 color233
@@ -51,12 +51,12 @@ color index color196 color233 ~D
 
 # Quoted text
 color quoted color243 color233
-color quoted1 color211 color233
-color quoted2 color222 color233
-color quoted3 color214 color233
-color quoted4 color154 color233
-color quoted5 color243 color233
-color quoted6 color211 color233
-color quoted7 color222 color233
-color quoted8 color214 color233
-color quoted9 color154 color233
+# color quoted1 color211 color233
+# color quoted2 color222 color233
+# color quoted3 color214 color233
+# color quoted4 color154 color233
+# color quoted5 color243 color233
+# color quoted6 color211 color233
+# color quoted7 color222 color233
+# color quoted8 color214 color233
+# color quoted9 color154 color233

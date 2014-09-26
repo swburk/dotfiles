@@ -51,7 +51,6 @@ source ~/.mutt/colors.muttrc # Color scheme
 
 # Index -----------------------------------------------------------------------
 
-# set date_format = "%m-%d"
 set date_format = "%b %d"
 set index_format = " %3C %?M?+& ? [%Z]  %D  %-20.20F  %s"
 set sort = threads
@@ -60,6 +59,7 @@ set strict_threads
 
 # Pager -----------------------------------------------------------------------
 
+# set display_filter=~/.mutt/mail-to-filter
 set pager_stop # Don't move to next message at end of current message
 unset markers # Don't display "+" on wrapped lines in pager
 set tilde # Display "~" on blank lines in pager
