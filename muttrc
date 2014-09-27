@@ -28,6 +28,8 @@ mailboxes =INBOX \
           =archive \
           =drafts \
           =sent \
+          =junk \
+          =trash \
 
 set folder_format = "  %2C  %f"
 
@@ -59,7 +61,7 @@ set strict_threads
 
 # Pager -----------------------------------------------------------------------
 
-# set display_filter=~/.mutt/mail-to-filter
+# set display_filter="sed -f ~/.mutt/display_filter"
 set pager_stop # Don't move to next message at end of current message
 unset markers # Don't display "+" on wrapped lines in pager
 set tilde # Display "~" on blank lines in pager
@@ -154,8 +156,10 @@ bind index,pager .d noop
 # Shortcuts for changing folders quickly
 macro index,pager \'i "<change-folder>=INBOX<return>" "open INBOX folder"
 macro index,pager \'a "<change-folder>=archive<return>" "open archive folder"
-macro index,pager \'p "<change-folder>=drafts<return>" "open drafts folder"
+macro index,pager \'d "<change-folder>=drafts<return>" "open drafts folder"
 macro index,pager \'s "<change-folder>=sent<return>" "open sent folder"
+macro index,pager \'j "<change-folder>=junk<return>" "open junk folder"
+macro index,pager \'t "<change-folder>=trash<return>" "open trash folder"
 
 # Add some of the index bindings to the pager
 bind pager < previous-line
