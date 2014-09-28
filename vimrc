@@ -41,6 +41,7 @@ set splitbelow " Opens horizontal window bellow current window
 set nolist " Show invisible characters
 set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮ " Set invisible characters
 set showbreak=… " Shown at the start of the line when wrap is on
+set colorcolumn=+1
 set title " Change the title of the terminal
 syntax on " Enable syntax highlighting
 set t_Co=256 " I have a 256-color terminal
@@ -82,7 +83,7 @@ set shiftround " Round indent to multiple of 'shiftwidth'
 
 set nowrap " Don't wrap long lines by default
 set linebreak " Don't break words when wrapping
-set textwidth=79 " Maximum line length
+set textwidth=80 " Maximum line length
 match ErrorMsg '\%80v.' " Highlight the column after 'textwidth'
 set formatoptions=qnl1jc " How automatic formatting should be done
 
@@ -105,13 +106,13 @@ function! FoldText() " {{{
     let softtab = strpart('        ', 0, &tabstop)
     let line = substitute(line, '\t', softtab, 'g')
     let line = substitute(line, '\s\=--\+', '', 'g')
-    let toolong = windowwidth - len(foldedlinecount) - 9
+    let toolong = windowwidth - len(foldedlinecount) - 4
     if len(line) >= toolong
         let line = strpart(line, 0, toolong)
     endif
 
     " Display a dash for every folded line
-    let fillcharcount = windowwidth - len(line) - len(foldedlinecount) - 9
+    let fillcharcount = windowwidth - len(line) - len(foldedlinecount) - 4
     if foldedlinecount <= fillcharcount
         let fillcharcount = fillcharcount - foldedlinecount
         let fillchars = repeat('-', foldedlinecount) . repeat(' ', fillcharcount)
@@ -119,7 +120,7 @@ function! FoldText() " {{{
         let fillchars = repeat('-', fillcharcount)
     endif
 
-    return line . ' ' . fillchars . ' ' . foldedlinecount . ' lines '
+    return line . ' ' . fillchars . ' ' . foldedlinecount . '… '
 endfunction " }}}
 set foldtext=FoldText()
 
