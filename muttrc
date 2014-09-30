@@ -61,7 +61,7 @@ set strict_threads
 
 # Pager -----------------------------------------------------------------------
 
-# set display_filter="sed -f ~/.mutt/display_filter"
+set display_filter="formail -c | sed -f ~/.mutt/display_filter"
 set pager_stop # Don't move to next message at end of current message
 unset markers # Don't display "+" on wrapped lines in pager
 set reflow_wrap = 0 # Wrap format=flowed messages to terminal width
