@@ -84,7 +84,6 @@ set shiftround " Round indent to multiple of 'shiftwidth'
 set nowrap " Don't wrap long lines by default
 set linebreak " Don't break words when wrapping
 set textwidth=80 " Maximum line length
-match ErrorMsg '\%80v.' " Highlight the column after 'textwidth'
 set formatoptions=qnl1jc " How automatic formatting should be done
 
 " }}}
