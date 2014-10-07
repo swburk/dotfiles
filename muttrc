@@ -1,4 +1,4 @@
-# Mutt ------------------------------------------------------------------------
+# Mutt {{{
 
 set header_cache = ~/.mutt/cache/headers
 set message_cachedir = ~/.mutt/cache/bodies
@@ -6,7 +6,8 @@ set certificate_file = ~/.mutt/certificates
 set mailcap_path = ~/.mutt/mailcap
 set tmpdir = ~/.mutt/tmp
 
-# Folders ---------------------------------------------------------------------
+# }}}
+# Folders {{{
 
 # Root mail folder
 set folder = ~/.mail/samburk
@@ -33,7 +34,8 @@ mailboxes =INBOX \
 
 set folder_format = "  %2C  %f"
 
-# General ---------------------------------------------------------------------
+# }}}
+# General {{{
 
 set mbox_type = Maildir # Default mailbox type when creating new folders
 set wait_key = no # Don't prompt after running external programs
@@ -51,7 +53,8 @@ set sendmail_wait = 0 # Don't return to mutt until mail has been sent
 source ~/.mutt/colors.muttrc # Color scheme
 # set attach_format = ""
 
-# Index -----------------------------------------------------------------------
+# }}}
+# Index {{{
 
 set date_format = "%b %d"
 set index_format = " %3C %?M?+& ? [%Z]  %D  %-20.20F  %s"
@@ -59,7 +62,8 @@ set sort = threads
 set sort_aux = reverse-last-date-received
 set strict_threads
 
-# Pager -----------------------------------------------------------------------
+# }}}
+# Pager {{{
 
 set display_filter="formail -c | sed -f ~/.mutt/display_filter"
 set pager_stop # Don't move to next message at end of current message
@@ -72,7 +76,8 @@ auto_view text/html # Automatically display html emails
 alternative_order text/plain text/enriched text/html
 set pager_format = "-- Mutt: %-0.20F [%-0.46s] %* -- %P "
 
-# Composing and sending -------------------------------------------------------
+# }}}
+# Composing and sending {{{
 
 set realname = "Sam Burk"
 set from = "sam@samburk.com"
@@ -91,12 +96,14 @@ set forward_decode # Decode attachments when forwarding
 set forward_format = "Fwd: %s" # Format of subject when forwarding
 set compose_format = "-- Mutt: Compose [%a Attachments]"
 
-# Contacts --------------------------------------------------------------------
+# }}}
+# Contacts {{{
 
 set query_command = "contacts -Sf '%eTOKEN%n' '%s' | sed -e 's/TOKEN/\t/g'"
 set query_format = "  %2c %t %-20.20n  %a"
 
-# Headers ---------------------------------------------------------------------
+# }}}
+# Headers {{{
 
 # What headers to display
 ignore *
@@ -106,12 +113,14 @@ unignore from: to: cc: subject: date:
 unhdr_order *
 hdr_order from: to: cc: subject: date:
 
-# Status line -----------------------------------------------------------------
+# }}}
+# Status line {{{
 
 set status_format = "-%r Mutt: %f [%?V?%M/&?%m Messages%?u?, %u Unread&?%?d?, %d Deleted&?%?F?, %F Flagged&?%?t?, %t Tagged&?%?p?, %p Drafts&?]%* %P "
 set status_on_top # Show status line on top of winodw
 
-# Key bindings ----------------------------------------------------------------
+# }}}
+# Key bindings {{{
 
 # Search in reverse
 bind index,pager N search-opposite
@@ -171,6 +180,7 @@ bind pager * bottom
 # Always save attachments to downloads folder, and don't prompt me
 macro attach s "<save-entry>~/Downloads/<return>y"
 
-# Hooks -----------------------------------------------------------------------
+# }}}
+# Hooks {{{
 
 send-hook '~t ^.+@wichita\.edu$' 'my_hdr From: swburk@wichita.edu'
