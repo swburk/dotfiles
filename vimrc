@@ -179,14 +179,8 @@ nnoremap <silent> <c-n> :CtrlPBuffer<cr>
 " Navigate to directory of current file
 nnoremap <leader>c :cd %:p:h<bar>pwd<cr>
 
-" Opening files and directories
-nnoremap <silent> <leader>e :e %:p:h<cr>
-nnoremap <silent> <leader>h :sp %:p:h<cr>
-nnoremap <silent> <leader>v :vsp %:p:h<cr>
-nnoremap <silent> <leader>t :tabe %:p:h<cr>
-
 " Edit vimrc
-nnoremap <silent> <leader>V :e $MYVIMRC<cr>
+nnoremap <silent> <leader>v :tabe $MYVIMRC<cr>
 
 " Delete buffer
 nnoremap <silent> <leader>x :bd<cr>
@@ -206,9 +200,6 @@ function! DeleteBuffer() " {{{
     exe 'bd' . s:bnum
 endfunction " }}}
 nnoremap <silent> <leader>d :call DeleteBuffer()<cr>
-
-" Write current buffer
-nnoremap <silent> ZS :w<cr>
 
 " }}}
 " Toggles {{{
