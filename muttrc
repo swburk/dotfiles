@@ -43,6 +43,8 @@ set timeout = 4 # Look for new email after 4 seconds of inactivity
 set mail_check = 0 # Minimum time between checks for new mail
 set delete = yes # Don't ask for confirmation when deleting messages
 unset confirmappend # Don't ask for confirmation when moving messages
+set uncollapse_jump # Jump to the first unread message in a thread
+unset collapse_unread # Don't collapse a thread with an unread message
 unset mark_old # Don't mark any messages as old
 set pipe_decode # Strip headers when piping
 set thorough_search # Strip headers when searching
