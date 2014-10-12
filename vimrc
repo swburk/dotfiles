@@ -42,7 +42,6 @@ set nolist " Show invisible characters
 set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮ " Set invisible characters
 set showbreak=… " Shown at the start of the line when wrap is on
 set colorcolumn=+1
-set title " Change the title of the terminal
 syntax on " Enable syntax highlighting
 set t_Co=256 " I have a 256-color terminal
 colorscheme hybrid " Set color scheme
