@@ -1,7 +1,7 @@
 color normal color15 color233
 color error brightcolor15 color196
 color indicator color15 color235
-color status brightcolor39 color233
+color status color233 color39
 color markers color142 color233
 
 color hdrdefault color245 color233
