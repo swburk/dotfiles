@@ -1,4 +1,4 @@
-Zsh
+zsh
 CSS
 Javascript
 plugin
@@ -11,8 +11,8 @@ SQL
 PHP
 RSS
 ESV
-Tmux
-Ctags
+tmux
+ctags
 online
 CMS
 reverb
@@ -20,3 +20,8 @@ lifehacks
 lifehack
 WSU
 stylesheet
+wishlist
+dotfiles
+msmtp
+offlineimap
+urlview

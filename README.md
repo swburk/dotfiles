@@ -1,5 +1,18 @@
 # Dotfiles
 
+## Requirements
+
+- Ag (The Silver Searcher)
+- Bash or Zsh
+- Ctags
+- Git
+- Msmtp
+- Mutt
+- Offlineimap
+- Tmux
+- Urlview
+- Vim
+
 ## Install
 
 Download and run the bootstrapper to install:

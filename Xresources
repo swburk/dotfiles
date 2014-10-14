@@ -1,8 +1,0 @@
-XTerm*termName: xterm-256color
-XTerm*VT100.geometry: 86x42
-XTerm*faceName: Source\ Code\ Pro:size=9
-xterm*eightBitInput: true
-XTerm*locale: true
-Xterm*saveLines: 4000
-XTerm*background: #141413
-XTerm*foreground: #f8f6f2
