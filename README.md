@@ -12,3 +12,7 @@
 - Tmux
 - Urlview
 - Vim (7.4+)
+
+## Installation
+
+Clone the repository to ~/.dotfiles and run the install script to link everything to your home directory.
