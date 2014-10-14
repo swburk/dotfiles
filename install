@@ -1,0 +1,15 @@
+#!/bin/bash
+
+DOTFILE_DIR="$HOME/.dotfiles"
+
+pushd "$DOTFILE_DIR"
+
+files=($(ls))
+for file in "${files[@]}"; do
+    if [ "$file" != 'install' ] && [ "$file" != 'README.md' ]; then
+        test -L "$HOME/.$file" || ln -s "$DOTFILE_DIR/$file" "$HOME/.$file"
+    fi
+done
+
+chmod 600 "$DOTFILE_DIR/msmtprc"
+popd

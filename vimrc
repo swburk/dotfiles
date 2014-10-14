@@ -1,8 +1,5 @@
 " General {{{
 
-filetype off
-exe pathogen#infect()
-filetype plugin indent on
 set encoding=utf-8 " Set character encoding to Unicode
 set modelines=0 " Don't read modelines
 set history=1000 " Increase command line history
@@ -325,6 +322,19 @@ let g:aghighlight = 1
 let g:agprg = "ag --smart-case --column"
 let g:ag_apply_lmappings = 0
 let g:ag_apply_qmappings = 0
+
+" }}}
+" Load Plugins {{{
+
+call plug#begin('~/.vim/plugged')
+
+Plug 'rking/ag.vim'
+Plug 'kien/ctrlp.vim'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+
+call plug#end()
 
 " }}}
 
