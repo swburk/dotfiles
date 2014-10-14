@@ -3,18 +3,13 @@
   email = sam@samburk.com
 [core]
   editor = vim
-  excludesfile = ~/.gitignore
 [alias]
   a = add
   aa = add --all
-  c = commit
-  cm = commit -m
-  ca = commit --amend
+  ci = commit
   co = checkout
-  s = status
   pl = pull
   ps = push
-  us = reset HEAD
 [color]
   ui = auto
 [merge]

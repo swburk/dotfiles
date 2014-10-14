@@ -162,10 +162,6 @@ nnoremap gV `[v`]
 nnoremap gs :%s//g<left><left>
 vnoremap gs :s//g<left><left>
 
-" Move line up or down
-nnoremap - ddkP
-nnoremap + ddp
-
 " Strip trailing whitespace
 nnoremap <silent> d<space> mz:%s/\s\+$//ge<cr>:let @/=''<cr>`z
 

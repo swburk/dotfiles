@@ -4,14 +4,14 @@
 
 - Ag (The Silver Searcher)
 - Bash or Zsh
-- Ctags
+- Exuberant Ctags
 - Git
 - Msmtp
 - Mutt
 - Offlineimap
 - Tmux
 - Urlview
-- Vim
+- Vim (7.4+)
 
 ## Install
 
