@@ -52,7 +52,7 @@ unset help # Don't show help line at top of window
 set menu_scroll # Scroll menus one line at a time
 set sleep_time = 0 # Don't display informational messages
 set sendmail_wait = 0 # Don't return to mutt until mail has been sent
-source ~/.mutt/colors.muttrc # Color scheme
+source ~/.mutt/badwolf.muttrc # Color scheme
 # set attach_format = ""
 
 # }}}
