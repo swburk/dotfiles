@@ -1,5 +1,6 @@
 # Mutt {{{
 
+set alias_file = ~/.mutt/aliases
 set header_cache = ~/.mutt/cache/headers
 set message_cachedir = ~/.mutt/cache/bodies
 set certificate_file = ~/.mutt/certificates
@@ -101,7 +102,7 @@ set compose_format = "-- Mutt: Compose [%a Attachments]"
 # }}}
 # Contacts {{{
 
-set query_command = "contacts -Sf '%eTOKEN%n' '%s' | sed -e 's/TOKEN/\t/g'"
+set query_command = "lbdbq '%s'"
 set query_format = "  %2c %t %-20.20n  %a"
 
 # }}}
