@@ -47,12 +47,12 @@ unset confirmappend # Don't ask for confirmation when moving messages
 set uncollapse_jump # Jump to the first unread message in a thread
 unset collapse_unread # Don't collapse a thread with an unread message
 unset mark_old # Don't mark any messages as old
-set pipe_decode # Strip headers when piping
-set thorough_search # Strip headers when searching
+set pipe_decode # Weed headers before piping
 unset help # Don't show help line at top of window
 set menu_scroll # Scroll menus one line at a time
 set sleep_time = 0 # Don't display informational messages
 set sendmail_wait = 0 # Don't return to mutt until mail has been sent
+unset resolve # Don't select the next message after a command
 source ~/.mutt/badwolf.muttrc # Color scheme
 # set attach_format = ""
 
@@ -84,7 +84,7 @@ set pager_format = "-- Mutt: %-0.20F [%-0.46s] %* -- %P "
 
 set realname = "Sam Burk"
 set from = "sam@samburk.com"
-alternates swburk@wichita.edu
+alternates swburk@wichita.edu smbk@fastmail.fm
 set sendmail = "msmtp -a samburk"
 set editor = "vim -c 'normal G'" # Use vim to compose emails
 set abort_unmodified = ask-yes
@@ -136,16 +136,10 @@ bind pager \\ mark-as-new
 bind index <space> collapse-thread
 bind index _ collapse-all
 
-# Clear limit search
+# Limits
 macro index ,a "<limit>all<return>" "show all messages"
-
-# Only show unread messages
 macro index ,n "<limit>~N<return>" "show all unread messages"
-
-# Only show tagged messages
 macro index ,t "<limit>~T<return>" "show all tagged messages"
-
-# Only show flagged messages
 macro index ,f "<limit>~F<return>" "show all flagged messages"
 
 # Mark all messages as read
@@ -162,9 +156,9 @@ bind index,pager <tab> sync-mailbox
 bind editor <Tab> complete-query
 bind editor \ct complete
 
-# Archive or defer a message
+# Archive or save a message to a folder
 macro index,pager a "<save-message>=archive<return>" "save message to archive folder"
-bind index,pager .d noop
+macro index,pager M "<save-message>?<toggle-mailboxes>" "move message to a folder"
 
 # Shortcuts for changing folders quickly
 macro index,pager \'i "<change-folder>=INBOX<return>" "open INBOX folder"
@@ -187,3 +181,5 @@ macro attach s "<save-entry>~/Downloads/<return>y"
 # Hooks {{{
 
 send-hook '~t ^.+@wichita\.edu$' 'my_hdr From: swburk@wichita.edu'
+
+# }}}
