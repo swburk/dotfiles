@@ -128,9 +128,13 @@ set status_on_top # Show status line on top of winodw
 # Search in reverse
 bind index,pager N search-opposite
 
+# Full-text search with mu
+macro index \\ "<shell-escape>mu find --clearlinks --format=links --linksdir=~/.mail/search " "mu find"
+macro index \'r "<change-folder-readonly>~/.mail/search<return>" "mu find results"
+
 # Toggle a message's "new" flag
-bind index \\ toggle-new
-bind pager \\ mark-as-new
+bind index \# toggle-new
+bind pager \# mark-as-new
 
 # Collapse/uncollapse threads
 bind index <space> collapse-thread

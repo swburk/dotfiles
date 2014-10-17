@@ -7,6 +7,7 @@ fsync = false
 localrepository = samburk_local
 remoterepository = samburk_remote
 status_backend = sqlite
+postsynchook = mu index -q -m ~/.mail
 
 [Repository samburk_local]
 type = Maildir

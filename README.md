@@ -6,7 +6,9 @@
 - Bash or Zsh
 - Exuberant Ctags
 - Git
+- Lbdb
 - Msmtp
+- Mu
 - Mutt
 - Offlineimap
 - Tmux
