@@ -90,12 +90,13 @@ set editor = "vim -c 'normal G'" # Use vim to compose emails
 set abort_unmodified = ask-yes
 set text_flowed # Use format=flowed
 set edit_headers # Include headers when composing
-set fast_reply # Skip prompts when replying
+set autoedit # Skip prompts when composing new message
+# set fast_reply # Skip prompts when replying
 set reply_to = yes # Reply to address in Reply-to: header
 set reverse_name # Reply with the address the email was sent to
 set include = yes # Include message when replying
-set forward_quote # Include message when forwarding
 set forward_decode # Decode attachments when forwarding
+set forward_quote # Include message when forwarding
 set forward_format = "Fwd: %s" # Format of subject when forwarding
 set compose_format = "-- Mutt: Compose [%a Attachments]"
 
@@ -119,7 +120,7 @@ hdr_order from: to: cc: subject: date:
 # }}}
 # Status line {{{
 
-set status_format = "-%r Mutt: %f [%?V?%M/&?%m Messages%?u?, %u Unread&?%?d?, %d Deleted&?%?F?, %F Flagged&?%?t?, %t Tagged&?%?p?, %p Drafts&?]%* %P "
+set status_format = "-%r Mutt: %f [%?V?%M/&?%m Messages%?u?, %u Unread&?%?d?, %d Deleted&?%?F?, %F Flagged&?%?t?, %t Tagged&?%?p?, %p Postponed&?]%* %P "
 set status_on_top # Show status line on top of winodw
 
 # }}}
