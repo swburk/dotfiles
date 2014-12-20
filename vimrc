@@ -171,6 +171,9 @@ nnoremap <silent> <c-n> :CtrlPBuffer<cr>
 " Navigate to directory of current file
 nnoremap <leader>c :cd %:p:h<bar>pwd<cr>
 
+" Make current program
+nnoremap <leader>m :make<cr>
+
 " Edit vimrc
 nnoremap <silent> <leader>v :tabe $MYVIMRC<cr>
 
@@ -330,7 +333,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'rking/ag.vim'
 Plug 'kien/ctrlp.vim'
-Plug 'tpope/vim-commentary'
+Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 
