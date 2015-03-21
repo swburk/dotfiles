@@ -9,7 +9,7 @@ set hidden " Hide unsaved buffers
 set backspace=indent,eol,start " Backspace over everything in insert mode
 set nrformats-=octal " Increment numbers with leading zeros correctly
 set nojoinspaces " Don't add spaces when joining lines
-set complete=.,b,u,] " Sources for insert mode completion
+set complete=.,w,b,u,t,i,kspell " Sources for insert mode completion
 set wildmenu " Command line completion
 set wildmode=longest,list,full " Make completion act like Zsh
 set wildignore+=*.git/,*.hg/ " Version control
@@ -168,8 +168,8 @@ nnoremap z. zMzvzz
 " Open CtrlP in buffer mode
 nnoremap <silent> <c-n> :CtrlPBuffer<cr>
 
-" Navigate to directory of current file
-nnoremap <leader>c :cd %:p:h<bar>pwd<cr>
+" Navigate to directory of current file in current window
+nnoremap <leader>c :lcd %:p:h<bar>pwd<cr>
 
 " Make current program
 nnoremap <leader>m :make<cr>
@@ -336,6 +336,7 @@ Plug 'kien/ctrlp.vim'
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
+Plug 'tommcdo/vim-exchange'
 
 call plug#end()
 

@@ -7,7 +7,7 @@ fsync = false
 localrepository = samburk_local
 remoterepository = samburk_remote
 status_backend = sqlite
-postsynchook = mu index -q -m ~/.mail
+postsynchook = mu index -m ~/.mail
 
 [Repository samburk_local]
 type = Maildir
@@ -16,7 +16,6 @@ nametrans = lambda folder: {'archive': 'INBOX.Archive',
                             'drafts': 'INBOX.Drafts',
                             'sent': 'INBOX.Sent Items',
                             'junk': 'INBOX.Junk Mail',
-                            'trash': 'INBOX.Trash',
                             }.get(folder, folder)
 
 [Repository samburk_remote]
@@ -31,5 +30,5 @@ nametrans = lambda folder: {'INBOX.Archive': 'archive',
                             'INBOX.Drafts': 'drafts',
                             'INBOX.Sent Items': 'sent',
                             'INBOX.Junk Mail': 'junk',
-                            'INBOX.Trash': 'trash',
                             }.get(folder, folder)
+folderfilter = lambda folder: folder not in ['INBOX.Trash']

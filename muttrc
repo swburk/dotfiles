@@ -31,7 +31,6 @@ mailboxes =INBOX \
           =drafts \
           =sent \
           =junk \
-          =trash \
 
 set folder_format = "  %2C  %f"
 
@@ -84,14 +83,14 @@ set pager_format = "-- Mutt: %-0.20F [%-0.46s] %* -- %P "
 
 set realname = "Sam Burk"
 set from = "sam@samburk.com"
-alternates swburk@wichita.edu smbk@fastmail.fm
+alternates smbk@fastmail.fm swburk@wichita.edu
 set sendmail = "msmtp -a samburk"
 set editor = "vim -c 'normal G'" # Use vim to compose emails
 set abort_unmodified = ask-yes
 set text_flowed # Use format=flowed
 set edit_headers # Include headers when composing
-set autoedit # Skip prompts when composing new message
-# set fast_reply # Skip prompts when replying
+# set autoedit # Skip prompts when composing new message
+set fast_reply # Skip prompts when replying
 set reply_to = yes # Reply to address in Reply-to: header
 set reverse_name # Reply with the address the email was sent to
 set include = yes # Include message when replying
@@ -171,7 +170,6 @@ macro index,pager \'a "<change-folder>=archive<return>" "open archive folder"
 macro index,pager \'d "<change-folder>=drafts<return>" "open drafts folder"
 macro index,pager \'s "<change-folder>=sent<return>" "open sent folder"
 macro index,pager \'j "<change-folder>=junk<return>" "open junk folder"
-macro index,pager \'t "<change-folder>=trash<return>" "open trash folder"
 
 # Add some of the index bindings to the pager
 bind pager < previous-line
