@@ -15,8 +15,7 @@ let g:colors_name="muon"
 
 hi Normal       ctermfg=250 ctermbg=234                             gui=None        guifg=#bcbcbc       guibg=#1c1c1c
 hi LineNr       ctermfg=239 ctermbg=234                             gui=None        guifg=#4e4e4e       guibg=#1c1c1c
-hi CursorLineNr ctermfg=080 ctermbg=234                             gui=None        guifg=#4e4e4e       guibg=#1c1c1c
-hi NonText      ctermfg=239 ctermbg=234                             gui=None        guifg=#1c1c1c       guibg=#1c1c1c
+hi NonText      ctermfg=234 ctermbg=234                             gui=None        guifg=#1c1c1c       guibg=#1c1c1c
 
 hi VertSplit    ctermfg=237 ctermbg=235 cterm=none                  gui=None        guifg=#3a3a3a       guibg=#262626
 hi StatusLine   ctermfg=249 ctermbg=235 cterm=underline             gui=underline   guifg=#b2b2b2       guibg=#262626

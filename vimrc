@@ -297,6 +297,18 @@ augroup END
 " }}}
 " Plugins {{{
 
+call plug#begin('~/.vim/plugged')
+
+Plug 'rking/ag.vim'
+Plug 'kien/ctrlp.vim'
+Plug 'tomtom/tcomment_vim'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'tommcdo/vim-exchange'
+Plug 'SirVer/ultisnips'
+
+call plug#end()
+
 " Matchit {{{
 
 runtime macros/matchit.vim
@@ -325,20 +337,6 @@ let g:aghighlight = 1
 let g:agprg = "ag --smart-case --column"
 let g:ag_apply_lmappings = 0
 let g:ag_apply_qmappings = 0
-
-" }}}
-" Load Plugins {{{
-
-call plug#begin('~/.vim/plugged')
-
-Plug 'rking/ag.vim'
-Plug 'kien/ctrlp.vim'
-Plug 'tomtom/tcomment_vim'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-surround'
-Plug 'tommcdo/vim-exchange'
-
-call plug#end()
 
 " }}}
 
