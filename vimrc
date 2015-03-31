@@ -32,7 +32,6 @@ set cmdheight=2 " Avoid Press ENTER prompts
 set display=lastline " display the last line even if it's too long
 set visualbell t_vb= " Turn off error bells
 set showcmd " Show unfinished commands
-set showmode " Show the currently active mode
 set splitright " Opens vertical window to the right of current window
 set splitbelow " Opens horizontal window bellow current window
 set nolist " Show invisible characters
@@ -40,7 +39,9 @@ set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮ " Set invisible characte
 set showbreak=… " Shown at the start of the line when wrap is on
 set colorcolumn=+1
 syntax on " Enable syntax highlighting
-set t_Co=256 " I have a 256-color terminal
+if !has('gui_running')
+    set t_Co=256 " I have a 256-color terminal
+endif
 colorscheme badwolf " Set color scheme
 set laststatus=2 " Always show the status line
 set statusline=[%f]%m%r%=%y[%l/%L:%v][%P] " Set statusline
@@ -294,6 +295,13 @@ augroup SourceVimrc
     autocmd BufWritePost $MYVIMRC source $MYVIMRC
 augroup END
 
+" Start Limelight after entering Goyo
+augroup SourceVimrc
+    au!
+    autocmd User GoyoEnter Limelight
+    autocmd User GoyoLeave Limelight!
+augroup END
+
 " }}}
 " Plugins {{{
 
@@ -306,6 +314,10 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tommcdo/vim-exchange'
 Plug 'SirVer/ultisnips'
+Plug 'itchyny/lightline.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'junegunn/limelight.vim'
+Plug 'junegunn/goyo.vim'
 
 call plug#end()
 
@@ -337,6 +349,23 @@ let g:aghighlight = 1
 let g:agprg = "ag --smart-case --column"
 let g:ag_apply_lmappings = 0
 let g:ag_apply_qmappings = 0
+
+" }}}
+" Lightline {{{
+
+let g:lightline = {
+    \ 'active': {
+    \   'left': [ [ 'mode', 'paste' ],
+    \           [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
+    \ },
+    \ 'component_function': {
+    \   'fugitive': 'MyFugitive',
+    \ },
+    \ }
+
+function! MyFugitive()
+    return exists('*fugitive#head') ? fugitive#head() : ''
+endfunction
 
 " }}}
 
