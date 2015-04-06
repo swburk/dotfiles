@@ -18,6 +18,7 @@ set wildignore+=*.o,*.obj,*.exe,*.dll " Compiled object files
 set wildignore+=*.pyc " Python byte code
 set wildignore+=*.bak,*.swp " Backups and swap files
 set wildignore+=*.DS_Store " OS X
+set shortmess+=aoOtTI " Shortens Vim messages to avoid 'HIT ENTER' prompts
 set sidescroll=1 " Show some context when side scrolling
 set notimeout ttimeout " Time out on key codes but not mappings
 set ttimeoutlen=10 " Time out after 10 milliseconds
@@ -34,7 +35,7 @@ set visualbell t_vb= " Turn off error bells
 set showcmd " Show unfinished commands
 set splitright " Opens vertical window to the right of current window
 set splitbelow " Opens horizontal window bellow current window
-set nolist " Show invisible characters
+set list " Show invisible characters
 set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮ " Set invisible characters
 set showbreak=… " Shown at the start of the line when wrap is on
 set colorcolumn=+1
@@ -42,9 +43,12 @@ syntax on " Enable syntax highlighting
 if !has('gui_running')
     set t_Co=256 " I have a 256-color terminal
 endif
-colorscheme badwolf " Set color scheme
+set bg=dark
+colorscheme gruvbox " Set color scheme
 set laststatus=2 " Always show the status line
-set statusline=[%f]%m%r%=%y[%l/%L:%v][%P] " Set statusline
+set statusline=\ %f\ \|\ %M\ %r%= " File name, modified and readonly flags
+set statusline+=%{&fileformat}\ \|\ %{&encoding}\ \|\ %{&filetype} " File information
+set statusline+=\ \|\ %l:%v\ \|\ %P\ " Line and column number and position in file
 
 " }}}
 " Backups {{{
@@ -86,10 +90,9 @@ set formatoptions=qnl1jc " How automatic formatting should be done
 " }}}
 " Folding {{{
 
-set foldenable " Enable folding
 set foldlevelstart=0 " All folds are closed by default
 
-function! FoldText() " {{{
+function! MyFoldText() " {{{
     " Width of window
     let gutterwidth = &fdc + (&relativenumber + &number) * &numberwidth
     let windowwidth = winwidth(0) - gutterwidth
@@ -118,7 +121,7 @@ function! FoldText() " {{{
 
     return line . ' ' . fillchars . ' ' . foldedlinecount . '… '
 endfunction " }}}
-set foldtext=FoldText()
+set foldtext=MyFoldText()
 
 " }}}
 " Mappings {{{
@@ -126,13 +129,6 @@ set foldtext=FoldText()
 " Convenience {{{
 
 let mapleader=','
-
-" Reformat paragraph or visual selection and return to cursor position
-nnoremap Q mzgqip`z
-vnoremap Q mzgq`z
-
-" Undo unsaved changes
-nnoremap U :e!<cr>
 
 " Y yanks to end of line
 nnoremap Y y$
@@ -142,6 +138,10 @@ nnoremap J @='mzJ`z'<cr>
 
 " Split line
 nnoremap S i<cr><esc>^mzk:silent! s/ \+$/<cr>:let @/=''<cr>`z
+
+" Reformat paragraph or visual selection and return to cursor position
+nnoremap Q mzgqip`z
+vnoremap Q mzgq`z
 
 " Space toggles fold
 nnoremap <space> za
@@ -160,8 +160,16 @@ nnoremap gV `[v`]
 nnoremap gs :%s//g<left><left>
 vnoremap gs :s//g<left><left>
 
+" Search with Ag
+nnoremap \ :Ag 
+
 " Strip trailing whitespace
-nnoremap <silent> d<space> mz:%s/\s\+$//ge<cr>:let @/=''<cr>`z
+function! StripTrailingWhitespace() "{{{
+    exe 'normal mz'
+    %s/\s\+$//ge
+    exe 'normal `z'
+endfunction " }}}
+nnoremap <silent> d<space> :call StripTrailingWhitespace()<cr>
 
 " Close all other folds
 nnoremap z. zMzvzz
@@ -171,9 +179,6 @@ nnoremap <silent> <c-n> :CtrlPBuffer<cr>
 
 " Navigate to directory of current file in current window
 nnoremap <leader>c :lcd %:p:h<bar>pwd<cr>
-
-" Make current program
-nnoremap <leader>m :make<cr>
 
 " Edit vimrc
 nnoremap <silent> <leader>v :tabe $MYVIMRC<cr>
@@ -207,10 +212,13 @@ nnoremap <silent> <leader>l :set list!<cr>
 nnoremap <silent> <leader>/ :nohlsearch<cr>
 
 function! ToggleLineNumbers() " {{{
-    if(&number)
+    if(&number && !&relativenumber)
         set nonumber
         set relativenumber
-    elseif(&relativenumber)
+    elseif(&relativenumber && !&number)
+        set number
+    elseif(&relativenumber && &number)
+        set nonumber
         set norelativenumber
     else
         set number
@@ -283,28 +291,16 @@ vnoremap # :<c-u>call <SID>VSetSearch()<CR>??<CR><c-o>
 " }}}
 " Autocommands {{{
 
-" Resize splits when entering windows and resizing Vim
-augroup ResizeWindows
-    au!
-    autocmd WinEnter,VimResized * :wincmd =
-augroup END
-
 " Source $MYVIMRC after saving
 augroup SourceVimrc
     au!
     autocmd BufWritePost $MYVIMRC source $MYVIMRC
 augroup END
 
-" Start Limelight after entering Goyo
-augroup SourceVimrc
-    au!
-    autocmd User GoyoEnter Limelight
-    autocmd User GoyoLeave Limelight!
-augroup END
-
 " }}}
 " Plugins {{{
 
+runtime macros/matchit.vim " Enable Matchit plugin
 call plug#begin('~/.vim/plugged')
 
 Plug 'rking/ag.vim'
@@ -314,18 +310,13 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tommcdo/vim-exchange'
 Plug 'SirVer/ultisnips'
-Plug 'itchyny/lightline.vim'
-Plug 'tpope/vim-fugitive'
-Plug 'junegunn/limelight.vim'
-Plug 'junegunn/goyo.vim'
+" Plug 'itchyny/lightline.vim'
+" Plug 'tpope/vim-fugitive'
+" Plug 'junegunn/limelight.vim'
+" Plug 'junegunn/goyo.vim'
 
 call plug#end()
 
-" Matchit {{{
-
-runtime macros/matchit.vim
-
-" }}}
 " Netrw {{{
 
 let g:netrw_banner = 0
@@ -345,27 +336,10 @@ let g:ctrlp_switch_buffer = 0
 " }}}
 " Ag.vim {{{
 
-let g:aghighlight = 1
-let g:agprg = "ag --smart-case --column"
+let g:ag_highlight = 1
+let g:ag_prg = "ag --smart-case --column"
 let g:ag_apply_lmappings = 0
 let g:ag_apply_qmappings = 0
-
-" }}}
-" Lightline {{{
-
-let g:lightline = {
-    \ 'active': {
-    \   'left': [ [ 'mode', 'paste' ],
-    \           [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
-    \ },
-    \ 'component_function': {
-    \   'fugitive': 'MyFugitive',
-    \ },
-    \ }
-
-function! MyFugitive()
-    return exists('*fugitive#head') ? fugitive#head() : ''
-endfunction
 
 " }}}
 

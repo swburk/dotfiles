@@ -102,8 +102,8 @@ set compose_format = "-- Mutt: Compose [%a Attachments]"
 # }}}
 # Contacts {{{
 
-set query_command = "lbdbq '%s'"
-# set query_command = "mu cfind --format=mutt-ab %s"
+# set query_command = "lbdbq '%s'"
+set query_command = "mu cfind --format=mutt-ab %s"
 set query_format = "  %2c %t %-20.20n  %a"
 
 # }}}
