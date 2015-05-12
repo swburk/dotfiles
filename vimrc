@@ -67,6 +67,7 @@ set hlsearch " Highlight search results
 set ignorecase " Ignore case in search patterns
 set smartcase " Only ignore case when search pattern is all lowercase
 set wrapscan " Continue search after hitting the bottom of the file
+set grepprg=ag\ --column
 
 " }}}
 " Whitespace {{{
@@ -159,9 +160,6 @@ nnoremap gV `[v`]
 " Substitute
 nnoremap gs :%s//g<left><left>
 vnoremap gs :s//g<left><left>
-
-" Search with Ag
-nnoremap \ :Ag 
 
 " Strip trailing whitespace
 function! StripTrailingWhitespace() "{{{
@@ -303,15 +301,13 @@ augroup END
 runtime macros/matchit.vim " Enable Matchit plugin
 call plug#begin('~/.vim/plugged')
 
-Plug 'rking/ag.vim'
 Plug 'kien/ctrlp.vim'
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tommcdo/vim-exchange'
 Plug 'SirVer/ultisnips'
-" Plug 'itchyny/lightline.vim'
-" Plug 'tpope/vim-fugitive'
+Plug 'justinmk/vim-gtfo'
 " Plug 'junegunn/limelight.vim'
 " Plug 'junegunn/goyo.vim'
 
@@ -332,14 +328,6 @@ if executable('ag')
 endif
 
 let g:ctrlp_switch_buffer = 0
-
-" }}}
-" Ag.vim {{{
-
-let g:ag_highlight = 1
-let g:ag_prg = "ag --smart-case --column"
-let g:ag_apply_lmappings = 0
-let g:ag_apply_qmappings = 0
 
 " }}}
 
