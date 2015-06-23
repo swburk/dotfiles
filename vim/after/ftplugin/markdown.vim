@@ -18,5 +18,5 @@ setl foldmethod=expr
 setl foldexpr=MarkdownFoldExpression(v:lnum)
 setl spell
 setl wrap
-set formatoptions=qnl1jc
+set formatoptions=aqnl1jc
 match none LongLine
