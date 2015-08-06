@@ -39,6 +39,7 @@ set list " Show invisible characters
 set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮ " Set invisible characters
 set showbreak=… " Shown at the start of the line when wrap is on
 set colorcolumn=+1
+set cursorline
 syntax on " Enable syntax highlighting
 if !has('gui_running')
     set t_Co=256 " I have a 256-color terminal
