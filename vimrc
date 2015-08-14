@@ -49,7 +49,7 @@ colorscheme gruvbox " Set color scheme
 set laststatus=2 " Always show the status line
 set statusline=\ %f\ \|\ %M\ %r%= " File name, modified and readonly flags
 set statusline+=%{&fileformat}\ \|\ %{&encoding}\ \|\ %{&filetype} " File information
-set statusline+=\ \|\ %l:%v\ \|\ %P\ " Line and column number and position in file
+set statusline+=\ \|\ %l\/%L:%v\ \|\ %P\ " Line and column number and position in file
 
 " }}}
 " Backups {{{
@@ -178,6 +178,9 @@ nnoremap <silent> <c-n> :CtrlPBuffer<cr>
 
 " Navigate to directory of current file in current window
 nnoremap <leader>c :lcd %:p:h<bar>pwd<cr>
+
+" Insert path of current file in current window
+nnoremap <leader>m i<c-r>=expand("%:p:h")<cr><esc>
 
 " Edit vimrc
 nnoremap <silent> <leader>v :tabe $MYVIMRC<cr>
@@ -309,8 +312,8 @@ Plug 'tpope/vim-surround'
 Plug 'tommcdo/vim-exchange'
 Plug 'SirVer/ultisnips'
 Plug 'justinmk/vim-gtfo'
-" Plug 'junegunn/limelight.vim'
-" Plug 'junegunn/goyo.vim'
+Plug 'cohama/lexima.vim'
+Plug 'junegunn/limelight.vim'
 
 call plug#end()
 
