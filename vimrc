@@ -309,10 +309,6 @@ Plug 'kien/ctrlp.vim'
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
-Plug 'tommcdo/vim-exchange'
-Plug 'SirVer/ultisnips'
-Plug 'justinmk/vim-gtfo'
-Plug 'cohama/lexima.vim'
 Plug 'junegunn/limelight.vim'
 
 call plug#end()
