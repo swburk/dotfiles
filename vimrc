@@ -40,16 +40,18 @@ set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮ " Set invisible characte
 set showbreak=… " Shown at the start of the line when wrap is on
 set colorcolumn=+1
 set cursorline
-syntax on " Enable syntax highlighting
-if !has('gui_running')
-    set t_Co=256 " I have a 256-color terminal
-endif
-set bg=dark
-colorscheme gruvbox " Set color scheme
 set laststatus=2 " Always show the status line
 set statusline=\ %f\ \|\ %M\ %r%= " File name, modified and readonly flags
 set statusline+=%{&fileformat}\ \|\ %{&encoding}\ \|\ %{&filetype} " File information
 set statusline+=\ \|\ %l\/%L:%v\ \|\ %P\ " Line and column number and position in file
+syntax enable " Enable syntax highlighting
+set bg=dark
+if has('gui_running')
+    colorscheme solarized
+else
+    set t_Co=256
+    colorscheme badwolf
+endif
 
 " }}}
 " Backups {{{
@@ -211,6 +213,7 @@ set pastetoggle=<leader>p
 nnoremap <silent> <leader>s :set spell!<cr>
 nnoremap <silent> <leader>w :set wrap!<cr>
 nnoremap <silent> <leader>l :set list!<cr>
+nnoremap <silent> <leader>r :Limelight!!<cr>
 nnoremap <silent> <leader>/ :nohlsearch<cr>
 
 function! ToggleLineNumbers() " {{{
