@@ -33,9 +33,11 @@ set cmdheight=2 " Avoid Press ENTER prompts
 set display=lastline " display the last line even if it's too long
 set visualbell t_vb= " Turn off error bells
 set showcmd " Show unfinished commands
+set showmode " Show current mode
+set number " Show line numbers
 set splitright " Opens vertical window to the right of current window
 set splitbelow " Opens horizontal window bellow current window
-set list " Show invisible characters
+set nolist " Show invisible characters
 set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮ " Set invisible characters
 set showbreak=… " Shown at the start of the line when wrap is on
 set colorcolumn=+1
@@ -88,7 +90,7 @@ set shiftround " Round indent to multiple of 'shiftwidth'
 
 set nowrap " Don't wrap long lines by default
 set linebreak " Don't break words when wrapping
-set textwidth=80 " Maximum line length
+set textwidth=79 " Maximum line length
 set formatoptions=qnl1jc " How automatic formatting should be done
 
 " }}}
@@ -182,13 +184,16 @@ nnoremap <silent> <c-n> :CtrlPBuffer<cr>
 nnoremap <leader>c :lcd %:p:h<bar>pwd<cr>
 
 " Insert path of current file in current window
-nnoremap <leader>m i<c-r>=expand("%:p:h")<cr><esc>
+nnoremap <leader>d i<c-r>=expand("%:p:h")<cr><esc>
+
+" Insert path of current file in current window
+nnoremap <leader>p :pwd<cr>
 
 " Edit vimrc
 nnoremap <silent> <leader>v :tabe $MYVIMRC<cr>
 
 " Delete buffer
-nnoremap <silent> <leader>x :bd<cr>
+nnoremap <silent> <leader>xx :bd<cr>
 
 " Delete buffer without changing window layout
 function! DeleteBuffer() " {{{
@@ -204,16 +209,17 @@ function! DeleteBuffer() " {{{
     exe 'tabn ' . s:ctab . '|' . s:cwin . 'wincmd w'
     exe 'bd' . s:bnum
 endfunction " }}}
-nnoremap <silent> <leader>d :call DeleteBuffer()<cr>
+nnoremap <silent> <leader>xd :call DeleteBuffer()<cr>
 
 " }}}
 " Toggles {{{
 
-set pastetoggle=<leader>p
+set pastetoggle=<F12>
 nnoremap <silent> <leader>s :set spell!<cr>
 nnoremap <silent> <leader>w :set wrap!<cr>
 nnoremap <silent> <leader>l :set list!<cr>
-nnoremap <silent> <leader>r :Limelight!!<cr>
+nnoremap <silent> <leader>e :Limelight!!<cr>
+nnoremap <silent> <leader>r :RainbowParenthesesToggle<cr>
 nnoremap <silent> <leader>/ :nohlsearch<cr>
 
 function! ToggleLineNumbers() " {{{
@@ -271,6 +277,12 @@ nnoremap ' `
 " Switch to alternate buffer
 nnoremap ` <c-^>
 
+" Navigate wrapped lines sanely
+nnoremap j gj
+nnoremap k gk
+vnoremap j gj
+vnoremap k gk
+
 " Repeat last f, t, F, or T in reverse
 nnoremap <leader><leader> ,
 vnoremap <leader><leader> ,
@@ -280,6 +292,10 @@ nnoremap <c-h> <c-w>h
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-l> <c-w>l
+
+" Find closing brackets, tags, etc.
+nnoremap <tab> %
+vnoremap <tab> %
 
 " Thanks to Scrooloose for visual */# mappings
 function! s:VSetSearch() " {{{
@@ -312,7 +328,8 @@ Plug 'kien/ctrlp.vim'
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
-Plug 'junegunn/limelight.vim'
+Plug 'junegunn/limelight.vim', { 'on': 'LimeLight' }
+Plug 'kien/rainbow_parentheses.vim', {'on': 'RainbowParenthesesToggle' }
 
 call plug#end()
 
