@@ -325,11 +325,14 @@ runtime macros/matchit.vim " Enable Matchit plugin
 call plug#begin('~/.vim/plugged')
 
 Plug 'kien/ctrlp.vim'
-Plug 'tomtom/tcomment_vim'
-Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'sjl/gundo.vim'
 Plug 'junegunn/limelight.vim', { 'on': 'LimeLight' }
 Plug 'kien/rainbow_parentheses.vim', {'on': 'RainbowParenthesesToggle' }
+Plug 'kana/vim-textobj-user'
+Plug 'glts/vim-textobj-comment'
 
 call plug#end()
 
