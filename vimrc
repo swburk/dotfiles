@@ -193,7 +193,7 @@ nnoremap <leader>p :pwd<cr>
 nnoremap <silent> <leader>v :tabe $MYVIMRC<cr>
 
 " Delete buffer
-nnoremap <silent> <leader>xx :bd<cr>
+nnoremap <silent> <leader>x :bd<cr>
 
 " Delete buffer without changing window layout
 function! DeleteBuffer() " {{{
@@ -209,7 +209,7 @@ function! DeleteBuffer() " {{{
     exe 'tabn ' . s:ctab . '|' . s:cwin . 'wincmd w'
     exe 'bd' . s:bnum
 endfunction " }}}
-nnoremap <silent> <leader>xd :call DeleteBuffer()<cr>
+nnoremap <silent> <leader>q :call DeleteBuffer()<cr>
 
 " }}}
 " Toggles {{{
