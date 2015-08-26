@@ -16,6 +16,7 @@ set wildignore+=*.git/,*.hg/ " Version control
 set wildignore+=*.jpg,*.jpeg,*.png,*.gif,*.bmp " Binary images
 set wildignore+=*.o,*.obj,*.exe,*.dll " Compiled object files
 set wildignore+=*.pyc " Python byte code
+set wildignore+=*.luac " Lua byte code
 set wildignore+=*.bak,*.swp " Backups and swap files
 set wildignore+=*.DS_Store " OS X
 set shortmess+=aoOtTI " Shortens Vim messages to avoid 'HIT ENTER' prompts
@@ -77,7 +78,7 @@ set grepprg=ag\ --column
 " }}}
 " Whitespace {{{
 
-set tabstop=4 " Width of literal tab characters
+set tabstop=8 " Width of literal tab characters
 set softtabstop=4 " Amount of whitespace to use in insert mode
 set shiftwidth=4 " Amount of whitespace to use in normal mode
 set expandtab " Use spaces in space of tabs of tabs
@@ -135,6 +136,7 @@ set foldtext=MyFoldText()
 " Convenience {{{
 
 let mapleader=','
+let maplocalleader='\\'
 
 " Y yanks to end of line
 nnoremap Y y$
@@ -160,19 +162,14 @@ inoremap <c-l> <c-x><c-l>
 cnoremap w!! w !sudo tee % >/dev/null
 
 " Select last changed text
-nnoremap gV `[v`]
+nnoremap gV `[V`]
 
 " Substitute
 nnoremap gs :%s//g<left><left>
 vnoremap gs :s//g<left><left>
 
 " Strip trailing whitespace
-function! StripTrailingWhitespace() "{{{
-    exe 'normal mz'
-    %s/\s\+$//ge
-    exe 'normal `z'
-endfunction " }}}
-nnoremap <silent> d<space> :call StripTrailingWhitespace()<cr>
+nnoremap <silent> d<space> mz:%s/\s\+$//e<cr>`z:let @/=''<cr>
 
 " Close all other folds
 nnoremap z. zMzvzz
@@ -180,17 +177,21 @@ nnoremap z. zMzvzz
 " Open CtrlP in buffer mode
 nnoremap <silent> <c-n> :CtrlPBuffer<cr>
 
-" Navigate to directory of current file in current window
+" Set working directory for current window to current buffer
 nnoremap <leader>c :lcd %:p:h<bar>pwd<cr>
 
+" Open netrw in current working directory
+nnoremap <leader>e :e.<cr>
+
 " Insert path of current file in current window
-nnoremap <leader>d i<c-r>=expand("%:p:h")<cr><esc>
+nnoremap <leader>d a<c-r>=expand("%:p:h")<cr><esc>
 
 " Insert path of current file in current window
 nnoremap <leader>p :pwd<cr>
 
-" Edit vimrc
-nnoremap <silent> <leader>v :tabe $MYVIMRC<cr>
+" Edit vim files
+nnoremap <silent> <leader>vv :tabe $MYVIMRC<cr>
+nnoremap <silent> <leader>vf :tabe ~/.vim/<cr>
 
 " Delete buffer
 nnoremap <silent> <leader>x :bd<cr>
@@ -218,8 +219,6 @@ set pastetoggle=<F12>
 nnoremap <silent> <leader>s :set spell!<cr>
 nnoremap <silent> <leader>w :set wrap!<cr>
 nnoremap <silent> <leader>l :set list!<cr>
-nnoremap <silent> <leader>e :Limelight!!<cr>
-nnoremap <silent> <leader>r :RainbowParenthesesToggle<cr>
 nnoremap <silent> <leader>/ :nohlsearch<cr>
 
 function! ToggleLineNumbers() " {{{
@@ -324,13 +323,10 @@ augroup END
 runtime macros/matchit.vim " Enable Matchit plugin
 call plug#begin('~/.vim/plugged')
 
-Plug 'kien/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
-Plug 'sjl/gundo.vim'
-Plug 'junegunn/limelight.vim', { 'on': 'LimeLight' }
-Plug 'kien/rainbow_parentheses.vim', {'on': 'RainbowParenthesesToggle' }
 Plug 'kana/vim-textobj-user'
 Plug 'glts/vim-textobj-comment'
 
@@ -338,19 +334,17 @@ call plug#end()
 
 " Netrw {{{
 
+" Don't show the help banner
 let g:netrw_banner = 0
-let g:netrw_sort_sequence = '\/$,*'
-let g:netrw_list_hide = join(map(split(&wildignore, ',\*'), '".*" . escape(v:val, ".*$~") . "$"'), ',') . ',^\.\.\=/\=$'
 
 " }}}
 " CtrlP {{{
 
-if executable('ag')
-    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-    let g:ctrlp_use_caching = 0
-endif
-
+" Don't jump to another window when opening a buffer
 let g:ctrlp_switch_buffer = 0
+
+" CtrlP uses the same working directory as Vim
+let g:ctrlp_working_path_mode = 0
 
 " }}}
 
