@@ -1,1 +1,1 @@
-call tcomment#DefineType('cf', '<!--- %s --->')
+setlocal commentstring=<!---\ %s\ --->
