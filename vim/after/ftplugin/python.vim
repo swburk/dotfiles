@@ -4,13 +4,13 @@ function! PythonFoldExpression(lnum)
     let nlnum = nextnonblank(a:lnum + 1)
     let nind = indent(nlnum)
 
-    if line =~ '^\s*\(class\|def\)\s\='
+    if line =~ '^\s*\(class\|def\|if\|elif\|else\|for\|while\|try\|except\|with\)\s\='
         let w:cind = ind
-        return ">" . (ind / &sw + 1)
+        return ">" . (ind / &shiftwidth + 1)
     endif
 
     if nind <= w:cind
-        return "<" . (nind / &sw + 1)
+        return "<" . (nind / &shiftwidth + 1)
     endif
 
     return "="
@@ -18,3 +18,4 @@ endfunction
 
 setl foldmethod=expr
 setl foldexpr=PythonFoldExpression(v:lnum)
+setl foldminlines=2

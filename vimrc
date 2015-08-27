@@ -39,7 +39,7 @@ set number " Show line numbers
 set splitright " Opens vertical window to the right of current window
 set splitbelow " Opens horizontal window bellow current window
 set nolist " Show invisible characters
-set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮ " Set invisible characters
+set listchars=tab:▸\ ,trail:.,eol:¬,extends:❯,precedes:❮ " Set invisible characters
 set showbreak=… " Shown at the start of the line when wrap is on
 set colorcolumn=+1
 set cursorline
@@ -57,7 +57,7 @@ else
 endif
 
 " }}}
-" Backups {{{
+" Backups & Undo {{{
 
 set noswapfile " Don't create swap files
 set nobackup " Don't create backup files
@@ -73,7 +73,6 @@ set hlsearch " Highlight search results
 set ignorecase " Ignore case in search patterns
 set smartcase " Only ignore case when search pattern is all lowercase
 set wrapscan " Continue search after hitting the bottom of the file
-set grepprg=ag\ --column
 
 " }}}
 " Whitespace {{{
@@ -136,7 +135,7 @@ set foldtext=MyFoldText()
 " Convenience {{{
 
 let mapleader=','
-let maplocalleader='\\'
+let maplocalleader='\'
 
 " Y yanks to end of line
 nnoremap Y y$
@@ -158,8 +157,8 @@ nnoremap <space> za
 inoremap <c-f> <c-x><c-f>
 inoremap <c-l> <c-x><c-l>
 
-" Save as root
-cnoremap w!! w !sudo tee % >/dev/null
+" Open CtrlP in buffer mode
+nnoremap <silent> <c-n> :CtrlPBuffer<cr>
 
 " Select last changed text
 nnoremap gV `[V`]
@@ -168,14 +167,14 @@ nnoremap gV `[V`]
 nnoremap gs :%s//g<left><left>
 vnoremap gs :s//g<left><left>
 
-" Strip trailing whitespace
-nnoremap <silent> d<space> mz:%s/\s\+$//e<cr>`z:let @/=''<cr>
-
-" Close all other folds
+" Focus current fold
 nnoremap z. zMzvzz
 
-" Open CtrlP in buffer mode
-nnoremap <silent> <c-n> :CtrlPBuffer<cr>
+" Save as root
+cnoremap w!! w !sudo tee % >/dev/null
+
+" Strip trailing whitespace
+nnoremap <silent> d<space> mz:%s/\s\+$//e<cr>`z:let @/=''<cr>
 
 " Set working directory for current window to current buffer
 nnoremap <leader>c :lcd %:p:h<bar>pwd<cr>
@@ -193,9 +192,6 @@ nnoremap <leader>p :pwd<cr>
 nnoremap <silent> <leader>vv :tabe $MYVIMRC<cr>
 nnoremap <silent> <leader>vf :tabe ~/.vim/<cr>
 
-" Delete buffer
-nnoremap <silent> <leader>x :bd<cr>
-
 " Delete buffer without changing window layout
 function! DeleteBuffer() " {{{
     let s:bnum = bufnr('%')
@@ -210,7 +206,7 @@ function! DeleteBuffer() " {{{
     exe 'tabn ' . s:ctab . '|' . s:cwin . 'wincmd w'
     exe 'bd' . s:bnum
 endfunction " }}}
-nnoremap <silent> <leader>q :call DeleteBuffer()<cr>
+nnoremap <silent> <leader>x :call DeleteBuffer()<cr>
 
 " }}}
 " Toggles {{{
@@ -291,10 +287,6 @@ nnoremap <c-h> <c-w>h
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-l> <c-w>l
-
-" Find closing brackets, tags, etc.
-nnoremap <tab> %
-vnoremap <tab> %
 
 " Thanks to Scrooloose for visual */# mappings
 function! s:VSetSearch() " {{{
