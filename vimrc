@@ -49,12 +49,8 @@ set statusline+=%{&fileformat}\ \|\ %{&encoding}\ \|\ %{&filetype} " File inform
 set statusline+=\ \|\ %l\/%L:%v\ \|\ %P\ " Line and column number and position in file
 syntax enable " Enable syntax highlighting
 set bg=dark
-if has('gui_running')
-    colorscheme solarized
-else
-    set t_Co=256
-    colorscheme badwolf
-endif
+set t_Co=256
+colorscheme badwolf
 
 " }}}
 " Backups & Undo {{{
