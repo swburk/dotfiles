@@ -1,11 +1,13 @@
 " General {{{
 
+filetype plugin indent on
 set encoding=utf-8 " Set character encoding to Unicode
 set modelines=0 " Don't read modelines
 set history=1000 " Increase command line history
 set autoread " Reload file if changed outside Vim
 set ttyfast " I have a fast terminal
 set hidden " Hide unsaved buffers
+set confirm " Ask to write files when commands fail
 set backspace=indent,eol,start " Backspace over everything in insert mode
 set nrformats-=octal " Increment numbers with leading zeros correctly
 set nojoinspaces " Don't add spaces when joining lines
@@ -47,7 +49,7 @@ set laststatus=2 " Always show the status line
 set statusline=\ %f\ \|\ %M\ %r%= " File name, modified and readonly flags
 set statusline+=%{&fileformat}\ \|\ %{&encoding}\ \|\ %{&filetype} " File information
 set statusline+=\ \|\ %l\/%L:%v\ \|\ %P\ " Line and column number and position in file
-syntax enable " Enable syntax highlighting
+syntax on " Enable syntax highlighting
 set bg=dark
 set t_Co=256
 colorscheme badwolf
@@ -77,8 +79,7 @@ set tabstop=8 " Width of literal tab characters
 set softtabstop=4 " Amount of whitespace to use in insert mode
 set shiftwidth=4 " Amount of whitespace to use in normal mode
 set expandtab " Use spaces in space of tabs of tabs
-set autoindent " Keep indentation level for new lines
-set smartindent " Smarter auto-indenting when creating a new line
+set autoindent " Keep current indentation level when creating new lines
 set shiftround " Round indent to multiple of 'shiftwidth'
 
 " }}}
