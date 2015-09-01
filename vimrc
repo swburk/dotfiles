@@ -318,6 +318,8 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'kana/vim-textobj-user'
 Plug 'glts/vim-textobj-comment'
+Plug 'scrooloose/syntastic'
+Plug 'nathanaelkane/vim-indent-guides'
 
 call plug#end()
 
@@ -334,6 +336,18 @@ let g:ctrlp_switch_buffer = 0
 
 " CtrlP uses the same working directory as Vim
 let g:ctrlp_working_path_mode = 0
+
+" }}}
+" Syntastic {{{
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 " }}}
 
