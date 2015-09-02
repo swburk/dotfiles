@@ -318,8 +318,10 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'kana/vim-textobj-user'
 Plug 'glts/vim-textobj-comment'
-Plug 'scrooloose/syntastic'
 Plug 'nathanaelkane/vim-indent-guides'
+Plug 'scrooloose/syntastic'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
 call plug#end()
 
@@ -336,6 +338,9 @@ let g:ctrlp_switch_buffer = 0
 
 " CtrlP uses the same working directory as Vim
 let g:ctrlp_working_path_mode = 0
+
+" Set the size for the match window
+let g:ctrlp_match_window = 'max:20'
 
 " }}}
 " Syntastic {{{
