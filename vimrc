@@ -93,7 +93,7 @@ set formatoptions=qnl1jc " How automatic formatting should be done
 " }}}
 " Folding {{{
 
-set foldlevelstart=0 " All folds are closed by default
+set foldlevelstart=99 " All folds are open by default
 
 function! MyFoldText() " {{{
     " Width of window
@@ -143,22 +143,11 @@ nnoremap J @='mzJ`z'<cr>
 " Split line
 nnoremap S i<cr><esc>^mzk:silent! s/ \+$/<cr>:let @/=''<cr>`z
 
-" Reformat paragraph or visual selection and return to cursor position
-nnoremap Q mzgqip`z
-vnoremap Q mzgq`z
-
 " Space toggles fold
 nnoremap <space> za
 
-" Complete filenames/whole lines in insert mode
-inoremap <c-f> <c-x><c-f>
-inoremap <c-l> <c-x><c-l>
-
-" Open CtrlP in buffer mode
-nnoremap <silent> <c-n> :CtrlPBuffer<cr>
-
 " Select last changed text
-nnoremap gV `[V`]
+nnoremap gV `[v`]
 
 " Substitute
 nnoremap gs :%s//g<left><left>
@@ -171,19 +160,15 @@ nnoremap z. zMzvzz
 cnoremap w!! w !sudo tee % >/dev/null
 
 " Strip trailing whitespace
-nnoremap <silent> d<space> mz:%s/\s\+$//e<cr>`z:let @/=''<cr>
+nnoremap <silent> <leader><space> mz:%s/\s\+$//e<cr>`z:let @/=''<cr>
+
+" Yank to system clipboard
+nnoremap <leader>yy "*yy
+nnoremap <leader>ya gg"*yG
+vnoremap <leader>y "*y
 
 " Set working directory for current window to current buffer
 nnoremap <leader>c :lcd %:p:h<bar>pwd<cr>
-
-" Open netrw in current working directory
-nnoremap <leader>e :e.<cr>
-
-" Insert path of current file in current window
-nnoremap <leader>d a<c-r>=expand("%:p:h")<cr><esc>
-
-" Insert path of current file in current window
-nnoremap <leader>p :pwd<cr>
 
 " Edit vim files
 nnoremap <silent> <leader>vv :tabe $MYVIMRC<cr>
@@ -208,7 +193,7 @@ nnoremap <silent> <leader>x :call DeleteBuffer()<cr>
 " }}}
 " Toggles {{{
 
-set pastetoggle=<F12>
+set pastetoggle=<leader>p
 nnoremap <silent> <leader>s :set spell!<cr>
 nnoremap <silent> <leader>w :set wrap!<cr>
 nnoremap <silent> <leader>l :set list!<cr>
@@ -257,11 +242,14 @@ nnoremap <silent> ]a :<c-u><c-r>=v:count1<cr>next<cr>
 nnoremap <silent> ]q :<c-u><c-r>=v:count1<cr>cnext<cr>
 nnoremap <silent> [q :<c-u><c-r>=v:count1<cr>cprev<cr>
 
+" Navigate location list, idea stolen from unimpared
+nnoremap <silent> ]l :<c-u><c-r>=v:count1<cr>lnext<cr>
+nnoremap <silent> [l :<c-u><c-r>=v:count1<cr>lprev<cr>
+
 " Command line navigation
-cnoremap <c-a> <home>
-cnoremap <c-e> <end>
-cnoremap <c-f> <right>
-cnoremap <c-b> <left>
+" cnoremap <c-a> <home>
+" cnoremap <c-f> <right>
+" cnoremap <c-b> <left>
 
 " Always jump to exact position of mark
 nnoremap ' `
@@ -269,7 +257,7 @@ nnoremap ' `
 " Switch to alternate buffer
 nnoremap ` <c-^>
 
-" Navigate wrapped lines sanely
+" Navigate wrapped lines
 nnoremap j gj
 nnoremap k gk
 vnoremap j gj
@@ -285,7 +273,7 @@ nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-l> <c-w>l
 
-" Thanks to Scrooloose for visual */# mappings
+" Visual */# mappings (Thanks to Scrooloose)
 function! s:VSetSearch() " {{{
     let temp = @@
     norm! gvy
@@ -345,9 +333,10 @@ let g:ctrlp_match_window = 'max:20'
 " }}}
 " Syntastic {{{
 
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+let g:syntastic_mode_map = {
+        \ "mode": "passive",
+        \ "active_filetypes": ["python", "cpp", "c"],
+        \ "passive_filetypes": [] }
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
