@@ -11,14 +11,13 @@ set confirm " Ask to write files when commands fail
 set backspace=indent,eol,start " Backspace over everything in insert mode
 set nrformats-=octal " Increment numbers with leading zeros correctly
 set nojoinspaces " Don't add spaces when joining lines
-set complete=.,w,b,u,t,i,kspell " Sources for insert mode completion
+set complete=.,w,b,u,t,i " Sources for insert mode completion
 set wildmenu " Command line completion
-set wildmode=longest,list,full " Make completion act like Zsh
+set wildmode=list:longest,full " Make completion act like Zsh
 set wildignore+=*.git/,*.hg/ " Version control
-set wildignore+=*.jpg,*.jpeg,*.png,*.gif,*.bmp " Binary images
+set wildignore+=*.jpg,*.jpeg,*.png,*.gif,*.bmp " Images
 set wildignore+=*.o,*.obj,*.exe,*.dll " Compiled object files
-set wildignore+=*.pyc " Python byte code
-set wildignore+=*.luac " Lua byte code
+set wildignore+=*.pyc,*.luac " Byte code
 set wildignore+=*.bak,*.swp " Backups and swap files
 set wildignore+=*.DS_Store " OS X
 set shortmess+=aoOtTI " Shortens Vim messages to avoid 'HIT ENTER' prompts
