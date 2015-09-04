@@ -1,3 +1,59 @@
+" Plugins {{{
+
+runtime macros/matchit.vim " Enable Matchit plugin
+call plug#begin('~/.vim/plugged')
+
+" Plugins
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'kana/vim-textobj-user'
+Plug 'glts/vim-textobj-comment'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'scrooloose/syntastic'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+
+" Colorschemes
+Plug 'morhetz/gruvbox'
+Plug 'sjl/badwolf'
+
+call plug#end()
+
+" Netrw {{{
+
+" Don't show the help banner
+let g:netrw_banner = 0
+
+" }}}
+" CtrlP {{{
+
+" Don't jump to another window when opening a buffer
+let g:ctrlp_switch_buffer = 0
+
+" CtrlP uses the same working directory as Vim
+let g:ctrlp_working_path_mode = 0
+
+" Set the size for the match window
+let g:ctrlp_match_window = 'max:20'
+
+" }}}
+" Syntastic {{{
+
+let g:syntastic_mode_map = {
+        \ "mode": "passive",
+        \ "active_filetypes": ["python", "cpp", "c"],
+        \ "passive_filetypes": [] }
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+" }}}
+
+" }}}
 " General {{{
 
 filetype plugin indent on
@@ -13,7 +69,7 @@ set nrformats-=octal " Increment numbers with leading zeros correctly
 set nojoinspaces " Don't add spaces when joining lines
 set complete=.,w,b,u,t,i " Sources for insert mode completion
 set wildmenu " Command line completion
-set wildmode=list:longest,full " Make completion act like Zsh
+set wildmode=longest,list,full " Make completion act like Zsh
 set wildignore+=*.git/,*.hg/ " Version control
 set wildignore+=*.jpg,*.jpeg,*.png,*.gif,*.bmp " Images
 set wildignore+=*.o,*.obj,*.exe,*.dll " Compiled object files
@@ -178,8 +234,8 @@ function! DeleteBuffer() " {{{
     let s:bnum = bufnr('%')
     let s:cwin = winnr()
     let s:ctab = tabpagenr()
-    for i in range(1,tabpagenr('$'))
-        exe 'tabn ' . i
+    for s:i in range(1,tabpagenr('$'))
+        exe 'tabn ' . s:i
         while bufwinnr(s:bnum) != -1
             exe bufwinnr(s:bnum) . 'wincmd w|bn'
         endwhile
@@ -246,9 +302,9 @@ nnoremap <silent> ]l :<c-u><c-r>=v:count1<cr>lnext<cr>
 nnoremap <silent> [l :<c-u><c-r>=v:count1<cr>lprev<cr>
 
 " Command line navigation
-" cnoremap <c-a> <home>
-" cnoremap <c-f> <right>
-" cnoremap <c-b> <left>
+cnoremap <c-a> <home>
+cnoremap <c-f> <right>
+cnoremap <c-b> <left>
 
 " Always jump to exact position of mark
 nnoremap ' `
@@ -292,56 +348,5 @@ augroup SourceVimrc
     au!
     autocmd BufWritePost $MYVIMRC source $MYVIMRC
 augroup END
-
-" }}}
-" Plugins {{{
-
-runtime macros/matchit.vim " Enable Matchit plugin
-call plug#begin('~/.vim/plugged')
-
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-repeat'
-Plug 'kana/vim-textobj-user'
-Plug 'glts/vim-textobj-comment'
-Plug 'nathanaelkane/vim-indent-guides'
-Plug 'scrooloose/syntastic'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-
-call plug#end()
-
-" Netrw {{{
-
-" Don't show the help banner
-let g:netrw_banner = 0
-
-" }}}
-" CtrlP {{{
-
-" Don't jump to another window when opening a buffer
-let g:ctrlp_switch_buffer = 0
-
-" CtrlP uses the same working directory as Vim
-let g:ctrlp_working_path_mode = 0
-
-" Set the size for the match window
-let g:ctrlp_match_window = 'max:20'
-
-" }}}
-" Syntastic {{{
-
-let g:syntastic_mode_map = {
-        \ "mode": "passive",
-        \ "active_filetypes": ["python", "cpp", "c"],
-        \ "passive_filetypes": [] }
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-" }}}
 
 " }}}
