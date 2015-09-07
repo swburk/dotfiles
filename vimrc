@@ -182,6 +182,12 @@ vnoremap gs :s//g<left><left>
 " Focus current fold
 nnoremap z. zMzvzz
 
+" Resize windows
+noremap <up> <C-W>+
+noremap <down> <C-W>-
+noremap <left> <C-W><
+noremap <right> <C-W>>
+
 " Save as root
 cnoremap w!! w !sudo tee % >/dev/null
 

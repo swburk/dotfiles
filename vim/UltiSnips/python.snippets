@@ -1,0 +1,53 @@
+snippet #! "Shebang header for python scripts" b
+#!/usr/bin/env python
+
+$0
+endsnippet
+
+snippet if "if statement" b
+if ${1:condition}:
+	${2:${VISUAL:pass}}
+endsnippet
+
+snippet while "while loop" b
+while ${1:condition}:
+	${2:${VISUAL:pass}}
+endsnippet
+
+snippet for "for loop" b
+for ${1:item} in ${2:iterable}:
+	${3:${VISUAL:pass}}
+endsnippet
+
+snippet try "try statement" b
+try:
+	${1:${VISUAL:pass}}
+except:
+	${2:pass}
+endsnippet
+
+snippet with "with statement" b
+with ${1:item} as ${2:var}:
+	${3:pass}
+endsnippet
+
+snippet def "function definition" b
+def ${1:function_name}(${2:parameters})
+	${3:${VISUAL:pass}}
+endsnippet
+
+snippet mp "mediaPanel boilerplate" b
+#!/usr/bin/python
+
+import os
+import sys
+sys.path.insert(0, '/home/mediapanel/scripts/')
+from NWLib import processCount, setLogLevel$1
+
+setLogLevel(sys.argv)
+
+if processCount('/usr/bin/python %s' % os.path.realpath(__file__)) > 1:
+	logging.critical('ALREADY RUNNING')
+else:
+	${2:pass}
+endsnippet
