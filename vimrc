@@ -1,4 +1,4 @@
-" Plugins {{{
+" vim-plug {{{
 
 runtime macros/matchit.vim " Enable Matchit plugin
 call plug#begin('~/.vim/plugged')
@@ -11,9 +11,8 @@ Plug 'tpope/vim-repeat'
 Plug 'kana/vim-textobj-user'
 Plug 'glts/vim-textobj-comment'
 Plug 'nathanaelkane/vim-indent-guides'
-Plug 'scrooloose/syntastic'
 Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+Plug 'tommcdo/vim-exchange'
 
 " Colorschemes
 Plug 'morhetz/gruvbox'
@@ -21,37 +20,6 @@ Plug 'sjl/badwolf'
 
 call plug#end()
 
-" Netrw {{{
-
-" Don't show the help banner
-let g:netrw_banner = 0
-
-" }}}
-" CtrlP {{{
-
-" Don't jump to another window when opening a buffer
-let g:ctrlp_switch_buffer = 0
-
-" CtrlP uses the same working directory as Vim
-let g:ctrlp_working_path_mode = 0
-
-" Set the size for the match window
-let g:ctrlp_match_window = 'max:20'
-
-" }}}
-" Syntastic {{{
-
-let g:syntastic_mode_map = {
-        \ "mode": "passive",
-        \ "active_filetypes": ["python", "cpp", "c"],
-        \ "passive_filetypes": [] }
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-" }}}
 
 " }}}
 " General {{{
@@ -77,7 +45,7 @@ set wildignore+=*.pyc,*.luac " Byte code
 set wildignore+=*.bak,*.swp " Backups and swap files
 set wildignore+=*.DS_Store " OS X
 set shortmess+=aoOtTI " Shortens Vim messages to avoid 'HIT ENTER' prompts
-set sidescroll=1 " Show some context when side scrolling
+" set sidescroll=1 " Show some context when side scrolling
 set notimeout ttimeout " Time out on key codes but not mappings
 set ttimeoutlen=10 " Time out after 10 milliseconds
 set spelllang=en_us " Set language for spell checking
@@ -103,7 +71,7 @@ set cursorline
 set laststatus=2 " Always show the status line
 set statusline=\ %f\ \|\ %M\ %r%= " File name, modified and readonly flags
 set statusline+=%{&fileformat}\ \|\ %{&encoding}\ \|\ %{&filetype} " File information
-set statusline+=\ \|\ %l\/%L:%v\ \|\ %P\ " Line and column number and position in file
+set statusline+=\ \|\ L\ %l\/%L\ C\ %v\ \|\ %P\ " Line and column number and position in file
 syntax on " Enable syntax highlighting
 set bg=dark
 set t_Co=256
@@ -184,7 +152,7 @@ set foldtext=MyFoldText()
 " }}}
 " Mappings {{{
 
-" Convenience {{{
+" General {{{
 
 let mapleader=','
 let maplocalleader='\'
@@ -194,6 +162,9 @@ nnoremap Y y$
 
 " Return to original cursor position after joining lines
 nnoremap J @='mzJ`z'<cr>
+
+" Check to see if files have been changed outside of vim
+nnoremap Q :checktime<cr>
 
 " Split line
 nnoremap S i<cr><esc>^mzk:silent! s/ \+$/<cr>:let @/=''<cr>`z
@@ -253,6 +224,7 @@ nnoremap <silent> <leader>s :set spell!<cr>
 nnoremap <silent> <leader>w :set wrap!<cr>
 nnoremap <silent> <leader>l :set list!<cr>
 nnoremap <silent> <leader>/ :nohlsearch<cr>
+nnoremap <silent> <Leader>i <Plug>IndentGuidesToggle
 
 function! ToggleLineNumbers() " {{{
     if(&number && !&relativenumber)
@@ -268,19 +240,6 @@ function! ToggleLineNumbers() " {{{
     endif
 endfunction " }}}
 nnoremap <silent> <leader>n :call ToggleLineNumbers()<cr>
-
-function! ToggleFoldColumn(count) " {{{
-    if a:count > 0
-        let &foldcolumn=a:count
-    else
-        if(&foldcolumn)
-            let &foldcolumn=0
-        else
-            let &foldcolumn=4
-        endif
-    endif
-endfunction " }}}
-nnoremap <silent> <leader>f :<c-u>call ToggleFoldColumn(v:count)<cr>
 
 " }}}
 " Navigation {{{
@@ -348,5 +307,33 @@ augroup SourceVimrc
     au!
     autocmd BufWritePost $MYVIMRC source $MYVIMRC
 augroup END
+
+" }}}
+" Plugin Configuration {{{
+"
+" Netrw {{{
+
+" Don't show the help banner
+let g:netrw_banner = 0
+
+" }}}
+" CtrlP {{{
+
+" Don't jump to another window when opening a buffer
+let g:ctrlp_switch_buffer = 0
+
+" CtrlP uses the same working directory as Vim
+let g:ctrlp_working_path_mode = 0
+
+" Set the size for the match window
+let g:ctrlp_match_window = 'max:20'
+
+" }}}
+" Indent Guides {{{
+
+" Don't use the default mapping
+let g:indent_guides_default_mapping = 0
+
+" }}}
 
 " }}}
