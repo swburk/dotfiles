@@ -22,8 +22,9 @@ call plug#end()
 
 
 " }}}
-" General {{{
+" Basic {{{
 
+" General
 filetype plugin indent on
 set encoding=utf-8
 set modelines=0
@@ -48,9 +49,35 @@ set notimeout ttimeout
 set ttimeoutlen=10
 set virtualedit=block
 
-" }}}
-" Display {{{
+" Backups & Undo
+set noswapfile
+set nobackup
+set nowritebackup
+set undofile
+set undodir=~/.vim/undo
 
+" Search
+set incsearch
+set hlsearch
+set ignorecase
+set smartcase
+set wrapscan
+
+" Whitespace
+set tabstop=8
+set softtabstop=4
+set shiftwidth=4
+set expandtab
+set autoindent
+set shiftround
+
+" Wrapping
+set nowrap
+set linebreak
+set textwidth=79
+set formatoptions=qrn1jc
+
+" Display
 set lazyredraw
 set cmdheight=2
 set visualbell t_vb=
@@ -72,42 +99,6 @@ syntax on
 set bg=dark
 set t_Co=256
 colorscheme badwolf
-
-" }}}
-" Backups & Undo {{{
-
-set noswapfile
-set nobackup
-set nowritebackup
-set undofile
-set undodir=~/.vim/undo
-
-" }}}
-" Search {{{
-
-set incsearch
-set hlsearch
-set ignorecase
-set smartcase
-set wrapscan
-
-" }}}
-" Whitespace {{{
-
-set tabstop=8
-set softtabstop=4
-set shiftwidth=4
-set expandtab
-set autoindent
-set shiftround
-
-" }}}
-" Wrapping {{{
-
-set nowrap
-set linebreak
-set textwidth=79
-set formatoptions=qrn1jc
 
 " }}}
 " Folding {{{
@@ -308,7 +299,7 @@ augroup SourceVimrc
 augroup END
 
 " Only show cursorline in current window
-augroup cline
+augroup HideCursorline
     au!
     autocmd WinLeave * set nocursorline
     autocmd WinEnter * set cursorline
