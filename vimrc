@@ -1,6 +1,6 @@
 " vim-plug {{{
 
-runtime macros/matchit.vim " Enable Matchit plugin
+runtime macros/matchit.vim
 call plug#begin('~/.vim/plugged')
 
 " Plugins
@@ -25,53 +25,50 @@ call plug#end()
 " General {{{
 
 filetype plugin indent on
-set encoding=utf-8 " Set character encoding to Unicode
-set modelines=0 " Don't read modelines
-set history=1000 " Increase command line history
-set autoread " Reload file if changed outside Vim
-set ttyfast " I have a fast terminal
-set hidden " Hide unsaved buffers
-set confirm " Ask to write files when commands fail
-set backspace=indent,eol,start " Backspace over everything in insert mode
-set nrformats-=octal " Increment numbers with leading zeros correctly
-set nojoinspaces " Don't add spaces when joining lines
-set complete=.,w,b,u,t,i " Sources for insert mode completion
-set wildmenu " Command line completion
-set wildmode=longest,list,full " Make completion act like Zsh
+set encoding=utf-8
+set modelines=0
+set history=1000
+set autoread
+set ttyfast
+set hidden
+set confirm
+set backspace=indent,eol,start
+set nrformats-=octal
+set nojoinspaces
+set wildmenu
+set wildmode=longest,list,full
 set wildignore+=*.git/,*.hg/ " Version control
 set wildignore+=*.jpg,*.jpeg,*.png,*.gif,*.bmp " Images
 set wildignore+=*.o,*.obj,*.exe,*.dll " Compiled object files
 set wildignore+=*.pyc,*.luac " Byte code
 set wildignore+=*.bak,*.swp " Backups and swap files
 set wildignore+=*.DS_Store " OS X
-set shortmess+=aoOtTI " Shortens Vim messages to avoid 'HIT ENTER' prompts
-set notimeout ttimeout " Time out on key codes but not mappings
-set ttimeoutlen=10 " Time out after 10 milliseconds
-set spelllang=en_us " Set language for spell checking
-set virtualedit=block " Allow virtual editing in visual block mode
+set shortmess+=aoOtTI
+set notimeout ttimeout
+set ttimeoutlen=10
+set virtualedit=block
 
 " }}}
 " Display {{{
 
-set lazyredraw " Don't redraw screen until the macro has finished
-set cmdheight=2 " Avoid Press ENTER prompts
-set display=lastline " display the last line even if it's too long
-set visualbell t_vb= " Turn off error bells
-set showcmd " Show unfinished commands
-set showmode " Show current mode
-set number " Show line numbers
-set splitright " Opens vertical window to the right of current window
-set splitbelow " Opens horizontal window bellow current window
-set nolist " Show invisible characters
-set listchars=tab:▸\ ,trail:.,eol:¬,extends:❯,precedes:❮ " Set invisible characters
-set showbreak=… " Shown at the start of the line when wrap is on
+set lazyredraw
+set cmdheight=2
+set visualbell t_vb=
+set showcmd
+set showmode
+set number
+set splitright
+set splitbelow
+set list
+set listchars=tab:▸\ ,trail:.,eol:¬,extends:❯,precedes:❮
+set showbreak=…
 set colorcolumn=+1
 set cursorline
-set laststatus=2 " Always show the status line
+set laststatus=2
 set statusline=\ %f\ \|\ %M\ %r%= " File name, modified and readonly flags
 set statusline+=%{&fileformat}\ \|\ %{&encoding}\ \|\ %{&filetype} " File information
-set statusline+=\ \|\ L\ %l\/%L\ C\ %v\ \|\ %P\ " Line and column number and position in file
-syntax on " Enable syntax highlighting
+set statusline+=\ \|\ L\ %l\/%L\ C\ %v\ \|\ %P\ " Line number, column number, and position in file
+syntax on
 set bg=dark
 set t_Co=256
 colorscheme badwolf
@@ -79,43 +76,43 @@ colorscheme badwolf
 " }}}
 " Backups & Undo {{{
 
-set noswapfile " Don't create swap files
-set nobackup " Don't create backup files
-set nowritebackup " Don't ever create backup files
-set undofile " Persistent undo across sessions
-set undodir=~/.vim/undo " Set undo directory
+set noswapfile
+set nobackup
+set nowritebackup
+set undofile
+set undodir=~/.vim/undo
 
 " }}}
 " Search {{{
 
-set incsearch " Show search results as you type
-set hlsearch " Highlight search results
-set ignorecase " Ignore case in search patterns
-set smartcase " Only ignore case when search pattern is all lowercase
-set wrapscan " Continue search after hitting the bottom of the file
+set incsearch
+set hlsearch
+set ignorecase
+set smartcase
+set wrapscan
 
 " }}}
 " Whitespace {{{
 
-set tabstop=8 " Width of literal tab characters
-set softtabstop=4 " Amount of whitespace to use in insert mode
-set shiftwidth=4 " Amount of whitespace to use in normal mode
-set expandtab " Use spaces in space of tabs of tabs
-set autoindent " Keep current indentation level when creating new lines
-set shiftround " Round indent to multiple of 'shiftwidth'
+set tabstop=8
+set softtabstop=4
+set shiftwidth=4
+set expandtab
+set autoindent
+set shiftround
 
 " }}}
 " Wrapping {{{
 
-set nowrap " Don't wrap long lines by default
-set linebreak " Don't break words when wrapping
-set textwidth=79 " Maximum line length
-set formatoptions=qrn1jc " How automatic formatting should be done
+set nowrap
+set linebreak
+set textwidth=79
+set formatoptions=qrn1jc
 
 " }}}
 " Folding {{{
 
-set foldlevelstart=99 " All folds are open by default
+set foldlevelstart=99
 
 function! MyFoldText() " {{{
     " Width of window
@@ -161,9 +158,6 @@ nnoremap Y y$
 
 " Return to original cursor position after joining lines
 nnoremap J @='mzJ`z'<cr>
-
-" Check to see if files have been changed outside of vim
-nnoremap Q :checktime<cr>
 
 " Split line
 nnoremap S i<cr><esc>^mzk:silent! s/ \+$/<cr>:let @/=''<cr>`z
@@ -311,6 +305,13 @@ vnoremap # :<c-u>call <SID>VSetSearch()<CR>??<CR><c-o>
 augroup SourceVimrc
     au!
     autocmd BufWritePost $MYVIMRC source $MYVIMRC
+augroup END
+
+" Only show cursorline in current window
+augroup cline
+    au!
+    autocmd WinLeave * set nocursorline
+    autocmd WinEnter * set cursorline
 augroup END
 
 " }}}
