@@ -45,7 +45,6 @@ set wildignore+=*.pyc,*.luac " Byte code
 set wildignore+=*.bak,*.swp " Backups and swap files
 set wildignore+=*.DS_Store " OS X
 set shortmess+=aoOtTI " Shortens Vim messages to avoid 'HIT ENTER' prompts
-" set sidescroll=1 " Show some context when side scrolling
 set notimeout ttimeout " Time out on key codes but not mappings
 set ttimeoutlen=10 " Time out after 10 milliseconds
 set spelllang=en_us " Set language for spell checking
@@ -111,7 +110,7 @@ set shiftround " Round indent to multiple of 'shiftwidth'
 set nowrap " Don't wrap long lines by default
 set linebreak " Don't break words when wrapping
 set textwidth=79 " Maximum line length
-set formatoptions=qnl1jc " How automatic formatting should be done
+set formatoptions=qrn1jc " How automatic formatting should be done
 
 " }}}
 " Folding {{{
