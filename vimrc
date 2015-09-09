@@ -199,7 +199,7 @@ nnoremap <silent> <leader>s :set spell!<cr>
 nnoremap <silent> <leader>w :set wrap!<cr>
 nnoremap <silent> <leader>l :set list!<cr>
 nnoremap <silent> <leader>/ :nohlsearch<cr>
-nnoremap <silent> <Leader>i <Plug>IndentGuidesToggle
+nnoremap <silent> <Leader>i :IndentGuidesToggle<cr>
 
 function! ToggleLineNumbers() " {{{
     if(&number && !&relativenumber)
