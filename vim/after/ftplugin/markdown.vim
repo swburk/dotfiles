@@ -19,4 +19,3 @@ setl foldexpr=MarkdownFoldExpression(v:lnum)
 setl spell
 setl wrap
 setl formatoptions=tn1qa
-match none LongLine

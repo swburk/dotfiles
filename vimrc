@@ -4,7 +4,6 @@ runtime macros/matchit.vim
 call plug#begin('~/.vim/plugged')
 
 " Plugins
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
@@ -147,9 +146,6 @@ let maplocalleader='\'
 " Y yanks to end of line
 nnoremap Y y$
 
-" Return to original cursor position after joining lines
-nnoremap J @='mzJ`z'<cr>
-
 " Split line
 nnoremap S i<cr><esc>^mzk:silent! s/ \+$/<cr>:let @/=''<cr>`z
 
@@ -166,22 +162,11 @@ vnoremap gs :s//g<left><left>
 " Focus current fold
 nnoremap z. zMzvzz
 
-" Resize windows
-noremap <up> <C-W>+
-noremap <down> <C-W>-
-noremap <left> <C-W><
-noremap <right> <C-W>>
-
 " Save as root
 cnoremap w!! w !sudo tee % >/dev/null
 
 " Strip trailing whitespace
 nnoremap <silent> <leader><space> mz:%s/\s\+$//e<cr>`z:let @/=''<cr>
-
-" Yank to system clipboard
-nnoremap <leader>yy "*yy
-nnoremap <leader>ya gg"*yG
-vnoremap <leader>y "*y
 
 " Set working directory for current window to current buffer
 nnoremap <leader>c :lcd %:p:h<bar>pwd<cr>
@@ -312,18 +297,6 @@ augroup END
 
 " Don't show the help banner
 let g:netrw_banner = 0
-
-" }}}
-" CtrlP {{{
-
-" Don't jump to another window when opening a buffer
-let g:ctrlp_switch_buffer = 0
-
-" CtrlP uses the same working directory as Vim
-let g:ctrlp_working_path_mode = 0
-
-" Set the size for the match window
-let g:ctrlp_match_window = 'max:20'
 
 " }}}
 " Indent Guides {{{
