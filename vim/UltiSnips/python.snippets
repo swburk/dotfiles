@@ -42,12 +42,11 @@ snippet mp "mediaPanel boilerplate" b
 import os
 import sys
 sys.path.insert(0, '/home/mediapanel/scripts/')
-from NWLib import processCount, setLogLevel$1
+from NWLib import processCount, setLogLevel$0
 
 setLogLevel(sys.argv)
 
 if processCount('/usr/bin/python %s' % os.path.realpath(__file__)) > 1:
 	logging.critical('ALREADY RUNNING')
-else:
-	${2:pass}
+	sys.exit()
 endsnippet

@@ -31,7 +31,6 @@ set history=1000
 set autoread
 set ttyfast
 set hidden
-set confirm
 set backspace=indent,eol,start
 set nrformats-=octal
 set nojoinspaces
@@ -199,16 +198,15 @@ nnoremap <silent> <leader>s :set spell!<cr>
 nnoremap <silent> <leader>w :set wrap!<cr>
 nnoremap <silent> <leader>l :set list!<cr>
 nnoremap <silent> <leader>/ :nohlsearch<cr>
+nnoremap <silent> <c-w>b :set scrollbind!<cr>
+
 nnoremap <silent> <Leader>i :IndentGuidesToggle<cr>
 
 function! ToggleLineNumbers() " {{{
-    if(&number && !&relativenumber)
+    if(&number)
         set nonumber
         set relativenumber
-    elseif(&relativenumber && !&number)
-        set number
-    elseif(&relativenumber && &number)
-        set nonumber
+    elseif(&relativenumber)
         set norelativenumber
     else
         set number
