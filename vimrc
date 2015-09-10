@@ -105,32 +105,32 @@ set foldlevelstart=99
 
 function! MyFoldText() " {{{
     " Width of window
-    let gutterwidth = &fdc + (&relativenumber + &number) * &numberwidth
-    let windowwidth = winwidth(0) - gutterwidth
+    let s:gutterwidth = &fdc + (&relativenumber + &number) * &numberwidth
+    let s:windowwidth = winwidth(0) - s:gutterwidth
 
     " Number of lines inside the fold
-    let foldedlinecount = v:foldend - v:foldstart
+    let s:foldedlinecount = v:foldend - v:foldstart
 
     " Trim the line text
-    let line = getline(v:foldstart)
-    let softtab = strpart('        ', 0, &tabstop)
-    let line = substitute(line, '\t', softtab, 'g')
-    let line = substitute(line, '\s\=--\+', '', 'g')
-    let toolong = windowwidth - len(foldedlinecount) - 4
-    if len(line) >= toolong
-        let line = strpart(line, 0, toolong)
+    let s:line = getline(v:foldstart)
+    let s:softtab = strpart('        ', 0, &tabstop)
+    let s:line = substitute(s:line, '\t', s:softtab, 'g')
+    let s:line = substitute(s:line, '\s\=--\+', '', 'g')
+    let s:toolong = s:windowwidth - len(s:foldedlinecount) - 4
+    if len(s:line) >= s:toolong
+        let s:line = strpart(s:line, 0, s:toolong)
     endif
 
     " Display a dash for every folded line
-    let fillcharcount = windowwidth - len(line) - len(foldedlinecount) - 4
-    if foldedlinecount <= fillcharcount
-        let fillcharcount = fillcharcount - foldedlinecount
-        let fillchars = repeat('-', foldedlinecount) . repeat(' ', fillcharcount)
+    let s:fillcharcount = s:windowwidth - len(s:line) - len(s:foldedlinecount) - 4
+    if s:foldedlinecount <= s:fillcharcount
+        let s:fillcharcount = s:fillcharcount - s:foldedlinecount
+        let s:fillchars = repeat('-', s:foldedlinecount) . repeat(' ', s:fillcharcount)
     else
-        let fillchars = repeat('-', fillcharcount)
+        let s:fillchars = repeat('-', s:fillcharcount)
     endif
 
-    return line . ' ' . fillchars . ' ' . foldedlinecount . '… '
+    return s:line . ' ' . s:fillchars . ' ' . s:foldedlinecount . '… '
 endfunction " }}}
 set foldtext=MyFoldText()
 
@@ -173,6 +173,14 @@ nnoremap <leader>c :lcd %:p:h<bar>pwd<cr>
 " Edit vim files
 nnoremap <silent> <leader>vv :tabe $MYVIMRC<cr>
 nnoremap <silent> <leader>vf :tabe ~/.vim/<cr>
+
+" Resize current window to show 81 columns of text
+function! ResizeWindow() " {{{
+    let s:gutterwidth = &fdc + (&relativenumber + &number) * &numberwidth
+    let s:windowwidth = s:gutterwidth + &textwidth + 1
+    exe "vertical resize " . s:windowwidth
+endfunction " }}}
+nnoremap <silent> <c-w>r :call ResizeWindow()<cr>
 
 " Delete buffer without changing window layout
 function! DeleteBuffer() " {{{
