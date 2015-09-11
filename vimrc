@@ -147,7 +147,7 @@ let maplocalleader='\'
 nnoremap Y y$
 
 " Split line
-nnoremap <silent> S i<cr><esc>k:s/ \+$/<cr>: let @/=''<cr>j^
+nnoremap <silent> S i<cr><esc>k:s/ \+$/<cr>:let @/=''<cr>j^
 
 " Space toggles fold
 nnoremap <space> za
