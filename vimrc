@@ -4,6 +4,7 @@ runtime macros/matchit.vim
 call plug#begin('~/.vim/plugged')
 
 " Plugins
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
@@ -228,6 +229,9 @@ nnoremap <silent> [q :<c-u><c-r>=v:count1<cr>cprev<cr>
 nnoremap <silent> ]l :<c-u><c-r>=v:count1<cr>lnext<cr>
 nnoremap <silent> [l :<c-u><c-r>=v:count1<cr>lprev<cr>
 
+" Open CtrlP in buffer mode
+nnoremap <silent> <c-n> :CtrlPBuffer<cr>
+
 " Command line navigation
 cnoremap <c-a> <home>
 cnoremap <c-f> <right>
@@ -315,5 +319,17 @@ let g:netrw_banner = 0
 let g:indent_guides_default_mapping = 0
 
 " }}}
+" CtrlP {{{
+ 
+ " Don't jump to another window when opening a buffer
+ let g:ctrlp_switch_buffer = 0
+ 
+ " CtrlP uses the same working directory as Vim
+ let g:ctrlp_working_path_mode = 0
+ 
+ " Set the size for the match window
+ let g:ctrlp_match_window = 'max:20'
+ 
+ " }}}
 
 " }}}
