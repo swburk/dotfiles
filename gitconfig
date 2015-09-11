@@ -7,9 +7,12 @@
   a = add
   aa = add --all
   ci = commit
+  cm = commit -m
   co = checkout
   pl = pull
+  plm = push origin master
   ps = push
+  psm = push origin master
 [color]
   ui = auto
 [merge]
