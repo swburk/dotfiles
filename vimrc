@@ -42,7 +42,7 @@ set wildignore+=*.o,*.obj,*.exe,*.dll " Compiled object files
 set wildignore+=*.pyc,*.luac " Byte code
 set wildignore+=*.bak,*.swp " Backups and swap files
 set wildignore+=*.DS_Store " OS X
-set shortmess+=aoOtTI
+set shortmess+=aoOtT
 set notimeout ttimeout
 set ttimeoutlen=10
 set virtualedit=block
@@ -146,7 +146,7 @@ let maplocalleader='\'
 nnoremap Y y$
 
 " Split line
-nnoremap S i<cr><esc>^mzk:silent! s/ \+$/<cr>:let @/=''<cr>`z
+nnoremap <silent> S i<cr><esc>k:s/ \+$/<cr>: let @/=''<cr>j^
 
 " Space toggles fold
 nnoremap <space> za
@@ -158,26 +158,14 @@ nnoremap gV `[v`]
 nnoremap gs :%s//g<left><left>
 vnoremap gs :s//g<left><left>
 
-" Focus current fold
-nnoremap z. zMzvzz
-
-" Save as root
-cnoremap w!! w !sudo tee % >/dev/null
-
 " Strip trailing whitespace
 nnoremap <silent> <leader><space> mz:%s/\s\+$//e<cr>`z:let @/=''<cr>
-
-" Set working directory for current window to current buffer
-nnoremap <leader>c :lcd %:p:h<bar>pwd<cr>
-
-" Edit vim files
-nnoremap <silent> <leader>vv :tabe $MYVIMRC<cr>
-nnoremap <silent> <leader>vf :tabe ~/.vim/<cr>
 
 " Resize current window to show 81 columns of text
 function! ResizeWindow() " {{{
     let s:gutterwidth = &fdc + (&relativenumber + &number) * &numberwidth
     let s:windowwidth = s:gutterwidth + &textwidth + 1
+    exe "wincmd ="
     exe "vertical resize " . s:windowwidth
 endfunction " }}}
 nnoremap <silent> <c-w>r :call ResizeWindow()<cr>
@@ -207,7 +195,6 @@ nnoremap <silent> <leader>w :set wrap!<cr>
 nnoremap <silent> <leader>l :set list!<cr>
 nnoremap <silent> <leader>/ :nohlsearch<cr>
 nnoremap <silent> <c-w>b :set scrollbind!<cr>
-
 nnoremap <silent> <Leader>i :IndentGuidesToggle<cr>
 
 function! ToggleLineNumbers() " {{{
@@ -277,6 +264,23 @@ function! s:VSetSearch() " {{{
 endfunction " }}}
 vnoremap * :<c-u>call <SID>VSetSearch()<CR>//<CR><c-o>
 vnoremap # :<c-u>call <SID>VSetSearch()<CR>??<CR><c-o>
+
+" }}}
+" Files & Directories {{{
+
+" Set working directory for current window to that of the current buffer
+nnoremap <leader>c :lcd %:p:h<bar>pwd<cr>
+
+" Save as root
+cnoremap w!! w !sudo tee % >/dev/null
+
+" Edit vim files in vertical split
+nnoremap <silent> <leader>vv :vsp $MYVIMRC<cr>
+nnoremap <silent> <leader>vf :vsp ~/.vim/<cr>
+
+" Work directories
+nnoremap <leader>1 :lcd /Volumes/mediapanel/www/html/mediapanel/cfmIncludes/<cr>
+nnoremap <leader>2 :lcd /Volumes/mediapanel/www/html/mediapanel/golden_master/BCM2709/home/mediapanel/nodes/<cr>
 
 " }}}
 
