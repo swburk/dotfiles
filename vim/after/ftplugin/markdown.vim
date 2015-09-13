@@ -17,5 +17,4 @@ endfunction
 setl foldmethod=expr
 setl foldexpr=MarkdownFoldExpression(v:lnum)
 setl spell
-setl wrap
-setl formatoptions=tn1qa
+setl formatoptions=n1q
