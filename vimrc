@@ -95,9 +95,8 @@ set statusline=\ %f\ \|\ %M\ %r%= " File name, modified and readonly flags
 set statusline+=%{&fileformat}\ \|\ %{&encoding}\ \|\ %{&filetype} " File information
 set statusline+=\ \|\ L\ %l\/%L\ C\ %v\ \|\ %P\ " Line number, column number, and position in file
 syntax on
-set bg=dark
 set t_Co=256
-colorscheme badwolf
+colorscheme default
 
 " }}}
 " Folding {{{
