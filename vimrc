@@ -161,7 +161,7 @@ vnoremap gs :s//g<left><left>
 " Strip trailing whitespace
 nnoremap <silent> <leader><space> mz:%s/\s\+$//e<cr>`z:let @/=''<cr>
 
-" Resize current window to show 81 columns of text
+" Resize current window to the size of textwidth
 function! ResizeWindow() " {{{
     let s:gutterwidth = &fdc + (&relativenumber + &number) * &numberwidth
     let s:windowwidth = s:gutterwidth + &textwidth + 1
@@ -184,7 +184,18 @@ function! DeleteBuffer() " {{{
     exe 'tabn ' . s:ctab . '|' . s:cwin . 'wincmd w'
     exe 'bd' . s:bnum
 endfunction " }}}
-nnoremap <silent> <leader>x :call DeleteBuffer()<cr>
+nnoremap <silent> <leader>db :call DeleteBuffer()<cr>
+
+" Delete all other buffers
+function! DeleteOtherBuffers() " {{{
+    let s:bnum = bufnr('%')
+    for s:b in range(1, bufnr('$'))
+        if s:b != s:bnum
+            exe "bdelete" . s:b
+        endif
+    endfor
+endfunction " }}}
+nnoremap <silent> <leader>do :call DeleteOtherBuffers()<cr>
 
 " }}}
 " Toggles {{{
@@ -271,37 +282,47 @@ vnoremap # :<c-u>call <SID>VSetSearch()<CR>??<CR><c-o>
 " }}}
 " Files & Directories {{{
 
+" Expand path to directory of current file
+inoremap <expr> %% expand("%:p:h")
+cnoremap <expr> %% expand("%:p:h")
+
 " Set working directory for current window to that of the current buffer
 nnoremap <leader>c :lcd %:p:h<bar>pwd<cr>
 
 " Save as root
 cnoremap w!! w !sudo tee % >/dev/null
 
-" Edit vim files in vertical split
-nnoremap <silent> <leader>vv :vsp $MYVIMRC<cr>
-nnoremap <silent> <leader>vf :vsp ~/.vim/<cr>
+" Make current file executable
+nnoremap <leader>x :!chmod 755 %<cr>
+
+" Edit vim files
+nnoremap <silent> <leader>vv :edit $MYVIMRC<cr>
+nnoremap <silent> <leader>vd :edit ~/.vim/<cr>
+nnoremap <silent> <leader>vf :exe "~/.vim/after/ftplugin" . &ft . ".vim"<cr>
 
 " Work directories
-nnoremap <leader>1 :lcd /Volumes/mediapanel/www/html/mediapanel/cfmIncludes/<cr>
-nnoremap <leader>2 :lcd /Volumes/mediapanel/www/html/mediapanel/golden_master/BCM2709/home/mediapanel/nodes/<cr>
+nnoremap <leader>1 :lcd /Volumes/mediapanel/www/html/mediapanel/cfmIncludes/<bar>pwd<cr>
+nnoremap <leader>2 :lcd /Volumes/mediapanel/www/html/mediapanel/golden_master/BCM2709/home/mediapanel/nodes/<bar>pwd<cr>
 
 " }}}
 
 " }}}
 " Autocommands {{{
 
-" Source $MYVIMRC after saving
-augroup SourceVimrc
-    au!
-    autocmd BufWritePost $MYVIMRC source $MYVIMRC
-augroup END
+if has("autocmd")
+    " Source $MYVIMRC after saving
+    augroup SourceVimrc
+        au!
+        autocmd BufWritePost $MYVIMRC source $MYVIMRC
+    augroup END
 
-" Only show cursorline in current window
-augroup HideCursorline
-    au!
-    autocmd WinLeave * set nocursorline
-    autocmd WinEnter * set cursorline
-augroup END
+    " Only show cursorline in current window
+    augroup HideCursorline
+        au!
+        autocmd WinLeave * set nocursorline
+        autocmd WinEnter * set cursorline
+    augroup END
+endif
 
 " }}}
 " Plugin Configuration {{{
