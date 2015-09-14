@@ -10,7 +10,7 @@
   cm = commit -m
   co = checkout
   pl = pull
-  plm = push origin master
+  plm = pull origin master
   ps = push
   psm = push origin master
 [color]
