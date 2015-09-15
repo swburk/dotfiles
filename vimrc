@@ -298,7 +298,7 @@ nnoremap <leader>x :!chmod 755 %<cr>
 " Edit vim files
 nnoremap <silent> <leader>vv :edit $MYVIMRC<cr>
 nnoremap <silent> <leader>vd :edit ~/.vim/<cr>
-nnoremap <silent> <leader>vf :exe "~/.vim/after/ftplugin" . &ft . ".vim"<cr>
+nnoremap <silent> <leader>vf :exe "edit ~/.vim/after/ftplugin/" . &ft . ".vim"<cr>
 
 " Work directories
 nnoremap <leader>1 :lcd /Volumes/mediapanel/www/html/mediapanel/cfmIncludes/<bar>pwd<cr>
