@@ -1,2 +1,2 @@
-setlocal colorcolumn=
-setlocal commentstring=<!---\ %s\ --->
+setl colorcolumn=
+setl commentstring=<!---\ %s\ --->

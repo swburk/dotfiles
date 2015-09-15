@@ -170,31 +170,11 @@ endfunction " }}}
 nnoremap <silent> <c-w>r :call ResizeWindow()<cr>
 
 " Delete buffer without changing window layout
-function! DeleteBuffer() " {{{
-    let s:bnum = bufnr('%')
-    let s:cwin = winnr()
-    let s:ctab = tabpagenr()
-    for s:i in range(1,tabpagenr('$'))
-        exe 'tabn ' . s:i
-        while bufwinnr(s:bnum) != -1
-            exe bufwinnr(s:bnum) . 'wincmd w|bn'
-        endwhile
-    endfor
-    exe 'tabn ' . s:ctab . '|' . s:cwin . 'wincmd w'
-    exe 'bd' . s:bnum
-endfunction " }}}
-nnoremap <silent> <leader>db :call DeleteBuffer()<cr>
+nnoremap <silent> <leader>db :bp<bar>bd#<cr>
 
-" Delete all other buffers
-function! DeleteOtherBuffers() " {{{
-    let s:bnum = bufnr('%')
-    for s:b in range(1, bufnr('$'))
-        if s:b != s:bnum
-            exe "bdelete" . s:b
-        endif
-    endfor
-endfunction " }}}
-nnoremap <silent> <leader>do :call DeleteOtherBuffers()<cr>
+" Open and close the quickfix window
+nnoremap <leader>co :copen<cr>
+nnoremap <leader>cc :cclose<cr>
 
 " }}}
 " Toggles {{{
