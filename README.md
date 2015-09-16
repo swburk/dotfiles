@@ -2,7 +2,6 @@
 
 ## Requirements
 
-- Ag (The Silver Searcher)
 - Bash or Zsh
 - Exuberant Ctags
 - Git

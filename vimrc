@@ -46,6 +46,7 @@ set shortmess+=aoOtT
 set notimeout ttimeout
 set ttimeoutlen=10
 set virtualedit=block
+set scrolloff=8
 
 " Backups & Undo
 set noswapfile
@@ -231,12 +232,6 @@ nnoremap ' `
 
 " Switch to alternate buffer
 nnoremap ` <c-^>
-
-" Navigate wrapped lines
-nnoremap j gj
-nnoremap k gk
-vnoremap j gj
-vnoremap k gk
 
 " Repeat last f, t, F, or T in reverse
 nnoremap <leader><leader> ,
