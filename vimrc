@@ -86,7 +86,7 @@ set number
 set splitright
 set splitbelow
 set list
-set listchars=tab:▸\ ,trail:.,eol:¬,extends:❯,precedes:❮
+set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
 set showbreak=…
 set colorcolumn=+1
 set cursorline
