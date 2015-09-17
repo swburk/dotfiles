@@ -173,8 +173,9 @@ nnoremap <silent> <c-w>r :call ResizeWindow()<cr>
 " Delete buffer without changing window layout
 nnoremap <silent> <leader>db :bp<bar>bd#<cr>
 
-" Open scratch buffer in a vertical split with current filetype set
+" Scratch buffer: sets filetype and inserts pastes visual selection
 nnoremap <leader>t :exe "vnew<bar>set buftype=nofile ft=" . &ft<cr>
+vnoremap <leader>t "zy:<c-u>exe "vnew<bar>set buftype=nofile ft=" . &ft<cr>"zpkdd
 
 " Open and close the quickfix window
 nnoremap <leader>co :copen<cr>
