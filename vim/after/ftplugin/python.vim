@@ -19,3 +19,5 @@ endfunction
 setl foldmethod=expr
 setl foldexpr=PythonFoldExpression(v:lnum)
 setl foldminlines=2
+setl textwidth=72
+setl colorcolumn=80

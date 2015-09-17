@@ -1,1 +1,1 @@
-set colorcolumn=
+setl colorcolumn=

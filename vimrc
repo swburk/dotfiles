@@ -264,7 +264,7 @@ inoremap <expr> %% expand("%:p:h")
 cnoremap <expr> %% expand("%:p:h")
 
 " Set working directory for current window to that of the current buffer
-nnoremap <leader>c :lcd %:p:h<bar>pwd<cr>
+nnoremap cd :lcd %:p:h<bar>pwd<cr>
 
 " Save as root
 cnoremap w!! w !sudo tee % >/dev/null
