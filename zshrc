@@ -80,7 +80,6 @@ function set_prompt() {
 
 alias m="mutt"
 alias o="offlineimap"
-alias h="history"
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
