@@ -19,7 +19,6 @@ Plug 'sjl/badwolf'
 
 call plug#end()
 
-
 " }}}
 " Basic {{{
 
