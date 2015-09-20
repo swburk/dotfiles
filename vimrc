@@ -44,7 +44,6 @@ set shortmess+=aoOtT
 set notimeout ttimeout
 set ttimeoutlen=10
 set virtualedit=block
-set scrolloff=8
 
 " Backups & Undo
 set noswapfile
@@ -140,9 +139,6 @@ set foldtext=MyFoldText()
 let mapleader=','
 let maplocalleader='\'
 
-" Y yanks to end of line
-nnoremap Y y$
-
 " Split line
 nnoremap <silent> S i<cr><esc>k:silent! s/ \+$/<cr>:let @/=''<cr>j^
 
@@ -152,12 +148,16 @@ nnoremap <space> za
 " Select last changed text
 nnoremap gV `[v`]
 
-" Substitute
-nnoremap gs :%s//g<left><left>
-vnoremap gs :s//g<left><left>
-
-" Strip trailing whitespace
-nnoremap <silent> <leader><space> mz:%s/\s\+$//e<cr>`z:let @/=''<cr>
+" Scratch buffer: sets filetype and inserts pastes visual selection
+function! Scratch(cmd, ft) " {{{
+    if !bufexists("scratch")
+        exe a:cmd . " scratch"
+        exe "setl buftype=nofile bufhidden=wipe nobuflisted ft=" . a:ft
+    else
+        exe bufwinnr("scratch") . "wincmd w | setl ft=" . a:ft
+    endif
+endfunction " }}}
+nnoremap gs :<c-u>call Scratch("vsplit", &ft)<cr>
 
 " Resize current window to the size of textwidth
 function! ResizeWindow() " {{{
@@ -168,12 +168,11 @@ function! ResizeWindow() " {{{
 endfunction " }}}
 nnoremap <silent> <c-w>r :call ResizeWindow()<cr>
 
-" Delete buffer without changing window layout
-nnoremap <silent> <leader>db :bp<bar>bd#<cr>
+" Strip trailing whitespace
+nnoremap <silent> <leader><space> mz:%s/\s\+$//e<cr>`z:let @/=''<cr>
 
-" Scratch buffer: sets filetype and inserts pastes visual selection
-nnoremap <leader>t :exe "vnew<bar>set buftype=nofile ft=" . &ft<cr>
-vnoremap <leader>t "zy:<c-u>exe "vnew<bar>set buftype=nofile ft=" . &ft<cr>"zpkdd
+" Delete buffer without changing window layout
+nnoremap <silent> <leader>d :bp<bar>bd#<cr>
 
 " Open and close the quickfix window
 nnoremap <leader>co :copen<cr>
@@ -221,9 +220,6 @@ nnoremap <silent> [q :<c-u><c-r>=v:count1<cr>cprev<cr>
 nnoremap <silent> ]l :<c-u><c-r>=v:count1<cr>lnext<cr>
 nnoremap <silent> [l :<c-u><c-r>=v:count1<cr>lprev<cr>
 
-" Open CtrlP in buffer mode
-nnoremap <silent> <c-n> :CtrlPBuffer<cr>
-
 " Command line navigation
 cnoremap <c-a> <home>
 cnoremap <c-f> <right>
@@ -263,7 +259,7 @@ inoremap <expr> %% expand("%:p:h")
 cnoremap <expr> %% expand("%:p:h")
 
 " Set working directory for current window to that of the current buffer
-nnoremap cd :lcd %:p:h<bar>pwd<cr>
+nnoremap <leader>cd :lcd %:p:h<bar>pwd<cr>
 
 " Save as root
 cnoremap w!! w !sudo tee % >/dev/null
