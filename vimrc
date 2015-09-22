@@ -188,18 +188,7 @@ nnoremap <silent> <leader>l :set list!<cr>
 nnoremap <silent> <leader>/ :nohlsearch<cr>
 nnoremap <silent> <c-w>b :set scrollbind!<cr>
 nnoremap <silent> <Leader>i :IndentGuidesToggle<cr>
-
-function! ToggleLineNumbers() " {{{
-    if(&number)
-        set nonumber
-        set relativenumber
-    elseif(&relativenumber)
-        set norelativenumber
-    else
-        set number
-    endif
-endfunction " }}}
-nnoremap <silent> <leader>n :call ToggleLineNumbers()<cr>
+nnoremap <silent> <leader>n :set number!<cr>
 
 " }}}
 " Navigation {{{
