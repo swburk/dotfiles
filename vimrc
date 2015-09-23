@@ -32,6 +32,7 @@ set hidden
 set backspace=indent,eol,start
 set nrformats-=octal
 set nojoinspaces
+set complete-=i
 set wildmenu
 set wildmode=longest,list,full
 set wildignore+=*.git/,*.hg/ " Version control
@@ -41,8 +42,7 @@ set wildignore+=*.pyc,*.luac " Byte code
 set wildignore+=*.bak,*.swp " Backups and swap files
 set wildignore+=*.DS_Store " OS X
 set shortmess+=aoOtT
-set notimeout ttimeout
-set ttimeoutlen=10
+set notimeout ttimeout ttimeoutlen=10
 set virtualedit=block
 
 " Backups & Undo
@@ -139,6 +139,9 @@ set foldtext=MyFoldText()
 
 let mapleader=','
 let maplocalleader='\'
+
+" Y should behave like D and C
+nnoremap Y y$
 
 " Split line
 nnoremap <silent> S i<cr><esc>k:silent! s/ \+$/<cr>:let @/=''<cr>j^
