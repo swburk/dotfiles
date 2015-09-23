@@ -94,6 +94,7 @@ set statusline+=\ \|\ L\ %l\/%L\ C\ %v\ \|\ %P\ " Line number, column number, an
 syntax on
 set t_Co=256
 colorscheme default
+set background=light
 
 " }}}
 " Folding {{{
