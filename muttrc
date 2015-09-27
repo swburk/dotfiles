@@ -3,7 +3,6 @@
 set alias_file = ~/.mutt/aliases
 set header_cache = ~/.mutt/cache/headers
 set message_cachedir = ~/.mutt/cache/bodies
-set certificate_file = ~/.mutt/certificates
 set mailcap_path = ~/.mutt/mailcap
 set tmpdir = ~/.mutt/tmp
 

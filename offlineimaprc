@@ -24,7 +24,7 @@ remotehost = mail.messagingengine.com
 remoteport = 993
 remoteuser = swburk@fastmail.fm
 ssl = yes
-sslcacertfile = ~/.mutt/EntrustCA.crt
+sslcacertfile = ~/.mutt/DigiCertHighAssuranceEVRootCA.pem
 maxconnections = 2
 nametrans = lambda folder: {'INBOX.Archive': 'archive',
                             'INBOX.Drafts': 'drafts',
