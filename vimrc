@@ -172,6 +172,9 @@ function! ResizeWindow() " {{{
 endfunction " }}}
 nnoremap <silent> <c-w>r :call ResizeWindow()<cr>
 
+" Capitalize the word you just typed
+inoremap <c-b> <esc>gUiwgi
+
 " Strip trailing whitespace
 nnoremap <silent> <leader><space> mz:%s/\s\+$//e<cr>`z:let @/=''<cr>
 
