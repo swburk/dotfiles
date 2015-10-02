@@ -140,9 +140,6 @@ set foldtext=MyFoldText()
 let mapleader=','
 let maplocalleader='\'
 
-" Y should behave like D and C
-nnoremap Y y$
-
 " Split line
 nnoremap <silent> S i<cr><esc>k:silent! s/ \+$/<cr>:let @/=''<cr>j^
 
