@@ -1,5 +1,6 @@
 [general]
 accounts = samburk
+pythonfile=~/.offlineimap.py
 ui = ttyui
 fsync = false
 
@@ -23,6 +24,7 @@ type = IMAP
 remotehost = mail.messagingengine.com
 remoteport = 993
 remoteuser = swburk@fastmail.fm
+remotepasseval = get_keychain_pass(account="swburk@fastmail.fm", server="mail.messagingengine.com")
 ssl = yes
 sslcacertfile = ~/.mutt/DigiCertHighAssuranceEVRootCA.pem
 maxconnections = 2
