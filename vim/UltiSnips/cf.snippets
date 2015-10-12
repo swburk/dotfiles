@@ -1,9 +1,15 @@
 snippet cfset "cfset tag" b
-<cfset ${1:var}=${2:value} />
+<cfset ${1:var} = ${2:value} />
 endsnippet
 
 snippet cfoutput "cfoutput tag" b
 <cfoutput>
 	$0
 </cfoutput>
+endsnippet
+
+snippet cfif "cfif tag" b
+<cfif ${1:condition}>
+	$0
+</cfif>
 endsnippet
