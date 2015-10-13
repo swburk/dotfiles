@@ -179,8 +179,8 @@ nnoremap <silent> <leader><space> mz:%s/\s\+$//e<cr>`z:let @/=''<cr>
 nnoremap <silent> <leader>d :bp<bar>bd#<cr>
 
 " Open and close the quickfix window
-nnoremap <leader>co :copen<cr>
-nnoremap <leader>cc :cclose<cr>
+nnoremap <leader>qo :copen<cr>
+nnoremap <leader>qc :cclose<cr>
 
 " }}}
 " Toggles {{{
@@ -266,8 +266,8 @@ nnoremap <silent> <leader>vd :edit ~/.vim/<cr>
 nnoremap <silent> <leader>vf :exe "edit ~/.vim/after/ftplugin/" . &ft . ".vim"<cr>
 
 " Work directories
-nnoremap <leader>1 :lcd /Volumes/mediapanel/www/html/mediapanel/cfmIncludes/<bar>pwd<cr>
-nnoremap <leader>2 :lcd /Volumes/mediapanel/www/html/mediapanel/golden_master/BCM2709/home/mediapanel/nodes/<bar>pwd<cr>
+nnoremap <leader>c1 :lcd /Volumes/mediapanel/www/html/mediapanel/cfmIncludes/<bar>pwd<cr>
+nnoremap <leader>c2 :lcd /Volumes/mediapanel/www/html/mediapanel/golden_master/BCM2709/home/mediapanel/nodes/<bar>pwd<cr>
 
 " }}}
 
