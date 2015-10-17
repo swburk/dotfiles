@@ -93,8 +93,8 @@ set statusline+=%{&fileformat}\ \|\ %{&encoding}\ \|\ %{&filetype} " File inform
 set statusline+=\ \|\ L\ %l\/%L\ C\ %v\ \|\ %P\ " Line number, column number, and position in file
 syntax on
 set t_Co=256
-colorscheme badwolf
 set background=dark
+colorscheme badwolf
 
 " }}}
 " Folding {{{
