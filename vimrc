@@ -140,8 +140,22 @@ set foldtext=MyFoldText()
 let mapleader=','
 let maplocalleader='\'
 
+function! PreserveSearch(command)
+  let previous_search=@/
+  let l = line(".")
+  let c = col(".")
+  execute a:command
+  let @/=previous_search
+  call cursor(l, c)
+endfunction
+
 " Split line
-nnoremap <silent> S i<cr><esc>k:silent! s/ \+$/<cr>:let @/=''<cr>j^
+" nnoremap <silent> S i<cr><esc>k:call PreserveSearch('silent! s/ \+$/')<cr>j^
+nnoremap <Plug>SplitLine i<cr><esc>k:call PreserveSearch('silent! s/ \+$/')<cr>j^
+\:call repeat#set("\<Plug>SplitLine")<cr>
+nmap S <Plug>SplitLine
+
+nnoremap go S
 
 " Space toggles fold
 nnoremap <space> za
