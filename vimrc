@@ -11,6 +11,7 @@ Plug 'tpope/vim-repeat'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'SirVer/ultisnips'
 Plug 'tommcdo/vim-exchange'
+Plug 'swburk/vim-coldfusion'
 
 " Colorschemes
 Plug 'morhetz/gruvbox'
@@ -150,12 +151,8 @@ function! PreserveSearch(command)
 endfunction
 
 " Split line
-" nnoremap <silent> S i<cr><esc>k:call PreserveSearch('silent! s/ \+$/')<cr>j^
-nnoremap <Plug>SplitLine i<cr><esc>k:call PreserveSearch('silent! s/ \+$/')<cr>j^
-\:call repeat#set("\<Plug>SplitLine")<cr>
+nnoremap <Plug>SplitLine i<cr><esc>k:call PreserveSearch('silent! s/ \+$/')<cr>j^:call repeat#set("\<Plug>SplitLine")<cr>
 nmap S <Plug>SplitLine
-
-nnoremap go S
 
 " Space toggles fold
 nnoremap <space> za
