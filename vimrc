@@ -11,7 +11,6 @@ Plug 'tpope/vim-repeat'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'SirVer/ultisnips'
 Plug 'tommcdo/vim-exchange'
-Plug 'swburk/vim-coldfusion'
 
 " Colorschemes
 Plug 'morhetz/gruvbox'
