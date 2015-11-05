@@ -3,23 +3,23 @@ snippet cfset "cfset tag" b
 endsnippet
 
 snippet cfdump "cfdump tag" b
-<cfdump var = "${1:var} />
+<cfdump var = "${1:var}" />
 endsnippet
 
 snippet cfoutput "cfoutput tag" b
 <cfoutput>
-	${1:${VISUAL:}}
+	${1:${VISUAL}}
 </cfoutput>
 endsnippet
 
 snippet cfif "cfif tag" b
 <cfif ${1:condition}>
-	${2:${VISUAL:}}
+	${2:${VISUAL}}
 </cfif>
 endsnippet
 
 snippet cfloop "cfif tag" b
-<cfif ${1:conditions}>
-	${2:${VISUAL:}}
-</cfif>
+<cfloop $1 index="${2:i}">
+	${3:${VISUAL}}
+</cfloop>
 endsnippet
