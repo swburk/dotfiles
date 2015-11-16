@@ -11,6 +11,7 @@ Plug 'tpope/vim-repeat'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'SirVer/ultisnips'
 Plug 'tommcdo/vim-exchange'
+Plug 'luochen1990/rainbow'
 
 " Colorschemes
 Plug 'morhetz/gruvbox'
@@ -200,9 +201,10 @@ nnoremap <silent> <leader>s :set spell!<cr>
 nnoremap <silent> <leader>w :set wrap!<cr>
 nnoremap <silent> <leader>l :set list!<cr>
 nnoremap <silent> <leader>/ :nohlsearch<cr>
-nnoremap <silent> <c-w>b :set scrollbind!<cr>
-nnoremap <silent> <Leader>i :IndentGuidesToggle<cr>
 nnoremap <silent> <leader>n :set number!<cr>
+nnoremap <silent> <Leader>i :IndentGuidesToggle<cr>
+nnoremap <silent> <Leader>r :RainbowToggle<cr>
+nnoremap <silent> <c-w>b :set scrollbind!<cr>
 
 " }}}
 " Navigation {{{
@@ -324,6 +326,11 @@ let g:ctrlp_working_path_mode = 0
 
 " Set the size for the match window
 let g:ctrlp_match_window = 'max:20'
+
+" }}}
+" Rainbow {{{
+
+let g:rainbow_active = 0
 
 " }}}
 
