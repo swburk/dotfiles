@@ -10,12 +10,13 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'SirVer/ultisnips'
-Plug 'tommcdo/vim-exchange'
 Plug 'luochen1990/rainbow'
 
 " Colorschemes
 Plug 'morhetz/gruvbox'
 Plug 'sjl/badwolf'
+Plug 'nanotech/jellybeans.vim'
+Plug 'w0ng/vim-hybrid'
 
 call plug#end()
 
@@ -95,7 +96,7 @@ set statusline+=\ \|\ L\ %l\/%L\ C\ %v\ \|\ %P\ " Line number, column number, an
 syntax on
 set t_Co=256
 set background=dark
-colorscheme badwolf
+colorscheme hybrid
 
 " }}}
 " Folding {{{
@@ -141,14 +142,14 @@ set foldtext=MyFoldText()
 let mapleader=','
 let maplocalleader='\'
 
-function! PreserveSearch(command)
-  let previous_search=@/
-  let l = line(".")
-  let c = col(".")
-  execute a:command
-  let @/=previous_search
-  call cursor(l, c)
-endfunction
+function! PreserveSearch(cmd) " {{{
+  let prev_search=@/
+  let prev_line = line(".")
+  let prev_col = col(".")
+  execute a:cmd
+  let @/=prev_search
+  call cursor(prev_line, prev_col)
+endfunction " }}}
 
 " Split line
 nnoremap <Plug>SplitLine i<cr><esc>k:call PreserveSearch('silent! s/ \+$/')<cr>j^:call repeat#set("\<Plug>SplitLine")<cr>
@@ -187,7 +188,7 @@ inoremap <c-b> <esc>gUiwgi
 nnoremap <silent> <leader><space> mz:%s/\s\+$//e<cr>`z:let @/=''<cr>
 
 " Delete buffer without changing window layout
-nnoremap <silent> <leader>d :bp<bar>bd#<cr>
+nnoremap <silent> <leader>d :b#<bar>bd#<cr>
 
 " Open and close the quickfix window
 nnoremap <leader>qo :copen<cr>
@@ -197,10 +198,10 @@ nnoremap <leader>qc :cclose<cr>
 " Toggles {{{
 
 set pastetoggle=<leader>p
+nnoremap <silent> <leader>/ :nohlsearch<cr>
 nnoremap <silent> <leader>s :set spell!<cr>
 nnoremap <silent> <leader>w :set wrap!<cr>
 nnoremap <silent> <leader>l :set list!<cr>
-nnoremap <silent> <leader>/ :nohlsearch<cr>
 nnoremap <silent> <leader>n :set number!<cr>
 nnoremap <silent> <Leader>i :IndentGuidesToggle<cr>
 nnoremap <silent> <Leader>r :RainbowToggle<cr>
@@ -318,10 +319,19 @@ let g:indent_guides_default_mapping = 0
 " }}}
 " CtrlP {{{
 
+" Store the cache and use ag to make CtrlP faster
+let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+if executable('ag')
+    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif
+
+" Open multiple files as hidden buffers
+let g:ctrlp_open_multiple_files = 'ij'
+
 " Don't jump to another window when opening a buffer
 let g:ctrlp_switch_buffer = 0
 
-" CtrlP uses the same working directory as Vim
+" Use the same working directory as Vim
 let g:ctrlp_working_path_mode = 0
 
 " Set the size for the match window
@@ -330,6 +340,7 @@ let g:ctrlp_match_window = 'max:20'
 " }}}
 " Rainbow {{{
 
+" Enable toggling
 let g:rainbow_active = 0
 
 " }}}
