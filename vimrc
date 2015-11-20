@@ -170,7 +170,7 @@ function! Scratch(cmd, ft) " {{{
         exe bufwinnr("scratch") . "wincmd w | setl ft=" . a:ft
     endif
 endfunction " }}}
-nnoremap gs :<c-u>call Scratch("vsplit", &ft)<cr>
+nnoremap gs :<c-u>call Scratch("split", &ft)<cr>
 
 " Resize current window to the size of textwidth
 function! ResizeWindow() " {{{
