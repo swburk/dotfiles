@@ -194,6 +194,9 @@ nnoremap <silent> <leader>d :b#<bar>bd#<cr>
 nnoremap <leader>qo :copen<cr>
 nnoremap <leader>qc :cclose<cr>
 
+" Open CtrlP in buffer mode
+nnoremap <c-n> :CtrlPBuffer<cr>
+
 " }}}
 " Toggles {{{
 
