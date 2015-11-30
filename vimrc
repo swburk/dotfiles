@@ -11,6 +11,7 @@ Plug 'tpope/vim-repeat'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'SirVer/ultisnips'
 Plug 'luochen1990/rainbow'
+Plug 'rking/ag.vim'
 
 " Colorschemes
 Plug 'morhetz/gruvbox'
