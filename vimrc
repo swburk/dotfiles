@@ -285,6 +285,8 @@ nnoremap <silent> <leader>vf :exe "edit ~/.vim/after/ftplugin/" . &ft . ".vim"<c
 " Work directories
 nnoremap <leader>c1 :lcd /Volumes/mediapanel/www/html/mediapanel/cfmIncludes/<bar>pwd<cr>
 nnoremap <leader>c2 :lcd /Volumes/mediapanel/www/html/mediapanel/golden_master/BCM2709/home/mediapanel/nodes/<bar>pwd<cr>
+cnoremap %mp1 /Volumes/mediapanel/www/html/mediapanel/
+cnoremap %mp2 /Volumes/mediapanel/www/html/mediapanel/golden_master/BCM2709/home/mediapanel/nodes/
 
 " }}}
 
