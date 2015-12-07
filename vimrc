@@ -162,16 +162,9 @@ nnoremap <space> za
 " Select last changed text
 nnoremap gV `[v`]
 
-" Scratch buffer: sets filetype and inserts pastes visual selection
-function! Scratch(cmd, ft) " {{{
-    if !bufexists("scratch")
-        exe a:cmd . " scratch"
-        exe "setl buftype=nofile bufhidden=wipe nobuflisted ft=" . a:ft
-    else
-        exe bufwinnr("scratch") . "wincmd w | setl ft=" . a:ft
-    endif
-endfunction " }}}
-nnoremap gs :<c-u>call Scratch("split", &ft)<cr>
+" Substitute quickly
+nnoremap gs :%s///g<left><left>
+vnoremap gs :s///g<left><left>
 
 " Resize current window to the size of textwidth
 function! ResizeWindow() " {{{
@@ -283,7 +276,7 @@ nnoremap <silent> <leader>vd :edit ~/.vim/<cr>
 nnoremap <silent> <leader>vf :exe "edit ~/.vim/after/ftplugin/" . &ft . ".vim"<cr>
 
 " Work directories
-nnoremap <leader>c1 :lcd /Volumes/mediapanel/www/html/mediapanel/cfmIncludes/<bar>pwd<cr>
+nnoremap <leader>c1 :lcd /Volumes/mediapanel/www/html/mediapanel/<bar>pwd<cr>
 nnoremap <leader>c2 :lcd /Volumes/mediapanel/www/html/mediapanel/golden_master/BCM2709/home/mediapanel/nodes/<bar>pwd<cr>
 cnoremap %mp1 /Volumes/mediapanel/www/html/mediapanel/
 cnoremap %mp2 /Volumes/mediapanel/www/html/mediapanel/golden_master/BCM2709/home/mediapanel/nodes/
