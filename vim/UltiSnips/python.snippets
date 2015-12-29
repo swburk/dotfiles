@@ -44,7 +44,7 @@ from NWLib import processCount, setLogLevel$0
 
 setLogLevel(sys.argv)
 
-if processCount('/usr/bin/python %s' % os.path.realpath(__file__)) > 1:
+if processCount('/usr/bin/python {0}'.format(os.path.realpath(__file__))) > 1:
 	logging.critical('ALREADY RUNNING')
 	sys.exit()
 endsnippet

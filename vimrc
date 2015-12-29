@@ -38,7 +38,7 @@ set nrformats-=octal
 set nojoinspaces
 set complete-=i
 set wildmenu
-set wildmode=longest,list,full
+set wildmode=list:longest,full
 set wildignore+=*.git/,*.hg/ " Version control
 set wildignore+=*.jpg,*.jpeg,*.png,*.gif,*.bmp " Images
 set wildignore+=*.o,*.obj,*.exe,*.dll " Compiled object files
