@@ -93,3 +93,5 @@ alias ta="tmux attach -t"
 alias tl="tmux list-sessions"
 alias shfiles="defaults write com.apple.finder AppleShowAllFiles -boolean true ; killall Finder"
 alias hhfiles="defaults write com.apple.finder AppleShowAllFiles -boolean false ; killall Finder"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

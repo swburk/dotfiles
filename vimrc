@@ -9,15 +9,14 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tommcdo/vim-exchange'
-Plug 'nathanaelkane/vim-indent-guides'
 Plug 'SirVer/ultisnips'
-Plug 'luochen1990/rainbow'
-Plug 'rking/ag.vim'
+Plug 'nathanaelkane/vim-indent-guides', { 'on': 'IndentGuidesToggle' }
+Plug 'luochen1990/rainbow', { 'on': 'RainbowToggle' }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 " Colorschemes
 Plug 'morhetz/gruvbox'
 Plug 'sjl/badwolf'
-Plug 'nanotech/jellybeans.vim'
 Plug 'w0ng/vim-hybrid'
 
 call plug#end()
