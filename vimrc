@@ -18,6 +18,8 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'morhetz/gruvbox'
 Plug 'sjl/badwolf'
 Plug 'w0ng/vim-hybrid'
+Plug 'Wutzara/vim-materialtheme'
+Plug 'joshdick/onedark.vim'
 
 call plug#end()
 
