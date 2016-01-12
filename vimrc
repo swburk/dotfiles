@@ -40,12 +40,12 @@ set nojoinspaces
 set complete-=i
 set wildmenu
 set wildmode=list:longest,full
-set wildignore+=*.git/,*.hg/ " Version control
-set wildignore+=*.jpg,*.jpeg,*.png,*.gif,*.bmp " Images
-set wildignore+=*.o,*.obj,*.exe,*.dll " Compiled object files
-set wildignore+=*.pyc,*.luac " Byte code
-set wildignore+=*.bak,*.swp " Backups and swap files
-set wildignore+=*.DS_Store " OS X
+set wildignore+=*.git/
+set wildignore+=*.jpg,*.jpeg,*.png,*.gif
+set wildignore+=*.o,*.obj
+set wildignore+=*.pyc,*.luac
+set wildignore+=*.bak,*.swp
+set wildignore+=*.DS_Store
 set shortmess+=aoOtT
 set notimeout ttimeout ttimeoutlen=10
 set virtualedit=block
@@ -177,21 +177,18 @@ function! ResizeWindow() " {{{
 endfunction " }}}
 nnoremap <silent> <c-w>r :call ResizeWindow()<cr>
 
-" Capitalize the word you just typed
+" Capitalize the word behind the cursor
 inoremap <c-b> <esc>gUiwgi
 
 " Strip trailing whitespace
 nnoremap <silent> <leader><space> mz:%s/\s\+$//e<cr>`z:let @/=''<cr>
 
-" Delete buffer without changing window layout
+" Delete current buffer without changing window layout
 nnoremap <silent> <leader>d :b#<bar>bd#<cr>
 
 " Open and close the quickfix window
 nnoremap <leader>qo :copen<cr>
 nnoremap <leader>qc :cclose<cr>
-
-" Open CtrlP in buffer mode
-nnoremap <c-n> :CtrlPBuffer<cr>
 
 " }}}
 " Toggles {{{
@@ -269,9 +266,6 @@ nnoremap <leader>cd :lcd %:p:h<bar>pwd<cr>
 " Save as root
 cnoremap w!! w !sudo tee % >/dev/null
 
-" Make current file executable
-nnoremap <leader>x :!chmod 755 %<cr>
-
 " Edit vim files
 nnoremap <silent> <leader>vv :edit $MYVIMRC<cr>
 nnoremap <silent> <leader>vd :edit ~/.vim/<cr>
@@ -280,8 +274,6 @@ nnoremap <silent> <leader>vf :exe "edit ~/.vim/after/ftplugin/" . &ft . ".vim"<c
 " Work directories
 nnoremap <leader>c1 :lcd /Volumes/mediapanel/www/html/mediapanel/<bar>pwd<cr>
 nnoremap <leader>c2 :lcd /Volumes/mediapanel/www/html/mediapanel/golden_master/BCM2709/home/mediapanel/nodes/<bar>pwd<cr>
-cnoremap %mp1 /Volumes/mediapanel/www/html/mediapanel/
-cnoremap %mp2 /Volumes/mediapanel/www/html/mediapanel/golden_master/BCM2709/home/mediapanel/nodes/
 
 " }}}
 
