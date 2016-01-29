@@ -4,7 +4,6 @@ runtime macros/matchit.vim
 call plug#begin('~/.vim/plugged')
 
 " Plugins
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
@@ -18,8 +17,6 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'morhetz/gruvbox'
 Plug 'sjl/badwolf'
 Plug 'w0ng/vim-hybrid'
-Plug 'Wutzara/vim-materialtheme'
-Plug 'joshdick/onedark.vim'
 
 call plug#end()
 
@@ -37,7 +34,6 @@ set hidden
 set backspace=indent,eol,start
 set nrformats-=octal
 set nojoinspaces
-set complete-=i
 set wildmenu
 set wildmode=list:longest,full
 set wildignore+=*.git/
@@ -46,7 +42,7 @@ set wildignore+=*.o,*.obj
 set wildignore+=*.pyc,*.luac
 set wildignore+=*.bak,*.swp
 set wildignore+=*.DS_Store
-set shortmess+=aoOtT
+set shortmess+=atT
 set notimeout ttimeout ttimeoutlen=10
 set virtualedit=block
 
@@ -99,7 +95,7 @@ set statusline+=\ \|\ L\ %l\/%L\ C\ %v\ \|\ %P\ " Line number, column number, an
 syntax on
 set t_Co=256
 set background=dark
-colorscheme hybrid
+colorscheme gruvbox
 
 " }}}
 " Folding {{{

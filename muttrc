@@ -51,8 +51,8 @@ set menu_scroll # Scroll menus one line at a time
 set sleep_time = 0 # Don't display informational messages
 set sendmail_wait = 0 # Don't return to mutt until mail has been sent
 unset resolve # Don't select the next message after a command
-# source ~/.vim/plugged/badwolf/contrib/badwolf.muttrc # Color scheme
-source ~/.mutt/colors.muttrc # Color scheme
+source ~/.vim/plugged/badwolf/contrib/badwolf.muttrc # Color scheme
+# source ~/.mutt/colors.muttrc # Color scheme
 # set attach_format = ""
 
 # }}}
