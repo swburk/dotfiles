@@ -4,7 +4,7 @@ function! PythonFoldExpression(lnum)
     let nlnum = nextnonblank(a:lnum + 1)
     let nind = indent(nlnum)
 
-    if line =~ '^\s*\(class\|def\|if\|elif\|else\|for\|while\|try\|except\|with\)\s\='
+    if line =~ '^\s*\(class\|def\)\s\='
         let w:cind = ind
         return ">" . (ind / &shiftwidth + 1)
     endif

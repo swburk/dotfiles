@@ -164,15 +164,6 @@ nnoremap gV `[v`]
 nnoremap gs :%s///g<left><left>
 vnoremap gs :s///g<left><left>
 
-" Resize current window to the size of textwidth
-function! ResizeWindow() " {{{
-    let s:gutterwidth = &fdc + (&relativenumber + &number) * &numberwidth
-    let s:windowwidth = s:gutterwidth + &textwidth + 1
-    exe "wincmd ="
-    exe "vertical resize " . s:windowwidth
-endfunction " }}}
-nnoremap <silent> <c-w>r :call ResizeWindow()<cr>
-
 " Capitalize the word behind the cursor
 inoremap <c-b> <esc>gUiwgi
 
@@ -181,10 +172,6 @@ nnoremap <silent> <leader><space> mz:%s/\s\+$//e<cr>`z:let @/=''<cr>
 
 " Delete current buffer without changing window layout
 nnoremap <silent> <leader>d :b#<bar>bd#<cr>
-
-" Open and close the quickfix window
-nnoremap <leader>qo :copen<cr>
-nnoremap <leader>qc :cclose<cr>
 
 " }}}
 " Toggles {{{
@@ -197,7 +184,6 @@ nnoremap <silent> <leader>l :set list!<cr>
 nnoremap <silent> <leader>n :set number!<cr>
 nnoremap <silent> <Leader>i :IndentGuidesToggle<cr>
 nnoremap <silent> <Leader>r :RainbowToggle<cr>
-nnoremap <silent> <c-w>b :set scrollbind!<cr>
 
 " }}}
 " Navigation {{{
@@ -267,10 +253,6 @@ nnoremap <silent> <leader>vv :edit $MYVIMRC<cr>
 nnoremap <silent> <leader>vd :edit ~/.vim/<cr>
 nnoremap <silent> <leader>vf :exe "edit ~/.vim/after/ftplugin/" . &ft . ".vim"<cr>
 
-" Work directories
-nnoremap <leader>c1 :lcd /Volumes/mediapanel/www/html/mediapanel/<bar>pwd<cr>
-nnoremap <leader>c2 :lcd /Volumes/mediapanel/www/html/mediapanel/golden_master/BCM2709/home/mediapanel/nodes/<bar>pwd<cr>
-
 " }}}
 
 " }}}
@@ -304,27 +286,6 @@ let g:netrw_banner = 0
 
 " Don't use the default mapping
 let g:indent_guides_default_mapping = 0
-
-" }}}
-" CtrlP {{{
-
-" Store the cache and use ag to make CtrlP faster
-let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
-if executable('ag')
-    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-endif
-
-" Open multiple files as hidden buffers
-let g:ctrlp_open_multiple_files = 'ij'
-
-" Don't jump to another window when opening a buffer
-let g:ctrlp_switch_buffer = 0
-
-" Use the same working directory as Vim
-let g:ctrlp_working_path_mode = 0
-
-" Set the size for the match window
-let g:ctrlp_match_window = 'max:20'
 
 " }}}
 " Rainbow {{{
