@@ -150,6 +150,16 @@ function! PreserveSearch(cmd) " {{{
   call cursor(prev_line, prev_col)
 endfunction " }}}
 
+" Visual */# mappings (Thanks to Scrooloose)
+function! s:VSetSearch() " {{{
+    let temp = @@
+    norm! gvy
+    let @/ = '\V' . substitute(escape(@@, '\'), '\n', '\\n', 'g')
+    let @@ = temp
+endfunction " }}}
+vnoremap * :<c-u>call <SID>VSetSearch()<CR>//<CR><c-o>
+vnoremap # :<c-u>call <SID>VSetSearch()<CR>??<CR><c-o>
+
 " Split line
 nnoremap <Plug>SplitLine i<cr><esc>k:call PreserveSearch('silent! s/ \+$/')<cr>j^:call repeat#set("\<Plug>SplitLine")<cr>
 nmap S <Plug>SplitLine
@@ -168,7 +178,7 @@ vnoremap gs :s///g<left><left>
 inoremap <c-b> <esc>gUiwgi
 
 " Strip trailing whitespace
-nnoremap <silent> <leader><space> mz:%s/\s\+$//e<cr>`z:let @/=''<cr>
+nnoremap <silent> <leader><space> :call PreserveSearch(':%s/\s\+$//e')<cr>
 
 " Delete current buffer without changing window layout
 nnoremap <silent> <leader>d :b#<bar>bd#<cr>
@@ -225,22 +235,8 @@ nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-l> <c-w>l
 
-" Visual */# mappings (Thanks to Scrooloose)
-function! s:VSetSearch() " {{{
-    let temp = @@
-    norm! gvy
-    let @/ = '\V' . substitute(escape(@@, '\'), '\n', '\\n', 'g')
-    let @@ = temp
-endfunction " }}}
-vnoremap * :<c-u>call <SID>VSetSearch()<CR>//<CR><c-o>
-vnoremap # :<c-u>call <SID>VSetSearch()<CR>??<CR><c-o>
-
 " }}}
 " Files & Directories {{{
-
-" Expand path to directory of current file
-inoremap <expr> %% expand("%:p:h")
-cnoremap <expr> %% expand("%:p:h")
 
 " Set working directory for current window to that of the current buffer
 nnoremap <leader>cd :lcd %:p:h<bar>pwd<cr>
