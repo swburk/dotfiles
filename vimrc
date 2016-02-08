@@ -245,9 +245,9 @@ nnoremap <leader>cd :lcd %:p:h<bar>pwd<cr>
 cnoremap w!! w !sudo tee % >/dev/null
 
 " Edit vim files
-nnoremap <silent> <leader>vv :edit $MYVIMRC<cr>
-nnoremap <silent> <leader>vd :edit ~/.vim/<cr>
-nnoremap <silent> <leader>vf :exe "edit ~/.vim/after/ftplugin/" . &ft . ".vim"<cr>
+nnoremap <silent> <leader>vv :tabe $MYVIMRC<cr>
+nnoremap <silent> <leader>vd :tabe ~/.vim/<cr>
+nnoremap <silent> <leader>vf :exe "tabe ~/.vim/after/ftplugin/" . &ft . ".vim"<cr>
 
 " }}}
 
