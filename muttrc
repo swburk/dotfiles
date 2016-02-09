@@ -10,26 +10,27 @@ set tmpdir = ~/.mutt/tmp
 # Folders {{{
 
 # Root mail folder
-set folder = ~/.mail/samburk
+set folder = ~/.mail
 
 # Default inbox
-set spoolfile = "=INBOX"
-
-# Archive
-set mbox = "=archive"
-
-# Postponed messages
-set postponed = "=drafts"
-
-# Sent messages
-set record = =sent
+set spoolfile = "=personal/INBOX"
 
 # Define mailboxes
-mailboxes =INBOX \
-          =archive \
-          =drafts \
-          =sent \
-          =junk \
+mailboxes =personal/INBOX \
+          =personal/archive \
+          =personal/drafts \
+          =personal/sent \
+          =personal/junk \
+          =work/INBOX \
+          =work/archive \
+          =work/drafts \
+          =work/sent \
+          =work/junk \
+          =work/boot \
+          =work/commands \
+          =work/memory \
+          =work/nagios \
+          =work/rsync \
 
 set folder_format = "  %2C  %f"
 
@@ -52,7 +53,6 @@ set sleep_time = 0 # Don't display informational messages
 set sendmail_wait = 0 # Don't return to mutt until mail has been sent
 unset resolve # Don't select the next message after a command
 source ~/.vim/plugged/badwolf/contrib/badwolf.muttrc # Color scheme
-# source ~/.mutt/colors.muttrc # Color scheme
 # set attach_format = ""
 
 # }}}
@@ -82,14 +82,12 @@ set pager_format = "-- Mutt: %-0.20F [%-0.46s] %* -- %P "
 # Composing and sending {{{
 
 set realname = "Sam Burk"
-set from = "sam@samburk.com"
-alternates swburk@fastmail.fm smbk@fastmail.fm swburk@wichita.edu sam@getmediapanel.com
-set sendmail = "msmtp -a samburk"
+alternates swburk@fastmail\.fm swburk@wichita\.edu .*@samburk\.com
 set editor = "vim -c 'normal G'" # Use vim to compose emails
 set abort_unmodified = ask-yes
 set text_flowed # Use format=flowed
 set edit_headers # Include headers when composing
-# set autoedit # Skip prompts when composing new message
+set autoedit # Skip prompts when composing new message
 set fast_reply # Skip prompts when replying
 set reply_to = yes # Reply to address in Reply-to: header
 set reverse_name # Reply with the address the email was sent to
@@ -161,16 +159,8 @@ bind index,pager <tab> sync-mailbox
 bind editor <Tab> complete-query
 bind editor \ct complete
 
-# Archive or save a message to a folder
-macro index,pager a "<save-message>=archive<return>" "save message to archive folder"
+# Save a message to a folder
 macro index,pager M "<save-message>?<toggle-mailboxes>" "move message to a folder"
-
-# Shortcuts for changing folders quickly
-macro index,pager \'i "<change-folder>=INBOX<return>" "open INBOX folder"
-macro index,pager \'a "<change-folder>=archive<return>" "open archive folder"
-macro index,pager \'d "<change-folder>=drafts<return>" "open drafts folder"
-macro index,pager \'s "<change-folder>=sent<return>" "open sent folder"
-macro index,pager \'j "<change-folder>=junk<return>" "open junk folder"
 
 # Add some of the index bindings to the pager
 bind pager < previous-line
@@ -185,5 +175,8 @@ macro attach s "<save-entry>~/Downloads/<return>y"
 # Hooks {{{
 
 send-hook '~t ^.+@wichita\.edu$' 'my_hdr From: swburk@wichita.edu'
+folder-hook personal/* source ~/.mutt/personal.muttrc
+folder-hook work/* source ~/.mutt/work.muttrc
+source ~/.mutt/personal.muttrc
 
 # }}}
