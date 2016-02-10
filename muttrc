@@ -82,7 +82,7 @@ set pager_format = "-- Mutt: %-0.20F [%-0.46s] %* -- %P "
 # Composing and sending {{{
 
 set realname = "Sam Burk"
-alternates swburk@fastmail\.fm swburk@wichita\.edu .*@samburk\.com
+alternates swburk@fastmail\.fm swburk@wichita\.edu .*@samburk\.com .*@harmonicast\.net
 set editor = "vim -c 'normal G'" # Use vim to compose emails
 set abort_unmodified = ask-yes
 set text_flowed # Use format=flowed
@@ -147,10 +147,6 @@ macro index ,f "<limit>~F<return>" "show all flagged messages"
 
 # Mark all messages as read
 macro index \ca "<tag-pattern>~N<return><tag-prefix-cond><clear-flag>N<untag-pattern>~T<return>" "mark all messages as read"
-
-# Run offlineimap
-macro index o "<shell-escape>offlineimap<return>" "run offlineimap"
-macro index O "<shell-escape>offlineimap -qf INBOX<return>" "run offlineimap on inbox"
 
 # Sync mailbox
 bind index,pager <tab> sync-mailbox

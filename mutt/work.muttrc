@@ -8,7 +8,7 @@ set mbox = "=work/archive"
 set postponed = "=work/drafts"
 set record = =work/sent
 
-# Mappings
+# Change folders
 macro index - "<change-folder>+personal/INBOX<enter>" "switch to other account"
 macro index,pager a "<save-message>=work/archive<return>" "save message to archive folder"
 macro index,pager \'i "<change-folder>=work/INBOX<return>" "open INBOX folder"
@@ -21,3 +21,7 @@ macro index,pager \'c "<change-folder>=work/commands<return>" "open commands fol
 macro index,pager \'m "<change-folder>=work/memory<return>" "open memory folder"
 macro index,pager \'n "<change-folder>=work/nagios<return>" "open nagios folder"
 macro index,pager \'r "<change-folder>=work/rsync<return>" "open rsync folder"
+
+# Run offlineimap
+macro index o "<shell-escape>offlineimap -a work<return>" "run offlineimap"
+macro index O "<shell-escape>offlineimap -a work -qf INBOX<return>" "run offlineimap on inbox"
