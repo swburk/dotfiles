@@ -83,7 +83,7 @@ set pager_format = "-- Mutt: %-0.20F [%-0.46s] %* -- %P "
 
 set realname = "Sam Burk"
 alternates swburk@fastmail\.fm swburk@wichita\.edu .*@samburk\.com .*@harmonicast\.net
-set editor = "vim -c 'normal G'" # Use vim to compose emails
+set editor = "vim -c 'normal }'" # Use vim to compose emails
 set abort_unmodified = ask-yes
 set text_flowed # Use format=flowed
 set edit_headers # Include headers when composing
