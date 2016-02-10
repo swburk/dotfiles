@@ -8,7 +8,8 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tommcdo/vim-exchange'
-Plug 'SirVer/ultisnips'
+" Plug 'SirVer/ultisnips'
+Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 Plug 'nathanaelkane/vim-indent-guides', { 'on': 'IndentGuidesToggle' }
 Plug 'luochen1990/rainbow', { 'on': 'RainbowToggle' }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -194,6 +195,7 @@ nnoremap <silent> <leader>l :set list!<cr>
 nnoremap <silent> <leader>n :set number!<cr>
 nnoremap <silent> <Leader>i :IndentGuidesToggle<cr>
 nnoremap <silent> <Leader>r :RainbowToggle<cr>
+nnoremap <silent> <Leader>u :UndotreeToggle<cr>
 
 " }}}
 " Navigation {{{
