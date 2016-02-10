@@ -53,7 +53,7 @@ nametrans = lambda folder: {'INBOX.Archive': 'archive',
                             'INBOX.Sent Items': 'sent',
                             'INBOX.Junk Mail': 'junk',
                             }.get(folder, folder)
-folderfilter = lambda folder: folder not in ['INBOX.Trash']
+folderfilter = lambda folder: folder not in ['INBOX.Trash', 'INBOX.Notes']
 
 [Repository work_remote]
 type = IMAP
