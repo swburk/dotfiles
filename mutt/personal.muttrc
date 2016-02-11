@@ -16,6 +16,8 @@ macro index,pager \'a "<change-folder>=personal/archive<return>" "open archive f
 macro index,pager \'d "<change-folder>=personal/drafts<return>" "open drafts folder"
 macro index,pager \'s "<change-folder>=personal/sent<return>" "open sent folder"
 macro index,pager \'j "<change-folder>=personal/junk<return>" "open junk folder"
+macro index,pager \'m "<change-folder>=personal/mutt<return>" "open mutt folder"
+macro index,pager \'v "<change-folder>=personal/vim<return>" "open vim folder"
 
 # Run offlineimap
 macro index o "<shell-escape>offlineimap -a personal<return>" "run offlineimap"
