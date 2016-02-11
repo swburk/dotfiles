@@ -84,17 +84,19 @@ set pager_format = "-- Mutt: %-0.20F [%-0.46s] %* -- %P "
 set realname = "Sam Burk"
 alternates swburk@fastmail\.fm swburk@wichita\.edu .*@samburk\.com .*@harmonicast\.net
 set editor = "vim -c 'normal }'" # Use vim to compose emails
-set abort_unmodified = ask-yes
+set abort_nosubject
+set abort_unmodified
 set text_flowed # Use format=flowed
-set edit_headers # Include headers when composing
-set autoedit # Skip prompts when composing new message
+# set edit_headers # Include headers when composing
+# set autoedit # Skip prompts when composing new message
 set fast_reply # Skip prompts when replying
-set reply_to = yes # Reply to address in Reply-to: header
+set reply_to # Reply to address in Reply-to: header
 set reverse_name # Reply with the address the email was sent to
-set include = yes # Include message when replying
+set include # Include message when replying
+set forward_edit = ask-no # Don't edit forwarded messages by default
 set forward_decode # Decode attachments when forwarding
-set forward_quote # Include message when forwarding
 set forward_format = "Fwd: %s" # Format of subject when forwarding
+set attribution = "" # Don't include attribution header above quoted messages
 set compose_format = "-- Mutt: Compose [%a Attachments]"
 
 # }}}
