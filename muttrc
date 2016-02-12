@@ -39,8 +39,8 @@ set folder_format = "  %2C  %f"
 
 set mbox_type = Maildir # Default mailbox type when creating new folders
 set wait_key = no # Don't prompt after running external programs
-set timeout = 4 # Look for new email after 4 seconds of inactivity
-set mail_check = 0 # Minimum time between checks for new mail
+set timeout = 4 # Wait 4 seconds for user input
+set beep_new # Beep when new messages come in
 set delete = yes # Don't ask for confirmation when deleting messages
 unset confirmappend # Don't ask for confirmation when moving messages
 set uncollapse_jump # Jump to the first unread message in a thread
@@ -67,6 +67,10 @@ set strict_threads
 # }}}
 # Pager {{{
 
+<<<<<<< HEAD
+=======
+# set display_filter="sed -f ~/.mutt/display_filter"
+>>>>>>> 24eb15c3a283239efc5954e9ca7b420c89ca1ec7
 set pager_stop # Don't move to next message at end of current message
 unset markers # Don't display "+" on wrapped lines in pager
 set reflow_wrap = 0 # Wrap format=flowed messages to terminal width
@@ -81,8 +85,8 @@ set pager_format = "-- Mutt: %-0.20F [%-0.46s] %* -- %P "
 # Composing and sending {{{
 
 set realname = "Sam Burk"
-alternates swburk@fastmail\.fm swburk@wichita\.edu .*@samburk\.com .*@harmonicast\.net
-set editor = "vim -c 'normal }'" # Use vim to compose emails
+alternates swburk@fastmail.fm swburk@wichita.edu .*@samburk.com .*@harmonicast.net
+set editor = "vim -c 'normal G'" # Use vim to compose emails
 set abort_nosubject
 set abort_unmodified
 set text_flowed # Use format=flowed
@@ -95,7 +99,7 @@ set include # Include message when replying
 set forward_edit = ask-no # Don't edit forwarded messages by default
 set forward_decode # Decode attachments when forwarding
 set forward_format = "Fwd: %s" # Format of subject when forwarding
-set attribution = "" # Don't include attribution header above quoted messages
+# set attribution = "" # Don't include attribution header above quoted messages
 set compose_format = "-- Mutt: Compose [%a Attachments]"
 
 # }}}
@@ -175,5 +179,11 @@ send-hook '~t ^.+@wichita\.edu$' 'my_hdr From: swburk@wichita.edu'
 folder-hook personal/* source ~/.mutt/personal.muttrc
 folder-hook work/* source ~/.mutt/work.muttrc
 source ~/.mutt/personal.muttrc
+
+# }}}
+# Mailing lists {{{
+
+subscribe mutt-users@mutt.org
+subscribe vim_use@googlegroups.com
 
 # }}}
