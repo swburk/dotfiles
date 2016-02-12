@@ -1,2 +1,3 @@
-text/html; w3m -I %{charset} -T text/html; copiousoutput;
-application/pdf; open -a Preview %s
+text/html; w3m -I %{charset} -T text/html; copiousoutput
+application/pdf; open -a Preview %s; copiousoutput
+image/*; open -a Preview %s; copiousoutput
