@@ -20,7 +20,6 @@ fpath=(~/.zsh/functions $fpath)
 for function in $(ls ~/.zsh/functions); do
     autoload "$function"
 done
-. ~/.bin/z.sh
 
 # Completion -----------------------------------------------------------------
 
