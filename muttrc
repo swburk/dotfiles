@@ -67,10 +67,6 @@ set strict_threads
 # }}}
 # Pager {{{
 
-<<<<<<< HEAD
-=======
-# set display_filter="sed -f ~/.mutt/display_filter"
->>>>>>> 24eb15c3a283239efc5954e9ca7b420c89ca1ec7
 set pager_stop # Don't move to next message at end of current message
 unset markers # Don't display "+" on wrapped lines in pager
 set reflow_wrap = 0 # Wrap format=flowed messages to terminal width
