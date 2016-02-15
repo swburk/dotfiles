@@ -18,6 +18,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'morhetz/gruvbox'
 Plug 'sjl/badwolf'
 Plug 'w0ng/vim-hybrid'
+Plug 'nanotech/jellybeans.vim'
 
 call plug#end()
 
@@ -96,7 +97,7 @@ set statusline+=\ \|\ L\ %l\/%L\ C\ %v\ \|\ %P\ " Line number, column number, an
 syntax on
 set t_Co=256
 set background=dark
-colorscheme gruvbox
+colorscheme badwolf
 
 " }}}
 " Folding {{{
