@@ -152,7 +152,8 @@ function! PreserveSearch(cmd) " {{{
   call cursor(prev_line, prev_col)
 endfunction " }}}
 
-" Visual */# mappings (Thanks to Scrooloose)
+" Visual */# mappings
+" From http://got-ravings.blogspot.com/2008/07/vim-pr0n-visual-search-mappings.html
 function! s:VSetSearch() " {{{
     let temp = @@
     norm! gvy
@@ -242,7 +243,7 @@ nnoremap <c-l> <c-w>l
 " Files & Directories {{{
 
 " Set working directory for current window to that of the current buffer
-nnoremap <leader>cd :lcd %:p:h<bar>pwd<cr>
+nnoremap <leader>c :lcd %:p:h<bar>pwd<cr>
 
 " Save as root
 cnoremap w!! w !sudo tee % >/dev/null
