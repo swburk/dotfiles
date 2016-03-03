@@ -23,8 +23,6 @@ nametrans = lambda folder: {'archive': 'INBOX.Archive',
                             'drafts': 'INBOX.Drafts',
                             'sent': 'INBOX.Sent Items',
                             'junk': 'INBOX.Junk Mail',
-                            'mutt': 'INBOX.mutt',
-                            'vim': 'INBOX.vim',
                             }.get(folder, folder)
 
 [Repository work_local]
@@ -54,8 +52,6 @@ nametrans = lambda folder: {'INBOX.Archive': 'archive',
                             'INBOX.Drafts': 'drafts',
                             'INBOX.Sent Items': 'sent',
                             'INBOX.Junk Mail': 'junk',
-                            'INBOX.mutt': 'mutt',
-                            'INBOX.vim': 'vim',
                             }.get(folder, folder)
 folderfilter = lambda folder: folder not in ['INBOX.Trash', 'INBOX.Notes']
 
