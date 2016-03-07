@@ -1,18 +1,19 @@
 # Dotfiles
 
-## Requirements
+## Software
 
-- Bash or Zsh
-- Exuberant Ctags
-- Git
-- Lbdb
-- Msmtp
-- Mu
-- Mutt
-- Offlineimap
-- Tmux
-- Urlview
-- Vim (7.4+)
+These dotfiles contain configurations for the following programs.
+
+- vim (v. 7.4+)
+- zsh
+- tmux
+- git
+- mutt
+- msmtp
+- offlineimap
+- urlview
+- mu
+- lbdb
 
 ## Installation
 
