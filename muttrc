@@ -15,22 +15,21 @@ set folder = ~/.mail
 # Default inbox
 set spoolfile = "=personal/INBOX"
 
+# Archive folder
+set mbox = "=personal/archive"
+
+# Drafts folder
+set postponed = "=personal/drafts"
+
+# Sent folder
+set record = =personal/sent
+
 # Define mailboxes
 mailboxes =personal/INBOX \
           =personal/archive \
           =personal/drafts \
           =personal/sent \
           =personal/junk \
-          =work/INBOX \
-          =work/archive \
-          =work/drafts \
-          =work/sent \
-          =work/junk \
-          =work/boot \
-          =work/commands \
-          =work/memory \
-          =work/nagios \
-          =work/rsync \
 
 set folder_format = "  %2C  %f"
 
@@ -81,7 +80,9 @@ set pager_format = "-- Mutt: %-0.20F [%-0.46s] %* -- %P "
 # Composing and sending {{{
 
 set realname = "Sam Burk"
-alternates swburk@fastmail.fm swburk@wichita.edu .*@samburk.com .*@harmonicast.net
+set from = "sam@samburk.com"
+set sendmail = "msmtp -a personal"
+alternates swburk@fastmail.fm swburk@wichita.edu .*@samburk.com .*@harmonicast.net *@smatteringpodcast.com
 set editor = "vim -c 'normal G'" # Use vim to compose emails
 set abort_nosubject
 set abort_unmodified
@@ -128,6 +129,10 @@ set status_on_top # Show status line on top of winodw
 # Search in reverse
 bind index,pager N search-opposite
 
+# Run offlineimap
+macro index o "<shell-escape>offlineimap -a personal<return>" "run offlineimap"
+macro index O "<shell-escape>offlineimap -a personal -qf INBOX<return>" "run offlineimap on inbox"
+
 # Full-text search with mu
 macro index \\ "<shell-escape>mu find --clearlinks --format=links --linksdir=~/.mail/search " "mu find"
 macro index \'r "<change-folder-readonly>~/.mail/search<return>" "mu find results"
@@ -136,9 +141,19 @@ macro index \'r "<change-folder-readonly>~/.mail/search<return>" "mu find result
 bind index \# toggle-new
 bind pager \# mark-as-new
 
+# Archive message
+macro index,pager a "<save-message>=personal/archive<return>" "save message to archive folder"
+
 # Collapse/uncollapse threads
 bind index <space> collapse-thread
 bind index _ collapse-all
+
+# Navigate folders
+macro index,pager \'i "<change-folder>=personal/INBOX<return>" "open INBOX folder"
+macro index,pager \'a "<change-folder>=personal/archive<return>" "open archive folder"
+macro index,pager \'d "<change-folder>=personal/drafts<return>" "open drafts folder"
+macro index,pager \'s "<change-folder>=personal/sent<return>" "open sent folder"
+macro index,pager \'j "<change-folder>=personal/junk<return>" "open junk folder"
 
 # Limits
 macro index ,a "<limit>all<return>" "show all messages"
@@ -172,14 +187,5 @@ macro attach s "<save-entry>~/Downloads/<return>y"
 # Hooks {{{
 
 send-hook '~t ^.+@wichita\.edu$' 'my_hdr From: swburk@wichita.edu'
-folder-hook personal/* source ~/.mutt/personal.muttrc
-folder-hook work/* source ~/.mutt/work.muttrc
-source ~/.mutt/personal.muttrc
-
-# }}}
-# Mailing lists {{{
-
-subscribe mutt-users@mutt.org
-subscribe vim_use@googlegroups.com
 
 # }}}

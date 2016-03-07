@@ -40,9 +40,6 @@ bindkey '^x^e' edit-command-line
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
 
-# Push line
-# bindkey '^h' push-line
-
 # Prompt ---------------------------------------------------------------------
 
 setopt prompt_subst

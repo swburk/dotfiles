@@ -19,7 +19,3 @@
   tool = vimdiff
 [diff]
   tool = vimdiff
-[url "git://github.com/"]
-  insteadOf = "github:"
-[url "git@github.com:"]
-  insteadOf = "gh:"
