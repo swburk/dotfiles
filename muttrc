@@ -82,7 +82,7 @@ set pager_format = "-- Mutt: %-0.20F [%-0.46s] %* -- %P "
 set realname = "Sam Burk"
 set from = "sam@samburk.com"
 set sendmail = "msmtp -a personal"
-alternates swburk@fastmail.fm swburk@wichita.edu .*@samburk.com .*@harmonicast.net *@smatteringpodcast.com
+alternates swburk@fastmail\.fm swburk@wichita\.edu .+@samburk\.com .+@harmonicast\.net .+@smatteringpodcast\.com
 set editor = "vim -c 'normal G'" # Use vim to compose emails
 set abort_nosubject
 set abort_unmodified
