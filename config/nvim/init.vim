@@ -1,7 +1,7 @@
 " vim-plug {{{
 
 runtime macros/matchit.vim
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.config/nvim/plugged')
 
 " Plugins
 Plug 'tpope/vim-commentary'
@@ -26,16 +26,10 @@ call plug#end()
 
 " General
 filetype plugin indent on
-set encoding=utf-8
 set modelines=0
-set history=10000
 set autoread
-set ttyfast
 set hidden
-set backspace=indent,eol,start
-set nrformats-=octal
 set nojoinspaces
-set wildmenu
 set wildmode=list:longest,full
 set wildignore+=*.git/
 set wildignore+=*.jpg,*.jpeg,*.png,*.gif
@@ -52,7 +46,7 @@ set noswapfile
 set nobackup
 set nowritebackup
 set undofile
-set undodir=~/.vim/undo
+set undodir=~/.config/nvim/undo
 
 " Search
 set incsearch
@@ -89,12 +83,10 @@ set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
 set showbreak=…
 set colorcolumn=+1
 set cursorline
-set laststatus=2
 set statusline=\ %f\ \|\ %M\ %r%= " File name, modified and readonly flags
 set statusline+=%{&fileformat}\ \|\ %{&encoding}\ \|\ %{&filetype} " File information
 set statusline+=\ \|\ L\ %l\/%L\ C\ %v\ \|\ %P\ " Line number, column number, and position in file
 syntax on
-set t_Co=256
 set background=dark
 colorscheme hybrid
 
@@ -233,7 +225,7 @@ nnoremap <leader><leader> ,
 vnoremap <leader><leader> ,
 
 " Quicker window switching
-nnoremap <c-h> <c-w>h
+nnoremap <bs> <c-w>h
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-l> <c-w>l
@@ -248,9 +240,9 @@ nnoremap <leader>c :lcd %:p:h<bar>pwd<cr>
 cnoremap w!! w !sudo tee % >/dev/null
 
 " Edit vim files
-nnoremap <silent> <leader>vv :tabe $MYVIMRC<cr>
-nnoremap <silent> <leader>vd :tabe ~/.vim/<cr>
-nnoremap <silent> <leader>vf :exe "tabe ~/.vim/after/ftplugin/" . &ft . ".vim"<cr>
+nnoremap <silent> <leader>vv :tabe ~/.config/nvim/init.vim<cr>
+nnoremap <silent> <leader>vd :tabe ~/.config/nvim/<cr>
+nnoremap <silent> <leader>vf :exe "tabe ~/.config/nvim/after/ftplugin/" . &ft . ".vim"<cr>
 
 " }}}
 
@@ -258,10 +250,10 @@ nnoremap <silent> <leader>vf :exe "tabe ~/.vim/after/ftplugin/" . &ft . ".vim"<c
 " Autocommands {{{
 
 if has("autocmd")
-    " Source $MYVIMRC after saving
+    " Source ~/.config/nvim/init.vim after saving
     augroup SourceVimrc
         au!
-        autocmd BufWritePost $MYVIMRC source $MYVIMRC
+        autocmd BufWritePost ~/.config/nvim/init.vim source ~/.config/nvim/init.vim
     augroup END
 
     " Only show cursorline in current window
