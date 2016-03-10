@@ -27,7 +27,6 @@ call plug#end()
 " General
 filetype plugin indent on
 set modelines=0
-set autoread
 set hidden
 set nojoinspaces
 set wildmode=list:longest,full
@@ -49,8 +48,6 @@ set undofile
 set undodir=~/.config/nvim/undo
 
 " Search
-set incsearch
-set hlsearch
 set ignorecase
 set smartcase
 set wrapscan
@@ -60,7 +57,6 @@ set tabstop=8
 set softtabstop=4
 set shiftwidth=4
 set expandtab
-set autoindent
 set shiftround
 
 " Wrapping
