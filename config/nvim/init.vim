@@ -229,6 +229,9 @@ nnoremap <c-l> <c-w>l
 " }}}
 " Files & Directories {{{
 
+" Fuzzy file opener
+nnoremap <leader>f :FZF<cr>
+
 " Set working directory for current window to that of the current buffer
 nnoremap <leader>c :lcd %:p:h<bar>pwd<cr>
 

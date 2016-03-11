@@ -1,14 +1,15 @@
 # Environment variables and options ------------------------------------------
 
 export PATH="$HOME/.bin:/usr/local/bin:$PATH"
-export VISUAL="vim"
+export VISUAL="nvim"
 export EDITOR="$VISUAL"
-export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man' -\""
+export MANPAGER="/bin/sh -c \"col -b | nvim -c 'set ft=man' -\""
 export LSCOLORS="ExGxcxdxFxegedabagExEx"
 export CLICOLOR=1
 export HISTSIZE=100000
 export SAVEHIST=100000
 export HISTFILE="$HOME/.zsh_history"
+export FZF_DEFAULT_COMMAND="ag --hidden -f -g """
 setopt hist_ignore_space
 setopt inc_append_history
 setopt share_history
