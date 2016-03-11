@@ -2,14 +2,22 @@
 
 DOTFILE_DIR="$HOME/.dotfiles"
 
-pushd "$DOTFILE_DIR"
+pushd "$DOTFILE_DIR" >/dev/null
 
 files=($(ls))
 for file in "${files[@]}"; do
-    if [ "$file" != 'install' ] && [ "$file" != 'README.md' ]; then
+    if [ "$file" != 'install' ] && [ "$file" != 'README.md' ] && [ "$file" != 'config' ]; then
+        echo "Linking $file"
         test -L "$HOME/.$file" || ln -s "$DOTFILE_DIR/$file" "$HOME/.$file"
     fi
 done
 
-chmod 600 "$DOTFILE_DIR/msmtprc"
-popd
+files=($(ls config))
+for file in "${files[@]}"; do
+    echo "Linking config/$file"
+    test -L "$HOME/.config/$file" || ln -s "$DOTFILE_DIR/config/$file" "$HOME/.config/$file"
+done
+
+chmod -v 600 "$DOTFILE_DIR/msmtprc"
+
+popd >/dev/null
