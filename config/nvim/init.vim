@@ -168,8 +168,9 @@ inoremap <c-b> <esc>gUiwgi
 " Strip trailing whitespace
 nnoremap <silent> <leader><space> :call PreserveSearch(':%s/\s\+$//e')<cr>
 
-" Delete current buffer without changing window layout
-nnoremap <silent> <leader>d :b#<bar>bd#<cr>
+" Buffer management
+nnoremap <leader>bb :ls<cr>:b<space>
+nnoremap <silent> <leader>bd :b#<bar>bd#<cr>
 
 " }}}
 " Toggles {{{
@@ -208,11 +209,8 @@ cnoremap <c-a> <home>
 cnoremap <c-f> <right>
 cnoremap <c-b> <left>
 
-" Always jump to exact position of mark
-nnoremap ' `
-
 " Switch to alternate buffer
-nnoremap ` <c-^>
+nnoremap <bs> <c-^>
 
 " Repeat last f, t, F, or T in reverse
 nnoremap <leader><leader> ,
