@@ -1,6 +1,5 @@
 " vim-plug {{{
 
-runtime macros/matchit.vim
 call plug#begin('~/.config/nvim/plugged')
 
 " Plugins
