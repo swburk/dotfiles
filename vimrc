@@ -27,7 +27,6 @@ call plug#end()
 " General
 filetype plugin indent on
 set encoding=utf-8
-set modelines=0
 set history=10000
 set autoread
 set ttyfast
@@ -81,7 +80,7 @@ set cmdheight=2
 set visualbell t_vb=
 set showcmd
 set showmode
-set number
+set nonumber
 set splitright
 set splitbelow
 set list
@@ -241,6 +240,9 @@ nnoremap <c-l> <c-w>l
 " }}}
 " Files & Directories {{{
 
+" Fuzzy file opener
+nnoremap <leader>f :FZF<cr>
+
 " Set working directory for current window to that of the current buffer
 nnoremap <leader>c :lcd %:p:h<bar>pwd<cr>
 
@@ -249,6 +251,7 @@ cnoremap w!! w !sudo tee % >/dev/null
 
 " Edit vim files
 nnoremap <silent> <leader>vv :tabe $MYVIMRC<cr>
+nnoremap <silent> <leader>vs :source $MYVIMRC<cr>
 nnoremap <silent> <leader>vd :tabe ~/.vim/<cr>
 nnoremap <silent> <leader>vf :exe "tabe ~/.vim/after/ftplugin/" . &ft . ".vim"<cr>
 

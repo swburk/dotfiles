@@ -26,7 +26,6 @@ call plug#end()
 
 " General
 filetype plugin indent on
-set modelines=0
 set hidden
 set nojoinspaces
 set wildmode=list:longest,full
@@ -45,12 +44,11 @@ set noswapfile
 set nobackup
 set nowritebackup
 set undofile
-set undodir=~/.config/nvim/undo
+" set undodir=~/.config/nvim/undo
 
 " Search
 set ignorecase
 set smartcase
-set wrapscan
 
 " Whitespace
 set tabstop=8
@@ -71,7 +69,7 @@ set cmdheight=2
 set visualbell t_vb=
 set showcmd
 set showmode
-set number
+set nonumber
 set splitright
 set splitbelow
 set list
@@ -238,8 +236,9 @@ nnoremap <leader>c :lcd %:p:h<bar>pwd<cr>
 " Save as root
 cnoremap w!! w !sudo tee % >/dev/null
 
-" Edit vim files
+" Edit/source neovim files
 nnoremap <silent> <leader>vv :tabe ~/.config/nvim/init.vim<cr>
+nnoremap <silent> <leader>vs :source ~/.config/nvim/init.vim<cr>
 nnoremap <silent> <leader>vd :tabe ~/.config/nvim/<cr>
 nnoremap <silent> <leader>vf :exe "tabe ~/.config/nvim/after/ftplugin/" . &ft . ".vim"<cr>
 
@@ -250,7 +249,7 @@ nnoremap <silent> <leader>vf :exe "tabe ~/.config/nvim/after/ftplugin/" . &ft . 
 
 if has("autocmd")
     " Source ~/.config/nvim/init.vim after saving
-    augroup SourceVimrc
+    augroup SourceInitVim
         au!
         autocmd BufWritePost ~/.config/nvim/init.vim source ~/.config/nvim/init.vim
     augroup END
