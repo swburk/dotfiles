@@ -81,7 +81,7 @@ set statusline+=%{&fileformat}\ \|\ %{&encoding}\ \|\ %{&filetype} " File inform
 set statusline+=\ \|\ L\ %l\/%L\ C\ %v\ \|\ %P\ " Line number, column number, and position in file
 syntax on
 set background=dark
-colorscheme hybrid
+colorscheme gruvbox
 
 " }}}
 " Folding {{{
@@ -234,8 +234,8 @@ nnoremap <leader>c :lcd %:p:h<bar>pwd<cr>
 cnoremap w!! w !sudo tee % >/dev/null
 
 " Edit/source neovim files
-nnoremap <silent> <leader>vv :tabe ~/.config/nvim/init.vim<cr>
-nnoremap <silent> <leader>vs :source ~/.config/nvim/init.vim<cr>
+nnoremap <silent> <leader>vv :tabe $MYVIMRC<cr>
+nnoremap <silent> <leader>vs :source $MYVIMRC<cr>
 nnoremap <silent> <leader>vd :tabe ~/.config/nvim/<cr>
 nnoremap <silent> <leader>vf :exe "tabe ~/.config/nvim/after/ftplugin/" . &ft . ".vim"<cr>
 
@@ -245,10 +245,10 @@ nnoremap <silent> <leader>vf :exe "tabe ~/.config/nvim/after/ftplugin/" . &ft . 
 " Autocommands {{{
 
 if has("autocmd")
-    " Source ~/.config/nvim/init.vim after saving
-    augroup SourceInitVim
+    " Source $MYVIMRC after saving
+    augroup SourceVimrc
         au!
-        autocmd BufWritePost ~/.config/nvim/init.vim source ~/.config/nvim/init.vim
+        autocmd BufWritePost $MYVIMRC source $MYVIMRC
     augroup END
 
     " Only show cursorline in current window
