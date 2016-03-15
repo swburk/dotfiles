@@ -43,7 +43,6 @@ set noswapfile
 set nobackup
 set nowritebackup
 set undofile
-" set undodir=~/.config/nvim/undo
 
 " Search
 set ignorecase
@@ -127,7 +126,7 @@ set foldtext=MyFoldText()
 let mapleader=','
 let maplocalleader='\'
 
-function! PreserveSearch(cmd) " {{{
+function! s:PreserveSearch(cmd) " {{{
   let prev_search=@/
   let prev_line = line(".")
   let prev_col = col(".")
