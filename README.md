@@ -5,6 +5,7 @@
 These dotfiles contain configurations for the following programs.
 
 - vim (v. 7.4+)
+- neovim (v. 0.1+)
 - zsh
 - tmux
 - git
