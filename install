@@ -15,6 +15,7 @@ done
 files=($(ls config))
 for file in "${files[@]}"; do
     echo "Linking config/$file"
+    test -d "$HOME/.config" || mkdir -v "$HOME/.config"
     test -L "$HOME/.config/$file" || ln -s "$DOTFILE_DIR/config/$file" "$HOME/.config/$file"
 done
 
