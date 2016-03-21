@@ -80,7 +80,7 @@ set statusline+=%{&fileformat}\ \|\ %{&encoding}\ \|\ %{&filetype} " File inform
 set statusline+=\ \|\ L\ %l\/%L\ C\ %v\ \|\ %P\ " Line number, column number, and position in file
 syntax on
 set background=dark
-colorscheme gruvbox
+colorscheme hybrid
 
 " }}}
 " Folding {{{
@@ -169,6 +169,15 @@ nnoremap <silent> <leader><space> :call PreserveSearch(':%s/\s\+$//e')<cr>
 " Buffer management
 nnoremap <leader>bb :ls<cr>:b<space>
 nnoremap <silent> <leader>bd :b#<bar>bd#<cr>
+
+" Resize current window to the size of textwidth
+function! ResizeWindow() " {{{
+    let s:gutterwidth = &fdc + (&relativenumber + &number) * &numberwidth
+    let s:windowwidth = s:gutterwidth + &textwidth + 1
+    exe "wincmd ="
+    exe "vertical resize " . s:windowwidth
+endfunction " }}}
+nnoremap <silent> <c-w>r :call ResizeWindow()<cr>
 
 " }}}
 " Toggles {{{
