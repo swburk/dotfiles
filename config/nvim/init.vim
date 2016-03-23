@@ -167,8 +167,8 @@ inoremap <c-b> <esc>gUiwgi
 nnoremap <silent> <leader><space> :call PreserveSearch(':%s/\s\+$//e')<cr>
 
 " Buffer management
-nnoremap <leader>bb :ls<cr>:b<space>
-nnoremap <silent> <leader>bd :b#<bar>bd#<cr>
+nnoremap <leader>b :ls<cr>:b<space>
+nnoremap <silent> <leader>d :b#<bar>bd#<cr>
 
 " Resize current window to the size of textwidth
 function! ResizeWindow() " {{{
@@ -217,7 +217,7 @@ cnoremap <c-f> <right>
 cnoremap <c-b> <left>
 
 " Switch to alternate buffer
-nnoremap <bs> <c-^>
+nnoremap <tab> <c-^>
 
 " Repeat last f, t, F, or T in reverse
 nnoremap <leader><leader> ,
