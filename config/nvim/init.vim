@@ -80,7 +80,7 @@ set statusline+=%{&fileformat}\ \|\ %{&encoding}\ \|\ %{&filetype} " File inform
 set statusline+=\ \|\ L\ %l\/%L\ C\ %v\ \|\ %P\ " Line number, column number, and position in file
 syntax on
 set background=dark
-colorscheme badwolf
+colorscheme hybrid
 
 " }}}
 " Folding {{{
@@ -126,7 +126,7 @@ set foldtext=MyFoldText()
 let mapleader=','
 let maplocalleader='\'
 
-function! s:PreserveSearch(cmd) " {{{
+function! PreserveSearch(cmd) " {{{
   let prev_search=@/
   let prev_line = line(".")
   let prev_col = col(".")
@@ -148,7 +148,7 @@ vnoremap # :<c-u>call <SID>VSetSearch()<CR>??<CR><c-o>
 
 " Split line
 nnoremap <Plug>SplitLine i<cr><esc>k:call PreserveSearch('silent! s/ \+$/')<cr>j^:call repeat#set("\<Plug>SplitLine")<cr>
-nmap S <Plug>SplitLine
+nmap <silent> S <Plug>SplitLine
 
 " Space toggles fold
 nnoremap <space> za
