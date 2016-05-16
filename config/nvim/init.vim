@@ -43,6 +43,7 @@ set noswapfile
 set nobackup
 set nowritebackup
 set undofile
+set undodir=~/.config/nvim/undo
 
 " Search
 set ignorecase
