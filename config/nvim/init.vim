@@ -7,8 +7,6 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tommcdo/vim-exchange'
-Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
-Plug 'nathanaelkane/vim-indent-guides', { 'on': 'IndentGuidesToggle' }
 Plug 'luochen1990/rainbow', { 'on': 'RainbowToggle' }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
@@ -17,6 +15,7 @@ Plug 'morhetz/gruvbox'
 Plug 'sjl/badwolf'
 Plug 'w0ng/vim-hybrid'
 Plug 'nanotech/jellybeans.vim'
+Plug 'NLKNguyen/papercolor-theme'
 
 call plug#end()
 
@@ -76,12 +75,10 @@ set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
 set showbreak=…
 set colorcolumn=+1
 set cursorline
-set statusline=\ %f\ \|\ %M\ %r%= " File name, modified and readonly flags
-set statusline+=%{&fileformat}\ \|\ %{&encoding}\ \|\ %{&filetype} " File information
-set statusline+=\ \|\ L\ %l\/%L\ C\ %v\ \|\ %P\ " Line number, column number, and position in file
+set statusline=\ %f\ %m%r%=line\ %l\/%L\ \|\ %{&filetype}\ 
 syntax on
-set background=dark
-colorscheme hybrid
+set background=light
+colorscheme PaperColor
 
 " }}}
 " Folding {{{
