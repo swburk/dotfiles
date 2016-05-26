@@ -77,8 +77,8 @@ set colorcolumn=+1
 set cursorline
 set statusline=\ %f\ %m%r%=line\ %l\/%L\ \|\ %{&filetype}\ 
 syntax on
-set background=light
-colorscheme PaperColor
+set background=dark
+colorscheme gruvbox
 
 " }}}
 " Folding {{{
