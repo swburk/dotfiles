@@ -188,7 +188,6 @@ nnoremap <silent> <leader>l :set list!<cr>
 nnoremap <silent> <leader>n :set number!<cr>
 nnoremap <silent> <Leader>i :IndentGuidesToggle<cr>
 nnoremap <silent> <Leader>r :RainbowToggle<cr>
-nnoremap <silent> <Leader>u :UndotreeToggle<cr>
 
 " }}}
 " Navigation {{{
