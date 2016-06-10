@@ -78,7 +78,7 @@ set cursorline
 set statusline=\ %f\ %m%r%=line\ %l\/%L\ \|\ %{&filetype}\ 
 syntax on
 set background=dark
-colorscheme gruvbox
+colorscheme jellybeans
 
 " }}}
 " Folding {{{
