@@ -7,7 +7,6 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tommcdo/vim-exchange'
-Plug 'luochen1990/rainbow', { 'on': 'RainbowToggle' }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 " Colorschemes
@@ -64,10 +63,10 @@ set formatoptions=qrn1jc
 " Display
 set lazyredraw
 set cmdheight=2
-set visualbell t_vb=
+set visualbell
 set showcmd
 set showmode
-set nonumber
+set number
 set splitright
 set splitbelow
 set list
@@ -183,11 +182,7 @@ nnoremap <silent> <c-w>r :call ResizeWindow()<cr>
 set pastetoggle=<leader>p
 nnoremap <silent> <leader>/ :nohlsearch<cr>
 nnoremap <silent> <leader>s :set spell!<cr>
-nnoremap <silent> <leader>w :set wrap!<cr>
-nnoremap <silent> <leader>l :set list!<cr>
 nnoremap <silent> <leader>n :set number!<cr>
-nnoremap <silent> <Leader>i :IndentGuidesToggle<cr>
-nnoremap <silent> <Leader>r :RainbowToggle<cr>
 
 " }}}
 " Navigation {{{
@@ -271,18 +266,6 @@ endif
 
 " Don't show the help banner
 let g:netrw_banner = 0
-
-" }}}
-" Indent Guides {{{
-
-" Don't use the default mapping
-let g:indent_guides_default_mapping = 0
-
-" }}}
-" Rainbow {{{
-
-" Enable toggling
-let g:rainbow_active = 0
 
 " }}}
 
