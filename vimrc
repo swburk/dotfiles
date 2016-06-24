@@ -8,9 +8,6 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tommcdo/vim-exchange'
-Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
-Plug 'nathanaelkane/vim-indent-guides', { 'on': 'IndentGuidesToggle' }
-Plug 'luochen1990/rainbow', { 'on': 'RainbowToggle' }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 " Colorschemes
@@ -18,6 +15,7 @@ Plug 'morhetz/gruvbox'
 Plug 'sjl/badwolf'
 Plug 'w0ng/vim-hybrid'
 Plug 'nanotech/jellybeans.vim'
+Plug 'NLKNguyen/papercolor-theme'
 
 call plug#end()
 
@@ -80,7 +78,7 @@ set cmdheight=2
 set visualbell t_vb=
 set showcmd
 set showmode
-set nonumber
+set number
 set splitright
 set splitbelow
 set list
@@ -89,13 +87,11 @@ set showbreak=…
 set colorcolumn=+1
 set cursorline
 set laststatus=2
-set statusline=\ %f\ \|\ %M\ %r%= " File name, modified and readonly flags
-set statusline+=%{&fileformat}\ \|\ %{&encoding}\ \|\ %{&filetype} " File information
-set statusline+=\ \|\ L\ %l\/%L\ C\ %v\ \|\ %P\ " Line number, column number, and position in file
+set statusline=\ %f\ %m%r%=line\ %l\/%L\ \|\ %{&filetype}\ 
 syntax on
 set t_Co=256
 set background=dark
-colorscheme hybrid
+colorscheme jellybeans
 
 " }}}
 " Folding {{{
@@ -163,7 +159,7 @@ vnoremap # :<c-u>call <SID>VSetSearch()<CR>??<CR><c-o>
 
 " Split line
 nnoremap <Plug>SplitLine i<cr><esc>k:call PreserveSearch('silent! s/ \+$/')<cr>j^:call repeat#set("\<Plug>SplitLine")<cr>
-nmap S <Plug>SplitLine
+nmap <silent> S <Plug>SplitLine
 
 " Space toggles fold
 nnoremap <space> za
@@ -181,8 +177,18 @@ inoremap <c-b> <esc>gUiwgi
 " Strip trailing whitespace
 nnoremap <silent> <leader><space> :call PreserveSearch(':%s/\s\+$//e')<cr>
 
-" Delete current buffer without changing window layout
+" Buffer management
+nnoremap <leader>b :ls<cr>:b<space>
 nnoremap <silent> <leader>d :b#<bar>bd#<cr>
+
+" Resize current window to the size of textwidth
+function! ResizeWindow() " {{{
+    let s:gutterwidth = &fdc + (&relativenumber + &number) * &numberwidth
+    let s:windowwidth = s:gutterwidth + &textwidth + 1
+    exe "wincmd ="
+    exe "vertical resize " . s:windowwidth
+endfunction " }}}
+nnoremap <silent> <c-w>r :call ResizeWindow()<cr>
 
 " }}}
 " Toggles {{{
@@ -190,12 +196,7 @@ nnoremap <silent> <leader>d :b#<bar>bd#<cr>
 set pastetoggle=<leader>p
 nnoremap <silent> <leader>/ :nohlsearch<cr>
 nnoremap <silent> <leader>s :set spell!<cr>
-nnoremap <silent> <leader>w :set wrap!<cr>
-nnoremap <silent> <leader>l :set list!<cr>
 nnoremap <silent> <leader>n :set number!<cr>
-nnoremap <silent> <Leader>i :IndentGuidesToggle<cr>
-nnoremap <silent> <Leader>r :RainbowToggle<cr>
-nnoremap <silent> <Leader>u :UndotreeToggle<cr>
 
 " }}}
 " Navigation {{{
@@ -221,11 +222,8 @@ cnoremap <c-a> <home>
 cnoremap <c-f> <right>
 cnoremap <c-b> <left>
 
-" Always jump to exact position of mark
-nnoremap ' `
-
 " Switch to alternate buffer
-nnoremap ` <c-^>
+nnoremap <tab> <c-^>
 
 " Repeat last f, t, F, or T in reverse
 nnoremap <leader><leader> ,
@@ -241,7 +239,7 @@ nnoremap <c-l> <c-w>l
 " Files & Directories {{{
 
 " Fuzzy file opener
-nnoremap <leader>f :FZF<cr>
+nnoremap <leader>f :FZF -m<cr>
 
 " Set working directory for current window to that of the current buffer
 nnoremap <leader>c :lcd %:p:h<bar>pwd<cr>
@@ -249,7 +247,7 @@ nnoremap <leader>c :lcd %:p:h<bar>pwd<cr>
 " Save as root
 cnoremap w!! w !sudo tee % >/dev/null
 
-" Edit vim files
+" Edit/source vim files
 nnoremap <silent> <leader>vv :tabe $MYVIMRC<cr>
 nnoremap <silent> <leader>vs :source $MYVIMRC<cr>
 nnoremap <silent> <leader>vd :tabe ~/.vim/<cr>
@@ -282,18 +280,6 @@ endif
 
 " Don't show the help banner
 let g:netrw_banner = 0
-
-" }}}
-" Indent Guides {{{
-
-" Don't use the default mapping
-let g:indent_guides_default_mapping = 0
-
-" }}}
-" Rainbow {{{
-
-" Enable toggling
-let g:rainbow_active = 0
 
 " }}}
 
