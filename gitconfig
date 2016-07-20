@@ -2,7 +2,7 @@
   name = Sam Burk
   email = sam@samburk.com
 [core]
-  editor = vim
+  editor = nvim
 [alias]
   a = add
   aa = add --all
@@ -16,6 +16,6 @@
 [color]
   ui = auto
 [merge]
-  tool = vimdiff
+  tool = nvim -d
 [diff]
-  tool = vimdiff
+  tool = nvim -d
