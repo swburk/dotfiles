@@ -37,7 +37,8 @@ function fish_prompt
 
     # Current directory
     set_color cyan
-    printf (pwd | sed "s#^"$HOME"#~#")
+    set fish_prompt_pwd_dir_length 0
+    printf (prompt_pwd)
     set_color normal
 
     # Current VCS branch
