@@ -37,7 +37,7 @@ function fish_prompt
 
     # Current directory
     set_color cyan
-    set fish_prompt_pwd_dir_length 0
+    set -g fish_prompt_pwd_dir_length 0
     printf (prompt_pwd)
     set_color normal
 
