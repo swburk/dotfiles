@@ -1,5 +1,4 @@
 set fish_greeting
-set PATH "/usr/local/bin" $PATH
 set -x EDITOR nvim
 
 function tn; tmux new -s $argv; end
