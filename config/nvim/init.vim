@@ -73,7 +73,7 @@ set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
 set showbreak=…
 set colorcolumn=+1
 set cursorline
-set statusline=\ %f\ %m%r%=line\ %l\/%L\ \|\ %{&filetype}\ 
+set statusline=\ %f\ %m%r%=line\ %l\/%L:%c\ \|\ %{&filetype}\ 
 syntax on
 set background=dark
 colorscheme jellybeans
