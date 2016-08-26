@@ -21,7 +21,6 @@ call plug#end()
 " Basic {{{
 
 " General
-filetype plugin indent on
 set hidden
 set nojoinspaces
 set wildmode=list:longest,full
@@ -74,7 +73,6 @@ set showbreak=…
 set colorcolumn=+1
 set cursorline
 set statusline=\ %f\ %m%r%=line\ %l\/%L:%c\ \|\ %{&filetype}\ 
-syntax on
 set background=dark
 colorscheme jellybeans
 
