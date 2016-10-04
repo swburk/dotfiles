@@ -74,7 +74,7 @@ set colorcolumn=+1
 set cursorline
 set statusline=\ %f\ %m%r%=line\ %l\/%L:%c\ \|\ %{&filetype}\ 
 set background=dark
-colorscheme jellybeans
+colorscheme badwolf
 
 " }}}
 " Folding {{{
