@@ -9,11 +9,9 @@ Plug 'tpope/vim-repeat'
 Plug 'tommcdo/vim-exchange'
 
 " Colorschemes
-Plug 'morhetz/gruvbox'
 Plug 'sjl/badwolf'
 Plug 'w0ng/vim-hybrid'
 Plug 'nanotech/jellybeans.vim'
-Plug 'NLKNguyen/papercolor-theme'
 
 call plug#end()
 
@@ -119,6 +117,12 @@ set foldtext=MyFoldText()
 
 let mapleader=','
 let maplocalleader='\'
+set pastetoggle=<leader>p
+
+nnoremap K <nop>
+
+" Clear search highlighting
+nnoremap <silent> <leader>/ :nohlsearch<cr>
 
 function! PreserveSearch(cmd) " {{{
   let prev_search=@/
@@ -161,25 +165,14 @@ inoremap <c-b> <esc>gUiwgi
 nnoremap <silent> <leader><space> :call PreserveSearch(':%s/\s\+$//e')<cr>
 
 " Buffer management
-nnoremap <leader>b :ls<cr>:b<space>
+nnoremap gb :ls<cr>:b<space>
 nnoremap <silent> <leader>d :b#<bar>bd#<cr>
 
-" Resize current window to the size of textwidth
-function! ResizeWindow() " {{{
-    let s:gutterwidth = &fdc + (&relativenumber + &number) * &numberwidth
-    let s:windowwidth = s:gutterwidth + &textwidth + 1
-    exe "wincmd ="
-    exe "vertical resize " . s:windowwidth
-endfunction " }}}
-nnoremap <silent> <c-w>r :call ResizeWindow()<cr>
-
-" }}}
-" Toggles {{{
-
-set pastetoggle=<leader>p
-nnoremap <silent> <leader>/ :nohlsearch<cr>
-nnoremap <silent> <leader>s :set spell!<cr>
-nnoremap <silent> <leader>n :set number!<cr>
+" Resize splits easily
+nnoremap <up> 5<c-w>+
+nnoremap <down> 5<c-w>-
+nnoremap <left> 5<c-w><
+nnoremap <right> 5<c-w>>
 
 " }}}
 " Navigation {{{
@@ -217,6 +210,10 @@ nnoremap <bs> <c-w>h
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-l> <c-w>l
+
+" Faster side-scrolling
+nnoremap + 5zl
+nnoremap - 5zh
 
 " }}}
 " Files & Directories {{{
