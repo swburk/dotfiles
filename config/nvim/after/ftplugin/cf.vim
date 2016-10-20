@@ -15,3 +15,12 @@ if exists("loaded_matchit")
     \ '<\@<=dl\>[^>]*\%(>\|$\):<\@<=d[td]\>:<\@<=/dl>,' .
     \ '<\@<=\([^/][^ \t>]*\)[^>]*\%(>\|$\):<\@<=/\1>'
 endif
+
+if has("autocmd")
+    " Save manual folds across editing sessions
+    augroup SaveFolds
+        au!
+        autocmd BufWinLeave *.cf[cm] mkview
+        autocmd BufWinEnter *.cf[cm] silent loadview
+    augroup END
+endif

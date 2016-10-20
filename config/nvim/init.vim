@@ -10,7 +10,6 @@ Plug 'tommcdo/vim-exchange'
 
 " Colorschemes
 Plug 'sjl/badwolf'
-Plug 'w0ng/vim-hybrid'
 Plug 'nanotech/jellybeans.vim'
 
 call plug#end()
@@ -57,6 +56,7 @@ set textwidth=79
 set formatoptions=qrn1jc
 
 " Display
+let g:netrw_banner = 0
 set lazyredraw
 set cmdheight=2
 set visualbell
@@ -128,7 +128,7 @@ function! PreserveSearch(cmd) " {{{
   let prev_search=@/
   let prev_line = line(".")
   let prev_col = col(".")
-  execute a:cmd
+  exe a:cmd
   let @/=prev_search
   call cursor(prev_line, prev_col)
 endfunction " }}}
@@ -173,6 +173,17 @@ nnoremap <up> 5<c-w>+
 nnoremap <down> 5<c-w>-
 nnoremap <left> 5<c-w><
 nnoremap <right> 5<c-w>>
+
+" Open scratch window
+function! Scratch(cmd) " {{{
+  let s:ft = &filetype
+  exe a:cmd
+  exe "setl buftype=nofile bufhidden=wipe nobuflisted ft=" . s:ft
+endfunction
+" }}}
+nnoremap <silent> <leader>se :<c-u>call Scratch('enew')<cr>
+nnoremap <silent> <leader>ss :<c-u>call Scratch('new')<cr>
+nnoremap <silent> <leader>sv :<c-u>call Scratch('vnew')<cr>
 
 " }}}
 " Navigation {{{
@@ -225,10 +236,9 @@ nnoremap <leader>c :lcd %:p:h<bar>pwd<cr>
 cnoremap w!! w !sudo tee % >/dev/null
 
 " Edit/source neovim files
-nnoremap <silent> <leader>vv :tabe $MYVIMRC<cr>
-nnoremap <silent> <leader>vs :source $MYVIMRC<cr>
-nnoremap <silent> <leader>vd :tabe ~/.config/nvim/<cr>
-nnoremap <silent> <leader>vf :exe "tabe ~/.config/nvim/after/ftplugin/" . &ft . ".vim"<cr>
+nnoremap <silent> <leader>vv :e $MYVIMRC<cr>
+nnoremap <silent> <leader>vd :e ~/.config/nvim/<cr>
+nnoremap <silent> <leader>vf :exe "e ~/.config/nvim/after/ftplugin/" . &ft . ".vim"<cr>
 
 " }}}
 
@@ -249,15 +259,5 @@ if has("autocmd")
         autocmd WinEnter * set cursorline
     augroup END
 endif
-
-" }}}
-" Plugin Configuration {{{
-"
-" Netrw {{{
-
-" Don't show the help banner
-let g:netrw_banner = 0
-
-" }}}
 
 " }}}
