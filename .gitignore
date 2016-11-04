@@ -10,3 +10,4 @@ config/nvim/spell/en.utf-8.spl
 config/nvim/spell/en.utf-8.sug
 config/nvim/plugged
 config/fish/fishd.*
+config/fish/fish_history
