@@ -71,7 +71,7 @@ set showbreak=…
 set colorcolumn=+1
 set cursorline
 set statusline=\ %f\ %m%r%=line\ %l\/%L:%c\ \|\ %{&filetype}\ 
-set background=dark
+set termguicolors
 colorscheme jellybeans
 
 " }}}
