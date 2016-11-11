@@ -80,18 +80,19 @@ colorscheme jellybeans
 set foldlevelstart=99
 
 function! MyFoldText() " {{{
-    " Width of window
     let s:gutterwidth = &fdc + (&relativenumber + &number) * &numberwidth
     let s:windowwidth = winwidth(0) - s:gutterwidth
-
-    " Number of lines inside the fold
     let s:foldedlinecount = v:foldend - v:foldstart
-
-    " Trim the line text
     let s:line = getline(v:foldstart)
+
+    " Replace tab characters with spaces
     let s:softtab = strpart('        ', 0, &tabstop)
     let s:line = substitute(s:line, '\t', s:softtab, 'g')
+
+    " Remove trailing dashes
     let s:line = substitute(s:line, '\s\=--\+', '', 'g')
+
+    " Trim the line length
     let s:toolong = s:windowwidth - len(s:foldedlinecount) - 4
     if len(s:line) >= s:toolong
         let s:line = strpart(s:line, 0, s:toolong)
