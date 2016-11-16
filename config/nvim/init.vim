@@ -7,6 +7,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tommcdo/vim-exchange'
+Plug 'SirVer/ultisnips'
 
 " Colorschemes
 Plug 'sjl/badwolf'
@@ -71,7 +72,7 @@ set showbreak=…
 set colorcolumn=+1
 set cursorline
 set statusline=\ %f\ %m%r%=line\ %l\/%L:%c\ \|\ %{&filetype}\ 
-set termguicolors
+" set termguicolors
 colorscheme jellybeans
 
 " }}}
@@ -190,12 +191,12 @@ nnoremap <silent> <leader>sv :<c-u>call Scratch('vnew')<cr>
 " Navigation {{{
 
 " Navigate buffer list, idea stolen from unimpared
-nnoremap <silent> [b :<c-u><c-r>=v:count1<cr>bprev<cr>
 nnoremap <silent> ]b :<c-u><c-r>=v:count1<cr>bnext<cr>
+nnoremap <silent> [b :<c-u><c-r>=v:count1<cr>bprev<cr>
 
 " Navigate argument list, idea stolen from unimpared
-nnoremap <silent> [a :<c-u><c-r>=v:count1<cr>prev<cr>
 nnoremap <silent> ]a :<c-u><c-r>=v:count1<cr>next<cr>
+nnoremap <silent> [a :<c-u><c-r>=v:count1<cr>prev<cr>
 
 " Navigate quickfix list, idea stolen from unimpared
 nnoremap <silent> ]q :<c-u><c-r>=v:count1<cr>cnext<cr>
