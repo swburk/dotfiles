@@ -3,7 +3,6 @@ if exists("b:did_ftplugin")
 endif
 let b:did_ftplugin = 1
 
-setl colorcolumn=
 set softtabstop=2
 set shiftwidth=2
 setlocal commentstring=<!---\ %s\ --->

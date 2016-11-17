@@ -53,7 +53,6 @@ set shiftround
 " Wrapping
 set nowrap
 set linebreak
-set textwidth=79
 set formatoptions=qrn1jc
 
 " Display
@@ -69,7 +68,6 @@ set splitbelow
 set list
 set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
 set showbreak=…
-set colorcolumn=+1
 set cursorline
 set statusline=\ %f\ %m%r%=line\ %l\/%L:%c\ \|\ %{&filetype}\ 
 " set termguicolors
@@ -120,8 +118,6 @@ set foldtext=MyFoldText()
 let mapleader=','
 let maplocalleader='\'
 set pastetoggle=<leader>p
-
-nnoremap K <nop>
 
 " Clear search highlighting
 nnoremap <silent> <leader>/ :nohlsearch<cr>

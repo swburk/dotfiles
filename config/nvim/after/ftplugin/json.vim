@@ -1,5 +1,5 @@
-setl foldmarker={,}
 setl foldmethod=marker
+setl foldmarker={,}
 
 " Reformat JSON
 nnoremap <buffer> <localleader>p ^vg_:!python -m json.tool<cr>

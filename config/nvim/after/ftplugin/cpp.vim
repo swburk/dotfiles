@@ -1,2 +1,2 @@
-setl foldmarker={,}
 setl foldmethod=marker
+setl foldmarker={,}
