@@ -8,6 +8,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tommcdo/vim-exchange'
 Plug 'SirVer/ultisnips'
+Plug 'unblevable/quick-scope'
 
 " Colorschemes
 Plug 'sjl/badwolf'
@@ -257,5 +258,11 @@ if has("autocmd")
         autocmd WinEnter * set cursorline
     augroup END
 endif
+
+" }}}
+" Plugins {{{
+
+" Only trigger quick-scope when character navigation keys are pressed
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
 " }}}
