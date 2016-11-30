@@ -4,10 +4,10 @@ dotfiles="$HOME/.dotfiles"
 pushd "$dotfiles" >/dev/null
 for f in *; do
     echo "linking $f"
-    if [ -d "$f" ]; then
-        [ ! -d "$HOME/.$f" ] && mkdir "$HOME/.$f"
+    if [[ -d "$f" ]]; then
+        [[ ! -d "$HOME/.$f" ]] && mkdir "$HOME/.$f"
         for c in "$f"/*; do
-            [ -e "$HOME/.$c" ] && rm -r "$HOME/.$c"
+            [[ -e "$HOME/.$c" ]] && rm -r "$HOME/.$c"
             ln -s "$dotfiles/$c" "$HOME/.$c"
         done
     elif [[ ! "$f" =~ ^(install|README.md)$ ]]; then
