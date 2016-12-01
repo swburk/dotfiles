@@ -164,7 +164,7 @@ inoremap <c-b> <esc>gUiwgi
 nnoremap <silent> <leader><space> :call PreserveSearch(':%s/\s\+$//e')<cr>
 
 " Buffer management
-nnoremap gb :ls<cr>:b<space>
+nnoremap gb :ls<cr>:b
 nnoremap <silent> <leader>d :b#<bar>bd#<cr>
 
 " Resize splits easily
