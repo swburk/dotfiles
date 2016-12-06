@@ -13,6 +13,7 @@ Plug 'unblevable/quick-scope'
 " Colorschemes
 Plug 'sjl/badwolf'
 Plug 'nanotech/jellybeans.vim'
+Plug 'cocopon/iceberg.vim'
 
 call plug#end()
 
@@ -71,8 +72,10 @@ set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
 set showbreak=…
 set cursorline
 set statusline=\ %f\ %m%r%=line\ %l\/%L:%c\ \|\ %{&filetype}\ 
-" set termguicolors
-colorscheme jellybeans
+if has("mac") && $TERM_PROGRAM == "iTerm.app"
+    set termguicolors
+endif
+colorscheme iceberg
 
 " }}}
 " Folding {{{
@@ -249,13 +252,6 @@ if has("autocmd")
     augroup SourceVimrc
         au!
         autocmd BufWritePost $MYVIMRC source $MYVIMRC
-    augroup END
-
-    " Only show cursorline in current window
-    augroup HideCursorline
-        au!
-        autocmd WinLeave * set nocursorline
-        autocmd WinEnter * set cursorline
     augroup END
 endif
 
