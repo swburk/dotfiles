@@ -8,7 +8,6 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tommcdo/vim-exchange'
 Plug 'SirVer/ultisnips'
-Plug 'unblevable/quick-scope'
 
 " Colorschemes
 Plug 'sjl/badwolf'
@@ -71,7 +70,7 @@ set list
 set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
 set showbreak=…
 set cursorline
-set statusline=\ %f\ %m%r%=line\ %l\/%L:%c\ \|\ %{&filetype}\ 
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 if has("mac") && $TERM_PROGRAM == "iTerm.app"
     set termguicolors
 endif
