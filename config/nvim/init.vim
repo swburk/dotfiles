@@ -70,8 +70,8 @@ set list
 set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
 set showbreak=…
 set cursorline
-let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 if has("mac") && $TERM_PROGRAM == "iTerm.app"
+    let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
     set termguicolors
 endif
 colorscheme iceberg
