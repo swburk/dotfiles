@@ -255,9 +255,3 @@ if has("autocmd")
 endif
 
 " }}}
-" Plugins {{{
-
-" Only trigger quick-scope when character navigation keys are pressed
-let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
-
-" }}}
