@@ -7,7 +7,8 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tommcdo/vim-exchange'
-Plug 'SirVer/ultisnips'
+" Plug 'SirVer/ultisnips'
+Plug 'ernstvanderlinden/vim-coldfusion'
 
 " Colorschemes
 Plug 'sjl/badwolf'
