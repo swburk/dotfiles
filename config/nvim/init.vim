@@ -194,6 +194,10 @@ nnoremap <silent> <leader>sv :<c-u>call Scratch('vnew')<cr>
 nnoremap <silent> ]b :<c-u><c-r>=v:count1<cr>bnext<cr>
 nnoremap <silent> [b :<c-u><c-r>=v:count1<cr>bprev<cr>
 
+" Navigate tag list, idea stolen from unimpared
+nnoremap <silent> ]t :<c-u><c-r>=v:count1<cr>tnext<cr>
+nnoremap <silent> [t :<c-u><c-r>=v:count1<cr>tprev<cr>
+
 " Navigate argument list, idea stolen from unimpared
 nnoremap <silent> ]a :<c-u><c-r>=v:count1<cr>next<cr>
 nnoremap <silent> [a :<c-u><c-r>=v:count1<cr>prev<cr>
