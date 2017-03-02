@@ -67,7 +67,7 @@ set showmode
 set number
 set splitright
 set splitbelow
-set list
+set nolist
 set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
 set showbreak=…
 set cursorline
