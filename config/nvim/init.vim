@@ -14,6 +14,7 @@ Plug 'ernstvanderlinden/vim-coldfusion'
 Plug 'sjl/badwolf'
 Plug 'nanotech/jellybeans.vim'
 Plug 'cocopon/iceberg.vim'
+Plug 'KeitaNakamura/neodark.vim'
 
 call plug#end()
 
@@ -75,7 +76,7 @@ if has("mac") && $TERM_PROGRAM == "iTerm.app"
     let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
     set termguicolors
 endif
-colorscheme iceberg
+colorscheme neodark
 
 " }}}
 " Folding {{{
