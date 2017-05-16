@@ -223,7 +223,7 @@ nnoremap <leader><leader> ,
 vnoremap <leader><leader> ,
 
 " Quicker window switching
-nnoremap <c-h> <c-w>h
+nnoremap <bs> <c-w>h
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-l> <c-w>l
