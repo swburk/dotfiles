@@ -55,7 +55,7 @@ set shiftround
 " Wrapping
 set nowrap
 set linebreak
-set formatoptions=qrn1jc
+set formatoptions=qr1jc
 
 " Display
 let g:netrw_banner = 0
@@ -71,10 +71,6 @@ set nolist
 set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
 set showbreak=…
 set cursorline
-if has("mac") && $TERM_PROGRAM == "iTerm.app"
-    let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
-    set termguicolors
-endif
 colorscheme neodark
 
 " }}}
@@ -176,17 +172,6 @@ nnoremap <down> 5<c-w>-
 nnoremap <left> 5<c-w><
 nnoremap <right> 5<c-w>>
 
-" Open scratch window
-function! Scratch(cmd) " {{{
-  let s:ft = &filetype
-  exe a:cmd
-  exe "setl buftype=nofile bufhidden=wipe nobuflisted ft=" . s:ft
-endfunction
-" }}}
-nnoremap <silent> <leader>se :<c-u>call Scratch('enew')<cr>
-nnoremap <silent> <leader>ss :<c-u>call Scratch('new')<cr>
-nnoremap <silent> <leader>sv :<c-u>call Scratch('vnew')<cr>
-
 " }}}
 " Navigation {{{
 
@@ -223,7 +208,7 @@ nnoremap <leader><leader> ,
 vnoremap <leader><leader> ,
 
 " Quicker window switching
-nnoremap <bs> <c-w>h
+nnoremap <c-h> <c-w>h
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-l> <c-w>l
