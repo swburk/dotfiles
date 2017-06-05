@@ -45,14 +45,6 @@ function e {
     fi
 }
 
-function g {
-    if [ $# -ne 0 ]; then
-        git $@
-    else
-        git status
-    fi
-}
-
 alias ..="cd .."
 alias ll="ls -lhF"
 alias la="ls -lhFa"
