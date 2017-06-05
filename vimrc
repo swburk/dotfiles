@@ -56,7 +56,6 @@ set ignorecase
 set smartcase
 
 " Whitespace
-set tabstop=8
 set softtabstop=4
 set shiftwidth=4
 set expandtab
@@ -67,7 +66,7 @@ set shiftround
 set nowrap
 set linebreak
 set textwidth=79
-set formatoptions=qrn1jc
+set formatoptions=crqn1j
 
 " Display
 let g:netrw_banner = 0

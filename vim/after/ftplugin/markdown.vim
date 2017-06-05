@@ -18,4 +18,4 @@ setl foldmethod=expr
 setl foldexpr=MarkdownFoldExpression(v:lnum)
 setl nonumber
 setl spell
-setl formatoptions=n1q
+set formatoptions=tqan1
