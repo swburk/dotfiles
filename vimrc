@@ -1,6 +1,7 @@
 " vim-plug {{{
 
-call plug#begin('~/.config/nvim/plugged')
+runtime macros/matchit.vim
+call plug#begin('~/.vim/plugged')
 
 " Plugins
 Plug 'tpope/vim-commentary'
@@ -21,7 +22,14 @@ call plug#end()
 " Basic {{{
 
 " General
+filetype plugin indent on
+set encoding=utf-8
+set history=10000
+set autoread
+set ttyfast
 set hidden
+set backspace=indent,eol,start
+set nrformats-=octal
 set nojoinspaces
 set wildmode=list:longest,full
 set wildignore+=*.git/
@@ -39,9 +47,11 @@ set noswapfile
 set nobackup
 set nowritebackup
 set undofile
-set undodir=~/.config/nvim/undo
+set undodir=~/.vim/undo
 
 " Search
+set incsearch
+set hlsearch
 set ignorecase
 set smartcase
 
@@ -50,20 +60,21 @@ set tabstop=8
 set softtabstop=4
 set shiftwidth=4
 set expandtab
+set autoindent
 set shiftround
 
 " Wrapping
 set nowrap
 set linebreak
-set formatoptions=qr1jc
+set textwidth=79
+set formatoptions=qrn1jc
 
 " Display
 let g:netrw_banner = 0
 set lazyredraw
 set cmdheight=2
-set visualbell
+set visualbell t_vb=
 set showcmd
-set showmode
 set number
 set splitright
 set splitbelow
@@ -71,6 +82,10 @@ set nolist
 set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
 set showbreak=…
 set cursorline
+set laststatus=2
+syntax on
+set t_Co=256
+set background=dark
 colorscheme neodark
 
 " }}}
@@ -228,8 +243,8 @@ cnoremap w!! w !sudo tee % >/dev/null
 
 " Edit/source neovim files
 nnoremap <silent> <leader>vv :e $MYVIMRC<cr>
-nnoremap <silent> <leader>vd :e ~/.config/nvim/<cr>
-nnoremap <silent> <leader>vf :exe "e ~/.config/nvim/after/ftplugin/" . &ft . ".vim"<cr>
+nnoremap <silent> <leader>vd :e ~/.vim/<cr>
+nnoremap <silent> <leader>vf :exe "e ~/.vim/after/ftplugin/" . &ft . ".vim"<cr>
 
 " }}}
 
