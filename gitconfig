@@ -13,6 +13,7 @@
   plm = pull origin master
   ps = push
   psm = push origin master
+  st = status
 [color]
   ui = auto
 [merge]

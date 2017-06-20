@@ -65,6 +65,7 @@ set shiftround
 " Wrapping
 set nowrap
 set linebreak
+" set breakindent
 set textwidth=79
 set formatoptions=crqn1j
 
