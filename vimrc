@@ -15,6 +15,7 @@ Plug 'sjl/badwolf'
 Plug 'nanotech/jellybeans.vim'
 Plug 'cocopon/iceberg.vim'
 Plug 'KeitaNakamura/neodark.vim'
+Plug 'morhetz/gruvbox'
 
 call plug#end()
 
@@ -86,7 +87,7 @@ set laststatus=2
 syntax on
 set t_Co=256
 set background=dark
-colorscheme neodark
+colorscheme jellybeans
 
 " }}}
 " Folding {{{
