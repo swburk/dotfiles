@@ -18,7 +18,6 @@ set wildignore+=*.o,*.obj
 set wildignore+=*.pyc,*.luac
 set wildignore+=*.bak,*.swp
 set wildignore+=*.DS_Store
-set shortmess+=atT
 set notimeout ttimeout ttimeoutlen=10
 set virtualedit=block
 
@@ -45,7 +44,7 @@ set shiftround
 " Wrapping
 set nowrap
 set linebreak
-" set breakindent
+set breakindent
 set textwidth=79
 set formatoptions=crqn1j
 
@@ -65,7 +64,6 @@ set cursorline
 set laststatus=2
 syntax on
 set t_Co=256
-set background=dark
 colorscheme jellybeans
 
 " }}}
@@ -221,7 +219,7 @@ nnoremap <leader>c :lcd %:p:h<bar>pwd<cr>
 " Save as root
 cnoremap w!! w !sudo tee % >/dev/null
 
-" Edit/source neovim files
+" Edit/source vim files
 nnoremap <silent> <leader>vv :e $MYVIMRC<cr>
 nnoremap <silent> <leader>vd :e ~/.vim/<cr>
 nnoremap <silent> <leader>vf :exe "e ~/.vim/after/ftplugin/" . &ft . ".vim"<cr>
