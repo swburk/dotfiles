@@ -1,0 +1,18 @@
+[submodule "vim/pack/bundle/start/vim-commentary"]
+	path = vim/pack/bundle/start/vim-commentary
+	url = https://github.com/tpope/vim-commentary.git
+[submodule "vim/pack/bundle/start/vim-surround"]
+	path = vim/pack/bundle/start/vim-surround
+	url = https://github.com/tpope/vim-surround.git
+[submodule "vim/pack/bundle/start/vim-repeat"]
+	path = vim/pack/bundle/start/vim-repeat
+	url = https://github.com/tpope/vim-repeat.git
+[submodule "vim/pack/bundle/start/vim-exchange"]
+	path = vim/pack/bundle/start/vim-exchange
+	url = https://github.com/tommcdo/vim-exchange.git
+[submodule "vim/pack/bundle/start/jellybeans.vim"]
+	path = vim/pack/bundle/start/jellybeans.vim
+	url = https://github.com/nanotech/jellybeans.vim.git
+[submodule "vim/pack/bundle/opt/vim-coldfusion"]
+	path = vim/pack/bundle/opt/vim-coldfusion
+	url = https://github.com/ernstvanderlinden/vim-coldfusion.git

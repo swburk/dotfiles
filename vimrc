@@ -1,28 +1,7 @@
-" vim-plug {{{
-
-runtime macros/matchit.vim
-call plug#begin('~/.vim/plugged')
-
-" Plugins
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-repeat'
-Plug 'tommcdo/vim-exchange'
-Plug 'ernstvanderlinden/vim-coldfusion'
-
-" Colorschemes
-Plug 'sjl/badwolf'
-Plug 'nanotech/jellybeans.vim'
-Plug 'cocopon/iceberg.vim'
-Plug 'KeitaNakamura/neodark.vim'
-Plug 'morhetz/gruvbox'
-
-call plug#end()
-
-" }}}
 " Basic {{{
 
 " General
+runtime macros/matchit.vim
 filetype plugin indent on
 set encoding=utf-8
 set history=10000
