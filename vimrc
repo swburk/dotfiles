@@ -172,22 +172,6 @@ nnoremap <right> 5<c-w>>
 nnoremap <silent> ]b :<c-u><c-r>=v:count1<cr>bnext<cr>
 nnoremap <silent> [b :<c-u><c-r>=v:count1<cr>bprev<cr>
 
-" Navigate tag list, idea stolen from unimpared
-nnoremap <silent> ]t :<c-u><c-r>=v:count1<cr>tnext<cr>
-nnoremap <silent> [t :<c-u><c-r>=v:count1<cr>tprev<cr>
-
-" Navigate argument list, idea stolen from unimpared
-nnoremap <silent> ]a :<c-u><c-r>=v:count1<cr>next<cr>
-nnoremap <silent> [a :<c-u><c-r>=v:count1<cr>prev<cr>
-
-" Navigate quickfix list, idea stolen from unimpared
-nnoremap <silent> ]q :<c-u><c-r>=v:count1<cr>cnext<cr>
-nnoremap <silent> [q :<c-u><c-r>=v:count1<cr>cprev<cr>
-
-" Navigate location list, idea stolen from unimpared
-nnoremap <silent> ]l :<c-u><c-r>=v:count1<cr>lnext<cr>
-nnoremap <silent> [l :<c-u><c-r>=v:count1<cr>lprev<cr>
-
 " Command line navigation
 cnoremap <c-a> <home>
 cnoremap <c-f> <right>
