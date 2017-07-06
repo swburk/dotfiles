@@ -1,10 +1,9 @@
-# export PATH="/usr/local/bin:$PATH"
+export CLICOLOR=1
 export EDITOR="vim"
 export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man' -\""
 export PROMPT_COMMAND="set_prompt"
 shopt -s histappend
 shopt -s cdspell
-# shopt -s extglob
 
 function set_prompt {
     LAST_COMMAND=$?
