@@ -43,8 +43,6 @@ set shiftround
 
 " Wrapping
 set nowrap
-set linebreak
-set breakindent
 set textwidth=79
 set formatoptions=crqn1j
 
@@ -57,7 +55,6 @@ set showcmd
 set number
 set splitright
 set splitbelow
-set nolist
 set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
 set showbreak=…
 set cursorline
@@ -124,8 +121,7 @@ function! PreserveSearch(cmd) " {{{
   call cursor(prev_line, prev_col)
 endfunction " }}}
 
-" Visual */# mappings
-" From http://got-ravings.blogspot.com/2008/07/vim-pr0n-visual-search-mappings.html
+" Visual */# mappings from http://got-ravings.blogspot.com/2008/07/vim-pr0n-visual-search-mappings.html
 function! s:VSetSearch() " {{{
     let temp = @@
     norm! gvy
@@ -155,9 +151,8 @@ inoremap <c-b> <esc>gUiwgi
 " Strip trailing whitespace
 nnoremap <silent> <leader><space> :call PreserveSearch(':%s/\s\+$//e')<cr>
 
-" Buffer management
+" List buffers
 nnoremap gb :ls<cr>:b
-nnoremap <silent> <leader>d :b#<bar>bd#<cr>
 
 " Resize splits easily
 nnoremap <up> 5<c-w>+
@@ -190,10 +185,6 @@ nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-l> <c-w>l
 
-" Faster side-scrolling
-nnoremap + 5zl
-nnoremap - 5zh
-
 " }}}
 " Files & Directories {{{
 
@@ -205,20 +196,8 @@ cnoremap w!! w !sudo tee % >/dev/null
 
 " Edit/source vim files
 nnoremap <silent> <leader>vv :e $MYVIMRC<cr>
-nnoremap <silent> <leader>vd :e ~/.vim/<cr>
 nnoremap <silent> <leader>vf :exe "e ~/.vim/after/ftplugin/" . &ft . ".vim"<cr>
 
 " }}}
-
-" }}}
-" Autocommands {{{
-
-if has("autocmd")
-    " Source $MYVIMRC after saving
-    augroup SourceVimrc
-        au!
-        autocmd BufWritePost $MYVIMRC source $MYVIMRC
-    augroup END
-endif
 
 " }}}
