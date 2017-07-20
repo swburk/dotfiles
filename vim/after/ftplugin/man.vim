@@ -1,3 +1,3 @@
-setl nolist
+setl nonumber
 setl nomodified
 setl nomodifiable
