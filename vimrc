@@ -52,7 +52,7 @@ set lazyredraw
 set cmdheight=2
 set visualbell t_vb=
 set showcmd
-set number
+" set number
 set splitright
 set splitbelow
 set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
