@@ -5,7 +5,6 @@ runtime macros/matchit.vim
 filetype plugin indent on
 set encoding=utf-8
 set history=10000
-set autoread
 set ttyfast
 set hidden
 set backspace=indent,eol,start
@@ -52,7 +51,6 @@ set lazyredraw
 set cmdheight=2
 set visualbell t_vb=
 set showcmd
-" set number
 set splitright
 set splitbelow
 set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
