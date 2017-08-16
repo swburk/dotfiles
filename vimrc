@@ -165,6 +165,10 @@ nnoremap <right> 5<c-w>>
 nnoremap <silent> ]b :<c-u><c-r>=v:count1<cr>bnext<cr>
 nnoremap <silent> [b :<c-u><c-r>=v:count1<cr>bprev<cr>
 
+" Navigate quickfix list, idea stolen from unimpared
+nnoremap <silent> ]q :<c-u><c-r>=v:count1<cr>cnext<cr>
+nnoremap <silent> [q :<c-u><c-r>=v:count1<cr>cprev<cr>
+
 " Command line navigation
 cnoremap <c-a> <home>
 cnoremap <c-f> <right>
