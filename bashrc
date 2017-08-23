@@ -36,19 +36,6 @@ function set_prompt {
     fi
 }
 
-function e {
-    if [ $# -eq 0 ]; then
-        $EDITOR .
-    else
-        $EDITOR "$@"
-    fi
-}
-
 alias ..="cd .."
 alias ll="ls -lhF"
 alias la="ls -lhFa"
-alias t="tmux"
-alias tn="tmux new -s"
-alias ta="tmux attach -t"
-alias tl="tmux list-sessions"
-alias s="ssh"

@@ -4,14 +4,10 @@
 [core]
   editor = vim
 [alias]
-  a = add
   aa = add --all
-  ci = commit
   cm = commit -m
   co = checkout
-  pl = pull
   plm = pull origin master
-  ps = push
   psm = push origin master
   st = status
 [color]
