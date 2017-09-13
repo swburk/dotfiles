@@ -16,3 +16,6 @@
 [submodule "vim/pack/bundle/opt/vim-coldfusion"]
 	path = vim/pack/bundle/opt/vim-coldfusion
 	url = https://github.com/ernstvanderlinden/vim-coldfusion.git
+[submodule "vim/pack/bundle/start/badwolf"]
+	path = vim/pack/bundle/start/badwolf
+	url = https://github.com/sjl/badwolf.git
