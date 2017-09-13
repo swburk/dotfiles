@@ -39,3 +39,5 @@ function set_prompt {
 alias ..="cd .."
 alias ll="ls -lhF"
 alias la="ls -lhFa"
+alias tn="tmux new-session -s"
+alias ta="tmux attach-session -t"
