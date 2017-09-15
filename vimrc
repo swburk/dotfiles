@@ -5,7 +5,6 @@ runtime macros/matchit.vim
 filetype plugin indent on
 set encoding=utf-8
 set history=10000
-set ttyfast
 set hidden
 set backspace=indent,eol,start
 set nrformats-=octal
