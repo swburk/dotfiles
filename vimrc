@@ -10,19 +10,11 @@ set hidden
 set backspace=indent,eol,start
 set nrformats-=octal
 set nojoinspaces
-set wildmode=list:longest,full
-set wildignore+=*.git/
-set wildignore+=*.jpg,*.jpeg,*.png,*.gif
-set wildignore+=*.o,*.obj
-set wildignore+=*.pyc,*.luac
-set wildignore+=*.bak,*.swp
-set wildignore+=*.DS_Store
 set notimeout ttimeout ttimeoutlen=10
 set virtualedit=block
 
 " Backups & Undo
 set noswapfile
-set nobackup
 set nowritebackup
 set undofile
 set undodir=~/.vim/undo
@@ -43,18 +35,19 @@ set shiftround
 " Wrapping
 set nowrap
 set textwidth=79
-set formatoptions=crqn1j
+set formatoptions=rqj
+
+" Folding
+set foldlevelstart=99
 
 " Display
-let g:netrw_banner = 0
 set lazyredraw
 set cmdheight=2
 set visualbell t_vb=
 set showcmd
 set splitright
 set splitbelow
-set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
-set showbreak=…
+set listchars+=tab:>\ 
 set cursorline
 set laststatus=2
 syntax on
@@ -62,49 +55,10 @@ set t_Co=256
 colorscheme jellybeans
 
 " }}}
-" Folding {{{
-
-set foldlevelstart=99
-
-function! MyFoldText() " {{{
-    let s:gutterwidth = &fdc + (&relativenumber + &number) * &numberwidth
-    let s:windowwidth = winwidth(0) - s:gutterwidth
-    let s:foldedlinecount = v:foldend - v:foldstart
-    let s:line = getline(v:foldstart)
-
-    " Replace tab characters with spaces
-    let s:softtab = strpart('        ', 0, &tabstop)
-    let s:line = substitute(s:line, '\t', s:softtab, 'g')
-
-    " Remove trailing dashes
-    let s:line = substitute(s:line, '\s\=--\+', '', 'g')
-
-    " Trim the line length
-    let s:toolong = s:windowwidth - len(s:foldedlinecount) - 4
-    if len(s:line) >= s:toolong
-        let s:line = strpart(s:line, 0, s:toolong)
-    endif
-
-    " Display a dash for every folded line
-    let s:fillcharcount = s:windowwidth - len(s:line) - len(s:foldedlinecount) - 4
-    if s:foldedlinecount <= s:fillcharcount
-        let s:fillcharcount = s:fillcharcount - s:foldedlinecount
-        let s:fillchars = repeat('-', s:foldedlinecount) . repeat(' ', s:fillcharcount)
-    else
-        let s:fillchars = repeat('-', s:fillcharcount)
-    endif
-
-    return s:line . ' ' . s:fillchars . ' ' . s:foldedlinecount . '… '
-endfunction " }}}
-set foldtext=MyFoldText()
-
-" }}}
 " Mappings {{{
 
 " General {{{
 
-let mapleader=','
-let maplocalleader='\'
 set pastetoggle=<leader>p
 
 " Clear search highlighting
@@ -152,12 +106,6 @@ nnoremap <silent> <leader><space> :call PreserveSearch(':%s/\s\+$//e')<cr>
 " List buffers
 nnoremap gb :ls<cr>:b
 
-" Resize splits easily
-nnoremap <up> 5<c-w>+
-nnoremap <down> 5<c-w>-
-nnoremap <left> 5<c-w><
-nnoremap <right> 5<c-w>>
-
 " }}}
 " Navigation {{{
 
@@ -177,10 +125,6 @@ cnoremap <c-b> <left>
 " Switch to alternate buffer
 nnoremap <tab> <c-^>
 
-" Repeat last f, t, F, or T in reverse
-nnoremap <leader><leader> ,
-vnoremap <leader><leader> ,
-
 " Quicker window switching
 nnoremap <c-h> <c-w>h
 nnoremap <c-j> <c-w>j
@@ -195,10 +139,6 @@ nnoremap <leader>c :lcd %:p:h<bar>pwd<cr>
 
 " Save as root
 cnoremap w!! w !sudo tee % >/dev/null
-
-" Edit/source vim files
-nnoremap <silent> <leader>vv :e $MYVIMRC<cr>
-nnoremap <silent> <leader>vf :exe "e ~/.vim/after/ftplugin/" . &ft . ".vim"<cr>
 
 " }}}
 
