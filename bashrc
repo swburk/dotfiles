@@ -1,9 +1,6 @@
-export CLICOLOR=1
 export EDITOR="vim"
-export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man' -\""
 export PROMPT_COMMAND="set_prompt"
 shopt -s histappend
-shopt -s cdspell
 
 function set_prompt {
     LAST_COMMAND=$?
@@ -39,5 +36,3 @@ function set_prompt {
 alias ..="cd .."
 alias ll="ls -lhF"
 alias la="ls -lhFa"
-alias tn="tmux new-session -s"
-alias ta="tmux attach-session -t"
