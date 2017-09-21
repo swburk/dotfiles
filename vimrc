@@ -1,20 +1,17 @@
+" vim: foldmethod=marker
 " Basic {{{
 
 " General
 runtime macros/matchit.vim
 filetype plugin indent on
 set encoding=utf-8
-set history=10000
+set history=1000
 set hidden
 set backspace=indent,eol,start
-set nrformats-=octal
 set nojoinspaces
 set notimeout ttimeout ttimeoutlen=10
-set virtualedit=block
-
-" Backups & Undo
+set nowrap
 set noswapfile
-set nowritebackup
 set undofile
 set undodir=~/.vim/undo
 
@@ -31,26 +28,11 @@ set expandtab
 set autoindent
 set shiftround
 
-" Wrapping
-set nowrap
-set textwidth=79
-set formatoptions=rqj
-
-" Folding
-set foldlevelstart=99
-
 " Display
-set lazyredraw
-set cmdheight=2
-set visualbell t_vb=
 set showcmd
-set splitright
-set splitbelow
 set listchars+=tab:>\ 
-set cursorline
 set laststatus=2
 syntax on
-set t_Co=256
 colorscheme jellybeans
 
 " }}}
@@ -86,9 +68,6 @@ vnoremap # :<c-u>call <SID>VSetSearch()<CR>??<CR><c-o>
 nnoremap <Plug>SplitLine i<cr><esc>k:call PreserveSearch('silent! s/ \+$/')<cr>j^:call repeat#set("\<Plug>SplitLine")<cr>
 nmap <silent> S <Plug>SplitLine
 
-" Space toggles fold
-nnoremap <space> za
-
 " Select last changed text
 nnoremap gV `[v`]
 
@@ -98,12 +77,6 @@ vnoremap gs :s///g<left><left>
 
 " Capitalize the word behind the cursor
 inoremap <c-b> <esc>gUiwgi
-
-" Strip trailing whitespace
-nnoremap <silent> <leader><space> :call PreserveSearch(':%s/\s\+$//e')<cr>
-
-" List buffers
-nnoremap gb :ls<cr>:b
 
 " }}}
 " Navigation {{{
@@ -115,11 +88,6 @@ nnoremap <silent> [b :<c-u><c-r>=v:count1<cr>bprev<cr>
 " Navigate quickfix list, idea stolen from unimpared
 nnoremap <silent> ]q :<c-u><c-r>=v:count1<cr>cnext<cr>
 nnoremap <silent> [q :<c-u><c-r>=v:count1<cr>cprev<cr>
-
-" Command line navigation
-cnoremap <c-a> <home>
-cnoremap <c-f> <right>
-cnoremap <c-b> <left>
 
 " Switch to alternate buffer
 nnoremap <tab> <c-^>
