@@ -33,6 +33,5 @@ function set_prompt {
     fi
 }
 
-alias ..="cd .."
 alias ll="ls -lhF"
 alias la="ls -lhFa"

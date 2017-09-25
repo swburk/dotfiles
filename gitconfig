@@ -1,8 +1,6 @@
 [user]
   name = Sam Burk
   email = sam@samburk.com
-[core]
-  editor = vim
 [alias]
   aa = add --all
   cm = commit -m
@@ -12,7 +10,3 @@
   st = status
 [color]
   ui = auto
-[merge]
-  tool = vimdiff
-[diff]
-  tool = vimdiff
