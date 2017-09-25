@@ -8,5 +8,3 @@
   plm = pull origin master
   psm = push origin master
   st = status
-[color]
-  ui = auto
