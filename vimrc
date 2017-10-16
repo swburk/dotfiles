@@ -22,19 +22,6 @@ set pastetoggle=<leader>p
 " Clear search highlighting
 nnoremap <silent> <leader>/ :nohlsearch<cr>
 
-function! PreserveSearch(cmd)
-  let prev_search=@/
-  let prev_line = line(".")
-  let prev_col = col(".")
-  exe a:cmd
-  let @/=prev_search
-  call cursor(prev_line, prev_col)
-endfunction
-
-" Split line
-nnoremap <Plug>SplitLine i<cr><esc>k:call PreserveSearch('silent! s/ \+$/')<cr>j^:call repeat#set("\<Plug>SplitLine")<cr>
-nmap <silent> S <Plug>SplitLine
-
 " Select last changed text
 nnoremap gV `[v`]
 
