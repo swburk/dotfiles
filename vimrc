@@ -17,26 +17,4 @@ set shiftround
 set showcmd
 syntax on
 colorscheme jellybeans
-set pastetoggle=<leader>p
-
-" Clear search highlighting
-nnoremap <silent> <leader>/ :nohlsearch<cr>
-
-" Select last changed text
-nnoremap gV `[v`]
-
-" Substitute quickly
-nnoremap gs :%s///g<left><left>
-vnoremap gs :s///g<left><left>
-
-" Capitalize the word behind the cursor
-inoremap <c-b> <esc>gUiwgi
-
-" Switch to alternate buffer
 nnoremap <tab> <c-^>
-
-" Set working directory for current window to that of the current buffer
-nnoremap <leader>c :lcd %:p:h<bar>pwd<cr>
-
-" Save as root
-cnoremap w!! w !sudo tee % >/dev/null
