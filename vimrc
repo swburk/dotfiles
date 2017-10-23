@@ -16,5 +16,5 @@ set autoindent
 set shiftround
 set showcmd
 syntax on
-colorscheme jellybeans
+colorscheme desert
 nnoremap <tab> <c-^>
