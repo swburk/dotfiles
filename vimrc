@@ -1,6 +1,5 @@
 filetype plugin indent on
 set encoding=utf-8
-set history=1000
 set hidden
 set backspace=indent,eol,start
 set notimeout ttimeout ttimeoutlen=10
@@ -15,6 +14,6 @@ set expandtab
 set autoindent
 set shiftround
 set showcmd
-syntax on
+syntax enable
 colorscheme desert
 nnoremap <tab> <c-^>
