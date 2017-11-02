@@ -17,3 +17,4 @@ set showcmd
 syntax enable
 colorscheme desert
 nnoremap <tab> <c-^>
+nnoremap <silent> <leader>s :nohlsearch<cr>
