@@ -30,3 +30,4 @@ nmap <silent> S <Plug>SplitLine
 
 nnoremap <tab> <c-^>
 nnoremap <silent> <space> :nohlsearch<cr>
+nnoremap gV `[v`]
