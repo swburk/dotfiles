@@ -17,15 +17,15 @@ set showcmd
 syntax enable
 colorscheme desert
 
-function! PreserveSearch(cmd)
-  let prev_search=@/
-  let prev_line = line(".")
-  let prev_col = col(".")
-  exe a:cmd
-  let @/=prev_search
-  call cursor(prev_line, prev_col)
+function! Preserve(command)
+  let l:save = winsaveview()
+  execute a:command
+  call winrestview(l:save)
 endfunction
-nnoremap <Plug>SplitLine i<cr><esc>k:call PreserveSearch('silent! s/ \+$/')<cr>j^:call repeat#set("\<Plug>SplitLine")<cr>
+
+nnoremap <silent> <Plug>SplitLine
+    \ i<cr><esc>k:call Preserve('silent! s/ \+$/')<cr>j^
+    \:silent! call repeat#set("\<Plug>SplitLine")<cr>
 nmap <silent> S <Plug>SplitLine
 
 nnoremap <tab> <c-^>
