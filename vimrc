@@ -27,7 +27,9 @@ nnoremap <silent> <Plug>SplitLine
     \ i<cr><esc>k:call Preserve('silent! s/ \+$/')<cr>j^
     \:silent! call repeat#set("\<Plug>SplitLine")<cr>
 nmap <silent> S <Plug>SplitLine
-
 nnoremap <tab> <c-^>
 nnoremap <silent> <space> :nohlsearch<cr>
 nnoremap gV `[v`]
+nnoremap gs :%s///g<left><left>
+vnoremap gs :s///g<left><left>
+nnoremap gb :ls<cr>:b<space>
