@@ -17,14 +17,8 @@ set showcmd
 syntax enable
 colorscheme desert
 
-function! Preserve(command)
-  let l:save = winsaveview()
-  execute a:command
-  call winrestview(l:save)
-endfunction
-
 nnoremap <silent> <Plug>SplitLine
-    \ i<cr><esc>k:call Preserve('silent! s/ \+$/')<cr>j^
+    \ :keeppatterns s/\s*\%#\s*/\r/<cr>
     \:silent! call repeat#set("\<Plug>SplitLine")<cr>
 nmap <silent> S <Plug>SplitLine
 nnoremap <tab> <c-^>
