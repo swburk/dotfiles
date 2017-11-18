@@ -18,9 +18,9 @@ syntax enable
 colorscheme desert
 
 nnoremap <silent> <Plug>SplitLine
-    \ :keeppatterns s/\s*\%#\s*/\r/<cr>
+    \ :silent! keeppatterns s/\s*\%#\s*/\r/<cr>
     \:silent! call repeat#set("\<Plug>SplitLine")<cr>
-nmap <silent> S <Plug>SplitLine
+nmap S <Plug>SplitLine
 nnoremap <tab> <c-^>
 nnoremap <silent> <space> :nohlsearch<cr>
 nnoremap gV `[v`]
