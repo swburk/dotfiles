@@ -18,12 +18,12 @@ syntax enable
 colorscheme desert
 
 nnoremap <silent> <Plug>SplitLine
-    \ :silent! keeppatterns s/\s*\%#\s*/\r/<cr>
-    \:silent! call repeat#set("\<Plug>SplitLine")<cr>
+    \ :silent! keeppatterns s/\s*\%#\s*/\="\r" . matchstr(getline('.'), '^\s*')/<cr>
+    \:silent! call repeat#set('\<Plug>SplitLine')<cr>
 nmap S <Plug>SplitLine
 nnoremap <tab> <c-^>
 nnoremap <silent> <space> :nohlsearch<cr>
 nnoremap gV `[v`]
 nnoremap gs :%s///g<left><left>
-vnoremap gs :s///g<left><left>
+xnoremap gs :s///g<left><left>
 nnoremap gb :ls<cr>:b<space>
