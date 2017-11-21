@@ -15,11 +15,11 @@ set autoindent
 set shiftround
 set showcmd
 syntax enable
-colorscheme desert
+colorscheme jellybeans
 
 nnoremap <silent> <Plug>SplitLine
-    \ :silent! keeppatterns s/\s*\%#\s*/\="\r" . matchstr(getline('.'), '^\s*')/<cr>
-    \:silent! call repeat#set('\<Plug>SplitLine')<cr>
+    \ :silent! keeppatterns s/\s*\%#\s*/\="\r" . matchstr(getline("."), '^\s*')/<cr>
+    \:silent! call repeat#set("\<Plug>SplitLine")<cr>
 nmap S <Plug>SplitLine
 nnoremap <tab> <c-^>
 nnoremap <silent> <space> :nohlsearch<cr>

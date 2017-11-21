@@ -10,3 +10,6 @@
 [submodule "vim/pack/plugins/opt/vim-coldfusion"]
 	path = vim/pack/plugins/opt/vim-coldfusion
 	url = https://github.com/ernstvanderlinden/vim-coldfusion.git
+[submodule "vim/pack/colorschemes/start/jellybeans.vim"]
+	path = vim/pack/colorschemes/start/jellybeans.vim
+	url = https://github.com/nanotech/jellybeans.vim.git
