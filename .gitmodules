@@ -7,6 +7,3 @@
 [submodule "vim/pack/plugins/start/vim-repeat"]
 	path = vim/pack/plugins/start/vim-repeat
 	url = https://github.com/tpope/vim-repeat.git
-[submodule "vim/pack/plugins/opt/vim-coldfusion"]
-	path = vim/pack/plugins/opt/vim-coldfusion
-	url = https://github.com/ernstvanderlinden/vim-coldfusion.git
