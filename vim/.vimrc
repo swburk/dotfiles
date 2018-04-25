@@ -1,4 +1,11 @@
 filetype plugin indent on
+
+packadd minpac
+call minpac#init()
+call minpac#add('tpope/vim-repeat')
+call minpac#add('tpope/vim-surround')
+call minpac#add('tpope/vim-commentary')
+
 set encoding=utf-8
 set hidden
 set backspace=indent,eol,start
