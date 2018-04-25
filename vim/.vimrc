@@ -1,10 +1,11 @@
 filetype plugin indent on
 
-packadd minpac
-call minpac#init()
-call minpac#add('tpope/vim-repeat')
-call minpac#add('tpope/vim-surround')
-call minpac#add('tpope/vim-commentary')
+if exists('*minpac#init')
+    call minpac#init()
+    call minpac#add('tpope/vim-repeat')
+    call minpac#add('tpope/vim-surround')
+    call minpac#add('tpope/vim-commentary')
+endif
 
 set encoding=utf-8
 set hidden
@@ -34,3 +35,6 @@ nnoremap gV `[v`]
 nnoremap gs :%s///g<left><left>
 xnoremap gs :s///g<left><left>
 nnoremap gb :ls<cr>:b<space>
+
+command! PackUpdate packadd minpac | source $MYVIMRC | call minpac#update()
+command! PackClean  packadd minpac | source $MYVIMRC | call minpac#clean()
