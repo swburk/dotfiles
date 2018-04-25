@@ -1,7 +1,7 @@
 # Installation
 
-Clone the repository to ~/.dotfiles and run `~/.dotfiles/install` to link everything to your home directory.
+1. Clone the repository to ~/.dotfiles.
 
-Then, run `vim -c ':helptags ALL'` to index Vim plugin documentation.
+2. `cd ~/.dotfiles`
 
-To update Vim plugins, run `git submodule foreach git pull origin master`.
+3. Link everything to your home directory: `stow bash screen vim`
