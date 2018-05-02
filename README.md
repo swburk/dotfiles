@@ -8,7 +8,9 @@
 
 4. Install minpac: `git submodule update --init`
 
-5. Install Vim plugins: `vim -c "PackUpdate"`
+5. Open Vim and run the following commands:
 
-5. Index Vim plugin documentation: `vim -c "helptags ALL"`
+    - Install plugins: `:PackUpdate`
+
+    - Index plugin documentation: `:helptags ALL`
 

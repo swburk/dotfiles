@@ -5,7 +5,6 @@ if exists('*minpac#init')
     call minpac#add('tpope/vim-repeat')
     call minpac#add('tpope/vim-surround')
     call minpac#add('tpope/vim-commentary')
-    call minpac#add('nanotech/jellybeans.vim')
 endif
 
 set encoding=utf-8
@@ -24,7 +23,7 @@ set autoindent
 set shiftround
 set showcmd
 syntax enable
-colorscheme jellybeans
+colorscheme desert
 
 nnoremap <silent> <Plug>SplitLine
     \ :silent! keeppatterns s/\s*\%#\s*/\="\r" . matchstr(getline("."), '^\s*')/<cr>
