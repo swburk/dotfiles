@@ -13,4 +13,3 @@
     1. Install plugins: `:PackUpdate`
 
     2. Index plugin documentation: `:helptags ALL`
-
