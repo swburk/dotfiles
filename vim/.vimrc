@@ -22,6 +22,7 @@ set expandtab
 set autoindent
 set shiftround
 set showcmd
+set laststatus=2
 syntax enable
 colorscheme desert
 
