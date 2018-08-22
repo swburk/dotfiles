@@ -5,6 +5,8 @@ if exists('*minpac#init')
     call minpac#add('tpope/vim-repeat')
     call minpac#add('tpope/vim-surround')
     call minpac#add('tpope/vim-commentary')
+    call minpac#add('sjl/badwolf')
+    call minpac#add('nanotech/jellybeans.vim')
 endif
 
 set encoding=utf-8
