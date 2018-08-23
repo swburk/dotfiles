@@ -26,7 +26,7 @@ set shiftround
 set showcmd
 set laststatus=2
 syntax enable
-colorscheme desert
+colorscheme jellybeans
 
 nnoremap <silent> <Plug>SplitLine
     \ :silent! keeppatterns s/\s*\%#\s*/\="\r" . matchstr(getline("."), '^\s*')/<cr>
