@@ -1,0 +1,9 @@
+[submodule "vim-repeat"]
+	path = vim-repeat
+	url = https://github.com/tpope/vim-repeat
+[submodule "vim-surround"]
+	path = vim-surround
+	url = https://github.com/tpope/vim-surround
+[submodule "vim-commentary"]
+	path = vim-commentary
+	url = https://github.com/tpope/vim-commentary
