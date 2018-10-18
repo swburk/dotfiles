@@ -6,10 +6,6 @@
 
 3. Link everything to your home directory: `stow bash screen vim`
 
-4. Install minpac: `git submodule update --init`
+4. Install Vim plugins: `git submodule update --init`
 
-5. Open Vim and run the following commands:
-
-	1. Install plugins: `:PackUpdate`
-
-	2. Index plugin documentation: `:helptags ALL`
+5. Index Vim plugin documentation: `vim -c ':helptags ALL'`
