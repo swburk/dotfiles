@@ -1,13 +1,4 @@
 filetype plugin indent on
-
-if exists('*minpac#init')
-	call minpac#init()
-	call minpac#add('tpope/vim-repeat')
-	call minpac#add('tpope/vim-surround')
-	call minpac#add('tpope/vim-commentary')
-	call minpac#add('nanotech/jellybeans.vim')
-endif
-
 set encoding=utf-8
 set hidden
 set backspace=indent,eol,start
@@ -39,6 +30,3 @@ nnoremap gV `[v`]
 nnoremap gs :%s///g<left><left>
 xnoremap gs :s///g<left><left>
 nnoremap gb :ls<cr>:b<space>
-
-command! PackUpdate packadd minpac | source $MYVIMRC | call minpac#update()
-command! PackClean	packadd minpac | source $MYVIMRC | call minpac#clean()
