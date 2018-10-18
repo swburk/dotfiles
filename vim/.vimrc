@@ -1,11 +1,11 @@
 filetype plugin indent on
 
 if exists('*minpac#init')
-    call minpac#init()
-    call minpac#add('tpope/vim-repeat')
-    call minpac#add('tpope/vim-surround')
-    call minpac#add('tpope/vim-commentary')
-    call minpac#add('nanotech/jellybeans.vim')
+	call minpac#init()
+	call minpac#add('tpope/vim-repeat')
+	call minpac#add('tpope/vim-surround')
+	call minpac#add('tpope/vim-commentary')
+	call minpac#add('nanotech/jellybeans.vim')
 endif
 
 set encoding=utf-8
@@ -17,19 +17,21 @@ set incsearch
 set hlsearch
 set ignorecase
 set smartcase
-set softtabstop=4
+set tabstop=4
+set softtabstop=0
 set shiftwidth=4
-set expandtab
+set noexpandtab
 set autoindent
 set shiftround
 set showcmd
-set laststatus=2
 syntax enable
 colorscheme jellybeans
+set listchars=tab:>\ ,trail:.
+set list
 
 nnoremap <silent> <Plug>SplitLine
-    \ :silent! keeppatterns s/\s*\%#\s*/\="\r" . matchstr(getline("."), '^\s*')/<cr>
-    \:silent! call repeat#set("\<Plug>SplitLine")<cr>
+	\ :silent! keeppatterns s/\s*\%#\s*/\="\r" . matchstr(getline("."), '^\s*')/<cr>
+	\:silent! call repeat#set("\<Plug>SplitLine")<cr>
 nmap S <Plug>SplitLine
 nnoremap <tab> <c-^>
 nnoremap <silent> <space> :nohlsearch<cr>
@@ -39,4 +41,4 @@ xnoremap gs :s///g<left><left>
 nnoremap gb :ls<cr>:b<space>
 
 command! PackUpdate packadd minpac | source $MYVIMRC | call minpac#update()
-command! PackClean  packadd minpac | source $MYVIMRC | call minpac#clean()
+command! PackClean	packadd minpac | source $MYVIMRC | call minpac#clean()

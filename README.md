@@ -10,6 +10,6 @@
 
 5. Open Vim and run the following commands:
 
-    1. Install plugins: `:PackUpdate`
+	1. Install plugins: `:PackUpdate`
 
-    2. Index plugin documentation: `:helptags ALL`
+	2. Index plugin documentation: `:helptags ALL`
