@@ -16,7 +16,7 @@ set autoindent
 set shiftround
 set showcmd
 syntax enable
-colorscheme jellybeans
+colorscheme desert
 set listchars=tab:>\ ,trail:.
 set list
 
