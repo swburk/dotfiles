@@ -29,4 +29,4 @@ nnoremap <silent> <space> :nohlsearch<cr>
 nnoremap gV `[v`]
 nnoremap gs :%s///g<left><left>
 xnoremap gs :s///g<left><left>
-nnoremap gb :ls<cr>:b<space>
+nnoremap gl :ls<cr>:b<space>
