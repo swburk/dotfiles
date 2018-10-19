@@ -15,10 +15,10 @@ set noexpandtab
 set autoindent
 set shiftround
 set showcmd
+set ruler
+set wildmenu
 syntax enable
 colorscheme desert
-set listchars=tab:>\ ,trail:.
-set list
 
 nnoremap <silent> <Plug>SplitLine
 	\ :silent! keeppatterns s/\s*\%#\s*/\="\r" . matchstr(getline("."), '^\s*')/<cr>
