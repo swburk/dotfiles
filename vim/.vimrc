@@ -9,9 +9,7 @@ set hlsearch
 set ignorecase
 set smartcase
 set tabstop=4
-set softtabstop=0
-set shiftwidth=4
-set noexpandtab
+set shiftwidth=0
 set autoindent
 set shiftround
 set showcmd
@@ -20,6 +18,7 @@ set wildmenu
 syntax enable
 colorscheme desert
 
+set pastetoggle=<f2>
 nnoremap <silent> <Plug>SplitLine
 	\ :silent! keeppatterns s/\s*\%#\s*/\="\r" . matchstr(getline("."), '^\s*')/<cr>
 	\:silent! call repeat#set("\<Plug>SplitLine")<cr>
