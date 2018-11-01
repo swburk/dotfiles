@@ -1,4 +1,5 @@
 filetype plugin indent on
+packadd! matchit
 set encoding=utf-8
 set hidden
 set backspace=indent,eol,start
@@ -15,6 +16,7 @@ set shiftround
 set showcmd
 set ruler
 set wildmenu
+set listchars+=tab:>\ 
 syntax enable
 colorscheme desert
 
