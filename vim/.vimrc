@@ -15,6 +15,7 @@ set autoindent
 set shiftround
 set showcmd
 set ruler
+set laststatus=2
 set listchars+=tab:>\ 
 syntax enable
 colorscheme desert
