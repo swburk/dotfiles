@@ -15,14 +15,13 @@ set autoindent
 set shiftround
 set showcmd
 set ruler
-set wildmenu
 set listchars+=tab:>\ 
 syntax enable
 colorscheme desert
 
 set pastetoggle=<f2>
 nnoremap <silent> <Plug>SplitLine
-	\ :silent! keeppatterns s/\s*\%#\s*/\="\r" . matchstr(getline("."), '^\s*')/<cr>
+	\ :silent! keeppatterns s/^\(\s*\)\(.\{-}\)\s*\%#\s*\(.*\)/\1\2\r\1\3/<cr>
 	\:silent! call repeat#set("\<Plug>SplitLine")<cr>
 nmap S <Plug>SplitLine
 nnoremap <tab> <c-^>
