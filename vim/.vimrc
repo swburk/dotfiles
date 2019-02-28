@@ -15,10 +15,9 @@ set autoindent
 set shiftround
 set showcmd
 set ruler
-set laststatus=2
-set listchars+=tab:>\ 
 syntax enable
 colorscheme desert
+let g:netrw_fastbrowse=0
 
 set pastetoggle=<f2>
 nnoremap <silent> <Plug>SplitLine
