@@ -1,2 +1,7 @@
 EDITOR="vim"
 PS1="\$([ \j -gt 0 ] && echo '\[\033[0;35m\]\jj\[\033[0m\] ')\[\033[0;32m\]\u\[\033[0m\]@\[\033[0;33m\]\h\[\033[0m\]: \[\033[0;36m\]\w\[\033[0m\] $ "
+alias gs="git status"
+alias gb="git branch"
+alias gc="git checkout"
+alias ga="git add"
+alias gm="git commit"
