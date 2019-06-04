@@ -4,7 +4,7 @@
 
 2. `cd ~/.dotfiles`
 
-3. Link everything to your home directory: `stow bash screen vim`
+3. Link everything to your home directory: `stow bash screen vim zsh`
 
 4. Install Vim plugins: `git submodule update --init`
 
