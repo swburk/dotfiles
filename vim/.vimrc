@@ -28,10 +28,11 @@ function! MyFoldText()
     let s:foldedlines = v:foldend - v:foldstart
 
 	" Determine if signcolumn is visible.
-	if &signcolumn ==? 'yes' || (len(sign_getplaced()) && &signcolumn !=? 'no')
-		let s:signcolumnwidth = 2
-	else
-		let s:signcolumnwidth = 0
+	let s:signcolumnwidth = 0
+	if exists('*sign_getplaced')
+		if &signcolumn ==? 'yes' || (len(sign_getplaced()) && &signcolumn !=? 'no')
+			let s:signcolumnwidth = 2
+		endif
 	endif
 
 	" Replace tabs with spaces.
