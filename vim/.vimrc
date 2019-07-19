@@ -19,12 +19,12 @@ set ruler
 set laststatus=2
 set colorcolumn=80
 syntax enable
-colorscheme jellybeans
+colorscheme desert
 let g:netrw_fastbrowse=0
 
 function! MyFoldText()
     let s:line = getline(v:foldstart)
-    let s:totalwidth = winwidth(0) - &fdc + max([&rnu, &nu]) * &nuw
+    let s:totalwidth = winwidth(0) - &fdc - max([&rnu, &nu]) * &nuw
     let s:foldedlines = v:foldend - v:foldstart
 
 	" Determine if signcolumn is visible.
@@ -57,8 +57,8 @@ nnoremap <silent> <Plug>SplitLine
 	\ :silent! keeppatterns s/^\(\s*\)\(.\{-}\)\s*\%#\s*\(.*\)/\1\2\r\1\3/<cr>
 	\:silent! call repeat#set("\<Plug>SplitLine")<cr>
 nmap S <Plug>SplitLine
-nnoremap <bs> <c-^>
-nnoremap <tab> za
+nnoremap <tab> <c-^>
+nnoremap <cr> za
 nnoremap <silent> <space> :nohlsearch<cr>
 nnoremap gV `[v`]
 nnoremap gs :%s///g<left><left>
