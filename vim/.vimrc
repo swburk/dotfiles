@@ -16,7 +16,6 @@ set autoindent
 set shiftround
 set showcmd
 set ruler
-set laststatus=2
 set colorcolumn=80
 syntax enable
 colorscheme angr
