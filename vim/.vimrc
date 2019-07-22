@@ -19,7 +19,7 @@ set ruler
 set laststatus=2
 set colorcolumn=80
 syntax enable
-colorscheme desert
+colorscheme angr
 let g:netrw_fastbrowse=0
 
 function! MyFoldText()
