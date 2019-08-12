@@ -57,7 +57,7 @@ nnoremap <silent> <Plug>SplitLine
 	\:silent! call repeat#set("\<Plug>SplitLine")<cr>
 nmap S <Plug>SplitLine
 nnoremap <tab> <c-^>
-nnoremap <cr> za
+nnoremap - za
 nnoremap <silent> <space> :nohlsearch<cr>
 nnoremap gV `[v`]
 nnoremap gs :%s///g<left><left>
