@@ -4,7 +4,7 @@ set encoding=utf-8
 set noswapfile
 set hidden
 set backspace=indent,eol,start
-set notimeout ttimeout ttimeoutlen=10
+set ttimeoutlen=10
 set nowrap
 set incsearch
 set hlsearch
@@ -19,7 +19,6 @@ set ruler
 set colorcolumn=80
 syntax enable
 colorscheme angr
-let g:netrw_fastbrowse=0
 
 set pastetoggle=<f2>
 nnoremap <silent> <Plug>SplitLine
