@@ -13,10 +13,8 @@ set smartcase
 set tabstop=4
 set shiftwidth=0
 set autoindent
-set shiftround
 set showcmd
 set ruler
-set colorcolumn=80
 syntax enable
 colorscheme angr
 
