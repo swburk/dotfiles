@@ -8,5 +8,5 @@
 	path = vim/.vim/pack/plugins/start/vim-commentary
 	url = https://github.com/tpope/vim-commentary
 [submodule "vim/.vim/pack/plugins/start/angr.vim"]
-	path = vim/.vim/pack/plugins/start/angr.vim
+	path = vim/.vim/pack/plugins/opt/angr.vim
 	url = https://github.com/zacanger/angr.vim.git
