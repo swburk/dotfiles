@@ -12,6 +12,7 @@ set ignorecase
 set smartcase
 set tabstop=4
 set shiftwidth=0
+set shiftround
 set autoindent
 set showcmd
 set ruler
