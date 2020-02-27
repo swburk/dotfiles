@@ -30,3 +30,4 @@ nnoremap gV `[v`]
 nnoremap gs :%s///g<left><left>
 xnoremap gs :s///g<left><left>
 nnoremap gl :ls<cr>:b<space>
+cnoremap %% <c-r>=fnameescape(expand('%:h')).'/'<cr>
