@@ -3,6 +3,12 @@ packadd! matchit
 set encoding=utf-8
 set noswapfile
 set hidden
+set undofile
+if !isdirectory($HOME . "/.vim/undo")
+	" call mkdir($HOME . "/.vim/undo", "", 0700)
+	call mkdir($HOME . "/.vim/undo")
+endif
+set undodir=~/.vim/undo
 set backspace=indent,eol,start
 set ttimeoutlen=10
 set nowrap
