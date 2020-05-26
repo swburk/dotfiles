@@ -5,7 +5,6 @@ set noswapfile
 set hidden
 set undofile
 if !isdirectory($HOME . "/.vim/undo")
-	" call mkdir($HOME . "/.vim/undo", "", 0700)
 	call mkdir($HOME . "/.vim/undo")
 endif
 set undodir=~/.vim/undo
