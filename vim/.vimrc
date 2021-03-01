@@ -1,4 +1,12 @@
 filetype plugin indent on
+packadd minpac
+call minpac#init()
+call minpac#add('k-takata/minpac', {'type': 'opt'})
+call minpac#add('tpope/vim-repeat')
+call minpac#add('tpope/vim-surround')
+call minpac#add('tpope/vim-commentary')
+call minpac#add('dense-analysis/ale')
+call minpac#add('zacanger/angr.vim')
 packadd! matchit
 set encoding=utf-8
 set noswapfile
