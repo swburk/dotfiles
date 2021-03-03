@@ -6,4 +6,6 @@
 
 3. Link everything to your home directory: `stow bash screen vim zsh`
 
-4. Install Vim plugins: `vim -c ':call minpac#update()'`
+4. Install minpac: `git submodule update --init`
+
+5. Install Vim plugins: `vim -c ':call minpac#update()'`
