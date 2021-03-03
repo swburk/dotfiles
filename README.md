@@ -4,7 +4,7 @@
 
 2. `cd ~/.dotfiles`
 
-3. Link everything to your home directory: `stow bash screen vim zsh`
+3. Link everything to your home directory: `stow zsh bash screen vim nvim`
 
 4. Install minpac: `git submodule update --init`
 
