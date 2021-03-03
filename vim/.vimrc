@@ -31,7 +31,7 @@ set autoindent
 set showcmd
 set ruler
 syntax enable
-colorscheme angr
+silent! colorscheme angr
 
 set pastetoggle=<f2>
 nnoremap <silent> <Plug>SplitLine
