@@ -35,8 +35,8 @@ silent! colorscheme angr
 
 set pastetoggle=<f2>
 nnoremap <silent> <Plug>SplitLine
-	\ :silent! keeppatterns s/^\(\s*\)\(.\{-}\)\s*\%#\s*\(.*\)/\1\2\r\1\3/<cr>
-	\:silent! call repeat#set("\<Plug>SplitLine")<cr>
+	\ :silent! keeppatterns s/\v^(\s*)(.{-})\s*%#\s*(.*)/\1\2\r\1\3/<bar>
+	\silent! call repeat#set("\<Plug>SplitLine")<cr>
 nmap S <Plug>SplitLine
 nnoremap <tab> <c-^>
 nnoremap <silent> <space> :nohlsearch<cr>
