@@ -4,7 +4,11 @@
 
 2. `cd ~/.dotfiles`
 
-3. Link everything to your home directory: `stow zsh bash screen vim nvim`
+3. Link everything to your home directory:
+
+	- Linux/MacOS: `stow zsh bash screen vim nvim`
+
+	- Windows: `mklink /J $HOME\vimfiles vim\.vim` (Run in Command Prompt as Admin)
 
 4. Install minpac: `git submodule update --init`
 

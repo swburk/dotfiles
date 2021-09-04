@@ -13,8 +13,14 @@ set encoding=utf-8
 set noswapfile
 set hidden
 set undofile
-if !isdirectory($HOME . "/.vim/undo")
-	call mkdir($HOME . "/.vim/undo")
+if has("win32") || has("win64")
+	if !isdirectory($HOME . "\\vimfiles\\undo")
+		call mkdir($HOME . "\\vimfiles\\undo")
+	endif
+else
+	if !isdirectory($HOME . "/.vim/undo")
+		call mkdir($HOME . "/.vim/undo")
+	endif
 endif
 set undodir=~/.vim/undo
 set backspace=indent,eol,start
