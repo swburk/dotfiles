@@ -5,7 +5,6 @@ if exists('g:loaded_minpac')
 	call minpac#add('tpope/vim-repeat')
 	call minpac#add('tpope/vim-surround')
 	call minpac#add('tpope/vim-commentary')
-	call minpac#add('dense-analysis/ale')
 	call minpac#add('zacanger/angr.vim')
 endif
 packadd! matchit
