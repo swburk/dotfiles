@@ -6,11 +6,10 @@
 
 3. Link everything to your home directory:
 
-	- Linux/MacOS: `stow zsh bash screen vim emacs`
+	- Linux/MacOS: `stow zsh bash screen vim`
 
 	- Windows: (Run in Command Prompt as Admin)
 		- `mklink /J $HOME\vimfiles vim\.vim`
-		- `mklink /J $HOME\.emacs.d emacs\.emacs.d`
 
 4. Install minpac: `git submodule update --init`
 
