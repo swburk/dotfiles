@@ -1,3 +1,8 @@
-set guioptions=e
+set guioptions=
 set guifont=Source\ Code\ Pro:h10
 set guicursor+=a:blinkon0
+
+if exists('g:GuiLoaded')
+	GuiTabline 0
+	GuiPopupmenu 0
+endif

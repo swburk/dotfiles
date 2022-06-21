@@ -10,6 +10,7 @@
 
 	- Windows: (Run in Command Prompt as Admin)
 		- `mklink /J $HOME\vimfiles vim\.vim`
+		- `mklink /J c:\users\sburk\appdata\local\nvim dotfiles\nvim\.config`
 
 4. Install minpac: `git submodule update --init`
 
