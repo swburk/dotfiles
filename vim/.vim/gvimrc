@@ -1,5 +1,5 @@
 set guioptions=
-set guifont=Source\ Code\ Pro:h10
+set guifont=Source\ Code\ Pro:h14
 set guicursor+=a:blinkon0
 
 if exists('g:GuiLoaded')
