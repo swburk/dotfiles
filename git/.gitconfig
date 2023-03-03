@@ -1,0 +1,12 @@
+[user]
+	name = Sam Burk
+	email = sam@samburk.com
+[core]
+	editor = vim
+	excludesfile = ~/.gitignore
+[diff]
+	tool = vimdiff
+[merge]
+	tool = vimdiff
+[includeIf "gitdir:~/work/"]
+	path = ~/work/.gitconfig

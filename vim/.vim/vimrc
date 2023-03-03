@@ -12,16 +12,11 @@ set encoding=utf-8
 set noswapfile
 set hidden
 set undofile
-if has("win32") || has("win64")
-	if !isdirectory($HOME . "\\vimfiles\\undo")
-		call mkdir($HOME . "\\vimfiles\\undo")
-	endif
-else
-	if !isdirectory($HOME . "/.vim/undo")
-		call mkdir($HOME . "/.vim/undo")
-	endif
+let s:undodir = fnamemodify(expand("$MYVIMRC"), ":p:h") . "/undo"
+if !isdirectory(s:undodir)
+	call mkdir(s:undodir)
 endif
-set undodir=~/.vim/undo
+let &undodir=s:undodir
 set backspace=indent,eol,start
 set ttimeoutlen=10
 set nowrap
@@ -35,8 +30,13 @@ set shiftround
 set autoindent
 set showcmd
 set ruler
+set number
+set laststatus=2
+set wildmenu
 syntax enable
 silent! colorscheme angr
+set splitright
+set splitbelow
 
 set pastetoggle=<f2>
 nnoremap <silent> <Plug>SplitLine
