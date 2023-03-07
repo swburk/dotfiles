@@ -1,16 +1,16 @@
 # Installation
 
-1. Clone the repository to ~/.dotfiles.
+```
+git clone --recursive git@github.com:swburk/dotfiles.git ~/.dotfiles
+cd ~/.dotfiles
+stow .
+vim -c ':helptags ALL'
+```
 
-2. `cd ~/.dotfiles`
+## Special Instructions for Windows
 
-3. Link everything to your home directory:
+In order to correctly link the Vim configuration on Windows, run the following command in Command Prompt as Admin:
 
-	- Linux/MacOS: `stow bash screen vim zsh`
-
-	- Windows: (Run in Command Prompt as Admin)
-		- `mklink /J $HOME\vimfiles vim\.vim`
-
-4. Install minpac: `git submodule update --init`
-
-5. Install Vim plugins: `vim -c ':call minpac#update()'`
+```
+mklink /J $HOME\vimfiles .vim
+```

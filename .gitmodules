@@ -1,3 +1,12 @@
-[submodule "vim/.vim/pack/minpac/opt/minpac"]
-	path = vim/.vim/pack/minpac/opt/minpac
-	url = https://github.com/k-takata/minpac.git
+[submodule ".vim/pack/plugins/start/vim-repeat"]
+	path = .vim/pack/plugins/start/vim-repeat
+	url = https://github.com/tpope/vim-repeat
+[submodule ".vim/pack/plugins/start/vim-surround"]
+	path = .vim/pack/plugins/start/vim-surround
+	url = https://github.com/tpope/vim-surround
+[submodule ".vim/pack/plugins/start/vim-commentary"]
+	path = .vim/pack/plugins/start/vim-commentary
+	url = https://github.com/tpope/vim-commentary
+[submodule ".vim/pack/plugins/start/angr.vim"]
+	path = .vim/pack/plugins/start/angr.vim
+	url = https://github.com/zacanger/angr.vim

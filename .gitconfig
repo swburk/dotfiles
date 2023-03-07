@@ -3,10 +3,11 @@
 	email = sam@samburk.com
 [core]
 	editor = vim
-	excludesfile = ~/.gitignore
 [diff]
 	tool = vimdiff
 [merge]
 	tool = vimdiff
 [includeIf "gitdir:~/work/"]
 	path = ~/work/.gitconfig
+[init]
+	templatedir = ~/.gittemplate
