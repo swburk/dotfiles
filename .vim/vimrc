@@ -3,12 +3,12 @@ packadd! matchit
 set encoding=utf-8
 set noswapfile
 set hidden
-set undofile
 let s:undodir = expand(fnamemodify(expand("$MYVIMRC"), ":p:h") . "/undo")
 if !isdirectory(s:undodir)
-	call mkdir(s:undodir)
+	call mkdir(s:undodir, "", 0700)
 endif
 let &undodir=s:undodir
+set undofile
 set backspace=indent,eol,start
 set ttimeoutlen=10
 set nowrap
