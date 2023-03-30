@@ -1,3 +1,2 @@
-PATH="$PATH:$HOME/bin"
 VISUAL="vim"
 EDITOR="$VISUAL"

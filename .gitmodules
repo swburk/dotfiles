@@ -10,3 +10,15 @@
 [submodule ".vim/pack/plugins/start/angr.vim"]
 	path = .vim/pack/plugins/start/angr.vim
 	url = https://github.com/zacanger/angr.vim
+[submodule ".local/share/nvim/site/pack/plugins/start/vim-commentary"]
+	path = .local/share/nvim/site/pack/plugins/start/vim-commentary
+	url = https://github.com/tpope/vim-commentary
+[submodule ".local/share/nvim/site/pack/plugins/start/vim-repeat"]
+	path = .local/share/nvim/site/pack/plugins/start/vim-repeat
+	url = https://github.com/tpope/vim-repeat
+[submodule ".local/share/nvim/site/pack/plugins/start/vim-surround"]
+	path = .local/share/nvim/site/pack/plugins/start/vim-surround
+	url = https://github.com/tpope/vim-surround
+[submodule ".local/share/nvim/site/pack/plugins/opt/angr.vim"]
+	path = .local/share/nvim/site/pack/plugins/opt/angr.vim
+	url = https://github.com/zacanger/angr.vim
