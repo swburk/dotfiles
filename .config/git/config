@@ -2,12 +2,8 @@
 	name = Sam Burk
 	email = sam@samburk.com
 [core]
-	editor = vim
-[diff]
-	tool = vimdiff
+	editor = nvim
 [merge]
-	tool = vimdiff
+	tool = nvimdiff
 [includeIf "gitdir:~/work/"]
 	path = ~/work/.gitconfig
-[init]
-	templatedir = ~/.gittemplate
