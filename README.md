@@ -18,6 +18,7 @@ mklink /J $HOME\vimfiles .vim
 
 # Neovim
 mklink /J $HOME\AppData\Local\nvim .config\nvim
+mklink /J $HOME\AppData\Local\nvim-data .local\share\nvim
 ```
 
 # Vim/Neovim Plugins
