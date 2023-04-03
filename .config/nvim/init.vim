@@ -6,7 +6,7 @@ set tabstop=4
 set shiftwidth=0
 set shiftround
 set number
-silent! colorscheme angr
+silent! colorscheme kanagawa
 set splitright
 set splitbelow
 

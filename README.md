@@ -36,12 +36,12 @@ Remove plugin:
 ```
 # Vim
 git submodule deinit .vim/pack/plugins/start/foo
-git rm -r .vim/pack/plugins/start/foo
+git rm .vim/pack/plugins/start/foo
 rm -r .git/modules/.vim/pack/plugins/start/foo
 
 # Neovim
 git submodule deinit .local/share/nvim/site/pack/plugins/start/foo
-git rm -r .local/share/nvim/site/pack/plugins/start/foo
+git rm .local/share/nvim/site/pack/plugins/start/foo
 rm -r .git/modules/.local/share/nvim/site/pack/plugins/start/foo
 ```
 
