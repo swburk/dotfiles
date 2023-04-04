@@ -27,8 +27,6 @@ set laststatus=2
 set wildmenu
 syntax enable
 silent! colorscheme angr
-set splitright
-set splitbelow
 
 set pastetoggle=<f2>
 nnoremap <silent> <Plug>SplitLine
