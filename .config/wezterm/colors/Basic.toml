@@ -1,0 +1,31 @@
+[colors]
+ansi = [
+    '#000000',
+    '#811C0C',
+    '#3E971F',
+    '#8E8D21',
+    '#0212A4',
+    '#9A27A5',
+    '#3E99A8',
+    '#B7B7B7',
+]
+background = '#1C1C1C'
+brights = [
+    '#5A5B5B',
+    '#CE2D14',
+    '#55CD2B',
+    '#E1E033',
+    '#031DF8',
+    '#CE33DC',
+    '#5BDDE1',
+    '#E1E2E2',
+]
+cursor_bg = '#919392'
+cursor_border = '#919392'
+foreground = '#FFFFFF'
+selection_bg = '#3E577E'
+
+[colors.indexed]
+
+[metadata]
+name = 'Basic'
