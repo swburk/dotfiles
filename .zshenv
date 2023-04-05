@@ -1,4 +1,4 @@
-VISUAL="vim"
+VISUAL="nvim"
 EDITOR="$VISUAL"
 
 : ${XDG_CONFIG_HOME:="$HOME/.config"} \
