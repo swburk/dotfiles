@@ -9,7 +9,7 @@ set number
 silent! colorscheme kanagawa
 
 nnoremap <silent> <Plug>SplitLine
-	\ :silent! keeppatterns s/\v^(\s*)(.{-})\s*%#\s*(.*)/\1\2\r\1\3/<bar>
+	\ <cmd>silent! keeppatterns s/\v^(\s*)(.{-})\s*%#\s*(.*)/\1\2\r\1\3/<bar>
 	\silent! call repeat#set("\<Plug>SplitLine")<cr>
 nmap S <Plug>SplitLine
 nnoremap <tab> <c-^>
