@@ -1,7 +1,8 @@
 local wezterm = require 'wezterm'
 local config = {}
 
-config.color_scheme = 'Basic'
+-- config.color_scheme = 'Argonaut'
+config.color_scheme = 'Catppuccin Mocha'
 config.font = wezterm.font 'Source Code Pro'
 config.font_size = 14
 config.hide_tab_bar_if_only_one_tab = true

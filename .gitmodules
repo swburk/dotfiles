@@ -22,3 +22,6 @@
 [submodule ".local/share/nvim/site/pack/plugins/start/kanagawa.nvim"]
 	path = .local/share/nvim/site/pack/plugins/start/kanagawa.nvim
 	url = https://github.com/rebelot/kanagawa.nvim.git
+[submodule ".local/share/nvim/site/pack/plugins/start/nvim"]
+	path = .local/share/nvim/site/pack/plugins/start/nvim
+	url = https://github.com/catppuccin/nvim.git
