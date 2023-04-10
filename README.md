@@ -1,3 +1,9 @@
+# Requirements
+
+* [Neovim 0.9+](https://neovim.io)
+* [Pyright](https://github.com/microsoft/pyright)
+* [TypeScript Language Server](https://github.com/typescript-language-server/typescript-language-server)
+
 # Installation
 
 ```
