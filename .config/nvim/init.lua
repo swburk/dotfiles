@@ -1,3 +1,5 @@
+require('lsp')
+
 vim.opt.undofile = true
 vim.opt.wrap = false
 vim.opt.ignorecase = true
@@ -18,3 +20,4 @@ vim.keymap.set('n', 'gs', ':%s///g<left><left>', { noremap = true })
 vim.keymap.set('x', 'gs', ':s///g<left><left>', { noremap = true })
 vim.keymap.set('n', 'gl', '<cmd>ls<cr>:b<space>', { noremap = true })
 vim.keymap.set('c', '%%', '<c-r>=fnameescape(expand("%:h"))."/"<cr>', { noremap = true })
+vim.keymap.set('i', '<c-space>', '<c-x><c-o>', { noremap = true })
