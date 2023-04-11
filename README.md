@@ -14,6 +14,15 @@ vim -c ':helptags ALL'
 nvim -c ':helptags ALL'
 ```
 
+### GitHub Copilot
+
+Open Neovim and enter the following commands:
+
+```
+:Copilot setup
+:Copilot enable
+```
+
 ### Special Instructions for Windows
 
 In order to correctly link the Vim/Neovim configuration on Windows, run the following command in Command Prompt as Admin:
@@ -35,7 +44,7 @@ Add plugin:
 git submodule add https://github.com/name/foo.git .vim/pack/plugins/start/foo
 
 # Neovim
-git submodule add https://github.com/name/foo.git .local/share/nvim/site/pack/plugins/start/foo
+git submodule add -f https://github.com/name/foo.git .local/share/nvim/site/pack/plugins/start/foo
 ```
 
 Remove plugin:
