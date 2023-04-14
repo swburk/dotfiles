@@ -1,4 +1,5 @@
 require('lsp')
+require('treesitter')
 
 vim.opt.undofile = true
 vim.opt.wrap = false

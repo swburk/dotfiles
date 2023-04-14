@@ -28,3 +28,9 @@
 [submodule ".local/share/nvim/site/pack/plugins/start/copilot.vim"]
 	path = .local/share/nvim/site/pack/plugins/start/copilot.vim
 	url = https://github.com/github/copilot.vim
+[submodule ".local/share/nvim/site/pack/plugins/start/nvim-treesitter"]
+	path = .local/share/nvim/site/pack/plugins/start/nvim-treesitter
+	url = https://github.com/nvim-treesitter/nvim-treesitter.git
+[submodule ".local/share/nvim/site/pack/plugins/start/nvim-treesitter-textobjects"]
+	path = .local/share/nvim/site/pack/plugins/start/nvim-treesitter-textobjects
+	url = https://github.com/nvim-treesitter/nvim-treesitter-textobjects.git
