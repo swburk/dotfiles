@@ -28,11 +28,5 @@ vim.api.nvim_create_autocmd('LspAttach', {
 		if client.server_capabilities.codeActionProvider then
 			vim.keymap.set('n', 'cx', vim.lsp.buf.code_action, { buffer = args.buf })
 		end
-
-		vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { buffer = args.buf })
-		vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { buffer = args.buf })
-		vim.keymap.set('n', '<space>', vim.diagnostic.open_float, { buffer = args.buf })
-		vim.api.nvim_create_user_command('Dllist', vim.diagnostic.setloclist, {})
-		vim.api.nvim_create_user_command('Dclist', vim.diagnostic.setqflist, {})
 	end,
 })
