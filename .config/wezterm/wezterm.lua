@@ -1,11 +1,13 @@
 local wezterm = require 'wezterm'
 local config = {}
 
--- config.color_scheme = 'Argonaut'
-config.color_scheme = 'Catppuccin Mocha'
+-- config.color_scheme = 'Catppuccin Mocha'
+config.color_scheme = 'Catppuccin Latte'
 config.font = wezterm.font 'Source Code Pro'
 config.font_size = 14
+config.use_fancy_tab_bar = false
 config.hide_tab_bar_if_only_one_tab = true
+-- config.window_decorations = 'INTEGRATED_BUTTONS|RESIZE'
 config.window_padding = {
 	left = 0,
 	right = 0,
@@ -14,5 +16,15 @@ config.window_padding = {
 }
 config.quit_when_all_windows_are_closed = false
 config.window_close_confirmation = 'NeverPrompt'
+
+config.keys = {
+	{
+		key = 'n',
+		mods = 'CMD',
+		action = wezterm.action.SpawnCommandInNewWindow {
+			cwd = wezterm.home_dir,
+		},
+	},
+}
 
 return config

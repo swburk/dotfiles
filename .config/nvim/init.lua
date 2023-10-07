@@ -10,7 +10,8 @@ vim.opt.shiftwidth = 0
 vim.opt.shiftround = true
 vim.opt.formatoptions = 'cqj'
 vim.opt.number = true
-vim.cmd.colorscheme('catppuccin')
+-- vim.cmd.colorscheme('catppuccin')
+vim.cmd.colorscheme('catppuccin-latte')
 
 vim.diagnostic.config({
 	virtual_text = false,
