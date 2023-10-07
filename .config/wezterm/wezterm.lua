@@ -25,6 +25,18 @@ config.keys = {
 			cwd = wezterm.home_dir,
 		},
 	},
+	{
+		key = 'r',
+		mods = 'CMD|SHIFT',
+		action = wezterm.action.PromptInputLine {
+			description = 'Enter tab name',
+			action = wezterm.action_callback(function(window, _, line)
+				if line then
+					window:active_tab():set_title(line)
+				end
+			end),
+		},
+	},
 }
 
 return config
