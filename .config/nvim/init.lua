@@ -1,6 +1,18 @@
 require('lsp')
 require('treesitter')
 
+vim.cmd('packadd auto-dark-mode.nvim')
+local auto_dark_mode = require('auto-dark-mode')
+auto_dark_mode.setup({
+	update_interval = 1000,
+	set_dark_mode = function()
+		vim.opt.background = 'dark'
+	end,
+	set_light_mode = function()
+		vim.opt.background = 'light'
+	end,
+})
+
 vim.opt.undofile = true
 vim.opt.wrap = false
 vim.opt.ignorecase = true
@@ -10,8 +22,7 @@ vim.opt.shiftwidth = 0
 vim.opt.shiftround = true
 vim.opt.formatoptions = 'cqj'
 vim.opt.number = true
--- vim.cmd.colorscheme('catppuccin')
-vim.cmd.colorscheme('catppuccin-latte')
+vim.cmd.colorscheme('catppuccin')
 
 vim.diagnostic.config({
 	virtual_text = false,
