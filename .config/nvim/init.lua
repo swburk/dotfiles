@@ -20,7 +20,6 @@ vim.opt.smartcase = true
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 0
 vim.opt.shiftround = true
-vim.opt.formatoptions = 'cqj'
 vim.opt.number = true
 vim.cmd.colorscheme('catppuccin')
 
@@ -46,3 +45,6 @@ vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, {})
 vim.keymap.set('n', '<space>', vim.diagnostic.open_float, {})
 vim.api.nvim_create_user_command('Dllist', vim.diagnostic.setloclist, {})
 vim.api.nvim_create_user_command('Dclist', vim.diagnostic.setqflist, {})
+
+vim.api.nvim_create_autocmd('FileType',
+	{ callback = function() vim.opt_local.formatoptions = 'cqj' end })
