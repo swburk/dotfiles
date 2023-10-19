@@ -26,7 +26,6 @@ set number
 set laststatus=2
 set wildmenu
 syntax enable
-colorscheme angr
 
 set pastetoggle=<f2>
 nnoremap <silent> <Plug>(SplitLine)
@@ -41,3 +40,5 @@ xnoremap gs :substitute///g<left><left>
 nnoremap gl <cmd>buffers<cr>:buffer<space>
 nnoremap gm <cmd>global//number<cr>:
 cnoremap %% <c-r>=fnameescape(expand('%:h')).'/'<cr>
+
+autocmd FileType * setlocal formatoptions=cqj

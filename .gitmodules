@@ -7,9 +7,6 @@
 [submodule ".vim/pack/plugins/start/vim-commentary"]
 	path = .vim/pack/plugins/start/vim-commentary
 	url = https://github.com/tpope/vim-commentary
-[submodule ".vim/pack/plugins/start/angr.vim"]
-	path = .vim/pack/plugins/start/angr.vim
-	url = https://github.com/zacanger/angr.vim
 [submodule ".local/share/nvim/site/pack/plugins/start/vim-commentary"]
 	path = .local/share/nvim/site/pack/plugins/start/vim-commentary
 	url = https://github.com/tpope/vim-commentary
@@ -34,3 +31,6 @@
 [submodule ".local/share/nvim/site/pack/plugins/opt/auto-dark-mode.nvim"]
 	path = .local/share/nvim/site/pack/plugins/opt/auto-dark-mode.nvim
 	url = https://github.com/f-person/auto-dark-mode.nvim.git
+[submodule ".vim/pack/plugins/start/vim"]
+	path = .vim/pack/plugins/start/vim
+	url = https://github.com/catppuccin/vim.git
