@@ -1,6 +1,11 @@
 require('lsp')
 require('treesitter')
 
+local lspconfig = require('lspconfig')
+lspconfig.pyright.setup {}
+lspconfig.tsserver.setup {}
+lspconfig.eslint.setup {}
+
 vim.cmd('packadd auto-dark-mode.nvim')
 local auto_dark_mode = require('auto-dark-mode')
 auto_dark_mode.setup({
