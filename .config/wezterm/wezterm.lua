@@ -20,16 +20,34 @@ wezterm.on('window-config-reloaded', function(window, pane)
 	end
 end)
 
-config.font = wezterm.font 'Source Code Pro'
+-- Hide the scrollbar when the alternate screen is active.
+wezterm.on("update-status", function(window, pane)
+  local overrides = window:get_config_overrides() or {}
+  if not overrides.colors then
+    overrides.colors = {}
+  end
+  if pane:is_alt_screen_active() then
+    overrides.colors.scrollbar_thumb = "transparent"
+  else
+    overrides.colors.scrollbar_thumb = nil
+  end
+  window:set_config_overrides(overrides)
+end)
+
+config.color_scheme = 'Catppuccin Mocha'
+config.font = wezterm.font 'JetBrains Mono'
 config.font_size = 14
 config.use_fancy_tab_bar = false
 config.hide_tab_bar_if_only_one_tab = true
+config.enable_scroll_bar = true
 config.window_padding = {
 	left = 0,
 	right = 0,
 	top = 0,
 	bottom = 0,
 }
+config.initial_cols = 80
+config.initial_rows = 24
 config.quit_when_all_windows_are_closed = false
 config.window_close_confirmation = 'NeverPrompt'
 
