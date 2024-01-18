@@ -1,5 +1,5 @@
-require'nvim-treesitter.configs'.setup {
-	ensure_installed = { 'javascript', 'python' },
+require('nvim-treesitter.configs').setup {
+	ensure_installed = { 'go', 'javascript', 'lua', 'python', 'vim', 'vimdoc' },
 	highlight = { enable = true },
 	incremental_selection = {
 		enable = true,

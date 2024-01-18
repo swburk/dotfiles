@@ -1,3 +1,24 @@
+local lspconfig = require('lspconfig')
+lspconfig.eslint.setup({})
+lspconfig.gopls.setup({})
+lspconfig.pylsp.setup({
+	settings = {
+		pylsp = {
+			plugins = {
+				flake8 = {
+					enabled = true,
+					maxLineLength = 100,
+				},
+				autopep8 = { enabled = false },
+				yapf = { enabled = false },
+				pyflakes = { enabled = false },
+				pycodestyle = { enabled = false },
+			},
+		},
+	},
+})
+lspconfig.tsserver.setup({})
+
 vim.api.nvim_create_autocmd('LspAttach', {
 	callback = function(args)
 		local client = vim.lsp.get_client_by_id(args.data.client_id)
