@@ -7,6 +7,7 @@ lspconfig.pylsp.setup({
 			plugins = {
 				flake8 = {
 					enabled = true,
+					ignore = { 'E402' },
 					maxLineLength = 100,
 				},
 				autopep8 = { enabled = false },
