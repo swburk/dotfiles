@@ -22,7 +22,14 @@ add-zsh-hook precmd vcs_info
 setopt PROMPT_SUBST
 PROMPT='%(1j.%F{magenta}%jj%f .)%F{green}%n%f@%F{yellow}%m%f %F{cyan}%~%f ${vcs_info_msg_0_}%(?..%F{red})%#%f '
 
+alias venv=". ./.venv/bin/activate"
+
 export SCREENRC="$XDG_CONFIG_HOME/screen/screenrc"
 
 export NVM_DIR="$([ -z "${XDG_DATA_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_DATA_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use
+
+if command -v go &> /dev/null; then
+	path+=($(go env GOPATH)/bin)
+	export PATH
+fi
