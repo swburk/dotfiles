@@ -5,5 +5,5 @@
 	editor = nvim
 [merge]
 	tool = nvimdiff
-[includeIf "gitdir:~/work/"]
-	path = ~/work/.gitconfig
+[includeIf "gitdir:~/code/"]
+	path = ~/code/.gitconfig
