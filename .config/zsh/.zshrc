@@ -26,8 +26,7 @@ alias venv=". ./.venv/bin/activate"
 
 export SCREENRC="$XDG_CONFIG_HOME/screen/screenrc"
 
-export NVM_DIR="$([ -z "${XDG_DATA_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_DATA_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use
+command -v fnm &> /dev/null && eval "$(fnm env)"
 
 if command -v go &> /dev/null; then
 	path+=($(go env GOPATH)/bin)
