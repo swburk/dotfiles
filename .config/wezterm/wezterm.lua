@@ -2,7 +2,7 @@ local wezterm = require 'wezterm'
 local config = {}
 
 function scheme_for_appearance(appearance)
-	if appearance:find 'Dark' then
+	if appearance:find('Dark') then
 		return 'Catppuccin Mocha'
 	else
 		return 'Catppuccin Latte'
@@ -21,7 +21,7 @@ wezterm.on('window-config-reloaded', function(window, pane)
 end)
 
 config.color_scheme = 'Catppuccin Mocha'
-config.font = wezterm.font 'JetBrains Mono'
+config.font = wezterm.font('JetBrains Mono')
 config.font_size = 14
 config.use_fancy_tab_bar = false
 config.hide_tab_bar_if_only_one_tab = true
@@ -31,32 +31,25 @@ config.window_padding = {
 	top = 0,
 	bottom = 0,
 }
-config.initial_cols = 80
-config.initial_rows = 24
 config.quit_when_all_windows_are_closed = false
 config.window_close_confirmation = 'NeverPrompt'
 
 config.keys = {
-	-- Open new windows in the home directory.
+	-- Scroll to the previous/next prompt.
 	{
-		key = 'n',
-		mods = 'CMD',
-		action = wezterm.action.SpawnCommandInNewWindow {
-			cwd = wezterm.home_dir,
-		},
+		key = 'UpArrow', mods = 'SHIFT',
+		action = wezterm.action.ScrollToPrompt(-1)
 	},
-	-- Rename current tab.
 	{
-		key = 'r',
-		mods = 'CMD|SHIFT',
-		action = wezterm.action.PromptInputLine {
-			description = 'Enter tab name',
-			action = wezterm.action_callback(function(window, _, line)
-				if line then
-					window:active_tab():set_title(line)
-				end
-			end),
-		},
+		key = 'DownArrow', mods = 'SHIFT',
+		action = wezterm.action.ScrollToPrompt(1)
+	},
+	-- Open new window in the home directory.
+	{
+		key = 'n', mods = 'SUPER',
+		action = wezterm.action.SpawnCommandInNewWindow({
+			cwd = wezterm.home_dir,
+		}),
 	},
 }
 
