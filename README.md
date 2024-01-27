@@ -1,14 +1,19 @@
 # Requirements
 
+Linux & macOS:
+* [GNU Stow](https://www.gnu.org/software/stow/) - Symlink dotfiles
+
+Windows:
+* [MinGW-w64](https://www.mingw-w64.org/) - Dependency for nvim-treesitter
+
+## Configured Programs
+
 * [Git](https://git-scm.com/)
-* [Stow](https://www.gnu.org/software/stow/)
-
-## Optional
-
-* [Vim 9.0+](https://www.vim.org/)
-* [Neovim 0.9+](https://neovim.io)
-* [Zsh](https://www.zsh.org/)
+* [GNU Screen](https://www.gnu.org/software/screen/)
+* [Neovim](https://neovim.io)
+* [Vim](https://www.vim.org/)
 * [WezTerm](https://wezfurlong.org/wezterm/index.html)
+* [Zsh](https://www.zsh.org/)
 
 ## LSP Servers
 
@@ -29,17 +34,17 @@ stow .
 
 ### Special Instructions for Windows
 
-To correctly link the configuration on Windows, run the following command in Command Prompt as Admin:
+To correctly link the configuration on Windows, run the following commands in PowerShell as an administrator:
 
 Vim:
 ```
-mklink /J $HOME\vimfiles .vim
+New-Item -ItemType SymbolicLink -Path ~\vimfiles -Target .\.vim
 ```
 
 Neovim:
 ```
-mklink /J $HOME\AppData\Local\nvim .config\nvim
-mklink /J $HOME\AppData\Local\nvim-data .local\share\nvim
+New-Item -ItemType SymbolicLink -Path ~\AppData\Local\nvim -Target .\.config\nvim
+New-Item -ItemType SymbolicLink -Path ~\AppData\Local\nvim-data -Target .\.local\share\nvim
 ```
 
 ### Helptags
