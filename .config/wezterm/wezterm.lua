@@ -20,6 +20,11 @@ wezterm.on('window-config-reloaded', function(window, pane)
 	end
 end)
 
+-- Use PowerShell on Windows.
+if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
+	config.default_prog = { 'pwsh.exe', '-NoLogo' }
+end
+
 config.color_scheme = 'Catppuccin Mocha'
 config.font = wezterm.font('JetBrains Mono')
 config.font_size = 14
@@ -46,7 +51,7 @@ config.keys = {
 	},
 	-- Open new window in the home directory.
 	{
-		key = 'n', mods = 'SUPER',
+		key = 'n', mods = 'CTRL|SHIFT',
 		action = wezterm.action.SpawnCommandInNewWindow({
 			cwd = wezterm.home_dir,
 		}),

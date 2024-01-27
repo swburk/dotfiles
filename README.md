@@ -30,8 +30,6 @@ cd ~/.dotfiles
 stow .
 ```
 
-# Vim & Neovim
-
 ### Special Instructions for Windows
 
 To correctly link the configuration on Windows, run the following commands in PowerShell as an administrator:
@@ -46,6 +44,13 @@ Neovim:
 New-Item -ItemType SymbolicLink -Path ~\AppData\Local\nvim -Target .\.config\nvim
 New-Item -ItemType SymbolicLink -Path ~\AppData\Local\nvim-data -Target .\.local\share\nvim
 ```
+
+WezTerm:
+```
+New-Item -ItemType SymbolicLink -Path ~\.wezterm.lua -Target .\.config\wezterm\wezterm.lua
+```
+
+# Vim & Neovim
 
 ### Helptags
 
