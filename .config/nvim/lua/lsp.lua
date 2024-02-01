@@ -48,7 +48,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 			vim.keymap.set('n', 'cr', vim.lsp.buf.rename, { buffer = args.buf })
 		end
 		if client.server_capabilities.codeActionProvider then
-			vim.keymap.set('n', 'cx', vim.lsp.buf.code_action, { buffer = args.buf })
+			vim.keymap.set('n', 'ga', vim.lsp.buf.code_action, { buffer = args.buf })
 		end
 	end,
 })
