@@ -2,6 +2,7 @@ require('nvim-treesitter.configs').setup {
 	ensure_installed = {
 		'c',
 		'go',
+		'html',
 		'javascript',
 		'lua',
 		'markdown',
@@ -11,6 +12,7 @@ require('nvim-treesitter.configs').setup {
 		'vimdoc'
 	},
 	highlight = { enable = true },
+	indent = { enable = true },
 	incremental_selection = {
 		enable = true,
 		keymaps = {
