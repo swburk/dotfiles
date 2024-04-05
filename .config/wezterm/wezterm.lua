@@ -49,13 +49,6 @@ config.keys = {
 		key = 'DownArrow', mods = 'SHIFT',
 		action = wezterm.action.ScrollToPrompt(1)
 	},
-	-- Open new window in the home directory.
-	{
-		key = 'n', mods = 'CTRL|SHIFT',
-		action = wezterm.action.SpawnCommandInNewWindow({
-			cwd = wezterm.home_dir,
-		}),
-	},
 }
 
 return config
