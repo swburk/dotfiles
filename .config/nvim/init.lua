@@ -21,6 +21,7 @@ vim.opt.tabstop = 4
 vim.opt.shiftwidth = 0
 vim.opt.shiftround = true
 vim.opt.number = true
+vim.opt.statusline = '%<%f %h%w%m%r%{FugitiveStatusline()}%=%l:%v/%L %y'
 vim.cmd.colorscheme('catppuccin')
 
 vim.diagnostic.config({

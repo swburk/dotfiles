@@ -1,3 +1,4 @@
 .vim/.netrwhist
 .vim/undo
 .local/share/nvim/*
+.DS_Store
