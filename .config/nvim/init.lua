@@ -29,10 +29,16 @@ vim.diagnostic.config({
 	update_in_insert = true
 })
 
-vim.keymap.set('n', '<Plug>(SplitLine)',
-	[[<cmd>keeppatterns substitute/\v^(\s*)(.{-})\s*%#\s*(.*)/\1\2\r\1\3/|]]
-	.. [[call repeat#set("\<Plug>(SplitLine)")<cr>]], { noremap = true })
-vim.keymap.set('n', 'S', '<Plug>(SplitLine)')
+function _G.split_line(motion)
+    if motion == nil then
+        vim.o.operatorfunc = "v:lua.split_line"
+        return "g@l"
+    end
+ 
+	vim.cmd([[keeppatterns substitute/\v^(\s*)(.{-})\s*%#\s*(.*)/\1\2\r\1\3/]])
+end
+
+vim.keymap.set("n", "S", _G.split_line, { expr = true })
 vim.keymap.set('n', '<tab>', '<cmd>buffer #<cr>', { noremap = true })
 vim.keymap.set('n', 'gV', '`[v`]', { noremap = true })
 vim.keymap.set('n', 'gs', ':%substitute///g<left><left>', { noremap = true })
