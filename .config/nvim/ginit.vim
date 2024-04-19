@@ -1,1 +1,1 @@
-set guifont=Source\ Code\ Pro:h14
+set guifont=JetBrains\ Mono:h14
