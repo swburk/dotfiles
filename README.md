@@ -36,7 +36,7 @@ To correctly link the configuration on Windows, run the following commands in Po
 
 Vim:
 ```
-New-Item -ItemType SymbolicLink -Path ~\vimfiles -Target .\.vim
+New-Item -ItemType SymbolicLink -Path ~\vimfiles -Target .\.config\.vim
 ```
 
 Neovim:
@@ -71,7 +71,7 @@ Login and enable Copilot:
 
 Vim and Neovim have a different `packpath`. Substitute the following values for "PACKPATH" in the commands below:
 
-* Vim: `.vim/`
+* Vim: `.config/.vim/`
 * Neovim: `.local/share/nvim/site/`
 
 Add plugin:

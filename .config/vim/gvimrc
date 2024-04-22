@@ -1,4 +1,3 @@
 set guioptions=
-set guifont=Source\ Code\ Pro:h14
+set guifont=JetBrains\ Mono:h14
 set guicursor+=a:blinkon0
-colorscheme catppuccin_mocha

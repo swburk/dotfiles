@@ -3,9 +3,9 @@ packadd! matchit
 set encoding=utf-8
 set noswapfile
 set hidden
-let s:undodir = expand(fnamemodify(expand("$MYVIMRC"), ":p:h") . "/undo")
+let s:undodir = expand("$XDG_STATE_HOME") . "vim/undo"
 if !isdirectory(s:undodir)
-	call mkdir(s:undodir, "", 0700)
+	call mkdir(s:undodir, "p", 0700)
 endif
 let &undodir=s:undodir
 set undofile
