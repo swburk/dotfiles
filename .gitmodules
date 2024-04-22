@@ -1,11 +1,11 @@
 [submodule ".vim/pack/plugins/start/vim-repeat"]
-	path = .vim/pack/plugins/start/vim-repeat
+	path = .config/vim/pack/plugins/start/vim-repeat
 	url = https://github.com/tpope/vim-repeat
 [submodule ".vim/pack/plugins/start/vim-surround"]
-	path = .vim/pack/plugins/start/vim-surround
+	path = .config/vim/pack/plugins/start/vim-surround
 	url = https://github.com/tpope/vim-surround
 [submodule ".vim/pack/plugins/start/vim-commentary"]
-	path = .vim/pack/plugins/start/vim-commentary
+	path = .config/vim/pack/plugins/start/vim-commentary
 	url = https://github.com/tpope/vim-commentary
 [submodule ".local/share/nvim/site/pack/plugins/start/vim-commentary"]
 	path = .local/share/nvim/site/pack/plugins/start/vim-commentary
@@ -32,7 +32,7 @@
 	path = .local/share/nvim/site/pack/plugins/opt/auto-dark-mode.nvim
 	url = https://github.com/f-person/auto-dark-mode.nvim.git
 [submodule ".vim/pack/plugins/start/vim"]
-	path = .vim/pack/plugins/start/vim
+	path = .config/vim/pack/plugins/start/vim
 	url = https://github.com/catppuccin/vim.git
 [submodule ".local/share/nvim/site/pack/plugins/start/nvim-lspconfig"]
 	path = .local/share/nvim/site/pack/plugins/start/nvim-lspconfig
@@ -41,11 +41,11 @@
 	path = .local/share/nvim/site/pack/plugins/start/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive.git
 [submodule ".vim/pack/plugins/start/vim-fugitive"]
-	path = .vim/pack/plugins/start/vim-fugitive
+	path = .config/vim/pack/plugins/start/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive.git
 [submodule ".local/share/nvim/site/pack/plugins/start/vim-exchange"]
 	path = .local/share/nvim/site/pack/plugins/start/vim-exchange
 	url = https://github.com/tommcdo/vim-exchange.git
 [submodule ".vim/pack/plugins/start/vim-exchange"]
-	path = .vim/pack/plugins/start/vim-exchange
+	path = .config/vim/pack/plugins/start/vim-exchange
 	url = https://github.com/tommcdo/vim-exchange.git
