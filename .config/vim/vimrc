@@ -1,13 +1,21 @@
 filetype plugin indent on
 packadd! matchit
-set encoding=utf-8
-set noswapfile
-set hidden
+
+let s:viminfodir = expand("$XDG_CACHE_HOME") . "vim"
+if !isdirectory(s:viminfodir)
+	call mkdir(s:viminfodir, "p", 0700)
+endif
+let &viminfofile=s:viminfodir .. "/viminfo"
+
 let s:undodir = expand("$XDG_STATE_HOME") . "vim/undo"
 if !isdirectory(s:undodir)
 	call mkdir(s:undodir, "p", 0700)
 endif
 let &undodir=s:undodir
+
+set encoding=utf-8
+set noswapfile
+set hidden
 set undofile
 set backspace=indent,eol,start
 set ttimeoutlen=10
