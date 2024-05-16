@@ -9,9 +9,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
 	callback = function(ev)
 		local client = vim.lsp.get_client_by_id(ev.data.client_id)
 		local opts = { buffer = ev.buf }
-		if client.supports_method('textDocument/hover') then
-			vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-		end
 		if client.supports_method('textDocument/signatureHelp') then
 			vim.keymap.set({ 'n', 'i' }, '<c-k>', vim.lsp.buf.signature_help, opts)
 		end

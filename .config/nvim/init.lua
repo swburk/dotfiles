@@ -1,6 +1,5 @@
 require('lsp')
 require('treesitter')
-
 require('catppuccin').setup({ flavour = 'auto' })
 
 vim.opt.undofile = true
@@ -32,8 +31,6 @@ vim.keymap.set('n', 'gm', '<cmd>global//number<cr>:', { noremap = true })
 vim.keymap.set('c', '%%', '<c-r>=fnameescape(expand("%:h"))."/"<cr>', { noremap = true })
 vim.keymap.set('i', '<c-space>', '<c-x><c-o>', { noremap = true })
 vim.keymap.set('t', '<esc>', '<c-\\><c-n>', { noremap = true })
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, {})
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, {})
 vim.keymap.set('n', '<space>', vim.diagnostic.open_float, {})
 vim.api.nvim_create_user_command('Dllist', vim.diagnostic.setloclist, {})
 vim.api.nvim_create_user_command('Dclist', vim.diagnostic.setqflist, {})
