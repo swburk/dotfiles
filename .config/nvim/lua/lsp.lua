@@ -2,7 +2,7 @@ local lspconfig = require('lspconfig')
 lspconfig.eslint.setup({})
 lspconfig.gopls.setup({})
 lspconfig.pyright.setup({})
-lspconfig.ruff_lsp.setup({})
+lspconfig.ruff.setup({})
 lspconfig.tsserver.setup({})
 
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -28,10 +28,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
 			vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
 		end
 		if client.supports_method('textDocument/rename') then
-			vim.keymap.set('n', 'cr', vim.lsp.buf.rename, opts)
+			vim.keymap.set('n', 'crn', vim.lsp.buf.rename, opts)
 		end
 		if client.supports_method('textDocument/codeAction') then
-			vim.keymap.set('n', 'ga', vim.lsp.buf.code_action, opts)
+			vim.keymap.set('n', 'crr', vim.lsp.buf.code_action, opts)
 		end
 		if client.supports_method('textDocument/formatting') then
 			vim.api.nvim_create_autocmd('BufWritePre', {
