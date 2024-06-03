@@ -1,5 +1,6 @@
 filetype plugin indent on
 packadd! matchit
+packadd! comment
 
 let s:viminfodir = expand("$XDG_CACHE_HOME") . "vim"
 if !isdirectory(s:viminfodir)
