@@ -3,7 +3,7 @@ lspconfig.eslint.setup({})
 lspconfig.gopls.setup({})
 lspconfig.pyright.setup({})
 lspconfig.ruff.setup({})
-lspconfig.tsserver.setup({})
+lspconfig.ts_ls.setup({})
 
 vim.api.nvim_create_autocmd('LspAttach', {
 	callback = function(ev)
