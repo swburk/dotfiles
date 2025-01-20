@@ -13,6 +13,13 @@ matches:
         type: date
         params:
           format: "%Y-%m-%d %H:%M:%S"
+  - trigger: ":utc"
+    replace: "{{utc}}"
+    vars:
+      - name: utc
+        type: shell
+        params:
+          cmd: "date -u +'%Y-%m-%d %T'"
   - trigger: ":uuid"
     replace: "{{output}}"
     vars:
