@@ -1,1 +1,4 @@
-tags
+Thumbs.db
+.DS_Store
+*.bak
+*.swp

@@ -37,3 +37,6 @@
 [submodule ".vim/pack/plugins/start/vim-exchange"]
 	path = .config/vim/pack/plugins/start/vim-exchange
 	url = https://github.com/tommcdo/vim-exchange.git
+[submodule ".local/share/nvim/site/pack/plugins/start/nvim-lint"]
+	path = .local/share/nvim/site/pack/plugins/start/nvim-lint
+	url = https://github.com/mfussenegger/nvim-lint
