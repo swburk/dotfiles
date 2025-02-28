@@ -1,6 +1,7 @@
 require('nvim-treesitter.configs').setup {
 	ensure_installed = {
 		'c',
+		'css',
 		'go',
 		'html',
 		'javascript',
@@ -8,6 +9,7 @@ require('nvim-treesitter.configs').setup {
 		'markdown',
 		'markdown_inline',
 		'python',
+		'typescript',
 		'vim',
 		'vimdoc'
 	},
@@ -28,22 +30,16 @@ require('nvim-treesitter.configs').setup {
 			keymaps = {
 				["ae"] = "@assignment.outer",
 				["ie"] = "@assignment.inner",
-
 				["aa"] = "@parameter.outer",
 				["ia"] = "@parameter.inner",
-
 				["ai"] = "@conditional.outer",
 				["ii"] = "@conditional.inner",
-
 				["al"] = "@loop.outer",
 				["il"] = "@loop.inner",
-
 				["af"] = "@call.outer",
 				["if"] = "@call.inner",
-
 				["am"] = "@function.outer",
 				["im"] = "@function.inner",
-
 				["at"] = "@class.outer",
 				["it"] = "@class.inner",
 			},
