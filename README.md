@@ -1,5 +1,8 @@
 # Requirements
 
+* [Github CLI](https://cli.github.com/)
+* [Tree-sitter](https://tree-sitter.github.io/tree-sitter/)
+
 Linux & macOS:
 * [GNU Stow](https://www.gnu.org/software/stow/) - Symlink dotfiles
 
@@ -8,19 +11,20 @@ Windows:
 
 ## Configured Programs
 
+* [Espanso](https://espanso.org/)
 * [Git](https://git-scm.com/)
-* [GNU Screen](https://www.gnu.org/software/screen/)
 * [Neovim](https://neovim.io)
 * [Vim](https://www.vim.org/)
 * [WezTerm](https://wezfurlong.org/wezterm/index.html)
 * [Zsh](https://www.zsh.org/)
 
-## LSP Servers
+## Linters/LSP Servers
 
-* [Python LSP Server](https://github.com/python-lsp/python-lsp-server)
-* [TypeScript Language Server](https://github.com/typescript-language-server/typescript-language-server)
 * [ESLint](https://eslint.org/)
 * [gopls](https://pkg.go.dev/golang.org/x/tools/gopls)
+* [Pyright](https://github.com/microsoft/pyright)
+* [Ruff](https://github.com/astral-sh/ruff)
+* [TypeScript Language Server](https://github.com/typescript-language-server/typescript-language-server)
 
 # Installation
 

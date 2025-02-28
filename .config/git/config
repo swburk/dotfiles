@@ -1,9 +1,19 @@
 [user]
 	name = Sam Burk
 	email = sam@samburk.com
-[core]
-	editor = nvim
 [merge]
 	tool = nvimdiff
+[alias]
+	a = add
+	ap = add --patch
+	browse = !gh browse
+	c = commit
+	df = diff
+	pl = pull
+	pr = !gh pr
+	ps = push
+	s = status
+	sc = switch -c
+	sw = switch
 [includeIf "gitdir:~/code/"]
 	path = ~/code/.gitconfig
