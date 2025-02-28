@@ -1,5 +1,5 @@
-VISUAL="nvim"
-EDITOR="$VISUAL"
+export VISUAL="nvim"
+export EDITOR="$VISUAL"
 
 : ${XDG_CONFIG_HOME:="$HOME/.config"} \
 	${XDG_CACHE_HOME:="$HOME/.cache"} \
