@@ -1,6 +1,13 @@
 local wezterm = require 'wezterm'
 local config = {}
 
+local is_macos = wezterm.target_triple:find('darwin') ~= nil
+local is_windows = wezterm.target_triple:find('windows') ~= nil
+
+if is_windows then
+	config.default_prog = { 'pwsh.exe', '-NoLogo' }
+end
+
 function scheme_for_appearance(appearance)
 	if appearance:find('Dark') then
 		return 'Catppuccin Mocha'
@@ -20,12 +27,7 @@ wezterm.on('window-config-reloaded', function(window, pane)
 	end
 end)
 
--- Use PowerShell on Windows.
-if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
-	config.default_prog = { 'pwsh.exe', '-NoLogo' }
-end
-
-config.color_scheme = 'Catppuccin Mocha'
+config.color_scheme = 'Catppuccin Frappe'
 config.font = wezterm.font('JetBrains Mono')
 config.font_size = 14
 config.use_fancy_tab_bar = false
@@ -39,15 +41,15 @@ config.window_padding = {
 config.quit_when_all_windows_are_closed = false
 config.window_close_confirmation = 'NeverPrompt'
 
+local act = wezterm.action
 config.keys = {
-	-- Scroll to the previous/next prompt.
+	{ key = 'UpArrow', mods = 'SHIFT', action = act.ScrollToPrompt(-1) },
+	{ key = 'DownArrow', mods = 'SHIFT', action = act.ScrollToPrompt(1) },
 	{
-		key = 'UpArrow', mods = 'SHIFT',
-		action = wezterm.action.ScrollToPrompt(-1)
-	},
-	{
-		key = 'DownArrow', mods = 'SHIFT',
-		action = wezterm.action.ScrollToPrompt(1)
+		key = 'n', mods = (is_macos and 'CMD' or 'CTRL') .. '|SHIFT',
+		action = act.SpawnCommandInNewWindow({
+			cwd = wezterm.home_dir,
+		}),
 	},
 }
 

@@ -5,7 +5,6 @@
 	tool = nvimdiff
 [alias]
 	a = add
-	ap = add --patch
 	browse = !gh browse
 	c = commit
 	df = diff
@@ -13,7 +12,7 @@
 	pr = !gh pr
 	ps = push
 	s = status
-	sc = switch -c
+	sc = switch --create
 	sw = switch
 [includeIf "gitdir:~/code/"]
 	path = ~/code/.gitconfig

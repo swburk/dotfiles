@@ -25,9 +25,11 @@ PROMPT='%(1j.%F{magenta}%jj%f .)%F{green}%n%f@%F{yellow}%m%f %F{cyan}%~%f ${vcs_
 
 case "$(uname -s)" in
 	Darwin)
+		wezterm_integration_path="/Applications/WezTerm.app/Contents/Resources/wezterm.sh"
 		alias ls="ls -GF"
 		;;
 	Linux)
+		wezterm_integration_path="/etc/profile.d/wezterm.sh"
 		alias ls="ls --color=auto -F"
 		;;
 esac
@@ -35,5 +37,6 @@ alias e="$EDITOR"
 alias g="git"
 alias venv=". ./.venv/bin/activate"
 
+test -f "$wezterm_integration_path" && . "$wezterm_integration_path"
 test -f /opt/homebrew/bin/brew && eval "$(/opt/homebrew/bin/brew shellenv)"
 command -v mise &> /dev/null && eval "$(mise activate zsh)"

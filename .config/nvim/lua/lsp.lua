@@ -29,6 +29,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
 				end,
 			})
 		end
+		if client.supports_method('textDocument/implementation') then
+			vim.keymap.set('n', 'gri', vim.lsp.buf.implementation, opts)
+		end
 		if client.supports_method('textDocument/references') then
 			vim.keymap.set('n', 'grr', vim.lsp.buf.references, opts)
 		end
