@@ -2,11 +2,6 @@ local wezterm = require 'wezterm'
 local config = {}
 
 local is_macos <const> = wezterm.target_triple:find('darwin') ~= nil
-local is_windows <const> = wezterm.target_triple:find('windows') ~= nil
-
-if is_windows then
-	config.default_prog = { 'pwsh.exe', '-NoLogo' }
-end
 
 function scheme_for_appearance(appearance)
 	if appearance:find('Dark') then
@@ -32,6 +27,8 @@ config.font = wezterm.font('JetBrains Mono')
 config.font_size = 14
 config.use_fancy_tab_bar = false
 config.hide_tab_bar_if_only_one_tab = true
+config.tab_bar_at_bottom = true
+config.initial_cols = 88
 config.window_padding = {
 	left = 0,
 	right = 0,

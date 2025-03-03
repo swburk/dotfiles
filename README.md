@@ -1,13 +1,7 @@
 # Requirements
 
-* [Github CLI](https://cli.github.com/)
-* [Tree-sitter](https://tree-sitter.github.io/tree-sitter/)
-
-Linux & macOS:
 * [GNU Stow](https://www.gnu.org/software/stow/) - Symlink dotfiles
-
-Windows:
-* [MinGW-w64](https://www.mingw-w64.org/) - Dependency for nvim-treesitter
+* [Tree-sitter](https://tree-sitter.github.io/tree-sitter/)
 
 ## Configured Programs
 
@@ -34,27 +28,7 @@ cd ~/.dotfiles
 stow .
 ```
 
-### Special Instructions for Windows
-
-To correctly link the configuration on Windows, run the following commands in PowerShell as an administrator:
-
-Vim:
-```
-New-Item -ItemType SymbolicLink -Path ~\vimfiles -Target .\.config\.vim
-```
-
-Neovim:
-```
-New-Item -ItemType SymbolicLink -Path ~\AppData\Local\nvim -Target .\.config\nvim
-New-Item -ItemType SymbolicLink -Path ~\AppData\Local\nvim-data -Target .\.local\share\nvim
-```
-
-WezTerm:
-```
-New-Item -ItemType SymbolicLink -Path ~\.wezterm.lua -Target .\.config\wezterm\wezterm.lua
-```
-
-# Vim & Neovim
+# Neovim
 
 ### Helptags
 
@@ -73,21 +47,16 @@ Login and enable Copilot:
 
 ### Plugins
 
-Vim and Neovim have a different `packpath`. Substitute the following values for "PACKPATH" in the commands below:
-
-* Vim: `.config/.vim/`
-* Neovim: `.local/share/nvim/site/`
-
 Add plugin:
 ```
-git submodule add -f https://github.com/name/foo.git PACKPATH/pack/plugins/start/foo
+git submodule add -f https://github.com/name/foo.git .local/share/nvim/site/pack/plugins/start/foo
 ```
 
 Remove plugin:
 ```
-git submodule deinit PACKPATH/pack/plugins/start/foo
-git rm PACKPATH/pack/plugins/start/foo
-rm -r .git/modules/PACKPATH/pack/plugins/start/foo
+git submodule deinit .local/share/nvim/site/pack/plugins/start/foo
+git rm .local/share/nvim/site/pack/plugins/start/foo
+rm -r .git/modules/.local/share/nvim/site/pack/plugins/start/foo
 ```
 
 Update plugins:

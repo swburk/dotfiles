@@ -1,9 +1,3 @@
-[submodule ".vim/pack/plugins/start/vim-repeat"]
-	path = .config/vim/pack/plugins/start/vim-repeat
-	url = https://github.com/tpope/vim-repeat
-[submodule ".vim/pack/plugins/start/vim-surround"]
-	path = .config/vim/pack/plugins/start/vim-surround
-	url = https://github.com/tpope/vim-surround
 [submodule ".local/share/nvim/site/pack/plugins/start/vim-repeat"]
 	path = .local/share/nvim/site/pack/plugins/start/vim-repeat
 	url = https://github.com/tpope/vim-repeat
@@ -28,14 +22,8 @@
 [submodule ".local/share/nvim/site/pack/plugins/start/vim-fugitive"]
 	path = .local/share/nvim/site/pack/plugins/start/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive.git
-[submodule ".vim/pack/plugins/start/vim-fugitive"]
-	path = .config/vim/pack/plugins/start/vim-fugitive
-	url = https://github.com/tpope/vim-fugitive.git
 [submodule ".local/share/nvim/site/pack/plugins/start/vim-exchange"]
 	path = .local/share/nvim/site/pack/plugins/start/vim-exchange
-	url = https://github.com/tommcdo/vim-exchange.git
-[submodule ".vim/pack/plugins/start/vim-exchange"]
-	path = .config/vim/pack/plugins/start/vim-exchange
 	url = https://github.com/tommcdo/vim-exchange.git
 [submodule ".local/share/nvim/site/pack/plugins/start/nvim-lint"]
 	path = .local/share/nvim/site/pack/plugins/start/nvim-lint
