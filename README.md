@@ -1,6 +1,6 @@
 # Requirements
 
-* [GNU Stow](https://www.gnu.org/software/stow/) - Symlink dotfiles
+* [GNU Stow](https://www.gnu.org/software/stow/)
 * [Tree-sitter](https://tree-sitter.github.io/tree-sitter/)
 
 ## Configured Programs
@@ -8,7 +8,6 @@
 * [Espanso](https://espanso.org/)
 * [Git](https://git-scm.com/)
 * [Neovim](https://neovim.io)
-* [Vim](https://www.vim.org/)
 * [WezTerm](https://wezfurlong.org/wezterm/index.html)
 * [Zsh](https://www.zsh.org/)
 
