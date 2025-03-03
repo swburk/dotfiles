@@ -1,8 +1,8 @@
 local wezterm = require 'wezterm'
 local config = {}
 
-local is_macos = wezterm.target_triple:find('darwin') ~= nil
-local is_windows = wezterm.target_triple:find('windows') ~= nil
+local is_macos <const> = wezterm.target_triple:find('darwin') ~= nil
+local is_windows <const> = wezterm.target_triple:find('windows') ~= nil
 
 if is_windows then
 	config.default_prog = { 'pwsh.exe', '-NoLogo' }
