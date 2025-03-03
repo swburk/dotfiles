@@ -26,19 +26,18 @@ setopt PROMPT_SUBST
 PROMPT='%B%S%F{red}%(1j. %j.) %F{yellow} %F{green}${SSH_CONNECTION+" %n@%m "} %F{blue} %~ %F{magenta}${vcs_info_msg_0_}%f%s %(?..%F{red})%#%f%b '
 RPROMPT="%F{black}%*%f"
 
-case "$(uname -s)" in
-	Darwin)
-		wezterm_integration_path="/Applications/WezTerm.app/Contents/Resources/wezterm.sh"
+alias e="$EDITOR"
+alias g="git"
+case "$OSTYPE" in
+	darwin*)
+		terminal_integration="/Applications/WezTerm.app/Contents/Resources/wezterm.sh"
 		alias ls="ls -GF"
 		;;
-	Linux)
-		wezterm_integration_path="/etc/profile.d/wezterm.sh"
+	linux*)
+		terminal_integration="/etc/profile.d/wezterm.sh"
 		alias ls="ls --color=auto -F"
 		;;
 esac
-alias e="$EDITOR"
-alias g="git"
+test -f "$terminal_integration" && . "$terminal_integration"
 
-test -f "$wezterm_integration_path" && . "$wezterm_integration_path"
-test -f /opt/homebrew/bin/brew && eval "$(/opt/homebrew/bin/brew shellenv)"
 command -v mise &> /dev/null && eval "$(mise activate zsh)"
