@@ -9,7 +9,6 @@ vim.opt.smartcase = true
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 0
 vim.opt.shiftround = true
-vim.opt.path = vim.opt.path + '**'
 vim.opt.number = true
 vim.opt.foldlevelstart = 99
 vim.opt.statusline = '%<%f %h%w%m%r%{FugitiveStatusline()}%=%l:%v/%L %y'
@@ -29,6 +28,3 @@ vim.keymap.set('n', 'gm', '<cmd>global//number<cr>:', { noremap = true })
 vim.keymap.set('c', '%%', '<c-r>=fnameescape(expand("%:h"))."/"<cr>', { noremap = true })
 vim.keymap.set('t', '<esc>', '<c-\\><c-n>', { noremap = true })
 vim.keymap.set('i', '<c-space>', '<c-x><c-o>', { noremap = true })
-
-vim.api.nvim_create_autocmd('FileType',
-	{ callback = function() vim.opt_local.formatoptions = 'cqj' end })
