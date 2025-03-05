@@ -1,28 +1,19 @@
-local wezterm = require 'wezterm'
-local config = {}
+local wezterm = require('wezterm')
+local act = wezterm.action
+local config = wezterm.config_builder()
 
-local is_macos <const> = wezterm.target_triple:find('darwin') ~= nil
-
-function scheme_for_appearance(appearance)
-	if appearance:find('Dark') then
-		return 'Catppuccin Mocha'
-	else
-		return 'Catppuccin Latte'
+function get_appearance()
+	if wezterm.gui then
+		return wezterm.gui.get_appearance()
 	end
+	return 'Light'
 end
 
--- Change the color scheme when the system appearance changes.
-wezterm.on('window-config-reloaded', function(window, pane)
-	local overrides = window:get_config_overrides() or {}
-	local appearance = window:get_appearance()
-	local scheme = scheme_for_appearance(appearance)
-	if overrides.color_scheme ~= scheme then
-		overrides.color_scheme = scheme
-		window:set_config_overrides(overrides)
-	end
-end)
-
-config.color_scheme = 'Catppuccin Frappe'
+if get_appearance():find('Dark') then
+	config.color_scheme = 'Catppuccin Mocha'
+else
+	config.color_scheme = 'Catppuccin Latte'
+end
 config.font = wezterm.font('JetBrains Mono')
 config.font_size = 14
 config.use_fancy_tab_bar = false
@@ -38,15 +29,15 @@ config.window_padding = {
 config.quit_when_all_windows_are_closed = false
 config.window_close_confirmation = 'NeverPrompt'
 
-local act = wezterm.action
 config.keys = {
 	{ key = 'UpArrow', mods = 'SHIFT', action = act.ScrollToPrompt(-1) },
 	{ key = 'DownArrow', mods = 'SHIFT', action = act.ScrollToPrompt(1) },
+}
+config.mouse_bindings = {
 	{
-		key = 'n', mods = (is_macos and 'CMD' or 'CTRL') .. '|SHIFT',
-		action = act.SpawnCommandInNewWindow({
-			cwd = wezterm.home_dir,
-		}),
+		event = { Down = { streak = 3, button = 'Left' } },
+		action = act.SelectTextAtMouseCursor('SemanticZone'),
+		mods = 'NONE',
 	},
 }
 

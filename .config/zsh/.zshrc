@@ -1,10 +1,10 @@
 HISTSIZE="10000"
 SAVEHIST="$HISTSIZE"
-HISTFILE="$XDG_STATE_HOME/zsh/history"
+HISTFILE="${XDG_STATE_HOME:-$HOME/.local/state}/zsh/history"
 setopt INC_APPEND_HISTORY
 
 autoload -Uz compinit
-compinit -d "$XDG_CACHE_HOME/zsh/zcompdump"
+compinit -d "${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump"
 
 bindkey -e
 autoload -Uz edit-command-line
@@ -30,14 +30,15 @@ alias e="$EDITOR"
 alias g="git"
 case "$OSTYPE" in
 	darwin*)
-		terminal_integration="/Applications/WezTerm.app/Contents/Resources/wezterm.sh"
 		alias ls="ls -GF"
 		;;
 	linux*)
-		terminal_integration="/etc/profile.d/wezterm.sh"
 		alias ls="ls --color=auto -F"
 		;;
 esac
-test -f "$terminal_integration" && . "$terminal_integration"
+
+if [ "$TERM_PROGRAM" = "WezTerm" ] && [ -f "$WEZTERM_CONFIG_DIR/wezterm.sh" ]; then
+	. "$WEZTERM_CONFIG_DIR/wezterm.sh"
+fi
 
 command -v mise &> /dev/null && eval "$(mise activate zsh)"
