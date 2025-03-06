@@ -23,7 +23,7 @@ zstyle ":vcs_info:git:*" actionformats " %b%u%c %a "
 autoload -Uz add-zsh-hook
 add-zsh-hook precmd vcs_info
 setopt PROMPT_SUBST
-PROMPT='%B%S%F{red}%(1j. %j.) %F{yellow} %F{green}${SSH_CONNECTION+" %n@%m "} %F{blue} %~ %F{magenta}${vcs_info_msg_0_}%f%s %(?..%F{red})%#%f%b '
+PROMPT='%B%S%F{red}%(1j. %j.) %F{yellow} %F{green}${SSH_CONNECTION+" %n@%m"} %F{blue} %~ %F{magenta}${vcs_info_msg_0_}%f%s %(?..%F{red})%#%f%b '
 RPROMPT="%F{black}%*%f"
 
 alias e="$EDITOR"

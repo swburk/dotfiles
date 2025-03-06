@@ -1,7 +1,6 @@
 # Requirements
 
 * [GNU Stow](https://www.gnu.org/software/stow/)
-* [Tree-sitter](https://tree-sitter.github.io/tree-sitter/)
 
 ## Configured Programs
 
