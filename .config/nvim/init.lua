@@ -1,6 +1,5 @@
 require('lsp')
 require('treesitter')
-require('catppuccin').setup({ flavour = 'auto' })
 
 vim.opt.undofile = true
 vim.opt.wrap = false
@@ -9,22 +8,32 @@ vim.opt.smartcase = true
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 0
 vim.opt.shiftround = true
+vim.g.netrw_banner = 0
+vim.g.netrw_list_hide = vim.fn['netrw_gitignore#Hide']()
+vim.opt.wildignore = vim.g.netrw_list_hide
 vim.opt.number = true
 vim.opt.foldlevelstart = 99
 vim.opt.statusline = '%<%f %h%w%m%r%{FugitiveStatusline()}%=%l:%v/%L %y'
-vim.g.netrw_banner = 0
 vim.cmd.colorscheme('catppuccin')
 
+vim.diagnostic.config({
+	virtual_text = false,
+	severity_sort = true,
+})
+
 vim.keymap.set('n', '<Plug>(SplitLine)',
-	[[<cmd>keeppatterns substitute/\v^(\s*)(.{-})\s*%#\s*(.*)/\1\2\r\1\3/|]]
-	.. [[call repeat#set("\<Plug>(SplitLine)")<cr>]], { noremap = true })
+	[[<Cmd>keeppatterns substitute/\v^(\s*)(.{-})\s*%#\s*(.*)/\1\2\r\1\3/]]
+	.. [[<Bar>call repeat#set("\<Plug>(SplitLine)")<CR>]]
+)
 vim.keymap.set('n', 'S', '<Plug>(SplitLine)')
-vim.keymap.set('n', '<tab>', '<c-^>', { noremap = true })
-vim.keymap.set('n', 'gV', '`[v`]', { noremap = true })
-vim.keymap.set('n', 'gs', ':%substitute///g<left><left>', { noremap = true })
-vim.keymap.set('x', 'gs', ':substitute///g<left><left>', { noremap = true })
-vim.keymap.set('n', 'gl', '<cmd>buffers<cr>:buffer<space>', { noremap = true })
-vim.keymap.set('n', 'gm', '<cmd>global//number<cr>:', { noremap = true })
-vim.keymap.set('c', '%%', '<c-r>=fnameescape(expand("%:h"))."/"<cr>', { noremap = true })
-vim.keymap.set('t', '<esc>', '<c-\\><c-n>', { noremap = true })
-vim.keymap.set('i', '<c-space>', '<c-x><c-o>', { noremap = true })
+vim.keymap.set('n', '<Tab>', '<C-^>')
+vim.keymap.set({ 'n', 'x' }, 'gy', '"+y')
+vim.keymap.set('n', 'gV', '`[v`]')
+vim.keymap.set('n', 'gs', ':%substitute///g<Left><Left>')
+vim.keymap.set('x', 'gs', ':substitute///g<Left><Left>')
+vim.keymap.set('n', 'gl', '<Cmd>buffers<CR>:b')
+vim.keymap.set('c', '%%',
+	'getcmdtype() == ":" ? fnameescape(expand("%:h"))."/" : "%%"',
+	{ expr = true }
+)
+vim.keymap.set('t', '<Esc>', '<C-\\><C-N>')
