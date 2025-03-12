@@ -7,6 +7,7 @@ vim.opt_local.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 
 vim.cmd('packadd! nvim-lint')
 vim.api.nvim_create_autocmd('BufWritePost', {
+	group = vim.api.nvim_create_augroup('eslint', {}),
 	callback = function()
 		require('lint').try_lint('eslint')
 	end,

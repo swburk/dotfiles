@@ -5,6 +5,7 @@ lspconfig.ruff.setup({})
 lspconfig.ts_ls.setup({})
 
 vim.api.nvim_create_autocmd('LspAttach', {
+	group = vim.api.nvim_create_augroup('lsp', {}),
 	callback = function(args)
 		local client = vim.lsp.get_client_by_id(args.data.client_id)
 		local opts = { buffer = args.buf }
@@ -19,6 +20,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 		end
 		if client.supports_method('textDocument/formatting') then
 			vim.api.nvim_create_autocmd('BufWritePre', {
+				group = vim.api.nvim_create_augroup('lsp_format', {}),
 				buffer = args.buf,
 				callback = function()
 					vim.lsp.buf.format({

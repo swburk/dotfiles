@@ -1,3 +1,11 @@
 .DS_Store
-*.bak
-*.swp
+.Trashes
+.netrwhist
+[._]*.s??
+*~
+.env
+node_modules/
+__pycache__/
+mise.toml
+.venv
+*.py[cod]

@@ -21,6 +21,22 @@ vim.diagnostic.config({
 	severity_sort = true,
 })
 
+vim.keymap.set('x', 'il', 'g_o^')
+vim.keymap.set('o', 'il', '<Cmd>normal vil<CR>', { silent = true })
+vim.keymap.set('x', 'al', '$o0')
+vim.keymap.set('o', 'al', '<Cmd>normal val<CR>', { silent = true })
+vim.keymap.set('x', 'ig', function()
+	vim.cmd[[
+		normal! G
+		call search('^.', 'bcW')
+		normal! $ogg0
+		call search('^.', 'cW')
+	]]
+end)
+vim.keymap.set('o', 'ig', '<Cmd>normal Vig<CR>', { silent = true })
+vim.keymap.set('x', 'ag', 'G$ogg0')
+vim.keymap.set('o', 'ag', '<Cmd>normal Vag<CR>', { silent = true })
+
 vim.keymap.set('n', '<Plug>(SplitLine)',
 	[[<Cmd>keeppatterns substitute/\v^(\s*)(.{-})\s*%#\s*(.*)/\1\2\r\1\3/]]
 	.. [[<Bar>call repeat#set("\<Plug>(SplitLine)")<CR>]]
