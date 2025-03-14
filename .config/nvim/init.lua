@@ -8,6 +8,7 @@ vim.opt.smartcase = true
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 0
 vim.opt.shiftround = true
+vim.opt.colorcolumn = { '80' }
 vim.g.netrw_banner = 0
 vim.g.netrw_list_hide = vim.fn['netrw_gitignore#Hide']()
 vim.opt.wildignore = vim.g.netrw_list_hide
@@ -21,10 +22,6 @@ vim.diagnostic.config({
 	severity_sort = true,
 })
 
-vim.keymap.set('x', 'il', 'g_o^')
-vim.keymap.set('o', 'il', '<Cmd>normal vil<CR>', { silent = true })
-vim.keymap.set('x', 'al', '$o0')
-vim.keymap.set('o', 'al', '<Cmd>normal val<CR>', { silent = true })
 vim.keymap.set('x', 'ig', function()
 	vim.cmd[[
 		normal! G
@@ -47,7 +44,7 @@ vim.keymap.set({ 'n', 'x' }, 'gy', '"+y')
 vim.keymap.set('n', 'gV', '`[v`]')
 vim.keymap.set('n', 'gs', ':%substitute///g<Left><Left>')
 vim.keymap.set('x', 'gs', ':substitute///g<Left><Left>')
-vim.keymap.set('n', 'gl', '<Cmd>buffers<CR>:b')
+vim.keymap.set('n', 'gl', '<Cmd>buffers<CR>:buffer<Space>')
 vim.keymap.set('c', '%%',
 	'getcmdtype() == ":" ? fnameescape(expand("%:h"))."/" : "%%"',
 	{ expr = true }
