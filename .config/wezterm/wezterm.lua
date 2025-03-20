@@ -14,7 +14,6 @@ if get_appearance():find('Dark') then
 else
 	config.color_scheme = 'Catppuccin Latte'
 end
-config.font = wezterm.font('JetBrains Mono')
 config.font_size = 14
 config.use_fancy_tab_bar = false
 config.hide_tab_bar_if_only_one_tab = true
