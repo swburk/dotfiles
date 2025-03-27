@@ -1,47 +1,48 @@
-local lspconfig = require('lspconfig')
-lspconfig.gopls.setup({})
-lspconfig.pyright.setup({})
-lspconfig.ruff.setup({})
-lspconfig.ts_ls.setup({})
+vim.lsp.config('*', {
+	root_markers = { '.git' },
+})
+
+vim.lsp.enable({
+	'gopls',
+	'lua-language-server',
+	'pyright',
+	'ruff',
+	'typescript-language-server',
+})
 
 vim.api.nvim_create_autocmd('LspAttach', {
-	group = vim.api.nvim_create_augroup('lsp', {}),
-	callback = function(args)
-		local client = vim.lsp.get_client_by_id(args.data.client_id)
-		local opts = { buffer = args.buf }
-		if client.supports_method('textDocument/codeAction') then
-			vim.keymap.set('n', 'gra', vim.lsp.buf.code_action, opts)
+	group = vim.api.nvim_create_augroup('my.lsp', {}),
+	callback = function(ev)
+		local client = assert(vim.lsp.get_client_by_id(ev.data.client_id))
+		local opts = { buffer = ev.buf }
+		if client:supports_method('textDocument/completion') then
+			vim.lsp.completion.enable(true, client.id, ev.buf, {
+				autotrigger = true
+			})
 		end
-		if client.supports_method('textDocument/declaration') then
+		if client:supports_method('textDocument/declaration') then
 			vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
 		end
-		if client.supports_method('textDocument/definition') then
+		if client:supports_method('textDocument/definition') then
 			vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
 		end
-		if client.supports_method('textDocument/formatting') then
+		if not client:supports_method('textDocument/willSaveWaitUntil')
+				and client:supports_method('textDocument/formatting') then
 			vim.api.nvim_create_autocmd('BufWritePre', {
-				group = vim.api.nvim_create_augroup('lsp_format', {}),
-				buffer = args.buf,
+				group = vim.api.nvim_create_augroup('my.lsp', {
+					clear = false
+				}),
+				buffer = ev.buf,
 				callback = function()
 					vim.lsp.buf.format({
-						bufnr = args.buf,
+						bufnr = ev.buf,
 						id = client.id,
-						filter = function(client) return client.name ~= 'ts_ls' end,
+						filter = function(client)
+							return client.name ~= 'ts_ls'
+						end,
 					})
 				end,
 			})
-		end
-		if client.supports_method('textDocument/implementation') then
-			vim.keymap.set('n', 'gri', vim.lsp.buf.implementation, opts)
-		end
-		if client.supports_method('textDocument/references') then
-			vim.keymap.set('n', 'grr', vim.lsp.buf.references, opts)
-		end
-		if client.supports_method('textDocument/rename') then
-			vim.keymap.set('n', 'grn', vim.lsp.buf.rename, opts)
-		end
-		if client.supports_method('textDocument/signatureHelp') then
-			vim.keymap.set('i', '<C-S>', vim.lsp.buf.signature_help, opts)
 		end
 	end,
 })
