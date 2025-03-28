@@ -8,6 +8,8 @@ vim.opt.smartcase = true
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 0
 vim.opt.shiftround = true
+vim.opt.updatetime = 250
+vim.opt.completeopt:append({ 'menuone', 'noselect', 'preview' })
 vim.g.netrw_banner = 0
 vim.opt.number = true
 vim.opt.foldlevelstart = 99
