@@ -7,10 +7,12 @@
 	a = add
 	browse = !gh browse
 	c = commit
-	df = diff
+	d = diff
+	dt = difftool
 	pl = pull
 	pr = !gh pr
 	ps = push
+	r = restore
 	s = status
 	sc = switch --create
 	sw = switch

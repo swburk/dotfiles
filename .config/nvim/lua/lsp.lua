@@ -15,11 +15,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
 	callback = function(ev)
 		local client = assert(vim.lsp.get_client_by_id(ev.data.client_id))
 		local opts = { buffer = ev.buf }
-		if client:supports_method('textDocument/completion') then
-			vim.lsp.completion.enable(true, client.id, ev.buf, {
-				autotrigger = true
-			})
-		end
 		if client:supports_method('textDocument/declaration') then
 			vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
 		end
@@ -38,7 +33,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 						bufnr = ev.buf,
 						id = client.id,
 						filter = function(client)
-							return client.name ~= 'ts_ls'
+							return client.name ~= 'typescript-language-server'
 						end,
 					})
 				end,
