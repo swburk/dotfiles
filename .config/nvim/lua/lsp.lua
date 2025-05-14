@@ -16,39 +16,12 @@ vim.api.nvim_create_autocmd('LspAttach', {
 		local client = assert(vim.lsp.get_client_by_id(ev.data.client_id))
 		local opts = { buffer = ev.buf }
 
-		if client:supports_method('textDocument/completion') then
-			vim.lsp.completion.enable(true, client.id, ev.buf, {
-				autotrigger = true
-			})
-		end
-
 		if client:supports_method('textDocument/declaration') then
 			vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
 		end
 
 		if client:supports_method('textDocument/definition') then
 			vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-		end
-
-		if client:supports_method('textDocument/documentHighlight') then
-			vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
-				group = vim.api.nvim_create_augroup('my.lsp', {
-					clear = false
-				}),
-				buffer = ev.buf,
-				callback = function()
-					vim.lsp.buf.document_highlight()
-				end,
-			})
-			vim.api.nvim_create_autocmd({ 'CursorMoved' }, {
-				group = vim.api.nvim_create_augroup('my.lsp', {
-					clear = false
-				}),
-				buffer = ev.buf,
-				callback = function()
-					vim.lsp.buf.clear_references()
-				end,
-			})
 		end
 
 		if not client:supports_method('textDocument/willSaveWaitUntil')

@@ -1,0 +1,51 @@
+global_vars:
+  - name: clipboard
+    type: clipboard
+  - name: today
+    type: date
+    params:
+      format: "%d %b %Y"
+  - name: transaction
+    type: echo
+    params:
+      echo: "[b]{{today}}[/b]: [color=\"{{color}}\"][b][{{transaction_type}}][/b][/color] [url=\"{{clipboard}}\"]$|$[/url]"
+matches:
+  - trigger: "[[b"
+    replace: "[b]$|$[/b]"
+  - trigger: "[[i"
+    replace: "[i]$|$[/i]"
+  - trigger: "[[url"
+    replace: "[url=\"{{clipboard}}\"]$|$[/url]"
+  - trigger: "[[sign"
+    replace: "{{transaction}}"
+    vars:
+      - name: color
+        type: echo
+        params:
+          echo: "#008000"
+      - name: transaction_type
+        type: echo
+        params:
+          echo: "SIGN"
+  - trigger: "[[waive"
+    replace: "{{transaction}}"
+    vars:
+      - name: color
+        type: echo
+        params:
+          echo: "#808080"
+      - name: transaction_type
+        type: echo
+        params:
+          echo: "WAIVE"
+  - trigger: "[[option"
+    replace: "{{transaction}}"
+    vars:
+      - name: color
+        type: echo
+        params:
+          echo: "#4169E1"
+      - name: transaction_type
+        type: echo
+        params:
+          echo: "OPTION"
